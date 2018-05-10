@@ -127,7 +127,7 @@ public class BusinessPushProductActivity extends BaseActivity implements
 
     private String orderBianhao;
     private String orderShop;
-
+    private String hejiMoney;
     private int businessProduceType;
 
     @Override
@@ -169,22 +169,19 @@ public class BusinessPushProductActivity extends BaseActivity implements
     protected void initData() {
         mMap = new HashMap<>();
 
-        StringUitl.forbidEmoji(etRemark,30,this);//限制输入字数和表情
+        StringUitl.forbidEmoji(etRemark, 30, this);//限制输入字数和表情
     }
 
     @Override
     protected void setupActivityComponent() {
-        DaggerBusinessPushProductComponent
-                .builder()
-                .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-                .businessPushProductModule(new BusinessPushProductModule(this))
-                .build()
-                .inject(this);
+        DaggerBusinessPushProductComponent.builder().appComponent(((AppConfig) getApplication())
+                .getApplicationComponent()).businessPushProductModule(new
+                BusinessPushProductModule(this)).build().inject(this);
     }
 
     @Override
     public void setPresenter(BusinessPushProductContract.BusinessPushProductContractPresenter
-                                     presenter) {
+                                         presenter) {
         mPresenter = (BusinessPushProductPresenter) presenter;
     }
 
@@ -242,12 +239,14 @@ public class BusinessPushProductActivity extends BaseActivity implements
     public void setDiscountInfo(RimActivityDiscount data) {
         if ("1".equals(data.getSuccess())) {
             mRimActivityDiscount = data;
-            tvDiscountPrice.setText("-¥ " + StringUitl.get2xiaoshu(data.getData().getDiscountMoney()) + "");
+            tvDiscountPrice.setText("-¥ " + StringUitl.get2xiaoshu(data.getData()
+                    .getDiscountMoney()) + "");
             tvDiscountName.setText(data.getData().getActivityContent());
             if (data.getData().getDelivers() != null && data.getData().getDelivers().size() > 0) {
                 mDeliversBean = data.getData().getDelivers().get(0);
                 getXiaoJi();
-                tvServicePrice.setText("¥ " + StringUitl.get2xiaoshu(data.getData().getDelivers().get(0).getDistributionFee()));
+                tvServicePrice.setText("¥ " + StringUitl.get2xiaoshu(data.getData().getDelivers()
+                        .get(0).getDistributionFee()));
             } else {
 
             }
@@ -280,7 +279,8 @@ public class BusinessPushProductActivity extends BaseActivity implements
     }
 
     private void startToOrderListAcitivity() {
-        Intent intent = new Intent(BusinessPushProductActivity.this, RimOrderListActivityActivity.class);
+        Intent intent = new Intent(BusinessPushProductActivity.this, RimOrderListActivityActivity
+                .class);
         startActivity(intent);
         AppConfig.getInstance().mAppActivityManager.finishActivity(BusinessActivity.class);
         finish();
@@ -299,8 +299,7 @@ public class BusinessPushProductActivity extends BaseActivity implements
 
     private void showPayPop() {
         payPop = new PopupWindow(this);
-        View view = getLayoutInflater().inflate(R.layout
-                .rim_order_pay_popupwindows, null);
+        View view = getLayoutInflater().inflate(R.layout.rim_order_pay_popupwindows, null);
         AutoLinearLayout llPaypopup = (AutoLinearLayout) view.findViewById(pop_pay);
 
         payPop.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -415,9 +414,7 @@ public class BusinessPushProductActivity extends BaseActivity implements
                 }
             }
         });
-        llPaypopup.startAnimation(AnimationUtils.loadAnimation(
-                this,
-                R.anim.activity_translate_in));
+        llPaypopup.startAnimation(AnimationUtils.loadAnimation(this, R.anim.activity_translate_in));
 
         payPop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
@@ -465,7 +462,8 @@ public class BusinessPushProductActivity extends BaseActivity implements
                             ToastUtil.showShort("验签失败");
                             return;
                         }
-                        mYinLianPayUtil.doStartUnionPayPlugin(BusinessPushProductActivity.this, result, "01");
+                        mYinLianPayUtil.doStartUnionPayPlugin(BusinessPushProductActivity.this,
+                                result, "01");
                     }
                 });
 
@@ -499,7 +497,8 @@ public class BusinessPushProductActivity extends BaseActivity implements
     /****************************************************支付宝支付**************************/
     public void alipayPay() {
 
-        alipyUtil.getOrderInfo(orderBianhao, orderShop, orderBianhao,getXiaoJi(), new HttpUtils.CallBack() {
+        alipyUtil.getOrderInfo(orderBianhao, orderShop, orderBianhao, hejiMoney, new HttpUtils
+                .CallBack() {
             @Override
             public void onRequestComplete(String orderInfo) {
                 runOnUiThread(new Runnable() {
@@ -549,17 +548,20 @@ public class BusinessPushProductActivity extends BaseActivity implements
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为“9000”则代表支付成功，具体状态码代表含义可参考接口文档
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(BusinessPushProductActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BusinessPushProductActivity.this, "支付成功", Toast
+                                .LENGTH_SHORT).show();
                         KLog.i("支付宝支付成功result" + payResult.getResult());
                         startToOrderListAcitivity();
                     } else {
                         // 判断resultStatus 为非"9000"则代表可能支付失败
                         // "8000"代表支付结果因为支付渠道原因或者系统原因还在等待支付结果确认，最终交易是否成功以服务端异步通知为准（小概率状态）
                         if (TextUtils.equals(resultStatus, "8000")) {
-                            Toast.makeText(BusinessPushProductActivity.this, "支付结果确认中", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BusinessPushProductActivity.this, "支付结果确认中", Toast
+                                    .LENGTH_SHORT).show();
                         } else {
                             // 其他值就可以判断为支付失败，包括用户主动取消支付，或者系统返回的错误
-                            Toast.makeText(BusinessPushProductActivity.this, "支付失败,请重试", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BusinessPushProductActivity.this, "支付失败,请重试", Toast
+                                    .LENGTH_SHORT).show();
                         }
                         KLog.i("支付宝支付失败result" + payResult.getResult());
                         startToOrderListAcitivity();
@@ -578,7 +580,8 @@ public class BusinessPushProductActivity extends BaseActivity implements
     public void weixinPay() {
         boolean wx = CxUtil.isWeixinAvilible(this);
         if (!wx) {
-            Toast.makeText(this, getResources().getString(R.string.weixin_no_install), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getResources().getString(R.string.weixin_no_install), Toast
+                    .LENGTH_SHORT).show();
         } else {
             PayContain.weixinPayResult = PayContain.WEI_XIN_CHECKED;
             new CreateOrderThread().start();
@@ -588,7 +591,8 @@ public class BusinessPushProductActivity extends BaseActivity implements
     public class CreateOrderThread extends Thread {
         @Override
         public void run() {
-            String result = WechatPay.createOrder(orderBianhao, getXiaoJi(), orderShop, orderBianhao);
+            String result = WechatPay.createOrder(orderBianhao, hejiMoney, orderShop,
+                    orderBianhao);
             Message msg = createOrderHandler.obtainMessage();
             msg.what = 0;
             msg.obj = result;
@@ -608,14 +612,16 @@ public class BusinessPushProductActivity extends BaseActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        if (PayContain.weixinPayResult != null && PayContain.weixinPayResult == PayContain.WEI_XIN_CHECKED
-                && PayContain.payResult != null && PayContain.payResult == PayContain.PAY_SUCCESS) {
+        if (PayContain.weixinPayResult != null && PayContain.weixinPayResult == PayContain
+                .WEI_XIN_CHECKED && PayContain.payResult != null && PayContain.payResult ==
+                PayContain.PAY_SUCCESS) {
             PayContain.weixinPayResult = null;
             PayContain.payResult = null;
             startToOrderListAcitivity();
             KLog.i("onResume 微信支付成功");
-        } else if (PayContain.weixinPayResult != null && PayContain.weixinPayResult == PayContain.WEI_XIN_CHECKED
-                && PayContain.payResult != null && PayContain.payResult == PayContain.PAY_FAIL) {
+        } else if (PayContain.weixinPayResult != null && PayContain.weixinPayResult == PayContain
+                .WEI_XIN_CHECKED && PayContain.payResult != null && PayContain.payResult ==
+                PayContain.PAY_FAIL) {
             startToOrderListAcitivity();
             KLog.i("onResume 微信支付失败");
         }
@@ -659,12 +665,15 @@ public class BusinessPushProductActivity extends BaseActivity implements
                 }
                 mMap.put("orderBespeakTime", getBespeakTime());//预约时间
                 mMap.put("orderRemark", etRemark.getText().toString());//留言
-                mMap.put("orderDeliverMethods", mDeliversBean.getDeliverMethods() + "");// 配送方式：(1.商家承运 2.平台承运)
-                mMap.put("orderPaydeliverfee", mDeliversBean.getOrderPaydeliverfee() + "");// 配送费承担(1.客户承担 2.商家承担)
+                mMap.put("orderDeliverMethods", mDeliversBean.getDeliverMethods() + "");// 配送方式：
+                // (1.商家承运 2.平台承运)
+                mMap.put("orderPaydeliverfee", mDeliversBean.getOrderPaydeliverfee() + "");//
+                // 配送费承担(1.客户承担 2.商家承担)
                 mMap.put("orderMoney", spTotalMoney + "");  //订单总金额
                 mMap.put("orderSendMoney", mDeliversBean.getDistributionFee() + "");    //订单配送费
                 mMap.put("orderFactMoney", getXiaoJi());   // 实付金额
-                mMap.put("discountMoney", mRimActivityDiscount.getData().getDiscountMoney() + "");   // 优惠金额
+                mMap.put("discountMoney", mRimActivityDiscount.getData().getDiscountMoney() + "")
+                ;   // 优惠金额
                 mMap.put("orderSettleMoney", "20");  //结算金额
                 mPresenter.upLoadOrderInfo(mMap);
                 break;
@@ -681,12 +690,13 @@ public class BusinessPushProductActivity extends BaseActivity implements
      * @return
      */
     private String getXiaoJi() {
-        String s = "";
+        hejiMoney = "";
         if (mRimActivityDiscount != null && mDeliversBean != null) {
-            s = StringUitl.get2xiaoshu((double) (spTotalMoney + mDeliversBean.getDistributionFee() - mRimActivityDiscount.getData().getDiscountMoney()));
-            tvFinalMoney.setText("合计：¥ " + s);
+            hejiMoney = StringUitl.get2xiaoshu((double) (spTotalMoney + mDeliversBean.getDistributionFee
+                    () - mRimActivityDiscount.getData().getDiscountMoney()));
+            tvFinalMoney.setText("合计：¥ " + hejiMoney);
         }
-        return s;
+        return hejiMoney;
     }
 
     @Override
