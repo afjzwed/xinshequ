@@ -348,6 +348,7 @@ public class BusinessPushProductActivity extends BaseActivity implements
         }
 
         cancalPay.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 startToOrderListAcitivity();
                 payPop.dismiss();
@@ -355,6 +356,7 @@ public class BusinessPushProductActivity extends BaseActivity implements
             }
         });
         comfirmPay.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
                 payPop.dismiss();
                 llPaypopup.clearAnimation();
