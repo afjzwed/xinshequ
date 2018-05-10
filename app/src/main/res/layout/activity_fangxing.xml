@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/sqfx_bj"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/new_fangxing"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:background="@drawable/color_main"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="4px"
+        android:text="发起授权放行"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@color/white"
+        android:textSize="44px"
+        />
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_marginTop="584px"
+        android:layout_marginBottom="138px"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycerView"
+            app:layoutManager="LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

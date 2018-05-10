@@ -1,0 +1,34 @@
+[
+  {
+    "name": "零食",
+    "icon": "scsy_ls01"
+  },
+  {
+    "name": "饮品",
+    "icon": "scsy_ls02"
+  },
+  {
+    "name": "米面油",
+    "icon": "scsy_ls03"
+  },
+  {
+    "name": "调料",
+    "icon": "scsy_ls04"
+  },
+  {
+    "name": "烟酒",
+    "icon": "scsy_ls05"
+  },
+  {
+    "name": "日用",
+    "icon": "scsy_ls06"
+  },
+  {
+    "name": "百货",
+    "icon": "scsy_ls07"
+  },
+  {
+    "name": "所有",
+    "icon": "scsy_ls08"
+  }
+]

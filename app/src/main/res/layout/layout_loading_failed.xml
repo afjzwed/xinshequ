@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_page_super"
+    android:id="@+id/ly_loading_failed"
+    android:visibility="gone"
+    >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/loading_failed"
+        android:contentDescription="@string/app_name" />
+
+	<TextView
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center_horizontal"
+	    android:text="@string/loading_failed"
+	    android:textSize="@dimen/size_14"
+	    android:textColor="@color/loading_failed_grey" />
+
+</LinearLayout>

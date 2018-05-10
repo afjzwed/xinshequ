@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#efefef">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="210px"
+        android:background="@mipmap/scsyt_bj"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:text="支付金额"
+            android:textColor="@color/color_323232"
+            android:textSize="48px" />
+
+        <TextView
+            android:id="@+id/money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text=""
+            android:textColor="@color/color_ff9934"
+            android:textSize="54px" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="@color/white"
+        android:layout_marginTop="34px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支付宝账户"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:drawableLeft="@mipmap/syt_zfb01"
+            android:drawablePadding="34px"
+            android:layout_centerVertical="true"/>
+
+        <CheckBox
+            android:id="@+id/alipy_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="58px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:checked="false"
+            android:button="@drawable/pay_selector"
+            app:color_checked="@color/main_color"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"/>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="@color/white"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微信账户"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:drawableLeft="@mipmap/scsyt_zfb02"
+            android:drawablePadding="34px"
+            android:layout_centerVertical="true"/>
+
+        <CheckBox
+            android:id="@+id/weixin_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="58px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:button="@drawable/pay_selector"
+            app:color_checked="@color/main_color"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"/>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="银联"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:drawableLeft="@mipmap/syt_zfb03"
+            android:drawablePadding="34px"
+            android:layout_centerVertical="true"/>
+
+        <CheckBox
+            android:id="@+id/yinlian_checked"
+            android:layout_width="wrap_content"
+            android:layout_height="58px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:checked="false"
+            android:button="@drawable/pay_selector"
+            app:color_checked="@color/main_color"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <Button
+        android:id="@+id/surePay"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:layout_marginTop="68px"
+        android:text="确认支付"
+        android:textSize="48px"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/color_main"
+        />
+
+</com.zhy.autolayout.AutoLinearLayout>

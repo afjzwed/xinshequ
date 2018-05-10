@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/ll_fangqu"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginTop="40px"
+    android:orientation="vertical">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginLeft="160px"
+        android:id="@+id/shebeiming"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="100px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="40px"
+            android:text="设备名    ："
+            />
+
+        <TextView
+            android:id="@+id/tv_shebei_ming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备名    ："
+            android:textColor="@color/color_333"
+            android:textSize="40px"
+            android:layout_marginLeft="20px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginLeft="160px"
+        android:id="@+id/leixing"
+        android:layout_below="@+id/shebeiming"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="100px">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:textColor="@color/color_333"
+            android:layout_marginLeft="40px"
+            android:text="防区类型："
+            />
+
+        <TextView
+            android:id="@+id/tv_fangqu_leixing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备名    ："
+            android:textColor="@color/color_333"
+            android:textSize="40px"
+            android:layout_marginLeft="20px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginLeft="160px"
+        android:id="@+id/baojingshijian"
+        android:layout_below="@+id/leixing"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="100px">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="报警时间："
+            android:textColor="@color/color_333"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/tv_baojing_shijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备名    ："
+            android:textColor="@color/color_333"
+            android:textSize="40px"
+            android:layout_marginLeft="20px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_marginLeft="160px"
+        android:id="@+id/baojingfangqubianhao"
+        android:layout_below="@+id/baojingshijian"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="100px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40px"
+            android:text="防区编号："
+            android:textColor="@color/color_333"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/tv_baojing_fangqu_bianhao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="防区编号："
+            android:textColor="@color/color_333"
+            android:textSize="40px"
+            android:layout_marginLeft="20px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_avater"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="30px"
+        android:src="@mipmap/md_off"
+        />
+    <ImageView
+        android:id="@+id/iv_alarm"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/jb"
+        />
+    <TextView
+        android:id="@+id/modify"
+        android:layout_width="220px"
+        android:layout_height="80px"
+        android:text="修改"
+        android:background="@drawable/paian_xiugai"
+        android:gravity="center"
+        android:textColor="@color/color_999999"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

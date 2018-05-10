@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_market_activity_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <include layout="@layout/header_market"/>
+
+
+        <!--<com.zhy.autolayout.AutoFrameLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@android:color/white"-->
+            <!--&gt;-->
+            <!--<com.yxld.yxchuangxin.view.AutoTabLayout-->
+                <!--android:id="@+id/tab_titles"-->
+                <!--android:layout_width="724px"-->
+                <!--android:layout_height="148px"-->
+                <!--app:tabIndicatorColor="@color/market_search_bar"-->
+                <!--app:tabSelectedTextColor="@color/market_search_bar"-->
+                <!--app:tabTextColor="@color/color_646464"-->
+                <!--app:tabMode="fixed"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:background="@android:color/white"-->
+                <!--&gt;-->
+            <!--</com.yxld.yxchuangxin.view.AutoTabLayout>-->
+        <!--</com.zhy.autolayout.AutoFrameLayout>-->
+
+        <fragment
+            android:id="@+id/mall_fragment"
+            class="com.yxld.yxchuangxin.ui.activity.goods.MallFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </fragment>
+
+
+
+        <!--<android.support.v4.view.ViewPager-->
+            <!--android:id="@+id/vp_market_container"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--&gt;-->
+
+        <!--</android.support.v4.view.ViewPager>-->
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <!--<com.yxld.yxchuangxin.view.MenuView-->
+        <!--android:id="@+id/menuView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_marginBottom="100px"-->
+        <!--android:layout_marginRight="100px"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--&gt;-->
+
+    <!--</com.yxld.yxchuangxin.view.MenuView>-->
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/camera_config_name"
+        android:layout_marginTop="150px"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:text="设备需要连接的WiFi" />
+
+    <TextView
+        android:id="@+id/camera_config_ssid"
+        android:layout_marginTop="150px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/camera_config_name"
+        android:layout_width="wrap_content"
+        android:text="请先连接WIFI"
+        android:textColor="@color/colorAccent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp" />
+
+
+    <EditText
+        android:id="@+id/camera_config_pwd"
+        android:layout_marginTop="100px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/camera_config_ssid"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="80px"
+        android:hint="请输入WIFI密码"
+        android:background="@drawable/banner_border_all"
+        android:layout_marginRight="80px"
+        android:layout_height="150px"
+        android:textSize="20sp" />
+
+
+
+
+    <Button
+        android:id="@+id/camera_config_commit"
+        android:layout_marginTop="150px"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/camera_config_pwd"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="100px"
+        android:hint="开始配网"
+        android:background="@drawable/buttom_seletor"
+        android:layout_marginRight="100px"
+        android:layout_height="150px"
+        android:textSize="20sp" />
+
+</com.zhy.autolayout.AutoRelativeLayout>

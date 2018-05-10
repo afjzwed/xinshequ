@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela_tongzhi"
+        android:layout_width="match_parent"
+        android:layout_height="134px">
+
+        <ImageView
+            android:id="@+id/tongzhi"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="42px"
+            android:src="@mipmap/service_mine_tongzhi_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_toRightOf="@id/tongzhi"
+            android:layout_marginLeft="30px"
+            android:text="我的通知"
+            android:textColor="@color/color_323232"
+            android:layout_centerVertical="true"
+            android:textSize="44px"
+             />
+
+        <ImageView
+            android:layout_width="34px"
+            android:layout_height="34px"
+            android:src="@mipmap/service_mine_right_arror"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40px"/>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="1040px"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_marginLeft="40px"
+        android:layout_alignParentBottom="true"
+        />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela_comment"
+        android:layout_width="match_parent"
+        android:layout_height="134px">
+
+        <ImageView
+            android:id="@+id/comment"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="42px"
+            android:src="@mipmap/service_mine_comment" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/comment"
+            android:layout_marginLeft="30px"
+            android:text="我的评价"
+            android:textColor="@color/color_323232"
+            android:layout_centerVertical="true"
+            android:textSize="44px"
+            />
+
+        <ImageView
+            android:layout_width="34px"
+            android:layout_height="34px"
+            android:src="@mipmap/service_mine_right_arror"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40px"/>
+
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        android:layout_width="1040px"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_marginLeft="40px"
+        android:layout_alignParentBottom="true"
+        />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rela_tousu"
+        android:layout_width="match_parent"
+        android:layout_height="134px">
+
+        <ImageView
+            android:id="@+id/tousu"
+            android:layout_width="48px"
+            android:layout_height="48px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="42px"
+            android:src="@mipmap/service_mine_tousu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tousu"
+            android:layout_marginLeft="30px"
+            android:text="我的投诉"
+            android:textColor="@color/color_323232"
+            android:layout_centerVertical="true"
+            android:textSize="44px"
+            />
+
+        <ImageView
+            android:layout_width="34px"
+            android:layout_height="34px"
+            android:src="@mipmap/service_mine_right_arror"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40px"/>
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

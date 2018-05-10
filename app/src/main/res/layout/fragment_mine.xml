@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeLayouts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="540px"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="@mipmap/grzx_bj03">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/header_and_name_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_marginTop="100px"
+                    android:paddingRight="10px"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="50px"
+                    tools:text="我的" />
+                <ImageView
+                    android:id="@+id/iv_mine_header"
+                    android:layout_marginTop="50px"
+                    android:layout_width="162px"
+                    android:layout_height="162px"
+                    android:src="@mipmap/spxq_tx" />
+                <TextView
+                    android:id="@+id/tv_mine_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="34px"
+                    android:textColor="@color/white"
+                    android:textSize="50px"
+                    tools:text="张三丰" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.yxld.yxchuangxin.view.AutoCardView
+            android:id="@+id/cv_mine_order"
+            android:layout_width="1000px"
+            android:layout_height="338px"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500px"
+            app:cardCornerRadius="10px"
+            app:cardElevation="10px">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/rl_mine_order_check_all"
+                    android:layout_width="match_parent"
+                    android:layout_height="134px"
+                    android:background="@drawable/selector_click_recycler_item_bg"
+                    android:paddingLeft="35px"
+                    android:paddingRight="35px">
+
+                    <ImageView
+                        android:id="@+id/icon_mine_order"
+                        android:layout_width="50px"
+                        android:layout_height="50px"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/grzx_dd" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="34px"
+                        android:layout_toRightOf="@id/icon_mine_order"
+                        android:text="我的订单"
+                        android:textColor="@color/color_323232"
+                        android:textSize="44px" />
+
+                    <ImageView
+                        android:id="@+id/icon_mine_check_all"
+                        android:layout_width="34px"
+                        android:layout_height="34px"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:src="@mipmap/icon_right" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toLeftOf="@id/icon_mine_check_all"
+                        android:text="查看全部" />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    android:layout_width="930px"
+                    android:layout_height="1px"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/color_d6d7dc" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.yxld.yxchuangxin.view.MineOrderEventView
+                        android:id="@+id/mine_order_waiting_pay"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:color_desc="@color/color_646464"
+                        app:icon_src="@mipmap/grzx_dd01"
+                        app:text_desc="待支付" />
+
+                    <com.yxld.yxchuangxin.view.MineOrderEventView
+                        android:id="@+id/mine_order_waiting_send"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:color_desc="@color/color_646464"
+                        app:icon_src="@mipmap/grzx_dd02"
+                        app:text_desc="待发货" />
+
+                    <com.yxld.yxchuangxin.view.MineOrderEventView
+                        android:id="@+id/mine_order_waiting_receive"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:color_desc="@color/color_646464"
+                        app:icon_src="@mipmap/grzx_dd03"
+                        app:text_desc="待收货"/>
+
+                    <com.yxld.yxchuangxin.view.MineOrderEventView
+                        android:id="@+id/mine_order_waiting_comment"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:color_desc="@color/color_646464"
+                        app:icon_src="@mipmap/grzx_dd04"
+                        app:text_desc="待评价" />
+
+                    <com.yxld.yxchuangxin.view.MineOrderEventView
+                        android:id="@+id/mine_order_refund"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        app:color_desc="@color/color_646464"
+                        app:icon_src="@mipmap/grzx_dd05"
+                        app:text_desc="退款" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.yxld.yxchuangxin.view.AutoCardView>
+
+        <com.yxld.yxchuangxin.view.AutoCardView
+            android:layout_width="1000px"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cv_mine_order"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24px"
+            app:cardCornerRadius="10px"
+            app:cardElevation="10px"
+
+            >
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/mine_setting_root"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.yxld.yxchuangxin.view.AutoCardView>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

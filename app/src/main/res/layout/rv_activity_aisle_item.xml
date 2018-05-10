@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/aisle_item_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30px"
+        android:layout_marginBottom="30px"
+        app:cardCornerRadius="10px"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/aisle_item_icon"
+            android:layout_width="495px"
+            android:scaleType="centerCrop"
+            android:layout_height="350px"
+            android:src="@mipmap/camera_aisle_item" />
+    </com.yxld.yxchuangxin.view.AutoCardView>
+
+
+    <TextView
+        android:id="@+id/aisle_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/auto_ll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/iv_night"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_isnight"/>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1400px"
+        android:src="@drawable/icon_isnight_cancel"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

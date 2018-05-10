@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:background="@color/color_f5f5fa"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:scaleType="centerCrop"
+        android:layout_height="654px"
+        android:src="@mipmap/gyem_bj"
+        />
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+        android:layout_marginTop="654px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        app:cardElevation="@dimen/card_view_elevation"
+        android:clickable="true"
+        android:background="@color/white"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="14px"
+        android:layout_width="match_parent"
+        android:layout_height="928px">
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="240px"
+                android:layout_height="240px"
+                android:layout_marginTop="84px"
+                android:src="@mipmap/gyem_logo"
+                android:layout_gravity="center_horizontal"
+                />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="湖南创欣物联科技有限公司，是全国首家面向以市场化物业服务企业为导体，提供智能化社区解决方案，让业主品质生活和工作充满无限乐趣为宗旨的综合物联网服务提供商。公司始终以卓越的市场前瞻力和科技创新力推动物联网发展，为用户创造价值，推动现代社区服务发展，让社区生活与工作更便捷、更简单、更精彩。"
+                android:layout_marginLeft="74px"
+                android:layout_marginRight="74px"
+                android:layout_marginTop="74px"
+                android:textSize="40px"
+                android:textColor="@color/color_646464"
+                android:lineSpacingExtra="10px"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="40px"
+                />
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.yxld.yxchuangxin.view.AutoCardView>
+
+    <TextView
+        android:text="Copyright  2016-2016   湖南创欣物联科技有限公司"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="66px"
+        android:textColor="@color/gray"
+        android:id="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+</com.zhy.autolayout.AutoRelativeLayout>

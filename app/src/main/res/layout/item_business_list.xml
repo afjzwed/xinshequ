@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/selector_click_recycler_item_bg"
+    android:layout_height="wrap_content"
+    android:minHeight="270px"
+    android:orientation="vertical">
+
+    <com.mob.tools.gui.ScaledImageView
+        android:id="@+id/rim_list_standard"
+        android:layout_width="170px"
+        android:layout_height="170px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="48px"
+        android:layout_marginTop="50px"
+        android:src="@mipmap/rim_standard"
+        app:round_radius="14px"
+        app:shape_mode="round_rect" />
+
+    <TextView
+        android:id="@+id/rim_list_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="78px"
+        android:layout_toRightOf="@+id/rim_list_standard"
+        android:text="家有洗事"
+        android:textColor="@color/cb_textcolor_checked"
+        android:textSize="52px" />
+
+    <RatingBar
+        android:id="@+id/rim_list_ratingBar"
+        style="@style/mRatingBar"
+        android:layout_width="192px"
+        android:layout_height="38px"
+        android:layout_alignTop="@+id/rim_list_fraction"
+        android:layout_toEndOf="@+id/rim_list_standard"
+        android:numStars="5"
+        android:isIndicator="true"
+        android:paddingRight="2px"
+        android:rating="3"
+        android:stepSize="1.0" />
+
+    <TextView
+        android:id="@+id/rim_list_fraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rim_list_name"
+        android:layout_marginLeft="12px"
+        android:layout_marginTop="16px"
+        android:layout_toRightOf="@+id/rim_list_ratingBar"
+        android:text=""
+        android:textColor="@color/color_646464"
+        android:textSize="38px" />
+
+
+    <TextView
+        android:id="@+id/tv_sale_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rim_list_ratingBar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="40px"
+        android:text=""
+        android:textColor="@color/color_646464"
+        android:textSize="40px" />
+
+    <View
+        android:id="@+id/rim_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_marginLeft="258px"
+        android:layout_marginTop="270px"
+        android:background="@color/color_e1e1e1" />
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/fl"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="270px"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerview"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="34px"
+            android:layout_marginLeft="258px"
+            android:visibility="gone"
+            android:layout_marginBottom="34px"
+            android:layout_height="wrap_content">
+        </android.support.v7.widget.RecyclerView>
+    </com.zhy.autolayout.AutoFrameLayout>
+    <View
+        android:layout_below="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:background="@color/line" />
+</com.zhy.autolayout.AutoRelativeLayout>

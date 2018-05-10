@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30px"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:paddingTop="20px">
+
+        <ImageView
+            android:id="@+id/iv_avater"
+            android:layout_width="200px"
+            android:layout_height="200px"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/iv_avater"
+            />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/iv_avater"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/iv_avater"
+            />
+
+        <View
+            android:id="@+id/view"
+            style="@style/line"
+            android:layout_below="@+id/iv_avater"
+            android:layout_marginTop="20px"
+            />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view"
+            android:layout_marginBottom="20px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="20px"
+            />
+
+        <TextView
+            android:id="@+id/shangjia_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/content"
+            android:layout_marginBottom="20px"
+            android:layout_marginRight="20px"
+            android:background="#E6E6E6"
+            android:gravity="center_vertical"
+            android:padding="20px"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

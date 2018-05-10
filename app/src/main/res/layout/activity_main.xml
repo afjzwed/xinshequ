@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlEnableLoadmore="false"
+        >
+
+        <com.yxld.yxchuangxin.view.TranslucentScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:scrollbars="none">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.yxld.yxchuangxin.view.ImageCycleView
+                    android:id="@+id/indexAdvs"
+                    android:layout_width="match_parent"
+                    android:layout_height="564px"/>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="136px">
+
+                    <ImageView
+                        android:id="@+id/iv_toutiao"
+                        android:layout_width="200px"
+                        android:layout_height="54px"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_left_right_40"
+                        android:src="@mipmap/main_communite_toutiao"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_action"
+                        style="@style/size40_646464"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="28px"
+                        android:layout_toLeftOf="@+id/iv_tongzhi_more"
+                        android:layout_toRightOf="@+id/iv_toutiao"
+                        android:ellipsize="marquee"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center_vertical"
+                        android:marqueeRepeatLimit="marquee_forever"
+                        android:singleLine="true"
+                        android:text=""/>
+                    />
+
+                    <ImageView
+                        android:id="@+id/iv_tongzhi_more"
+                        android:layout_width="76px"
+                        android:layout_height="14px"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="40px"
+                        android:src="@mipmap/main_communite_more"
+                        />
+
+                    <View
+                        style="@style/line"
+                        android:layout_alignParentBottom="true"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="410px"
+                    android:visibility="gone">
+
+                    <com.yxld.yxchuangxin.view.AutoCardView
+                        android:id="@+id/cv_car"
+                        android:layout_width="372px"
+                        android:layout_height="142px"
+                        android:layout_marginLeft="@dimen/margin_left_right_40"
+                        android:layout_marginTop="42px"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="10px"
+                        app:cardElevation="4px">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/car"
+                                android:layout_width="92px"
+                                android:layout_height="92px"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="38px"
+                                android:src="@mipmap/main_car"
+                                />
+
+                            <TextView
+                                style="@style/size40_646464"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="32px"
+                                android:layout_toRightOf="@+id/car"
+                                android:text="车辆管理"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.yxld.yxchuangxin.view.AutoCardView>
+
+                    <com.yxld.yxchuangxin.view.AutoCardView
+                        android:id="@+id/cv_anfang"
+                        android:layout_width="372px"
+                        android:layout_height="142px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/margin_left_right_40"
+                        android:layout_marginTop="42px"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="10px"
+                        app:cardElevation="4px">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/anfang"
+                                android:layout_width="92px"
+                                android:layout_height="92px"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="38px"
+                                android:src="@mipmap/main_anfang"
+                                />
+
+                            <TextView
+                                style="@style/size40_646464"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="32px"
+                                android:layout_toRightOf="@+id/anfang"
+                                android:text="居家安防"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.yxld.yxchuangxin.view.AutoCardView>
+
+                    <com.yxld.yxchuangxin.view.AutoCardView
+                        android:id="@+id/cv_jiaofei"
+                        android:layout_width="372px"
+                        android:layout_height="142px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="42px"
+                        android:layout_marginLeft="@dimen/margin_left_right_40"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="10px"
+                        app:cardElevation="4px">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/jiaofei"
+                                android:layout_width="92px"
+                                android:layout_height="92px"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="38px"
+                                android:src="@mipmap/main_jiaofei"
+                                />
+
+                            <TextView
+                                style="@style/size40_646464"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="32px"
+                                android:layout_toRightOf="@+id/jiaofei"
+                                android:text="物业缴费"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.yxld.yxchuangxin.view.AutoCardView>
+
+                    <com.yxld.yxchuangxin.view.AutoCardView
+                        android:id="@+id/cv_baoxiu"
+                        android:layout_width="372px"
+                        android:layout_height="142px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginBottom="42px"
+                        android:layout_marginRight="@dimen/margin_left_right_40"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="10px"
+                        app:cardElevation="4px">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:id="@+id/baoxiu"
+                                android:layout_width="92px"
+                                android:layout_height="92px"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="38px"
+                                android:src="@mipmap/main_baoxiu"
+                                />
+
+                            <TextView
+                                style="@style/size40_646464"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="32px"
+                                android:layout_toRightOf="@+id/baoxiu"
+                                android:text="报修管理"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.yxld.yxchuangxin.view.AutoCardView>
+
+                    <ImageView
+                        android:id="@+id/iv_menjin"
+                        android:layout_width="274px"
+                        android:layout_height="274px"
+                        android:layout_centerInParent="true"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@mipmap/soye_km"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+                <View
+                    style="@style/layout_bg"/>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/miaosha_root"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+
+                    <com.zhy.autolayout.AutoRelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="136px"
+                        android:background="@mipmap/main_miaosha_bg">
+
+                        <ImageView
+                            android:id="@+id/iv_miaosha"
+                            android:layout_width="158px"
+                            android:layout_height="58px"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="8px"
+                            android:src="@mipmap/main_miaosha"
+                            />
+
+                        <com.yxld.yxchuangxin.view.MiaoshaTimeView
+                            android:id="@+id/miaosha_shijian"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/iv_miaosha"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10px"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            />
+
+                        <View
+                            style="@style/line"
+                            android:layout_alignParentBottom="true"
+                            />
+                    </com.zhy.autolayout.AutoRelativeLayout>
+                    <!--android:layout_height="462px"-->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycerViewMiaosha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="24px"
+                        android:paddingTop="14px"
+                        app:layoutManager="LinearLayoutManager">
+                    </android.support.v7.widget.RecyclerView>
+
+                    <View
+                        style="@style/layout_bg"/>
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_market"
+                    android:layout_width="match_parent"
+                    android:layout_height="464px"
+                    android:src="@mipmap/main_banner"/>
+                <!--<com.yxld.yxchuangxin.view.ImageCycleView-->
+                <!--android:id="@+id/shopbanner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="464px" />-->
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="408px"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/xiyi"
+                        android:layout_width="540px"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rl_zhoubian_bg"
+                        android:clickable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="40px"
+                            android:text="衣物清洗"
+                            android:textColor="@color/main_color"
+                            android:textSize="48px"
+                            />
+
+                        <ImageView
+                            android:layout_width="290px"
+                            android:layout_height="248px"
+                            android:layout_marginTop="30px"
+                            android:src="@mipmap/main_xiyi"
+                            />
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="540px"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:id="@+id/jiazheng"
+                            android:layout_width="match_parent"
+                            android:layout_height="204px"
+                            android:background="@drawable/rl_zhoubian_bg"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/tv_jiazheng"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="38px"
+                                android:layout_marginTop="40px"
+                                android:text="家政服务"
+                                android:textColor="#ff9934"
+                                android:textSize="48px"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_jiazheng"
+                                android:layout_marginLeft="38px"
+                                android:text="让生活更美好"
+                                android:textColor="@color/color_909090"
+                                android:textSize="34px"
+                                />
+
+                            <ImageView
+                                android:layout_width="148px"
+                                android:layout_height="148px"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="80px"
+                                android:src="@mipmap/main_jiazheng"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:id="@+id/lipin"
+                            android:layout_width="match_parent"
+                            android:layout_height="204px"
+                            android:background="@drawable/rl_zhoubian_bg"
+                            android:clickable="true"
+                            android:foreground="?android:attr/selectableItemBackground">
+
+                            <TextView
+                                android:id="@+id/tv_hua"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="38px"
+                                android:layout_marginTop="40px"
+                                android:text="礼品鲜花"
+                                android:textColor="#73BA38"
+                                android:textSize="48px"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/tv_hua"
+                                android:layout_marginLeft="38px"
+                                android:text="让生活更美好"
+                                android:textColor="@color/color_909090"
+                                android:textSize="34px"
+                                />
+
+                            <ImageView
+                                android:layout_width="148px"
+                                android:layout_height="148px"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="80px"
+                                android:src="@mipmap/main_hua"
+                                />
+                        </com.zhy.autolayout.AutoRelativeLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/shopRecyclerview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="2px"
+                    app:layoutManager="LinearLayoutManager">
+
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.yxld.yxchuangxin.view.TranslucentScrollView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    <include
+        android:id="@+id/toolbarBusiness"
+        layout="@layout/toolbar_layout"
+        />
+
+</com.zhy.autolayout.AutoRelativeLayout>

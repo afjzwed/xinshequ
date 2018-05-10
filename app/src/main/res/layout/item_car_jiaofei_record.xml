@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="15px"
+    android:layout_marginBottom="15px"
+    android:layout_marginLeft="40px"
+    android:layout_marginRight="40px"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/card_view_elevation"
+    app:cardCornerRadius="14px"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/white"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="车牌号码"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_car_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:text=""
+                android:textColor="@color/color_323232"
+                android:textSize="40px" />
+
+            <View
+                style="@style/line"
+                android:layout_alignParentBottom="true" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/white"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="缴费状态"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_jiaofei_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:text=""
+                android:textColor="@color/color_323232"
+                android:textSize="40px" />
+
+            <View
+                style="@style/line"
+                android:layout_alignParentBottom="true" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/white"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="缴费月数"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_jiaofei_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:text=""
+                android:textColor="@color/color_323232"
+                android:textSize="40px" />
+
+            <View
+                style="@style/line"
+                android:layout_alignParentBottom="true" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/white"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="缴费时间"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_jiaofei_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:text=""
+                android:textColor="@color/color_323232"
+                android:textSize="40px" />
+
+            <View
+                style="@style/line"
+                android:layout_alignParentBottom="true" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@color/white"
+            android:paddingLeft="40px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="总费用为"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/tv_jiaofei_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:text=""
+                android:textColor="@color/color_ff9934"
+                android:textSize="40px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.yxld.yxchuangxin.view.AutoCardView>

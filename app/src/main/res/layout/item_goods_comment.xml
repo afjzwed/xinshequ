@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                     xmlns:tools="http://schemas.android.com/tools"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:background="@color/white"
+                                     android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="50px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:paddingTop="50px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/iv_comment_header"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:src="@mipmap/spxq_tx"/>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="34px"
+                >
+
+                <TextView
+                    android:id="@+id/tv_comment_phone"
+                    style="@style/size40_323232"
+                    android:layout_alignTop="@id/transition_current_scene"
+                    tools:text=""
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/tv_comment_phone"
+                    app:layoutManager="LinearLayoutManager"
+                    >
+
+                </android.support.v7.widget.RecyclerView>
+
+                <TextView
+                    android:id="@+id/tv_comment_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/color_909090"
+                    android:textSize="38px"
+                    tools:text=""/>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/tv_comment_content"
+            style="@style/size40_646464"
+            android:layout_marginBottom="34px"
+            android:layout_marginTop="34px"
+            tools:text="了"/>
+
+        <TextView
+            android:id="@+id/tv_huifu"
+            style="@style/size40_646464"
+            android:layout_marginBottom="34px"
+            android:background="#E6E6E6"
+            android:visibility="gone"
+            tools:text="太好吃了，下次还来。不来了，难吃的要死。什么鬼东西，要不要人活了"/>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:id="@+id/line"
+        style="@style/line1040_d6d7dc"
+        android:layout_gravity="right"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

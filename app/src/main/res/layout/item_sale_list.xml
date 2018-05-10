@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="60px"
+    android:gravity="center_vertical"
+    >
+    <ImageView
+        android:id="@+id/iv_icon"
+        android:layout_width="44px"
+        android:layout_height="44px"
+        android:src="@mipmap/ic_good_list_discount"
+        />
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="34px"
+        android:layout_marginTop="3px"
+        android:layout_toRightOf="@+id/iv_icon"
+        android:layout_marginLeft="18px"
+        android:textColor="@color/white"
+        android:text="满15件打9.5折"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

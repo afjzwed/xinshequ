@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_8ac5ed"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_height="884px"
+        android:src="@mipmap/myddc_bj"
+        android:scaleType="centerCrop"
+        />
+    <com.yxld.yxchuangxin.view.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_below="@+id/iv_bg"
+        android:layout_width="match_parent"
+        android:layout_marginTop="6px"
+        android:paddingLeft="40px"
+        android:paddingRight="40px"
+        android:layout_height="850px">
+    </com.yxld.yxchuangxin.view.NoScrollViewPager>
+    <Button
+        android:id="@+id/bt_next"
+        android:layout_width="440px"
+        android:layout_height="134px"
+        android:text="下一题"
+        android:textColor="@color/white"
+        android:background="@drawable/color_main"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/color_ff9934">
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/mall_goods_list_search"
+        android:layout_width="776px"
+        android:layout_height="80px"
+        android:background="@drawable/bg_market_search"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="135px"
+        android:layout_marginStart="135px"
+        android:layout_marginEnd="135px"
+        android:layout_marginRight="135px"
+        >
+        <ImageView
+            android:id="@+id/icon_goods_list_search"
+            android:layout_width="34px"
+            android:layout_height="34px"
+            android:src="@mipmap/scsy_ss"
+            android:layout_marginLeft="34px"
+            android:layout_centerVertical="true"
+            />
+        <TextView
+            android:id="@+id/tv_mall_goods_list_search_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14px"
+            android:textSize="40px"
+            android:layout_centerVertical="true"
+            android:textColor="@color/color_323232"
+            android:layout_toRightOf="@id/icon_goods_list_search"
+            tools:text="槟榔"
+            android:visibility="gone"
+
+            />
+        <EditText
+            android:id="@+id/edit_goods_list_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginLeft="14px"
+            android:layout_marginRight="14px"
+            android:textSize="40px"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/icon_goods_list_search"
+            android:hint="@string/searchHint"
+            android:textColor="@color/color_323232"
+            android:maxLines="1"
+            android:inputType="text"
+            android:visibility="gone"
+            android:scrollHorizontally="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/iv_mall_goods_list_back"
+        android:layout_width="134px"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:src="@mipmap/spss_back"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tv_mall_goods_list_search"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="40px"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"
+        android:text="搜索"
+        android:gravity="center"
+        />
+
+</com.zhy.autolayout.AutoRelativeLayout>

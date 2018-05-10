@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_container"
+        android:layout_width="match_parent"
+        android:layout_height="166px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_add_to_cart"
+            android:layout_width="372px"
+            android:layout_height="106px"
+            android:layout_marginRight="25px"
+            android:background="@drawable/btn_cart_order_ok"
+            android:text="加入购物车"
+            android:textColor="@color/white"/>
+
+        <Button
+            android:id="@+id/btn_buy_now"
+            android:layout_width="372px"
+            android:layout_height="106px"
+            android:layout_marginLeft="25px"
+            android:background="@drawable/btn_cart_delete"
+            android:text="立即购买"
+            android:textColor="@color/white"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swip_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_container">
+
+        <com.yxld.yxchuangxin.view.SlideDetailsLayout
+            android:id="@+id/slidedetailslayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:duration="150">
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/indexGoods"
+                        android:layout_width="1080px"
+                        android:layout_height="820px"
+                        android:layout_centerInParent="true"
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+                        android:overScrollMode="never"/>
+
+
+                    <!--<com.viewpagerindicator.CirclePageIndicator
+                        android:id="@+id/indicator"
+                        android:layout_width="300px"
+                        android:layout_height="50px"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="5dp"
+                        app:fillColor="@color/color_999999"
+                        app:pageColor="@color/color_e6e6e6"
+                        app:radius="3dp"
+                        app:strokeColor="@color/color_e6e6e6"/>-->
+
+                    <View
+                        android:id="@+id/indicator"
+                        android:layout_width="300px"
+                        android:layout_height="50px"
+                        android:layout_gravity="center_horizontal"
+                        android:paddingTop="5dp"/>
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tv_good_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="60px"
+                                android:textColor="@color/color_323232"
+                                android:textSize="44px"
+                                tools:text="好吃牌酱香鸭脖麻辣风味"/>
+
+                            <TextView
+                                android:id="@+id/tv_good_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginTop="30px"
+                                android:textColor="@color/color_ff9934"
+                                android:textSize="44px"
+                                tools:text="¥1500.00"/>
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="70px"
+                                android:layout_marginTop="30px">
+
+                                <TextView
+                                    android:id="@+id/tv_xiaoliang"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_909090"
+                                    android:textSize="38px"
+                                    tools:text="¥2150.30"/>
+
+                                <TextView
+                                    android:id="@+id/tv_goods_remain_num"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_909090"
+                                    android:textSize="38px"
+                                    tools:text=" | 剩余17件"/>
+
+                                <TextView
+                                    android:id="@+id/tv_guige"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textColor="@color/color_909090"
+                                    android:textSize="38px"
+                                    tools:text=" | 剩余17件"/>
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+
+                            <View
+                                style="@style/line1040_d6d7dc"
+                                android:layout_gravity="right"/>
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="118px"
+                                >
+
+                                <TextView
+                                    android:id="@+id/tv_peisongfangshi"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="40px"
+                                    android:text="正常配送"
+                                    android:textColor="@color/color_909090"
+                                    android:textSize="40px"/>
+
+                                <TextView
+                                    android:id="@+id/tv_send_address"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="40px"
+                                    android:textColor="@color/color_323232"
+                                    android:textSize="40px"
+                                    tools:text="中远公馆"/>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="118px">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginLeft="40px"
+                                    android:text="选择数量"
+                                    android:textColor="@color/color_909090"
+                                    android:textSize="40px"/>
+
+                                <com.zhy.autolayout.AutoLinearLayout
+                                    android:layout_width="306px"
+                                    android:layout_height="84px"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="40px"
+                                    android:background="@drawable/pop_addfangxing_bg"
+                                    android:focusable="true"
+                                    android:focusableInTouchMode="true"
+                                    android:orientation="horizontal"
+                                    >
+
+                                    <com.zhy.autolayout.AutoRelativeLayout
+                                        android:id="@+id/iv_jian"
+                                        android:layout_width="84px"
+                                        android:layout_height="84px">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:background="@mipmap/wyjf_jh01"/>
+                                    </com.zhy.autolayout.AutoRelativeLayout>
+
+                                    <EditText
+                                        android:id="@+id/tv_count"
+                                        android:layout_width="138px"
+                                        android:layout_height="84px"
+                                        android:background="@null"
+                                        android:gravity="center"
+                                        android:text="1"
+                                        android:textColor="@color/color_323232"
+                                        android:textSize="40px"
+                                        />
+
+                                    <com.zhy.autolayout.AutoRelativeLayout
+                                        android:id="@+id/iv_jia"
+                                        android:layout_width="84px"
+                                        android:layout_height="84px">
+
+                                        <ImageView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerInParent="true"
+                                            android:background="@mipmap/wyjf_jh02"/>
+                                    </com.zhy.autolayout.AutoRelativeLayout>
+                                </com.zhy.autolayout.AutoLinearLayout>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:id="@+id/rl_comment_root"
+                            android:layout_width="match_parent"
+                            android:layout_height="118px"
+                            android:layout_marginTop="26px"
+                            android:background="@drawable/selector_click_recycler_item_bg"
+                            android:clickable="true">
+
+                            <TextView
+                                android:id="@+id/tv_comment_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="40px"
+                                android:text="暂无评价"
+                                android:textColor="@color/color_909090"
+                                android:textSize="40px"/>
+
+                            <ImageView
+                                android:layout_width="34px"
+                                android:layout_height="34px"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="40px"
+                                android:src="@mipmap/spxq_jt"/>
+
+                            <View
+                                style="@style/line1040_d6d7dc"
+                                android:layout_alignParentBottom="true"
+                                android:layout_alignParentRight="true"/>
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="300px"
+                            android:background="#000"/>
+
+                        <TextView
+                            android:id="@+id/tv_all_comment"
+                            android:layout_width="304px"
+                            android:layout_height="84px"
+                            android:background="@drawable/pop_addfangxing_bg"
+                            android:gravity="center"
+                            android:text="查看全部评价"
+                            android:textColor="@color/color_909090"
+                            android:textSize="40px"
+                            android:visibility="visible"/>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/color_f5f5fa"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="110px"
+                                android:drawableLeft="@mipmap/spxq_td"
+                                android:drawablePadding="14px"
+                                android:gravity="center"
+                                android:text="继续拖动查看图文详情"/>
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                    </com.zhy.autolayout.AutoLinearLayout>
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            </ScrollView>
+
+
+            <com.yxld.yxchuangxin.view.GoodDetailWebView
+                android:id="@+id/slidedetails_behind"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#FF0"
+                android:paddingTop="250px"/>
+
+        </com.yxld.yxchuangxin.view.SlideDetailsLayout>
+
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/layout_goods_list_shop_cart"
+        android:layout_width="110px"
+        android:layout_height="110px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="88px"
+        android:layout_marginTop="88px"
+        android:background="@mipmap/car_ord"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tv_mall_goods_shop_cart_num"
+            android:layout_width="45px"
+            android:layout_height="45px"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/shape_notifiy_red_dot"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="25px"
+            tools:text="1"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/iv_mall_goods_list_back"
+        android:layout_width="134px"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_marginTop="48px"
+        >
+
+        <ImageView
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:src="@mipmap/back_ord"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

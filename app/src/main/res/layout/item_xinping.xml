@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="330px"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="20px"
+    android:layout_marginLeft="15px"
+    android:layout_marginRight="15px"
+    android:elevation="14px"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="14px">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_avater"
+            android:layout_width="330px"
+            android:layout_height="330px"
+            android:scaleType="centerCrop"
+            />
+
+        <!--产品确认两行-->
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_avater"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:lines="2"/>
+
+        <!--产品确认1行,不限制长度-->
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_marginBottom="30px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:lines="1"
+            android:textColor="@color/color_baojing"
+            />
+
+        <ImageView
+            android:id="@+id/cart"
+            android:layout_width="60px"
+            android:layout_height="60px"
+            android:layout_alignBottom="@+id/price"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20px"
+            android:src="@mipmap/add_car"
+            />
+
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="35px"
+            android:layout_height="35px"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/iv_avater"
+            android:layout_marginRight="10px"
+            android:layout_marginTop="35px"
+            android:background="@drawable/red_dot_bg"
+            android:gravity="center"
+            android:text="18"
+            android:textColor="@color/white"
+            android:textSize="20px"
+            android:visibility="gone"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.yxld.yxchuangxin.view.AutoCardView>

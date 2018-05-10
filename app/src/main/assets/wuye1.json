@@ -1,0 +1,33 @@
+{
+  "data": [
+    {
+      "list": [
+        {
+          "icon": "smkm",
+          "name": "开门"
+        },
+        {
+          "icon": "wyjf",
+          "name": "物业缴费"
+        },
+        {
+          "icon": "wywx",
+          "name": "物业报修"
+        },
+        {
+          "icon": "jjaf",
+          "name": "居家安防"
+        },
+        {
+          "icon": "clgl",
+          "name": "车辆管理"
+        },
+        {
+          "icon": "ggjk",
+          "name": "公共监控 "
+        }
+      ],
+      "name": "首页"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!--  <item android:state_checked="true"
+          android:drawable="@color/white" />&lt;!&ndash;选中时效果&ndash;&gt;
+    <item android:state_checked="false"
+          android:drawable="@color/color_bcbcbc" />&lt;!&ndash;未选中时效果&ndash;&gt;-->
+
+    <item android:color="@color/white" android:state_checked="true"/>
+    <item android:color="@color/white" android:state_pressed="true"/>
+    <item android:state_checked="false" android:color="@color/color_bcbcbc"/>
+</selector>

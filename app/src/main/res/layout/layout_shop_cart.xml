@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_goods_list_shop_cart"
+    android:layout_width="171px"
+    android:layout_height="173px"
+    android:background="@mipmap/spss_gwcd">
+
+    <TextView
+        android:id="@+id/tv_mall_goods_shop_cart_num"
+        tools:text="100"
+        android:layout_width="60px"
+        android:layout_height="60px"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_notifiy_red_dot"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30px"
+        android:visibility="invisible" />
+</com.zhy.autolayout.AutoRelativeLayout>

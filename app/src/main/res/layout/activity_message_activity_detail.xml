@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_leixing"
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:gravity="center"
+                android:text="通 知"
+                android:textColor="@color/color_323232"
+                android:textSize="66px"
+                android:visibility="gone"
+                />
+
+            <View
+                style="@style/line"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:visibility="gone"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="80px"
+                android:gravity="center_horizontal"
+                android:text="尊敬的各位业主、租户："
+                android:textColor="@color/color_646464"
+                android:textSize="56px"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginTop="80px"
+                android:text="         您们好！"
+                android:textColor="@color/color_646464"
+                android:textSize="50px"
+                android:visibility="gone"
+                />
+            <!--android:text=""-->
+            <!--android:textSize="50px"-->
+            <!--android:textColor="@color/color_646464"-->
+            <!--android:lineSpacingExtra="38px"-->
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="120px"
+                android:visibility="gone"
+
+                />
+
+            <WebView
+                android:id="@+id/web_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </WebView>
+
+            <TextView
+                android:id="@+id/tv_faqiren"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="142px"
+                android:text="湖南创欣物业有限公司"
+                android:textColor="@color/color_646464"
+                android:textSize="50px"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="30px"
+                android:text=""
+                android:textColor="@color/color_646464"
+                android:textSize="50px"
+                android:visibility="gone"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</com.zhy.autolayout.AutoLinearLayout>

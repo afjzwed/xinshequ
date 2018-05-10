@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="134px"
+    android:paddingLeft="40px"
+    android:paddingRight="40px"
+    android:background="@drawable/selector_click_recycler_item_bg"
+    >
+
+    <ImageView
+        android:id="@+id/iv_search_history"
+        android:layout_width="50px"
+        android:layout_height="50px"
+        android:layout_centerVertical="true"
+        tools:src="@mipmap/icon_tuikuan"
+        />
+    <TextView
+        android:id="@+id/tv_search_history"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="冰红茶"
+        android:layout_toRightOf="@id/iv_search_history"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="14px"
+        android:textSize="44px"
+        android:textColor="@color/color_323232"
+        />
+    <ImageView
+        android:layout_width="34px"
+        android:layout_height="34px"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/spxq_jt"
+        />
+    <View
+        android:id="@+id/view_search_history_line"
+        android:layout_width="1060px"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

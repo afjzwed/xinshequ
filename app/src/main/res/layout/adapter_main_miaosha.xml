@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="14px"
+    app:cardElevation="@dimen/card_view_elevation"
+    android:layout_width="264px"
+    android:layout_height="414px"
+    android:layout_gravity="center"
+    android:layout_marginLeft="18px"
+    android:layout_marginRight="18px"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_miaosha"
+            android:layout_width="264px"
+            android:layout_height="264px"
+            android:scaleType="centerCrop" />
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_saleprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="59"
+                android:textColor="#ff9934"
+                android:textSize="40px"
+                android:layout_centerInParent="true"
+                />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18px"
+                android:text="69"
+                android:textColor="#b4b4b4"
+                android:textSize="34px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.yxld.yxchuangxin.view.AutoCardView>

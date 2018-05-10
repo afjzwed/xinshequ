@@ -1,0 +1,26 @@
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/iv_user_head"
+        android:layout_width="162px"
+        android:layout_height="162px"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/service_mine_usericon"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34px"
+        android:textSize="50px"
+        android:layout_below="@id/iv_user_head"
+        android:layout_centerHorizontal="true"
+        android:text="张三丰"
+        android:textColor="@color/white" />
+</com.zhy.autolayout.AutoRelativeLayout>

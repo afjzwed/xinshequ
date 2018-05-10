@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingBottom="24px"
+    android:paddingTop="24px">
+
+    <ImageView
+        android:id="@+id/iv_img"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginLeft="24px"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="44px"
+        android:layout_toRightOf="@id/iv_img"
+        android:text="家有喜事"
+        android:textColor="#333333"
+        android:textSize="54px"
+        />
+
+    <ImageView
+        android:visibility="gone"
+        android:id="@+id/iv_cancel"
+        android:layout_width="60px"
+        android:layout_height="60px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24px"
+        android:src="@mipmap/delete"
+        />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="124px"
+        android:layout_marginTop="24px"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text="这是一个为你提供优质服务的商家这是一个为你提供优质服务的商家"
+        android:layout_below="@+id/tv_name"
+        android:layout_alignStart="@+id/tv_name"/>
+
+    <ImageView
+        android:id="@+id/iv_shangjia"
+        android:layout_width="match_parent"
+        android:layout_height="446px"
+        android:layout_below="@+id/tv_content"
+        android:layout_marginLeft="124px"
+        android:layout_marginRight="124px"
+        android:layout_marginTop="24px"
+        android:src="@mipmap/gyem_bj"
+        android:scaleType="fitXY"
+        />
+
+    <View
+        style="@style/line"
+        android:layout_below="@+id/iv_shangjia"
+        android:layout_marginLeft="124px"
+        android:layout_marginRight="124px"
+        android:layout_marginTop="24px"/>
+</com.zhy.autolayout.AutoRelativeLayout>

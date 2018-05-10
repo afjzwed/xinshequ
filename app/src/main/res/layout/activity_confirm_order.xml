@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       xmlns:tools="http://schemas.android.com/tools"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/af_layout">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- 地址 -->
+            <com.yxld.yxchuangxin.view.OrderAddressView
+                android:id="@+id/address_confirm_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:show_hint="true"
+                >
+            </com.yxld.yxchuangxin.view.OrderAddressView>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="14px"
+                android:background="@mipmap/qrdd_dz02"/>
+
+            <!-- 商品图片以及数量 -->
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="26px"
+                android:background="@color/white"
+                android:paddingLeft="40px"
+                android:paddingRight="40px">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_confirm_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <View
+                android:layout_width="1040px"
+                android:layout_height="1px"
+                android:layout_marginLeft="40px"
+                android:background="@color/color_d6d7dc"/>
+
+
+            <com.yxld.yxchuangxin.view.ConfirmOrderSelectView
+                android:id="@+id/select_view_product_prices"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_marginTop="20px"
+                app:show_price="true"
+                app:text_desc="商品总额"/>
+
+            <com.yxld.yxchuangxin.view.ConfirmOrderSelectView
+                android:id="@+id/select_view_freight"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                app:show_price="true"
+                app:text_desc="配  送  费"/>
+
+            <com.yxld.yxchuangxin.view.ConfirmOrderSelectView
+                android:id="@+id/select_view_mendian"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:visibility="gone"
+                app:show_price="false"
+                app:show_switch="true"
+                app:text_desc="商城配送"/>
+
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:paddingLeft="40px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                >
+
+                <TextView
+                    style="@style/size40_909090"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="配送方式"/>
+
+                <RadioGroup
+                    android:id="@+id/radiogroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40px"
+                    android:orientation="horizontal"
+                    android:padding="1px">
+                    <!--android:textColor="@color/color_bcbcbc"-->
+                    <RadioButton
+                        android:id="@+id/radiobtn1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/psfs_selector_left"
+                        android:button="@null"
+                        android:gravity="center"
+                       android:padding="5px"
+                        android:text="商城配送"
+                        android:textColor="@color/psfs_selector_text"
+                        android:textSize="38px"/>
+
+                    <RadioButton
+                        android:id="@+id/radiobtn2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/psfs_selector"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="5px"
+                        android:text="门店自提"
+                        android:textColor="@color/psfs_selector_text"
+                        android:textSize="38px"/>
+                </RadioGroup>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.yxld.yxchuangxin.view.ConfirmOrderSelectView
+                android:id="@+id/select_view_use_coupons"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                app:show_price="false"
+                app:show_switch="true"
+                app:text_desc="电  子  券"/>
+
+            <com.yxld.yxchuangxin.view.ConfirmOrderSelectView
+                android:id="@+id/select_view_remain_coupons"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:visibility="gone"
+                app:show_price="false"
+                app:show_switch="false"
+                app:text_desc="剩余电子券"
+                />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_zuiduo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="60px"
+                    android:text="333333333"
+                    android:textColor="@color/color_e6a22e"
+                    android:visibility="gone"
+                    />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="168px"
+                android:background="@color/white">
+
+                <com.zhy.autolayout.AutoFrameLayout
+                    android:layout_width="1000px"
+                    android:layout_height="100px"
+                    android:layout_gravity="center"
+                    android:background="@drawable/bg_confirm_order_msg">
+
+                    <EditText
+                        android:id="@+id/edit_order_bei_zhu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="34px"
+                        android:layout_marginRight="34px"
+                        android:background="@null"
+                        android:hint="留言 (选填、45字以内)"
+                        android:inputType="text"
+                        android:maxLength="45"
+                        android:maxLines="1"
+                        android:scrollHorizontally="true"
+                        android:textColor="@color/color_646464"
+                        android:textColorHint="@color/color_b4b4b4"
+                        android:textSize="40px"/>
+
+                </com.zhy.autolayout.AutoFrameLayout>
+
+            </com.zhy.autolayout.AutoFrameLayout>
+
+            <com.zhy.autolayout.AutoFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40px"
+                android:layout_marginRight="40px"
+                android:layout_marginTop="50px"
+                android:background="@drawable/shape_confirm_order_explain_bg"
+                android:padding="34px"
+                >
+
+                <TextView
+                    android:id="@+id/tv_yunfei_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/color_909090"
+                    android:textSize="38px"/>
+                <!--tools:text="@string/confirm_order_explain"-->
+
+            </com.zhy.autolayout.AutoFrameLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rl_confirm_order_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        >
+
+        <Button
+            android:id="@+id/btn_confirm_order_to_balance"
+            android:layout_width="300px"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerVertical="true"
+            android:background="#ff9934"
+            android:paddingLeft="40px"
+            android:paddingRight="40px"
+            android:text="提交订单"
+            android:textColor="@color/white"
+            android:textSize="54px"
+            />
+
+        <TextView
+            android:id="@+id/tv_confirm_order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="80px"
+            android:layout_toLeftOf="@id/btn_confirm_order_to_balance"
+            android:textColor="@color/color_ff9934"
+            tools:text="¥ 200"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/tv_confirm_order_price"
+            android:text="实付款:  "
+            android:textColor="@color/color_323232"
+            android:textSize="45px"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/af_layout"
+        android:layout_width="match_parent"
+        android:layout_height="102px"
+        android:layout_above="@id/rl_confirm_order_bottom"
+        android:background="@color/color_fceaca"
+        >
+
+        <TextView
+            android:id="@+id/tv_confirm_order_send_address_and_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textColor="@color/color_e6a22e"
+            android:textSize="38px"
+            tools:text="送到: 中远公馆53区52区 张三丰 收"
+            />
+    </com.zhy.autolayout.AutoFrameLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

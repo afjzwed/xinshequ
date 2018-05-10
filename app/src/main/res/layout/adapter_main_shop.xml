@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<com.zhy.autolayout.AutoLinearLayout-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content">-->
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="270px"
+        android:layout_height="380px"
+        android:background="@drawable/rl_zhoubian_bg"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/tv_shop_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="40px"
+            android:text="粮油"
+            android:textColor="@color/color_323232"
+            android:textSize="44px"/>
+
+        <TextView
+            android:id="@+id/tv_shop_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_shop_name"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="20px"
+            android:text="满100减99"
+            android:textColor="@color/color_909090"
+            android:textSize="38px"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/iv_shop"
+            android:layout_width="178px"
+            android:layout_height="186px"
+            android:layout_below="@+id/tv_shop_sale"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="40px"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+<!--</com.zhy.autolayout.AutoLinearLayout>-->

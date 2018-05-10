@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rl_explain_show_order_top"
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:background="@color/color_fceaca"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="38px"
+            android:textColor="@color/color_e6a22e"
+            android:layout_centerInParent="true"
+            android:text="@string/explain_comment_show_order"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/rl_explain_show_order_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        >
+        <View
+            style="@style/line_match_parent_d6d7dc"
+            />
+        <Button
+            android:id="@+id/btn_add_comment"
+            android:layout_width="472px"
+            android:layout_height="104px"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:background="@drawable/btn_cart_order_ok"
+            android:textColor="@color/white"
+            android:text="提交评论"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@id/rl_explain_show_order_top"
+        android:layout_above="@id/rl_explain_show_order_bottom"
+        android:id="@+id/recycerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</com.zhy.autolayout.AutoRelativeLayout>

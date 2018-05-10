@@ -1,0 +1,396 @@
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_market_activity_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/rijian_relativelayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/swipeLayouts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:srlEnableLoadmore="false"
+                app:srlPrimaryColor="@color/white"
+                >
+
+                <com.yxld.yxchuangxin.view.TranslucentScrollView
+                    android:id="@+id/scrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.yxld.yxchuangxin.view.ImageCycleView
+                            android:id="@+id/iv_mall_ads"
+                            android:layout_width="match_parent"
+                            android:layout_height="564px"
+                            android:visibility="gone"/>
+
+                        <com.youth.banner.Banner
+                            android:id="@+id/banner"
+                            android:layout_width="match_parent"
+                            android:layout_height="564px"
+                            android:visibility="gone"/>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/rv_mall_types"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="26px"
+                            android:background="@android:color/white"
+                            android:paddingBottom="56px"
+                            android:paddingLeft="32px"
+                            android:paddingRight="32px"
+                            android:visibility="gone"/>
+
+                        <com.yhy.gvp.widget.GridViewPager
+                            android:id="@+id/gvp_content_b"
+                            android:layout_width="match_parent"
+                            android:layout_height="520px"
+                            android:layout_marginTop="24px"
+                            android:background="@color/white"
+                            app:num_columns="4"
+                            app:page_size="8"/>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/xinpin_root"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="136px"
+                                android:layout_marginTop="26px"
+                                android:background="@mipmap/main_miaosha_bg">
+
+                                <ImageView
+                                    android:id="@id/iv_miaosha"
+                                    android:layout_width="250px"
+                                    android:layout_height="80px"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8px"
+                                    android:src="@mipmap/xinpin"/>
+
+                                <View
+                                    style="@style/line"
+                                    android:layout_alignParentBottom="true"/>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <android.support.v7.widget.RecyclerView
+                                    android:id="@+id/recycerViewXinPin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
+                                    android:paddingLeft="14px"
+                                    android:paddingRight="14px"
+                                    android:paddingTop="14px"/>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/rexiao_root"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="136px"
+                                android:layout_marginTop="26px"
+                                android:background="@mipmap/main_miaosha_bg">
+
+                                <ImageView
+                                    android:id="@id/iv_miaosha"
+                                    android:layout_width="250px"
+                                    android:layout_height="80px"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8px"
+                                    android:src="@mipmap/rexiao"/>
+
+                                <View
+                                    style="@style/line"
+                                    android:layout_alignParentBottom="true"/>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+
+                        </com.zhy.autolayout.AutoLinearLayout>
+
+                        <com.zhy.autolayout.AutoRelativeLayout
+                            android:id="@+id/rexiao_root1"
+                            android:layout_width="match_parent"
+                            android:layout_height="602px"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:id="@+id/rexiao1"
+                                android:layout_width="539px"
+                                android:layout_height="300px"
+                                android:clickable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/iv_rexiao1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    />
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                            <View
+                                android:id="@+id/view2"
+                                android:layout_width="2px"
+                                android:layout_height="300px"
+                                android:layout_toRightOf="@+id/rexiao1"
+                                android:background="@color/color_c2c2c2"/>
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:id="@+id/rexiao2"
+                                android:layout_width="539px"
+                                android:layout_height="300px"
+                                android:layout_toRightOf="@+id/view2"
+                                android:clickable="true"
+                                android:foreground="?android:attr/selectableItemBackground"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+
+                                <ImageView
+                                    android:id="@+id/iv_rexiao2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+                                    />
+                            </com.zhy.autolayout.AutoLinearLayout>
+
+                            <View
+                                android:id="@+id/view1"
+                                android:layout_width="match_parent"
+                                android:layout_height="2px"
+                                android:layout_below="@+id/rexiao1"
+                                android:background="@color/color_c2c2c2"/>
+
+                            <com.zhy.autolayout.AutoLinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="300px"
+                                android:layout_below="@+id/view1"
+                                android:orientation="horizontal">
+
+                                <com.zhy.autolayout.AutoRelativeLayout
+                                    android:id="@+id/rexiao3"
+                                    android:layout_width="0px"
+                                    android:layout_height="300px"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:foreground="?android:attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:id="@+id/iv_rexiao3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:scaleType="centerCrop"
+                                        />
+                                </com.zhy.autolayout.AutoRelativeLayout>
+
+                                <View
+                                    android:layout_width="2px"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/color_c2c2c2"/>
+
+                                <com.zhy.autolayout.AutoRelativeLayout
+                                    android:id="@+id/rexiao4"
+                                    android:layout_width="0px"
+                                    android:layout_height="300px"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:foreground="?android:attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:id="@+id/iv_rexiao4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:scaleType="centerCrop"
+                                        />
+                                </com.zhy.autolayout.AutoRelativeLayout>
+
+                                <View
+                                    android:layout_width="2px"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/color_c2c2c2"/>
+
+                                <com.zhy.autolayout.AutoRelativeLayout
+                                    android:id="@+id/rexiao5"
+                                    android:layout_width="0px"
+                                    android:layout_height="300px"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:foreground="?android:attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:id="@+id/iv_rexiao5"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:scaleType="centerCrop"
+                                        />
+                                </com.zhy.autolayout.AutoRelativeLayout>
+
+                                <View
+                                    android:layout_width="2px"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/color_c2c2c2"/>
+
+                                <com.zhy.autolayout.AutoRelativeLayout
+                                    android:id="@+id/rexiao6"
+                                    android:layout_width="0px"
+                                    android:layout_height="300px"
+                                    android:layout_weight="1"
+                                    android:clickable="true"
+                                    android:foreground="?android:attr/selectableItemBackground">
+
+                                    <ImageView
+                                        android:id="@+id/iv_rexiao6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:scaleType="centerCrop"
+                                        />
+                                </com.zhy.autolayout.AutoRelativeLayout>
+                            </com.zhy.autolayout.AutoLinearLayout>
+                        </com.zhy.autolayout.AutoRelativeLayout>
+
+                        <com.zhy.autolayout.AutoLinearLayout
+                            android:id="@+id/tuijian_root"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <com.zhy.autolayout.AutoRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="136px"
+                                android:layout_marginTop="26px"
+                                android:background="@mipmap/main_miaosha_bg">
+
+                                <ImageView
+                                    android:id="@id/iv_miaosha"
+                                    android:layout_width="250px"
+                                    android:layout_height="80px"
+                                    android:layout_centerHorizontal="true"
+                                    android:layout_centerInParent="true"
+                                    android:layout_marginTop="8px"
+                                    android:src="@mipmap/dianzhang"/>
+
+                                <View
+                                    style="@style/line"
+                                    android:layout_alignParentBottom="true"/>
+                            </com.zhy.autolayout.AutoRelativeLayout>
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recycerViewTuiJian"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@android:color/white"
+                                android:paddingLeft="14px"
+                                android:paddingRight="14px"
+                                android:paddingTop="14px">
+
+                            </android.support.v7.widget.RecyclerView>
+                        </com.zhy.autolayout.AutoLinearLayout>
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.yxld.yxchuangxin.view.TranslucentScrollView>
+
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/swipeLayoutsTwo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:srlEnableLoadmore="false"
+                app:srlPrimaryColor="@color/white"
+                >
+
+                <com.yxld.yxchuangxin.view.TranslucentScrollView
+                    android:id="@+id/scrollView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true"
+                    android:scrollbars="none">
+
+                    <com.zhy.autolayout.AutoLinearLayout
+                        android:id="@+id/yejian_linearlauout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <com.yxld.yxchuangxin.view.ImageCycleView
+                            android:id="@+id/iv_mall_ads_two"
+                            android:layout_width="match_parent"
+                            android:layout_height="564px"
+                            android:visibility="gone"/>
+
+                        <com.youth.banner.Banner
+                            android:id="@+id/banner2"
+                            android:layout_width="match_parent"
+                            android:layout_height="564px"
+                            android:visibility="gone"/>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recyclerView_yejian"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/white"
+                            android:paddingLeft="14px"
+                            android:paddingRight="14px"
+                            android:paddingTop="14px"/>
+                    </com.zhy.autolayout.AutoLinearLayout>
+                </com.yxld.yxchuangxin.view.TranslucentScrollView>
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+            <com.yxld.yxchuangxin.view.MenuView
+                android:id="@+id/menuView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="46dp"
+                android:layout_marginRight="100px"
+                android:layout_marginStart="8dp">
+
+            </com.yxld.yxchuangxin.view.MenuView>
+
+            <include layout="@layout/header_market"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

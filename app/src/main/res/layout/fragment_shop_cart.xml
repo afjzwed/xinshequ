@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:paddingLeft="40px"
+            android:id="@+id/cart_bottom_root"
+            android:layout_width="match_parent"
+            android:layout_height="140px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            >
+            <cn.refactor.library.SmoothCheckBox
+                android:id="@+id/radio_all_checked"
+                android:layout_width="58px"
+                android:layout_height="68px"
+                android:layout_centerVertical="true"
+                app:color_checked="@color/color_ff9934"
+                />
+            <TextView
+                android:id="@+id/tv_check_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/radio_all_checked"
+                android:text="全选"
+                android:textSize="40px"
+                android:layout_marginLeft="34px"
+                android:textColor="@color/color_909090"
+                />
+
+            <Button
+                android:id="@+id/bt_cart_order_ok"
+                android:layout_width="230px"
+                android:layout_height="match_parent"
+                android:textColor="@color/white"
+                android:text="结算"
+                android:background="@color/color_ff9934"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:textSize="54px"
+
+                />
+            <TextView
+                android:id="@+id/tv_cart_zongjia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="34px"
+                android:textSize="44px"
+                android:textColor="@color/color_323232"
+                android:text="总计: "
+                android:layout_toRightOf="@id/tv_check_all"
+                android:layout_centerInParent="true"
+                />
+            <TextView
+                android:id="@+id/tv_cart_total_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="44px"
+                android:textColor="@color/color_ff9934"
+                android:text="¥ 0"
+                android:layout_toRightOf="@id/tv_cart_zongjia"
+                android:layout_centerVertical="true"
+                />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_d6d7dc"
+        android:layout_above="@id/cart_bottom_root"
+        />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@id/cart_bottom_root"
+        >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycerCartProducts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

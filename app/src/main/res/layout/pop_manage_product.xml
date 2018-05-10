@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pop_manage_product_mask"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#7f000000">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/pop_manage_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/tv_manage_product_title"
+            android:layout_width="match_parent"
+            android:layout_height="86px"
+            android:background="#fcf2e0"
+            android:gravity="center"
+            android:text="待工作人员上门计价支付"
+            android:textSize="34px" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="118px"
+            android:background="#fff">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40px"
+                android:text="预约栏"
+                android:textColor="@color/cb_textcolor_checked" />
+
+            <TextView
+                android:id="@+id/tv_release"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40px"
+                android:drawableLeft="@mipmap/ic_product_list_clear"
+                android:drawablePadding="18px"
+                android:text="清空"
+                android:textSize="45px" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="44px"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="26px"
+                android:layout_toLeftOf="@+id/tv_release"
+                android:background="#e1e1e1" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="#ccc" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="604px"
+            android:background="#fff">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="52px"
+            android:background="#fff" />
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

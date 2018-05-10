@@ -1,0 +1,87 @@
+{
+  "data": [
+    {
+      "list": [
+        {
+          "icon": "xwy_tb01",
+          "name": "门禁管理"
+        },
+        {
+          "icon": "xwy_tb02",
+          "name": "车辆管理"
+        },
+        {
+          "icon": "xwy_tb03",
+          "name": "居家安防"
+        },
+        {
+          "icon": "xwy_tb04",
+          "name": "公共区域"
+        },
+        {
+          "icon": "xwy_tb05",
+          "name": "房屋出租"
+        },
+        {
+          "icon": "xwy_tb06",
+          "name": "物业缴费"
+        }
+      ],
+      "name": "我的物业"
+    },
+    {
+      "list": [
+        {
+          "icon": "wyfw_zh01",
+          "name": "通知活动"
+        },
+        {
+          "icon": "wyfw_zh02",
+          "name": "维修服务"
+        },
+        {
+          "icon": "wyfw_zh03",
+          "name": "授权放行"
+        },
+        {
+          "icon": "wyfw_zh04",
+          "name": "邮包查询"
+        },
+        {
+          "icon": "wyfw_zh05",
+          "name": "投诉建议"
+        },
+        {
+          "icon": "wyfw_zh06",
+          "name": "满意度调查"
+        }
+      ],
+      "name": "综合服务"
+    },
+    {
+      "list": [
+        {
+          "icon": "wyfw_gr01",
+          "name": "房屋信息"
+        },
+        {
+          "icon": "wyfw_gr02",
+          "name": "入住成员"
+        },
+        {
+          "icon": "wyfw_gr03",
+          "name": "账号管理"
+        },
+        {
+          "icon": "wyfw_gr04",
+          "name": "版本更新"
+        },
+        {
+          "icon": "wyfw_gr05",
+          "name": "关于我们"
+        }
+      ],
+      "name": "个人中心"
+    }
+  ]
+}

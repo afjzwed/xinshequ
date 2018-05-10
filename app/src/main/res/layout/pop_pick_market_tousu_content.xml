@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@mipmap/bg_transparent">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_popup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/blue" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:text="请选择反馈类型"
+            android:gravity="center"
+            android:textSize="48px"
+            android:textColor="@color/color_323232"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/bt1"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:background="@drawable/bt_nobgd"
+                android:text="商品"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line" />
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt2"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:background="@drawable/bt_nobgd"
+                android:text="服务"
+                android:textColor="@color/color_646464"
+                android:textSize="40px" />
+        </com.zhy.autolayout.AutoLinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="14px"
+            android:background="@color/line" />
+
+        <Button
+            android:id="@+id/bt_cancal"
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:background="@drawable/bt_nobgd"
+            android:text="取消"
+            android:textColor="@color/color_ff9934"
+            android:textSize="40px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

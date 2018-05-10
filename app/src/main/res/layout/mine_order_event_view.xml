@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/selector_click_recycler_item_bg">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="94px"
+        android:layout_height="72px"
+
+        >
+        <ImageView
+            android:id="@+id/iv_mine_order_event"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:src="@mipmap/icon_daifukuan"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@+id/dot_mine_order_event"
+            android:layout_width="44px"
+            android:layout_height="44px"
+            android:background="@drawable/shape_notifiy_red_dot"
+            android:gravity="center"
+            android:textSize="22px"
+            tools:text="99"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_mine_order_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24px"
+        tools:text="待付款"
+        android:textSize="38px" />
+</com.zhy.autolayout.AutoLinearLayout>

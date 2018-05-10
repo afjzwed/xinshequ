@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="162px"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+
+    <ImageView
+        android:id="@+id/iv_tab_icon"
+        android:layout_width="68px"
+        android:layout_height="68px"
+        android:layout_marginTop="28px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/tv_tab_label"
+        android:layout_below="@id/iv_tab_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30px"
+        android:textColor="@drawable/tab_textcolor_selector"
+        android:text="联系人"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        />
+
+</com.zhy.autolayout.AutoRelativeLayout>

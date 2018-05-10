@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/divider"
+    android:orientation="vertical"
+    android:showDividers="middle">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="#fff1f1f1" />
+
+
+    <com.yxld.yxchuangxin.view.DeleteEditText
+        android:id="@+id/device_name"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_marginLeft="50px"
+        android:background="@null"
+        android:hint="给设备取个名字吧"
+        android:maxLength="5"
+        android:maxLines="1" />
+
+
+    <com.yxld.yxchuangxin.view.DeleteEditText
+        android:id="@+id/device_id"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_marginLeft="50px"
+        android:background="@null"
+        android:hint="设备ID"
+        android:inputType="number"
+        android:maxLength="7"
+        android:maxLines="1" />
+
+
+    <com.yxld.yxchuangxin.view.DeleteEditText
+        android:id="@+id/device_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_marginLeft="50px"
+        android:background="@null"
+        android:hint="设备密码"
+        android:maxLength="11"
+        android:maxLines="1" />
+    <com.yxld.yxchuangxin.view.DeleteEditText
+        android:visibility="gone"
+        android:id="@+id/reset_device_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_marginLeft="50px"
+        android:background="@null"
+        android:hint="重新输入设备密码"
+        android:maxLength="11"
+        android:maxLines="1" />
+
+    <TextView
+        android:id="@+id/tv_reset"
+        android:visibility="gone"
+        android:layout_marginTop="50px"
+        android:layout_gravity="center_horizontal"
+        android:textSize="30px"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="设备没有设置密码,初次连接设备需要设置密码"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff1f1f1" />
+</LinearLayout>

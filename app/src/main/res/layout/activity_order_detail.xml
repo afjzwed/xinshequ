@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_order_detail_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="148px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="40px"
+        android:paddingRight="40px">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="34px"
+            android:text="总价格:"
+            android:textColor="@color/color_323232"
+            android:textSize="48px" />
+
+        <TextView
+            android:id="@+id/tv_order_detail_total_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="34px"
+            tools:text="¥ 33.10"
+            android:textColor="@color/color_ff9934"
+            android:textSize="48px" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:id="@+id/line_order_detail_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@id/ll_order_detail_bottom"
+        android:background="@color/color_d6d7dc" />
+        <ScrollView
+            android:layout_above="@+id/line_order_detail_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/layout_order_detail_header" />
+                <com.yxld.yxchuangxin.view.OrderAddressView
+                    android:id="@+id/address_order_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:show_arrow="false"
+                    app:show_hint="false"
+                    android:layout_marginTop="26px"
+                    >
+                </com.yxld.yxchuangxin.view.OrderAddressView>
+
+                <include layout="@layout/layout_order_detail_product" />
+
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/buyer_remarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26px"
+                    app:text_title="买家附言:"
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/pay_method"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="支付方式:"
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/deliver_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="配送人员:   "
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/distribution_model"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="配送方式:"
+                    app:show_line="false"
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/goods_total_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="26px"
+                    app:text_title="商品总额:"
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/pei_song_fei"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="配送费:   "
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/dian_zi_quan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="电子券:   "
+                    />
+                <com.yxld.yxchuangxin.view.OrderDetailSelectView
+                    android:id="@+id/cancel_reason"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:text_title="取消原因:"
+                    app:show_line="false"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </ScrollView>
+
+</com.zhy.autolayout.AutoRelativeLayout>

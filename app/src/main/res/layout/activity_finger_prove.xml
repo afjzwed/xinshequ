@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="24px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/setting_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32px"
+            android:gravity="center_vertical"
+            android:text="指纹密码"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="50px"/>
+
+        <CheckBox
+            android:id="@+id/switch_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="32px"
+            android:background="@drawable/switch_button"
+            android:button="@null"
+            android:checked="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="24px"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/setting_pattern"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32px"
+            android:gravity="center_vertical"
+            android:text="手势密码"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="50px"/>
+
+        <CheckBox
+            android:id="@+id/switch_pattern"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="32px"
+            android:background="@drawable/switch_button"
+            android:button="@null"
+            android:checked="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/artl_change"
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="24px"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32px"
+            android:gravity="center_vertical"
+            android:text="修改手势密码"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            android:textSize="50px"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:src="@mipmap/zhgl_jt"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>

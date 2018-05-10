@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/pop_bg"
+    android:layout_height="match_parent">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_erweima"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="选择成员类型"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="33px"
+            android:layout_marginBottom="33px"
+            android:textSize="40px"
+            android:textColor="@color/color_646464"
+            />
+        <View
+            style="@style/line"/>
+        <TextView
+            android:id="@+id/tv_jiashu"
+            android:text="家属"
+            android:gravity="center"
+            android:textSize="48px"
+            android:textColor="@color/color_323232"
+            android:layout_width="match_parent"
+            android:layout_height="134px" />
+        <View
+            style="@style/line"/>
+        <TextView
+            android:id="@+id/tv_zuke"
+            android:text="租客"
+            android:gravity="center"
+            android:textSize="48px"
+            android:textColor="@color/color_323232"
+            android:layout_width="match_parent"
+            android:layout_height="134px" />
+        <View
+            style="@style/line"/>
+        <TextView
+            android:id="@+id/cancal"
+            android:layout_width="match_parent"
+            android:layout_height="134px"
+            android:text="取消"
+            android:gravity="center"
+            android:textSize="48px"
+            android:textColor="@color/main_color"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

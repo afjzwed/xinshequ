@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_View"
+    android:layout_width="742px"
+    android:layout_height="742px"
+    android:layout_marginLeft="75px"
+    android:layout_marginRight="75px"
+    android:layout_marginTop="30px"
+    android:elevation="14px"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="14px"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    >
+
+    <ImageView
+        android:id="@+id/iv_good"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
+
+</com.yxld.yxchuangxin.view.AutoCardView>

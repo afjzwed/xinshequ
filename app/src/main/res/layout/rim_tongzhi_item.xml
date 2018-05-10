@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+  <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="60px"
+        android:layout_marginTop="54px"
+        android:text="31313123"
+        android:textSize="40px"
+        android:textColor="@color/white"
+        android:background="@drawable/buttom_border_14_transparent_all"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+      />
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="978px"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50px"
+        android:layout_marginRight="50px"
+        android:layout_marginTop="34px"
+        android:id="@+id/item_main"
+        android:clickable="true"
+        app:cardCornerRadius="14px"
+        app:cardElevation="8px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="106px"
+            >
+
+            <ImageView
+                android:id="@+id/img_story_icon"
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="34px"
+                android:src="@mipmap/ic_standard"
+                />
+
+            <TextView
+                android:id="@+id/tv_story_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="14px"
+                android:layout_toRightOf="@+id/img_story_icon"
+                android:text="家有喜事"
+                android:textColor="@color/color_323232"
+                android:textSize="47px"
+                />
+
+            <ImageView
+                android:id="@+id/tv_right"
+                android:layout_width="34px"
+                android:layout_height="34px"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12px"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="34px"
+                android:src="@mipmap/service_mine_right_arror" />
+
+            <TextView
+                android:id="@+id/tv_order_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/tv_right"
+                android:layout_centerVertical="true"
+                android:text="待接单"
+                android:textColor="@color/color_b4b4b4"
+                android:textSize="40px" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/color_d6d7dc"
+            />
+
+        <TextView
+            android:id="@+id/tv_tongzhi"
+            android:layout_width="match_parent"
+            android:layout_height="258px"
+            android:text="花言草语五一节获得5月1日至5月4日满15件打9.5折，满20件减10元"
+            android:gravity="center_vertical"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:paddingLeft="34px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.yxld.yxchuangxin.view.AutoCardView>
+
+</com.zhy.autolayout.AutoLinearLayout>

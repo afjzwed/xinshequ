@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f5f5fa">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/autoRelativeLayout_below"
+        android:scrollbars="none">
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="30px"
+            android:background="@color/color_f5f5fa">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+            </android.support.v7.widget.RecyclerView>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:id="@+id/layout_leixing"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:layout_below="@+id/recycler_view"
+                android:layout_marginTop="20px"
+                android:background="@color/white"
+                android:paddingLeft="40px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="售后类型"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_leixing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="40px"
+                    android:drawablePadding="20px"
+                    android:drawableRight="@mipmap/arrow_bottom"
+                    android:gravity="right|center"
+                    android:hint="请选择售后类型"
+                    android:textColor="@color/black"
+                    />
+
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <View
+                android:id="@+id/line"
+                style="@style/line"
+                android:layout_below="@+id/layout_leixing"/>
+
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoRelativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line"
+                android:background="@color/white"
+                android:orientation="vertical"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="134px"
+                    android:layout_marginLeft="40px"
+                    android:gravity="center_vertical"
+                    android:text="售后原因"/>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="240px"
+                    android:layout_marginBottom="20px"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="40px"
+                    android:background="@drawable/buttom_border_14_99999_all"
+                    android:padding="20px">
+
+                    <EditText
+                        android:id="@+id/et_reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:background="@null"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto_ll"
+                android:layout_width="match_parent"
+                android:layout_height="320px"
+                android:layout_below="@id/autoRelativeLayout"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingBottom="20px"
+                android:paddingLeft="40px"
+                android:paddingRight="40px"
+                android:paddingTop="20px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32px"
+                    android:text="上传照片"
+                    android:textColor="@color/color_646464"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/color_ff9934"
+                    android:textSize="40px"
+                    android:visibility="invisible"
+                    />
+
+                <View
+                    android:layout_width="2px"
+                    android:layout_height="40px"
+                    android:layout_marginLeft="34px"
+                    android:background="@color/line"
+                    />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="32px"
+                    >
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="200px"
+                android:layout_below="@+id/auto_ll"
+                android:background="@color/gray1"
+                android:paddingTop="20px"
+                android:text="    * 售后申请提交之后，我们的工作人员将与您联系"
+                android:textColor="@color/red"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </ScrollView>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/autoRelativeLayout_below"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingLeft="50px"
+        android:paddingRight="50px"
+        >
+
+        <cn.refactor.library.SmoothCheckBox
+            android:id="@+id/chc_quanxuan"
+            android:layout_width="58px"
+            android:layout_height="68px"
+            android:layout_centerVertical="true"
+            app:color_checked="@color/color_ff9934"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20px"
+            android:layout_toRightOf="@+id/chc_quanxuan"
+            android:text="全 选"
+            android:textSize="18sp"/>
+
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="200px"
+            android:layout_height="100px"
+            android:background="@drawable/btn_cart_order_ok"
+            android:text="提    交"
+            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

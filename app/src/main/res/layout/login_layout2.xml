@@ -1,0 +1,261 @@
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="274px"
+        android:layout_height="274px"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/dly_logo"
+        android:layout_gravity="center"
+        android:layout_marginTop="214px"
+        android:visibility="visible"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/content"
+        android:layout_below="@+id/iv_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="44px"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_gravity="center"
+                android:src="@mipmap/dly_sj01" />
+
+            <EditText
+                android:id="@+id/login_tel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70px"
+                android:layout_marginRight="50px"
+                android:background="@null"
+                android:digits="0123456789abcdefghijklmnopqrstuvwxyz_"
+                android:hint="请输入手机号"
+                android:inputType="number"
+                android:maxLength="16"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <View
+            android:layout_marginLeft="138px"
+            android:layout_marginRight="50px"
+            style="@style/line"/>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_gravity="center"
+                android:src="@mipmap/dly_sj02" />
+
+            <com.jaredrummler.materialspinner.MaterialSpinner
+                android:id="@+id/login_xiaoqu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="请选择所属项目" />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+        <View
+            android:layout_marginLeft="138px"
+            android:layout_marginRight="50px"
+            style="@style/line"/>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_gravity="center"
+                android:src="@mipmap/dly_sj03" />
+
+            <EditText
+                android:id="@+id/login_pwd"
+                android:layout_width="0px"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="70px"
+                android:background="@null"
+                android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ_"
+                android:gravity="center_vertical"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:maxLength="16"
+                android:textColor="@color/black"
+                android:textColorHint="@color/gray"
+                android:textSize="14sp" />
+            <CheckBox
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_marginRight="50px"
+                android:src="@mipmap/dly_sj04"
+                android:button="@null"
+                android:background="@drawable/remember_password_selector"
+                android:id="@+id/iv_show_password"
+                android:layout_gravity="center_vertical"
+                />
+        </com.zhy.autolayout.AutoLinearLayout>
+        <View
+            android:layout_marginLeft="138px"
+            android:layout_marginRight="50px"
+            style="@style/line"/>
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@+id/content"
+            android:layout_height="45dp"
+            android:gravity="right"
+            android:id="@+id/autoRelativeLayout">
+
+            <ImageView
+                android:id="@+id/iv1"
+                android:layout_width="58px"
+                android:layout_height="58px"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/dly_wh"
+                />
+
+            <TextView
+                android:layout_toRightOf="@+id/iv1"
+                android:id="@+id/txt_findPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="70px"
+                android:gravity="center"
+                android:text="忘记密码"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/other"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:gravity="right"
+                >
+
+                <cn.refactor.library.SmoothCheckBox
+                    android:id="@+id/remember_password"
+                    android:layout_width="50px"
+                    android:layout_height="55px"
+                    android:layout_gravity="right|center_vertical"
+                    app:color_checked="@color/main_color"
+                     />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="记住密码"
+                    android:layout_marginLeft="40px"
+                    android:layout_marginRight="50px"
+                    android:textColor="@color/color_252525"
+                    android:textSize="@dimen/size_14"
+                    android:layout_gravity="center_vertical"
+                    />
+
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <Button
+        android:id="@+id/loginSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/color_main"
+        android:text="登录"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:textColor="@color/white"
+        android:layout_below="@+id/content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp" />
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_below="@+id/loginSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="center"
+        >
+        <cn.refactor.library.SmoothCheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="50px"
+            android:layout_height="55px"
+            android:layout_centerVertical="true"
+            android:button="@drawable/pay_selector"
+            app:color_checked="@color/main_color"
+            />
+        <com.yxld.yxchuangxin.view.AutoLinkStyleTextView
+            android:id="@+id/ptxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/checkbox"
+            android:text="我已阅读并同意欣物业《用户协议》"
+            android:textSize="@dimen/size_12"
+            android:layout_marginLeft="40px"
+            android:textColor="@color/gray"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            app:AutoLinkStyleTextView_default_color="@color/main_color"
+            android:gravity="center"
+            app:AutoLinkStyleTextView_text_value="《用户协议》," />
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <ImageView
+        android:layout_width="1080px"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:layout_height="410px"
+        android:src="@mipmap/dly_bj"
+        />
+    <View
+        android:visibility="gone"
+        android:id="@+id/environment"
+        android:layout_width="60px"
+        android:layout_height="60px"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        />
+    <cn.refactor.library.SmoothCheckBox
+        app:color_checked="@color/main_color"
+        android:id="@+id/check_environment"
+        android:layout_width="60px"
+        android:visibility="gone"
+        android:layout_height="60px"
+        android:layout_alignParentBottom="true"
+        />
+    <cn.refactor.library.SmoothCheckBox
+        app:color_checked="@color/main_color"
+        android:layout_toRightOf="@+id/check_environment"
+        android:layout_marginLeft="100px"
+        android:visibility="gone"
+        android:id="@+id/enter_environment"
+        android:layout_width="60px"
+        android:layout_height="60px"
+        android:layout_alignParentBottom="true"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

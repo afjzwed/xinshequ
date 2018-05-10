@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <View
+        android:layout_width="2px"
+        android:layout_height="202px"
+        android:background="@color/color_e6e6e6"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="54px"/>
+
+    <View
+        android:id="@+id/view_circle"
+        android:layout_width="18px"
+        android:layout_height="18px"
+        android:background="@drawable/circle_e6e6e6"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="56px"
+        android:layout_marginLeft="46px"/>
+
+    <TextView
+        android:id="@+id/tv_order_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="订单状态: 已完成"
+        android:textColor="@color/color_646464"
+        android:textSize="44px"
+        android:layout_toRightOf="@id/view_circle"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="45px"/>
+
+    <TextView
+        android:id="@+id/tv_order_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2012-5-7 11:21"
+        android:textColor="@color/color_909090"
+        android:textSize="38px"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="45px"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="40px"/>
+
+    <TextView
+        android:id="@+id/tv_order_destail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="感谢您的支持，期待下次再为您服务！"
+        android:textColor="@color/color_bcbcbc"
+        android:textSize="38px"
+        android:layout_toRightOf="@id/view_circle"
+        android:layout_below="@id/tv_order_state"
+        android:layout_marginLeft="40px"
+        android:layout_marginTop="26px"/>
+
+
+</com.zhy.autolayout.AutoRelativeLayout>

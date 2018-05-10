@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:id="@+id/nsv"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_above="@+id/laundry_text"-->
+        <!--android:layout_marginBottom="168px"-->
+        <!--android:fillViewport="true"-->
+        <!--android:scrollbars="none">-->
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <com.yxld.yxchuangxin.view.SelectMultiCheckGroup
+                android:id="@+id/checkGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone"
+                app:column="4"
+                app:isSingleSelected="true"
+                app:row="1" />
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="26px"
+                android:layout_below="@+id/checkGroup"
+                android:layout_height="match_parent">
+                <android.support.v4.widget.SwipeRefreshLayout
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/refreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="26px" />
+                </android.support.v4.widget.SwipeRefreshLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    <!--</android.support.v4.widget.NestedScrollView>-->
+
+</com.zhy.autolayout.AutoRelativeLayout>

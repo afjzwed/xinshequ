@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="550px"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="14px"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_marginLeft="27px"
+    android:layout_marginRight="27px"
+    android:layout_marginTop="26px"
+
+    >
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="50px"
+        android:paddingLeft="34px"
+        android:paddingRight="34px"
+        android:paddingBottom="34px"
+        >
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/ll_comment_nums_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            >
+            <TextView
+                android:id="@+id/tv_comment_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="38px"
+                android:textColor="@color/color_ff9934"
+                android:text="0"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="38px"
+                android:textColor="@color/color_909090"
+                android:text="/500"
+                />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@id/ll_comment_nums_container"
+            >
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200px">
+                <ImageView
+                    android:id="@+id/iv_comment_product"
+                    android:layout_width="192px"
+                    android:layout_height="192px"
+                    />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="34px"
+                    >
+                    <TextView
+                        android:id="@+id/tv_title"
+                        style="@style/size40_323232"
+                        android:maxLines="2"
+                        android:ellipsize="end"
+                        tools:text="蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏蒙牛特仑苏"
+                        />
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="10px"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="1"
+                        style="@style/mRatingBarPrice"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+            <View android:layout_height="1px"
+                android:layout_width="match_parent"
+                android:background="@color/color_d6d7dc"
+                android:layout_marginTop="34px"
+                />
+
+            <com.yxld.yxchuangxin.view.MyEditTextView
+                android:layout_marginTop="30px"
+                android:id="@+id/edit_add_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:maxLines="3"
+                android:textSize="40px"
+                android:maxLength="500"
+                />
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+</com.yxld.yxchuangxin.view.AutoCardView>

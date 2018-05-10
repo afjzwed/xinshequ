@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    >
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="40px"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_order_detail_title"
+            style="@style/size40_646464"
+            tools:text="下单时间"
+            android:gravity="center"
+            />
+        <TextView
+            android:id="@+id/tv_order_detail_desc"
+            style="@style/size40_646464"
+            android:minHeight="38px"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="34px"
+            tools:text="微信支付"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <View
+        android:id="@+id/line_order_detail_text"
+        style="@style/line1040_d6d7dc"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

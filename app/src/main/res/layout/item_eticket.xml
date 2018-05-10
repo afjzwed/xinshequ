@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_marginLeft="40px"
+    android:layout_marginRight="40px"
+    android:layout_marginBottom="28px"
+    android:layout_height="286px"
+    android:id="@+id/root_layout"
+    tools:background="@mipmap/dzj_hs">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="95px"
+        android:layout_marginTop="40px"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:id="@+id/ll_right"
+        >
+        <TextView
+            android:id="@+id/tv_ticket_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_646464"
+            android:textSize="40px"
+            tools:text="物业赠送"
+            android:visibility="gone"
+            />
+        <TextView
+            android:id="@+id/tv_ticket_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24px"
+            tools:textColor="@color/color_646464"
+            android:textSize="66px"
+            tools:text="¥ 100"
+            />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/tv_ticket_use_limit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26px"
+            android:textColor="@color/color_909090"
+            android:textSize="38px"
+            tools:text="满30元使用"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_marginLeft="38px"
+        android:layout_marginRight="100px"
+        android:layout_alignParentLeft="true"
+
+        >
+        <!--android:layout_toLeftOf="@id/ll_right"-->
+        <TextView
+            android:id="@+id/tv_ticket_get_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="2017-06-18 15:20:20"
+            android:textColor="@color/color_646464"
+            android:textSize="40px"
+            />
+        <TextView
+            android:id="@+id/tv_ticket_effect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_ticket_get_time"
+            android:layout_marginTop="54px"
+            android:textSize="34px"
+            android:maxEms="14"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/color_909090"
+            tools:text="商城消费券商城消费券商城消商城消费券商城消费券商城消商城消费券商城消费券商城消"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

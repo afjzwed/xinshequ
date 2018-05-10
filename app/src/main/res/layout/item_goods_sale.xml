@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="false"
+    android:foreground="?android:attr/selectableItemBackground"
+    >
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/cv_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20px">
+
+        <cn.refactor.library.SmoothCheckBox
+            android:id="@+id/check_cart_single_product"
+            android:layout_width="58px"
+            android:layout_height="68px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="34px"
+            app:color_checked="@color/color_ff9934"
+            />
+
+        <ImageView
+            android:id="@+id/iv_cart_product"
+            android:layout_width="254px"
+            android:layout_height="254px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="34px"
+            android:layout_marginRight="34px"
+            android:layout_toRightOf="@id/check_cart_single_product"
+            android:src="@mipmap/scsy_hd03"/>
+
+        <TextView
+            android:id="@+id/tv_cart_product_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/iv_cart_product"
+            android:layout_marginRight="34px"
+            android:layout_toRightOf="@id/iv_cart_product"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="111111111"
+            android:textSize="40px"/>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/iv_cart_product"
+            android:layout_marginRight="34px"
+            android:layout_toRightOf="@id/iv_cart_product">
+
+            <TextView
+                android:id="@+id/tv_cart_product_price1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="12元"
+                android:textColor="@color/color_323232"
+                android:textSize="44px"/>
+
+            <TextView
+                android:id="@+id/tv_shuliang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="12"
+                android:textSize="18sp"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <View
+        style="@style/line"
+        android:layout_below="@+id/cv_item"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="200px">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="4"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:text="2017-04"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="40px"
+            android:textColor="@color/color_ff6966"
+            android:text="状态"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_money"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:text="4"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_zhinajin"
+            android:layout_width="0px"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="40px"
+            android:textColor="@color/color_323232"
+            android:text=""
+            android:layout_height="match_parent" />
+    </com.zhy.autolayout.AutoLinearLayout>
+    <View
+        style="@style/line"
+        android:layout_alignParentBottom="true"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

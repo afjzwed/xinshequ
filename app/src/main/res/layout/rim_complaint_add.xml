@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/linear_type"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:layout_marginTop="26px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:background="@drawable/banner_border_left_top_right_buttom_ffffff_d6d7dc"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:textSize="40px"
+            android:textColor="@color/color_646464"
+            android:text="投诉类型"/>
+
+        <TextView
+            android:layout_width="2px"
+            android:layout_height="40px"
+            android:textColor="@color/color_e1e1e1"
+            android:text="|"
+            android:layout_marginLeft="54px"
+            />
+
+        <EditText
+            android:id="@+id/tv_complaintType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:hint="请选择投诉类型"
+            android:textColorHint="@color/color_b4b4b4"
+            android:layout_marginLeft="32px"
+            android:background="@null"
+            android:textColor="@color/color_323232"
+            android:editable="false"
+            android:paddingLeft="32px"
+            />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="32px"
+                android:layout_height="32px"
+                android:src="@mipmap/service_mine_right_arror"
+                android:layout_marginRight="40px"
+                android:layout_alignParentRight="true"
+                />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="1000px"
+        android:layout_height="284px"
+        android:layout_marginTop="26px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:background="@drawable/banner_border_left_top_right_buttom_ffffff_d6d7dc"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:textSize="40px"
+            android:textColor="@color/color_646464"
+            android:text="投诉内容"/>
+
+        <TextView
+            android:layout_width="2px"
+            android:layout_height="40px"
+            android:textColor="@color/color_e1e1e1"
+            android:text="|"
+            android:layout_marginLeft="54px"
+            />
+
+        <EditText
+            android:id="@+id/tv_complaintcontent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="40px"
+            android:textColorHint="@color/color_b4b4b4"
+            android:hint="请您输入您的投诉内容"
+            android:layout_marginLeft="32px"
+            android:paddingTop="5px"
+            android:paddingBottom="5px"
+            android:inputType="textMultiLine"
+            android:textColor="@color/color_323232"
+            android:background="@null"
+            android:padding="32px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="404px"
+        android:layout_height="108px"
+        android:background="@drawable/buttom_border1"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="44px"
+        android:layout_marginTop="68px"
+        android:layout_gravity="center_horizontal"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

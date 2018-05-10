@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:layout_marginTop="1px"
+    android:paddingBottom="34px"
+    android:paddingLeft="40px"
+    android:paddingRight="40px"
+    android:paddingTop="34px">
+
+    <ImageView
+        android:id="@+id/iv_comment_head"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:src="@mipmap/icon_touxiang"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="34px"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_comment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="张三丰"
+                android:textColor="@color/color_323232"
+                android:textSize="40px"/>
+
+            <TextView
+                android:id="@+id/tv_comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="2017.02.18"
+                android:textColor="@color/color_909090"
+                android:textSize="40px"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <RatingBar
+            android:id="@+id/rb_commnet_praise"
+            android:layout_width="wrap_content"
+            android:layout_height="50px"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="16px"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressDrawable="@drawable/ratingbar"
+            android:rating="5"
+            />
+
+        <TextView
+            android:layout_marginTop="10px"
+            android:id="@+id/tv_comment_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="索拉卡打飞机库附近打飞机拉升等级分类登记拉上点击放大"
+            android:textColor="@color/color_646464"
+            android:textSize="38px"/>
+
+
+        <TextView
+            android:id="@+id/tv_comment_reply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34px"
+            android:background="@drawable/buttom_border_14_f0f0f0_all"
+            android:padding="34px"
+            android:text="商家回复：谢谢，希望您每一天都开心！谢谢，希望您每一天都开心！谢谢，希望您每一天都开心！谢谢，希望您每一天都开心！谢谢，希望您每一天都开心！谢谢，希望您每一天都开心！"
+            android:textColor="@color/color_909090"
+            android:textSize="38px"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

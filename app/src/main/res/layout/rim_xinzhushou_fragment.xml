@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_D9D9D9" />
+
+    <!--顶部tab标签容器-->
+    <android.support.design.widget.TabLayout
+        android:id="@+id/xinzhushou_tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitesmoke"
+        app:tabGravity="center"
+        app:tabIndicatorColor="@color/blue"
+        app:tabSelectedTextColor="@color/blue"
+        app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
+        app:tabTextColor="@color/gray">
+
+    </android.support.design.widget.TabLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_D9D9D9" />
+
+
+    <com.yxld.yxchuangxin.view.ChildViewPager
+        android:id="@+id/xinzhushou_viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="450px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/main_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="城市活动"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300px"
+        android:orientation="horizontal"
+        android:paddingLeft="30px"
+        android:paddingRight="30px">
+
+        <ImageView
+            android:id="@+id/fhhn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@mipmap/service3" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/main_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="精选频道"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="190px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/jrtt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28px"
+            android:layout_marginRight="56px"
+            android:layout_weight="1"
+            android:background="@mipmap/service1" />
+
+
+        <ImageView
+            android:id="@+id/hw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="28px"
+            android:layout_weight="1"
+            android:background="@mipmap/service4" />
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoLinearLayout>

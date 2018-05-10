@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="card_view_elevation">14px</dimen>
+    <dimen name="item_margin">36px</dimen>
+</resources>

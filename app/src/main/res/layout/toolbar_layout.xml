@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbarBusiness"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_color"
+    android:minHeight="?attr/actionBarSize"
+    android:paddingTop="@dimen/toolbar_padding_top"
+    android:titleTextColor="@color/white"
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    <!--android:fitsSystemWindows="true"-->
+    <!--android:minHeight="?attr/actionBarSize"-->
+    <!--android:minHeight="@dimen/actionbar_size"-->
+    <TextView
+        android:id="@+id/tv_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查看订单"
+        android:layout_gravity="right"
+        android:visibility="gone"
+        android:layout_marginRight="45px"
+        android:textColor="@color/white"
+        />
+
+
+</android.support.v7.widget.Toolbar>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <com.yxld.yxchuangxin.view.AutoCardView
+            android:id="@+id/auto_img"
+            android:layout_width="134px"
+            android:layout_height="134px"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginTop="30px"
+            android:elevation="14px"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="14px">
+
+            <ImageView
+                android:id="@+id/iv_story_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_standard"/>
+        </com.yxld.yxchuangxin.view.AutoCardView>
+
+        <TextView
+            android:id="@+id/tv_comment_tg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72px"
+            android:layout_marginTop="80px"
+            android:layout_toRightOf="@id/auto_img"
+            android:text="综合评价:"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <RatingBar
+            android:id="@+id/rim_list_ratingBar"
+            style="@style/mRatingBarPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="68px"
+            android:layout_marginTop="72px"
+            android:layout_toRightOf="@id/tv_comment_tg"
+            android:numStars="5"
+            android:paddingRight="2px"
+            android:rating="5"
+            android:stepSize="1"/>
+
+        <EditText
+            android:id="@+id/edit_comment"
+            android:layout_width="1000px"
+            android:layout_height="264px"
+            android:layout_below="@id/auto_img"
+            android:layout_marginBottom="60px"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:layout_marginTop="60px"
+            android:background="@null"
+            android:gravity="left|top"
+            android:hint="发表一下评价吧，您的评价对别人很有帮助哦~"
+            android:textColor="@color/color_646464"
+            android:textColorHint="@color/color_b4b4b4"
+            android:textSize="40px"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="404px"
+        android:layout_height="118px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="60px"
+        android:background="@color/blue"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="44px"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

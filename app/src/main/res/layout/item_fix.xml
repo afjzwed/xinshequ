@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="233px"
+    android:layout_height="236px">
+    <ImageView
+        android:layout_marginTop="32px"
+        android:id="@+id/iv_content"
+        android:layout_width="204px"
+        android:scaleType="fitXY"
+        android:layout_height="match_parent"
+        android:src="@mipmap/icon_addpic_unfocused"
+        />
+    <ImageView
+        android:id="@+id/iv_delet"
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_width="58px"
+        android:layout_marginTop="7px"
+        android:layout_marginRight="10px"
+        android:src="@mipmap/syt_xz02"
+        android:layout_height="58px" />
+    <TextView
+        android:layout_marginTop="32px"
+        android:id="@+id/tv_flag"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="最多3张"
+        android:textSize="40px"
+        android:gravity="center"
+        android:drawableRight="@mipmap/syt_xz02"
+        android:layout_centerInParent="true"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

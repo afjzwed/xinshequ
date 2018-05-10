@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.zhy.autolayout.AutoFrameLayout
+        android:layout_width="1080px"
+        android:layout_height="1080px"
+        android:layout_gravity="center"
+        android:foreground="?android:attr/selectableItemBackground"
+        >
+        <ImageView
+            android:id="@+id/iv_good"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+    </com.zhy.autolayout.AutoFrameLayout>
+
+</com.zhy.autolayout.AutoFrameLayout>

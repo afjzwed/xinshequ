@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="700px"
+    android:gravity="center"
+    >
+
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+
+        android:id="@+id/root_layout"
+        android:layout_width="480px"
+        android:layout_height="680px"
+        android:clickable="true"
+        android:elevation="10px"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="14px"
+        >
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+
+            >
+
+            <ImageView
+                android:id="@+id/iv_mall_goods_product"
+                android:layout_width="480px"
+                android:layout_height="480px"
+                android:scaleType="fitXY"
+                android:layout_centerVertical="true"
+                />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+
+                >
+
+                <TextView
+                    android:id="@+id/tv_mall_goods_product_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="36px"
+                    tools:text="张新发槟榔张新发槟榔张新发槟榔张新发槟榔"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_mall_goods_stock_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_mall_goods_product_title"
+                    android:layout_marginTop="15px"
+                    android:textColor="@color/color_909090"
+                    android:textSize="34px"
+                    tools:text="库存139"
+                    />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70px"
+                    android:layout_below="@+id/tv_mall_goods_stock_num"
+                    android:layout_alignParentStart="true">
+
+                    <TextView
+                        android:id="@+id/tv_mall_goods_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/color_ff9934"
+                        android:textSize="45px"
+                        tools:text="¥ 59.50"
+                        />
+
+                    <ImageView
+                        android:id="@+id/iv_mall_goods_cart"
+                        android:layout_width="100px"
+                        android:layout_height="100px"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:src="@mipmap/spss_gwc"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.yxld.yxchuangxin.view.AutoCardView>
+</com.zhy.autolayout.AutoRelativeLayout>

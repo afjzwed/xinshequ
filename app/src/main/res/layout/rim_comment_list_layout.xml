@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <!--<com.zhy.autolayout.AutoRelativeLayout-->
+        <!--android:id="@+id/layout_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="324px"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:gravity="center"-->
+        <!--android:background="@mipmap/service_comment_list_bg_icon">-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_user_head"-->
+            <!--android:layout_width="136px"-->
+            <!--android:layout_height="136px"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:src="@mipmap/service_mine_usericon" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_user_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="24px"-->
+            <!--android:textSize="50px"-->
+            <!--android:layout_below="@id/iv_user_head"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:text="张三丰"-->
+            <!--android:textColor="@color/color_909090" />-->
+    <!--</com.zhy.autolayout.AutoRelativeLayout>-->
+
+    <include
+        layout="@layout/recyceler_layout" />
+
+</com.zhy.autolayout.AutoLinearLayout>

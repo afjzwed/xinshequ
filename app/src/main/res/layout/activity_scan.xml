@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/fl_my_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        />
+
+    <ImageView
+        android:id="@+id/iv_shoudiantong"
+        android:layout_width="100px"
+        android:layout_height="100px"
+        android:layout_above="@+id/tv_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70px"
+        android:src="@mipmap/shoudiantong_off"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200px"
+        android:gravity="center"
+        android:text="请将二维码放入扫码框内"/>
+
+</com.zhy.autolayout.AutoRelativeLayout>

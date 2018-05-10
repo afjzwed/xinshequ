@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="720px"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="28px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:background="@drawable/bg_rim_goods_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.yxld.yxchuangxin.view.NoScrollViewPager
+                    android:id="@+id/nsvp"
+                    android:layout_width="match_parent"
+                    android:layout_height="700px">
+
+                </com.yxld.yxchuangxin.view.NoScrollViewPager>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/autorl_change_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24px"
+                    android:layout_marginRight="24px"
+                    android:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/ib_left_arrows"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:layout_alignParentLeft="true"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/leftpoint"/>
+
+                    <ImageButton
+                        android:id="@+id/ib_right_arrows"
+                        android:layout_width="60px"
+                        android:layout_height="60px"
+                        android:layout_alignParentRight="true"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/rightpoint"/>
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:orientation="vertical"
+                android:background="@drawable/bg_rim_goods_detail1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32px"
+                    android:layout_marginTop="24px"
+                    android:text="商品名称"
+                    android:textColor="@color/color_333"
+                    android:textSize="40px"/>
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32px"
+                    android:layout_marginRight="32px"
+                    android:layout_marginTop="24px"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_good_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:scrollbars="vertical"
+                        android:fadeScrollbars="false"
+                        android:maxEms="100"
+                        android:textColor="@color/umeng_socialize_text_share_content"
+                        android:textSize="36px"/>
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32px"
+                    android:layout_marginBottom="24px"
+                    android:layout_marginRight="32px"
+                    android:layout_marginTop="24px">
+
+                    <TextView
+                        android:id="@+id/tv_current_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="¥ 18 "
+                        android:textColor="@color/color_fb4040"
+                        android:textSize="36px"/>
+
+                    <TextView
+                        android:id="@+id/tv_original_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_current_price"
+                        android:text="/ ¥ 25"
+                        android:textColor="@color/umeng_socialize_text_share_content"
+                        android:textSize="36px"/>
+
+                    <ImageButton
+                        android:id="@+id/ib_add_goods"
+                        android:layout_width="72px"
+                        android:layout_height="72px"
+                        android:layout_alignParentRight="true"
+                        android:background="@null"
+                        android:scaleType="centerInside"
+                        android:src="@mipmap/addsp_big"/>
+                </com.zhy.autolayout.AutoRelativeLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.yxld.yxchuangxin.view.AutoCardView>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,0 +1,813 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.yxld.yxchuangxin">
+
+    <!-- 关于versionName：版本重大更新时升级第一位，普通的功能更新升级第二位，紧急打版升级第三位 by:万文秀 -->
+
+    <uses-sdk
+        android:minSdkVersion="19"
+        android:targetSdkVersion="23"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 定位 -->
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- 用于读取手机当前的状态 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- 访问网络，网络定位需要上网 -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <uses-permission android:name="android.permission.NFC"/>
+
+    <uses-feature android:name="android.hardware.nfc.hce"/>
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD"/>
+
+    <!-- 分享 -->
+    <!-- renren sso Permission for Unit Test -->
+    <uses-permission android:name="android.permission.SET_DEBUG_APP"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.USE_CREDENTIALS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
+
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE"/>
+
+    <!-- 极光推送 -->
+    <!-- Required -->
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature"/>
+
+    <application
+        android:name=".application.AppConfig"
+        android:allowBackup="true"
+        android:icon="@mipmap/login_icon_bg"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.Base"
+        tools:replace="icon">
+
+        <!--阿里云推送-->
+        <meta-data
+            android:name="com.alibaba.app.appkey"
+            android:value="24620035\0"/> <!-- 请填写你自己的- appKey -->
+        <meta-data
+            android:name="com.alibaba.app.appsecret"
+            android:value="2287686d95d34e5a84843dcbf7b38f59"/> <!-- 请填写你自己的appSecret -->
+        <!-- 消息接收监听器 （用户可自主扩展） -->
+        <receiver
+            android:name=".MyALYReceiver"
+            android:exported="false"> <!-- 为保证receiver安全，建议设置不可导出，如需对其他应用开放可通过android：permission进行限制 -->
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_OPENED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.push2.action.NOTIFICATION_REMOVED"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.alibaba.sdk.android.push.RECEIVE"/>
+            </intent-filter>
+        </receiver>
+        /*********************************↓↓其它模块↓↓******************************************/
+        <activity
+            android:name=".ui.activity.main.HomeActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.main.ScanActivityActivity"
+            android:label="扫一扫"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.main.GuestActivity"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+
+        <activity
+            android:name=".ui.activity.login.LoginActivity"
+            android:label="登录"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.main.SecondActivity"
+            android:label="第二页"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.main.FingerLoginActivity"
+            android:label="指纹登录"
+            android:screenOrientation="portrait"
+            >
+        </activity>
+        <activity
+            android:name=".ui.activity.main.FragmentActivityActivity"
+            android:label="演示Fragment"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.main.WebviewActivity"
+            android:label=""
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.FindPasswordActivity"
+            android:label="密码找回"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.main.SplashActivity"
+            android:label="欣社区"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.ResetPasswordActivity"
+            android:label="更改密码"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.MultiAccountActivity"
+            android:label="切换账号"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.FingerProveActivity"
+            android:label="账户安全"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.PatternProveActivity"
+            android:label="设置手势密码"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.PatternCheckActivity"
+            android:label="修改手势密码"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.mine.AddAccountActivity"
+            android:label="添加账号"
+            android:screenOrientation="portrait">
+        </activity>
+        /*********************************↑↑其它模块↑↑******************************************/
+
+        /*********************************↓↓物业模块↓↓******************************************/
+        <activity
+            android:name=".ui.activity.wuye.MenJinActivity"
+            android:label="门禁管理"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.AboutOurActivity"
+            android:label="关于我们"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.SatisficingActivity"
+            android:label="满意度调查"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.PhoneOpenDoorActivity"
+            android:label="来访邀请码"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.WuyeMoneyActivity"
+            android:label="物业缴费"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FangwuActivity"
+            android:label="房屋信息"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.AccountActivity"
+            android:label="账号管理"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.LiveMemberActivity"
+            android:label="入住成员"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.AddLiveMemberActivity"
+            android:label="添加成员"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.CarManageActivity"
+            android:label="车辆管理"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.CarAddMoneyActivity"
+            android:label="车辆充值"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.CarMoneyRecordActivity"
+            android:label="充值记录"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.PaySelectActivity"
+            android:label="收银台"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FangxingActivity"
+            android:label="授权放行"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.AddfangxingActivity"
+            android:label="发起授权放行"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FangxingDetaillActivity"
+            android:label="放行详情"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.MessageActivityActivity"
+            android:label="通知活动"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.MessageActivityDetailActivity"
+            android:label="通知活动"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FixActivity"
+            android:label="维修服务"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FixListActivity"
+            android:label="维修服务"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ComplainActivity"
+            android:label="投诉建议"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ComplainListActivity"
+            android:label="投诉建议列表"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.MenjinHelpActivity"
+            android:label="开门指南"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.RoomRentActivity"
+            android:label="房屋出租"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.JiaofeiListActivity"
+            android:label="费用明细"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.UpdateActivity"
+            android:label="版本更新"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.common.AisleActivity"
+            android:label="通道列表"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.common.RealPlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="公共监控"
+            android:screenOrientation="portrait">
+        </activity>
+        /******↓↓居家安防↓↓******/
+        <activity
+            android:name=".ui.activity.camera.DeviceActivity"
+            android:label="设备列表"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:label="摄像头"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraSettingActivity"
+            android:label="摄像头设置"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.ModifyFangquActivity"
+            android:label="修改防区"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraConfigActivity"
+            android:label="设备配网"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraAddActivity"
+            android:label="添加设备"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.LearnActivity"
+            android:label="学习设备"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraVideoActivity"
+            android:label="录像设置"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.camera.InformPersonActivity"
+            android:label="通知对象"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.RecordFilesActivity"
+            android:label="视频回放"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.PlayBackActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="监控回放"
+            />
+        <activity
+            android:name=".ui.activity.camera.AlarmActivity"
+            android:label="报警设置"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.TimeCheBuFangActivity"
+            android:label="定时布撤防"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.AddCheBuFangActivity"
+            android:label="新增布撤防"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.AllBaoJingActivity"
+            android:label="全部报警"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.AlarmPayActivity"
+            android:label="缴费"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.CameraInformActivity"
+            android:label="通知对象"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.camera.FangquListActivity"
+            android:label="防区列表"
+            android:screenOrientation="portrait"/>
+        /******↑↑居家安防↑↑******/
+
+        /*********************************↑↑物业模块↑↑******************************************/
+
+        /*********************************↓↓欣周边模块↓↓******************************************/
+        <!--<activity-->
+        <!--android:name=".ui.activity.rim.RimActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:label="欣周边"-->
+        <!--&gt;-->
+        <!--</activity>-->
+        <activity
+            android:name=".ui.activity.rim.BusinessListActivity"
+            android:label="商家列表"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.rim.BusinessOrderDetailActivity"
+            android:label="订单详情"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.rim.BusinessActivity"
+            android:label=""
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.rim.BusinessPushProductActivity"
+            android:label="提交预约"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.rim.RimComplainListActivity"
+            android:label="投诉列表"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimCommentListActivity"
+            android:label="我的评论"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimTongzhiListActivity"
+            android:label="通知列表"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimComplainAddActivity"
+            android:label="添加投诉"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimCommentAddActivity"
+            android:label="发表评论"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimOrderDynamicActivity"
+            android:label="动态跟踪"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimOrderListActivityActivity"
+            android:label="订单列表"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.WebViewActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.wuye.WebSatisficingActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimShopDetailActivity"
+            android:label="商家首页"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimShopCommentListActivity"
+            android:label="评价"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.rim.RimComplainDetailActivity"
+            android:label="投诉详情"
+            android:screenOrientation="portrait"/>
+
+        /*********************************↑↑欣周边模块↑↑******************************************/
+
+        /*********************************↓↓欣商城模块↓↓******************************************/
+
+        <activity
+            android:name=".ui.activity.goods.MallGoodsListActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.goods.OrderListActivity"
+            android:label="订单列表"
+            android:screenOrientation="portrait"/>
+
+        <!--<activity-->
+        <!--android:name=".ui.activity.goods.MarketActivity"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--&gt;-->
+        <!--</activity>-->
+        <activity
+            android:name=".ui.activity.goods.NormalTypeGoodsListActivity"
+            android:label="商品详情列表"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.GoodDetailActivity"
+            android:label="商品详情"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ui.activity.goods.TicketActivity"
+            android:label="电子券记录"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.MarketComplainActivity"
+            android:label="订单投诉"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.MarketJainyiActivity"
+            android:label="商城建议"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.AddressManageActivity"
+            android:label="我的收货地址"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.AddAddressActivity"
+            android:label="新增地址"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.ConfirmOrderActivity"
+            android:label="确认订单"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ui.activity.goods.ConfirmOrderCodeActivity"
+            android:label="确认订单"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ui.activity.goods.OrderDetailActivity"
+            android:label="订单详情"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.OrderComplainActivity"
+            android:label="订单投诉"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.SearchActivity"
+            android:label="商品搜索"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".ui.activity.goods.CashierActivity"
+            android:label="收银台"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".ui.activity.goods.CommentAndShowOrderActivity"
+            android:label="评价晒单"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ui.activity.goods.CommentListActivity"
+            android:label="评价列表"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.SecondShopCartActivity"
+            android:label="购物车"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.goods.OrderComplainDetailActivity"
+            android:label="投诉详情"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.GoodsFenLeiActivity"
+            android:label="商品分类"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.MineShopActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.MyEvaluateActivity"
+            android:label="我的评价"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".ui.activity.goods.GoodsSaleActivity"
+            android:label="申请售后"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan"
+            />
+        <activity
+            android:name=".ui.activity.goods.MarketComplainListActivity"
+            android:label="商城建议列表"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name="com.AtestActivity"
+            android:label="商城详情测试列表"
+            android:screenOrientation="portrait"/>
+        /*********************************↑↑欣商城模块↑↑******************************************/
+
+        <activity
+            android:name=".ui.activity.base.ViewPagerActivity"
+            android:label=""
+            android:screenOrientation="portrait"
+            />
+
+        <meta-data
+            android:name="Mob-AppKey"
+            android:value="14e1cc04efbc0"/>
+        <meta-data
+            android:name="Mob-AppSecret"
+            android:value="39a445e014ef8b2575238d50f97b94b2"/>
+
+        <meta-data
+            android:name="design_width"
+            android:value="1080"></meta-data>
+        <meta-data
+            android:name="design_height"
+            android:value="1920"></meta-data>
+
+        <!-- =======================友盟组件======================= -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5aa63791f43e4867d9000095"/>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="XsqUmeng"/>
+
+        <!--<meta-data-->
+        <!--android:name="UMENG_CHANNEL"-->
+        <!--android:value="${UMENG_CHANNEL_VALUE}"/>-->
+
+        <!-- 分享内容编辑页 -->
+        <activity
+            android:name="com.umeng.socialize.view.ShareActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:theme="@style/Theme.UMDialog"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+
+        <!--银联配置-->
+        <uses-library
+            android:name="org.simalliance.openmobileapi"
+            android:required="false"/>
+
+        <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name="com.unionpay.UPPayWapActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+        <!--银联配置-->
+        <!-- 腾讯SSO授权的Activity注册 -->
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <data android:scheme="tencent100424468"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+
+        <!--银联支付-->
+
+        <!-- 微信支付 -->
+        <activity
+            android:name=".ui.activity.goods.PayWaySelectActivity"
+            android:label="收银台"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.VIEW"/>-->
+
+            <!--<category android:name="android.intent.category.DEFAULT"/>-->
+
+            <!--<data android:scheme="wx5b6670d212378919"/>-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity
+            android:name=".xsq.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/WXSplash"
+            android:screenOrientation="portrait">
+            <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
+
+            <category android:name="android.intent.category.DEFAULT"/>
+
+            <data android:scheme="wx5b6670d212378919"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 支付宝 -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"></activity>
+
+
+        <!--雄迈相关-->
+        <activity
+            android:name=".ui.activity.xiongmai.XCameraActivity"
+            android:configChanges="orientation|keyboardHidden|screenLayout|keyboard|screenSize"
+            android:label="公共监控"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.activity.xiongmai.DeviceLoginActivity"
+            android:label="连接设备"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.zbar.lib.CaptureActivity"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 极光推送 -->
+        <!-- User defined. 用户自定义的广播接收器 -->
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+
+                <!-- Required 用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.REGISTRATION"/>
+                <!-- Required 用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED"/>
+                <!-- Required 用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED"/>
+                <!-- Required 用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED"/>
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.CONNECTION"/>
+
+                <category android:name="${applicationId}"/>
+            </intent-filter>
+        </receiver>
+        <!-- 极光推送 -->
+
+        <service
+            android:name=".service.killSelfService"
+            />
+        <!--android 7.0适配uri -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.yxld.yxchuangxin.xsq.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+    </application>
+</manifest>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/iv_miaosha"
+    android:layout_centerHorizontal="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="距离结束"
+        android:textColor="@color/color_909090"
+        android:textSize="38px" />
+
+    <TextView
+        android:id="@+id/tv_shi"
+        android:layout_width="62px"
+        android:layout_height="48px"
+        android:layout_marginLeft="16px"
+        android:background="@drawable/tv_miaosha_bg"
+        android:gravity="center"
+        android:text="10"
+        android:textColor="@color/color_323232"
+        android:textSize="38px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="48px"
+        android:layout_marginLeft="10px"
+        android:gravity="center_vertical"
+        android:text=":"
+        android:textColor="@color/color_323232"
+        android:textSize="38px" />
+
+    <TextView
+        android:id="@+id/tv_fen"
+        android:layout_width="62px"
+        android:layout_height="48px"
+        android:layout_marginLeft="10px"
+        android:background="@drawable/tv_miaosha_bg"
+        android:gravity="center"
+        android:text="39"
+        android:textColor="@color/color_323232"
+        android:textSize="38px" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="48px"
+        android:layout_marginLeft="10px"
+        android:gravity="center_vertical"
+        android:text=":"
+        android:textColor="@color/color_323232"
+        android:textSize="38px" />
+
+    <TextView
+        android:id="@+id/tv_miao"
+        android:layout_width="62px"
+        android:layout_height="48px"
+        android:layout_marginLeft="10px"
+        android:background="@drawable/tv_miaosha_bg"
+        android:gravity="center"
+        android:text="48"
+        android:textColor="@color/color_323232"
+        android:textSize="38px" />
+</com.zhy.autolayout.AutoLinearLayout>

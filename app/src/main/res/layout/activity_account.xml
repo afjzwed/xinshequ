@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       xmlns:app="http://schemas.android.com/apk/res-auto"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="320px"
+        android:background="@mipmap/zhgl_bj"
+        />
+
+    <com.yxld.yxchuangxin.view.AutoCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="34px"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="14px"
+        app:cardElevation="14px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/zhanghao"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh01"
+                app:headText="账号"
+                app:rightText="1325665545"
+                app:showLine="true">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/xingming"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh02"
+                app:headText="姓名"
+                app:rightText="张三丰"
+                app:showLine="true">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/shenfenzheng"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh03"
+                app:headText="身份证"
+                app:rightText="4302241991525632"
+                app:showNavigate="false">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <View
+                style="@style/layout_bg"/>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/anquan"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh04"
+                app:headText="更改密码"
+                app:navigateImgeRes="@mipmap/zhgl_jt"
+                app:showLine="true">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/zhiwen"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh04"
+                app:headText="账户安全"
+                app:navigateImgeRes="@mipmap/zhgl_jt"
+                app:showLine="true">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/multi_account"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh04"
+                app:headText="切换账号"
+                app:navigateImgeRes="@mipmap/zhgl_jt"
+                app:showLine="true">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+
+            <com.yxld.yxchuangxin.view.AddMemberView
+                android:id="@+id/gengxin"
+                android:layout_width="match_parent"
+                android:layout_height="134px"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:clearEditFocus="true"
+                app:headImageRes="@mipmap/zhgl_zh05"
+                app:headText="版本更新"
+                app:navigateImgeRes="@mipmap/zhgl_jt">
+            </com.yxld.yxchuangxin.view.AddMemberView>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.yxld.yxchuangxin.view.AutoCardView>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:layout_below="@+id/cardView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68px"
+        android:background="@drawable/color_main"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:text="退出登录"
+        android:textColor="@color/white"
+        android:textSize="48px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

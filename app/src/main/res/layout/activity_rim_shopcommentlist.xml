@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_eeeeee"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="26px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="30px"
+        android:paddingLeft="40px"
+        android:paddingTop="30px">
+
+        <com.yxld.yxchuangxin.view.AutoCardView
+            android:layout_width="134px"
+            android:layout_height="134px"
+            android:elevation="14px"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="14px">
+
+            <ImageView
+                android:id="@+id/iv_shop_logo"
+                android:layout_width="134px"
+                android:layout_height="134px"
+                android:src="@mipmap/ic_standard"/>
+        </com.yxld.yxchuangxin.view.AutoCardView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="72px"
+            android:text="综合评价："
+            android:textColor="@color/color_323232"
+            android:textSize="40px"/>
+
+        <RatingBar
+            android:id="@+id/rb_shop_level"
+            android:layout_width="wrap_content"
+            android:layout_height="80px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24px"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressDrawable="@drawable/ratingbar_comment"
+            android:rating="5"
+          />
+
+        <TextView
+            android:id="@+id/tv_shop_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:text="4分"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <include
+        layout="@layout/recyceler_layout"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

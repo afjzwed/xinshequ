@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20px"
+    android:layout_marginLeft="10px"
+    android:layout_marginRight="10px"
+    android:background="@color/white"
+    >
+
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:paddingTop="10px"
+            android:paddingBottom="10px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/siv_product1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.yxld.yxchuangxin.view.ShapedImageView
+                    android:id="@+id/siv_product"
+                    android:layout_width="210px"
+                    android:layout_height="210px"
+                    android:scaleType="centerCrop"
+                    />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/siv_product1"
+                android:layout_alignTop="@+id/siv_product1"
+                android:layout_marginLeft="24px"
+                android:layout_marginRight="24px"
+                android:layout_toLeftOf="@+id/iv_add"
+                android:layout_toRightOf="@+id/siv_product1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/product_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:lines="1"
+                    android:text="短T恤"
+                    android:textColor="#323232"
+                    android:textSize="38px"
+                    />
+
+                <TextView
+                    android:id="@+id/product_miaoshu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="商品描sfhfeuw"
+                    android:textColor="#909090"
+                    android:textSize="38px"
+                    />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/product_discount_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38px"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center_vertical"
+                        android:text="¥25"
+                        android:textColor="@color/business_red"
+                        android:textSize="38px"
+                        />
+
+                    <TextView
+                        android:id="@+id/product_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="38px"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="1px"
+                        android:gravity="center"
+                        android:text="优惠价 "
+                        android:textColor="#909090"
+                        android:textSize="38px"
+                        />
+
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24px"
+                android:src="@mipmap/rim_addsp_big"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

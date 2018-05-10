@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_guide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btn_guest_start"
+        android:layout_width="440px"
+        android:layout_height="168px"
+        android:textColor="@color/white"
+        android:text="登录"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="134px"
+        android:background="@mipmap/xsq_btn"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/tiaoguo"
+        android:layout_width="220px"
+        android:layout_height="84px"
+        android:background="@drawable/bg_check_code_maincolor"
+        android:textColor="@color/color_323232"
+        android:text="跳过"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80px"
+        android:layout_marginRight="40px"
+        />
+
+    <com.yxld.yxchuangxin.view.BezierBannerDot
+        android:id="@+id/bd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        app:selectedRaduis="10px"
+        android:layout_centerHorizontal="true"
+        app:unSelectedRaduis="10px"
+        app:selectedColor="@android:color/white"
+        app:unSelectedColor="@android:color/darker_gray"
+        app:spacing="30px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

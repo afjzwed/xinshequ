@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.yxld.yxchuangxin.view.AutoCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="40px"
+    android:layout_marginRight="40px"
+    android:layout_marginTop="26px"
+    android:elevation="14px"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="14px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_name_and_address"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="34px"
+        android:paddingRight="34px"
+        android:paddingTop="34px"
+        android:paddingBottom="34px"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_address_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            tools:text="张三丰  1564856665" />
+
+        <TextView
+            android:id="@+id/tv_address_list_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_address_name"
+            android:layout_marginTop="34px"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/color_646464"
+            android:textSize="38px"
+            tools:text="中远公馆1栋1单元3楼51区" />
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="34px"
+            >
+
+            <TextView
+                android:id="@+id/tv_address_default"
+                android:layout_width="156px"
+                android:layout_height="68px"
+                android:background="@drawable/selector_address_btn_bg"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="默认"
+                android:textColor="@color/color_646464"
+                android:textSize="38px"
+                />
+
+            <TextView
+                android:id="@+id/tv_delet"
+                android:layout_width="156px"
+                android:layout_height="68px"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="34px"
+                android:background="@drawable/stroke_tv_31a2e8_bg"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/main_color"
+                android:textSize="38px" />
+
+            <TextView
+                android:id="@+id/tv_edit"
+                android:layout_width="156px"
+                android:layout_height="68px"
+                android:layout_marginLeft="34px"
+                android:layout_marginRight="34px"
+                android:layout_toLeftOf="@+id/tv_delet"
+                android:background="@drawable/pop_addfangxing_bg"
+                android:gravity="center"
+                android:text="编辑"
+                android:textColor="@color/color_646464"
+                android:textSize="38px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+
+</com.yxld.yxchuangxin.view.AutoCardView>

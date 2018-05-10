@@ -1,0 +1,239 @@
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/head_layout"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/shangpubanner"
+            android:orientation="vertical"
+            >
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/AutoLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="214px"
+                />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="280px"
+                >
+
+                <ImageView
+                    android:id="@+id/bussiness_image"
+                    android:layout_width="170px"
+                    android:layout_height="170px"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40px"
+                    android:scaleType="centerCrop"
+                    />
+
+                <com.zhy.autolayout.AutoRelativeLayout
+                    android:id="@+id/all_business_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="40px"
+                    android:layout_toRightOf="@id/bussiness_image"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="30px"
+                    >
+
+                    <TextView
+                        android:id="@+id/bussiness_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:singleLine="false"
+                        android:lines="2"
+                        android:maxEms="7"
+                        android:minEms="7"
+                        android:textColor="@color/white"
+                        android:textSize="48px"/>
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="50px"
+                        android:layout_below="@id/AutoLinearLayout"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:progressDrawable="@drawable/ratingbar"
+                        android:layout_toEndOf="@id/bussiness_name"
+                        android:isIndicator="true"
+                        android:numStars="5"
+                        android:paddingRight="2px"
+                        android:rating="3"
+                        />
+
+                    <TextView
+                        android:id="@+id/bussiness_fraction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/textView3"
+                        android:layout_marginLeft="10px"
+                        android:text=""
+                        android:gravity="right"
+                        android:layout_marginRight="20px"
+                        android:layout_toLeftOf="@+id/iv_arrow"
+                        android:textColor="@color/white"
+                        android:textSize="44px"
+                       />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow"
+                        android:layout_width="34px"
+                        android:layout_height="34px"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="40px"
+                        android:background="@mipmap/icon_arrow_business_right"
+                        />
+                </com.zhy.autolayout.AutoRelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_sale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/textView8"
+                    android:layout_below="@+id/all_business_name"
+                    android:layout_marginRight="20px"
+                    android:layout_toLeftOf="@+id/iv_sale"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="38px"
+                    />
+
+                <ImageView
+                    android:id="@+id/iv_sale"
+                    android:layout_width="20px"
+                    android:layout_height="20px"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@+id/textView8"
+                    android:layout_below="@+id/all_business_name"
+                    android:layout_marginRight="40px"
+                    android:layout_marginTop="15px"
+                    android:visibility="invisible"
+                    android:background="@mipmap/icon_arrow_business_bottom"
+                    />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/all_business_name"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="250px"
+                    android:drawableLeft="@mipmap/ic_business_activity"
+                    android:drawablePadding="5px"
+                    android:text=""
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="30px"
+                    android:textColor="@color/white"
+                    android:textSize="40px"
+                    />
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_title"
+                android:layout_width="250px"
+                android:layout_height="match_parent"
+                android:background="@color/white"/>
+
+            <com.zhy.autolayout.AutoFrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/recycler_title"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="134px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/shopping_cart_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_alignParentBottom="true"
+
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="250px"
+                android:text=""
+                android:textSize="44px"/>
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <Button
+            android:id="@+id/bt_push_product"
+            android:layout_width="350px"
+            android:layout_height="match_parent"
+            android:background="@color/color_main_color_1"
+            android:text="立即预约"
+            android:textColor="@color/white"
+            android:textSize="48px"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/shopping_cart_layout"
+        android:layout_width="168px"
+        android:layout_height="168px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40px"
+        >
+
+        <ImageView
+            android:id="@+id/shopping_cart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:src="@mipmap/laundry_cart"/>
+
+        <TextView
+            android:id="@+id/tv_product_count"
+            android:layout_width="wrap_content"
+            android:layout_height="46px"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10px"
+            android:background="@drawable/laundry_count_bg"
+            android:gravity="center"
+            android:minWidth="46px"
+            android:paddingLeft="5px"
+            android:paddingRight="5px"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="30px"
+            android:visibility="invisible"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

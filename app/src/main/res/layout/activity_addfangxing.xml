@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button
+        android:id="@+id/add_fangxing"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_above="@+id/submit"
+        android:background="@drawable/color_73ba38_bg"
+        android:layout_centerHorizontal="true"
+        android:text="新增物品信息"
+        android:layout_marginBottom="38px"
+        android:textColor="@color/white"
+        android:textSize="44px"
+        />
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="1000px"
+        android:layout_height="134px"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:background="@drawable/color_main"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38px"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="44px"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycerView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="40px"
+        app:layoutManager="LinearLayoutManager"
+        android:orientation="vertical"
+        android:layout_above="@+id/add_fangxing"
+        android:layout_marginBottom="40px"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</com.zhy.autolayout.AutoRelativeLayout>

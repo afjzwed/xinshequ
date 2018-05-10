@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="600px"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_marginTop="32px"
+        android:id="@+id/img_finger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/finger_blue"/>
+
+    <TextView
+
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32px"
+        android:text="标题"
+        android:textColor="@color/color_323232"
+        android:textSize="40px"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/tv_dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="32px"
+        android:gravity="center"
+        android:text="再试一次"
+        android:textColor="#000000"
+        android:textSize="45px"
+        />
+
+
+    <View
+        style="@style/line"
+        android:layout_marginTop="32px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/bt_dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dialog"
+            android:text="取消"
+            android:textColor="#000000"
+            android:textSize="40px"
+            />
+
+        <View
+            android:layout_width="1px"
+            android:id="@+id/line"
+            android:layout_height="match_parent"
+            android:background="@color/line"
+            />
+
+        <Button
+            android:id="@+id/bt_dialog_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bg_dialog"
+            android:text="确定"
+            android:textColor="@color/main_color"
+            android:textSize="40px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

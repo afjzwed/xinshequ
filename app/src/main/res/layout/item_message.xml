@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="226px"
+    android:clickable="true"
+    android:layout_marginLeft="40px"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:tools="http://schemas.android.com/tools">
+    <ImageView
+        android:id="@+id/iv_kind"
+        android:layout_width="134px"
+        android:layout_height="134px"
+        android:src="@mipmap/tzhd_tz"
+        android:layout_alignBottom="@+id/tv_content"
+        android:layout_alignStart="@+id/view3" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="174px"
+        android:layout_marginTop="50px"
+        android:textSize="48px"
+        android:text="欣物业通知"
+        android:lines="1"
+        android:maxEms="10"
+        android:textColor="@color/color_323232"
+        />
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="60px"
+        android:layout_marginRight="40px"
+        android:text="2017-06-15 15:20:00"
+        />
+    <TextView
+        android:layout_below="@+id/tv_title"
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="174px"
+        android:textSize="40px"
+        android:layout_marginRight="40px"
+        android:textColor="@color/color_909090"
+        android:lines="1"
+        android:ellipsize="end"
+        android:layout_marginTop="26px"
+        android:text="哈哈哈哈哈哈阿哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+        />
+    <View
+        style="@style/line"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/view3" />
+</com.zhy.autolayout.AutoRelativeLayout>

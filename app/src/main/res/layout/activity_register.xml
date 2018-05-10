@@ -1,0 +1,205 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/banner_border_bottom"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="手机号:"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_tel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:maxLength="11"
+            android:inputType="number"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/banner_border_bottom"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="创欣号:"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_cxh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="6-16位数字、字母、下划线组成"
+            android:maxLength="16"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyz_"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/banner_border_bottom"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="密	码:"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="6-16位数字、字母、下划线组成"
+            android:maxLength="16"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ_"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/banner_border_bottom"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="确认密码:"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_sure_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请再输入一次密码"
+            android:maxLength="16"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLIMNOPQRSTUVWXYZ_"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/banner_border_bottom"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="验证码:"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/register_yzm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="请输入4位数验证码"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="14sp"
+            android:maxLength="4"
+            android:digits="0123456789"
+            android:layout_weight="1"/>
+
+        <com.yxld.yxchuangxin.view.TimeButton
+            android:id="@+id/register_button_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="获取验证码"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:gravity="right" >
+
+        <CheckBox
+            android:id="@+id/checkBox_forcheck"
+            style="@style/CustomCheckboxTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="10dp"
+            android:background="@null"
+            android:checked="false" />
+
+        <com.yxld.yxchuangxin.view.AutoLinkStyleTextView
+            android:id="@+id/ptxi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/checkBox_forcheck"
+            android:text="我已阅读并同意创欣物业平台《用户协议》"
+            android:textSize="@dimen/size_12"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/gray"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            app:AutoLinkStyleTextView_text_value="《用户协议》," />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp" />
+
+    <Button
+        android:id="@+id/regsubmit"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/buttom_seletor"
+        android:text="提交"
+        android:textColor="@color/white" />
+
+</LinearLayout>
