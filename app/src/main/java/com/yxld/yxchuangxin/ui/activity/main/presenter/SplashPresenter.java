@@ -209,57 +209,123 @@ public class SplashPresenter implements SplashContract.SplashContractPresenter {
 
     @Override
     public void observeJump() {
-        Observable.interval(0, 1, TimeUnit.SECONDS).take(2)
-                .map(new Function<Long, Long>() {
-                    @Override
-                    public Long apply(@NonNull Long aLong) throws Exception {
-                        return 2 - aLong;
-                    }
-                })
-                .observeOn(AndroidSchedulers.mainThread())//发射用的是observeOn
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    @Override
-                    public void accept(@NonNull Disposable disposable) throws Exception {
-                        KLog.i("1");
-                    }
-                })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Long>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        KLog.i("2");
-                    }
+//        Observable.interval(0, 1, TimeUnit.SECONDS).take(2)
+//                .map(new Function<Long, Long>() {
+//                    @Override
+//                    public Long apply(@NonNull Long aLong) throws Exception {
+//                        return 2 - aLong;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())//发射用的是observeOn
+//                .doOnSubscribe(new Consumer<Disposable>() {
+//                    @Override
+//                    public void accept(@NonNull Disposable disposable) throws Exception {
+//                        KLog.i("1");
+//                    }
+//                })
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<Long>() {
+//                    @Override
+//                    public void onSubscribe(@NonNull Disposable d) {
+//                        KLog.i("2");
+//                    }
+//
+//                    @Override
+//                    public void onNext(@NonNull Long remainTime) {
+//                        KLog.i("剩余时间" + remainTime);
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        KLog.i("4");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+////                        jump = JUMPTOGUEST;
+//                        timeOver = true;
+//                        KLog.i("时间到，开始跳转");
+//                        if (permissionState != 0) {
+//                            return;
+//                        }
+//                        if (hasUpdate) {
+//                            return;
+//                        }
+//                        if (jump == JUMPTOMAIN) {
+//                            mView.loginSuccees();
+//                        } else if (jump == JUMPTOLOGIN) {
+//                            mView.jumpToLogin();
+//                        } else {
+//                            mView.iumpToGuest();
+//                        }
+//                    }
+//                });   Observable.interval(0, 1, TimeUnit.SECONDS).take(2)
+//                .map(new Function<Long, Long>() {
+//                    @Override
+//                    public Long apply(@NonNull Long aLong) throws Exception {
+//                        return 2 - aLong;
+//                    }
+//                })
+//                .observeOn(AndroidSchedulers.mainThread())//发射用的是observeOn
+//                .doOnSubscribe(new Consumer<Disposable>() {
+//                    @Override
+//                    public void accept(@NonNull Disposable disposable) throws Exception {
+//                        KLog.i("1");
+//                    }
+//                })
+//                .subscribeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Observer<Long>() {
+//                    @Override
+//                    public void onSubscribe(@NonNull Disposable d) {
+//                        KLog.i("2");
+//                    }
+//
+//                    @Override
+//                    public void onNext(@NonNull Long remainTime) {
+//                        KLog.i("剩余时间" + remainTime);
+//                    }
+//
+//                    @Override
+//                    public void onError(@NonNull Throwable e) {
+//                        KLog.i("4");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+////                        jump = JUMPTOGUEST;
+//                        timeOver = true;
+//                        KLog.i("时间到，开始跳转");
+//                        if (permissionState != 0) {
+//                            return;
+//                        }
+//                        if (hasUpdate) {
+//                            return;
+//                        }
+//                        if (jump == JUMPTOMAIN) {
+//                            mView.loginSuccees();
+//                        } else if (jump == JUMPTOLOGIN) {
+//                            mView.jumpToLogin();
+//                        } else {
+//                            mView.iumpToGuest();
+//                        }
+//                    }
+//                });
 
-                    @Override
-                    public void onNext(@NonNull Long remainTime) {
-                        KLog.i("剩余时间" + remainTime);
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        KLog.i("4");
-                    }
-
-                    @Override
-                    public void onComplete() {
-//                        jump = JUMPTOGUEST;
-                        timeOver = true;
-                        KLog.i("时间到，开始跳转");
-                        if (permissionState != 0) {
-                            return;
-                        }
-                        if (hasUpdate) {
-                            return;
-                        }
-                        if (jump == JUMPTOMAIN) {
-                            mView.loginSuccees();
-                        } else if (jump == JUMPTOLOGIN) {
-                            mView.jumpToLogin();
-                        } else {
-                            mView.iumpToGuest();
-                        }
-                    }
-                });
+        timeOver = true;
+        KLog.i("时间到，开始跳转");
+        if (permissionState != 0) {
+            return;
+        }
+        if (hasUpdate) {
+            return;
+        }
+        if (jump == JUMPTOMAIN) {
+            mView.loginSuccees();
+        } else if (jump == JUMPTOLOGIN) {
+            mView.jumpToLogin();
+        } else {
+            mView.iumpToGuest();
+        }
     }
 
     /**
