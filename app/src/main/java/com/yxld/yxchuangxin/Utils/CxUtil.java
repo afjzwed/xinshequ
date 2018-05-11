@@ -192,10 +192,7 @@ public class CxUtil {
 		Contains.curCommData.clear();
 		Contains.sureOrderList.clear();
 		SharedPreferences.Editor editor = sp.edit();
-		editor.putString("NAME", "");
-		editor.putString("PASSWORD", "");
-		editor.putBoolean("ISCHECK", false);
-		editor.putInt("xiangmuId", 0);
+		editor.clear();
 		editor.commit();
 
 	}

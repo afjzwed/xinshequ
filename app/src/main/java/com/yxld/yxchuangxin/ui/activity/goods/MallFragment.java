@@ -93,7 +93,8 @@ import static com.yxld.yxchuangxin.ui.activity.goods.GoodDetailActivity.KEY_PROD
  * @date 2017/06/14
  */
 
-public class MallFragment extends MyBaseFragment implements MallContract.View, SwipeRefreshLayout.OnRefreshListener, MenuView.OnMenuItemClickListener {
+public class MallFragment extends MyBaseFragment implements MallContract.View, SwipeRefreshLayout.OnRefreshListener,
+        MenuView.OnMenuItemClickListener {
     public static final int CODE_FOR_GOODS_LIST_SHOP_CART = 0x000001;
     public static final int IN_TYPE_NORMAL_GOODS = 0x000002;//普通菜单进入商品列表
     public static final int IN_TYPE_MIAO_SHA = 0x0000003; //秒杀推荐进入商品列表 //Todo 暂时没有用到，老版的是点击查看所有
@@ -209,52 +210,62 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
         this.mActivity = (HomeActivity) activity;
     }
 
+    View mView;
+
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mall, container, false);
-        ButterKnife.bind(this, view);
-        initStatus();
-        //跟布局  --》确定购物车的位置
-        mRlGoodsListRoot = (AutoRelativeLayout) getActivity().findViewById(R.id.root_layout);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 3);
-        GridLayoutManager gridLayoutManager3 = new GridLayoutManager(getActivity(), 2, LinearLayoutManager.HORIZONTAL, false);
-        GridLayoutManager gridLayoutManager4 = new GridLayoutManager(getActivity(), 3);
-        recycerViewXinPin.setLayoutManager(gridLayoutManager);
-        recycerViewXinPin.setAdapter(xinPingAdapter);
-        recycerViewXinPin.setNestedScrollingEnabled(false);
-        recycerViewTuiJian.setLayoutManager(gridLayoutManager1);
-        recycerViewTuiJian.setAdapter(tuijianAdapter);
-        recycerViewTuiJian.setNestedScrollingEnabled(false);
-        rvMallNormalTypes.setNestedScrollingEnabled(false);
-        rvMallNormalTypes.setLayoutManager(gridLayoutManager3);
-        rvMallNormalTypes.setAdapter(mNormalTypeAdapter);
-        if (yejianList == null) {
-            yejianList = new ArrayList<>();
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
+        if (mView == null) {
+            mView = inflater.inflate(R.layout.fragment_mall, container, false);
+            ButterKnife.bind(this, mView);
+            initStatus();
+            //跟布局  --》确定购物车的位置
+            mRlGoodsListRoot = (AutoRelativeLayout) getActivity().findViewById(R.id.root_layout);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+            GridLayoutManager gridLayoutManager1 = new GridLayoutManager(getActivity(), 3);
+            GridLayoutManager gridLayoutManager3 = new GridLayoutManager(getActivity(), 2, LinearLayoutManager
+                    .HORIZONTAL, false);
+            GridLayoutManager gridLayoutManager4 = new GridLayoutManager(getActivity(), 3);
+            recycerViewXinPin.setLayoutManager(gridLayoutManager);
+            recycerViewXinPin.setAdapter(xinPingAdapter);
+            recycerViewXinPin.setNestedScrollingEnabled(false);
+            recycerViewTuiJian.setLayoutManager(gridLayoutManager1);
+            recycerViewTuiJian.setAdapter(tuijianAdapter);
+            recycerViewTuiJian.setNestedScrollingEnabled(false);
+            rvMallNormalTypes.setNestedScrollingEnabled(false);
+            rvMallNormalTypes.setLayoutManager(gridLayoutManager3);
+            rvMallNormalTypes.setAdapter(mNormalTypeAdapter);
+            if (yejianList == null) {
+                yejianList = new ArrayList<>();
+            }
+            yeJianAdapter = new YejianAdapter(yejianList);
+            mRecyclerViewYejian.setLayoutManager(gridLayoutManager4);
+            mRecyclerViewYejian.setAdapter(yeJianAdapter);
+            mRecyclerViewYejian.setNestedScrollingEnabled(false);
+            menuView.setMenuItemOnclickListener(this);
+            menuView.setClickable(false);
+            menuView.bringToFront();
+            setAdapterEvent();
         }
-        yeJianAdapter = new YejianAdapter(yejianList);
-        mRecyclerViewYejian.setLayoutManager(gridLayoutManager4);
-        mRecyclerViewYejian.setAdapter(yeJianAdapter);
-       mRecyclerViewYejian.setNestedScrollingEnabled(false);
-        menuView.setMenuItemOnclickListener(this);
-        menuView.setClickable(false);
-        menuView.bringToFront();
         loadDataFromServer();
-        setAdapterEvent();
-        return view;
+        return mView;
     }
 
     private void setTrans() {
-        mScrollView2.setTransView(toolbar, getResources().getColor(R.color.color_ff9934), UIUtils.dip2px(50), UIUtils.dip2px(100));
-        mScrollView.setTransView(headMarketRoot, getResources().getColor(R.color.color_ff9934), UIUtils.dip2px(50), UIUtils.dip2px(100));
+        mScrollView2.setTransView(toolbar, getResources().getColor(R.color.color_ff9934), UIUtils.dip2px(50), UIUtils
+                .dip2px(100));
+        mScrollView.setTransView(headMarketRoot, getResources().getColor(R.color.color_ff9934), UIUtils.dip2px(50),
+                UIUtils.dip2px(100));
     }
 
     private void initStatus() {
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_ff9934));
-        AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity()), (int) (UIUtils.getStatusBarHeight(getActivity()) * 3));
-        AutoRelativeLayout.LayoutParams lp4 = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity()), (int) (UIUtils.getStatusBarHeight(getActivity()) * 3));
+        AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity
+                ()), (int) (UIUtils.getStatusBarHeight(getActivity()) * 3));
+        AutoRelativeLayout.LayoutParams lp4 = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity
+                ()), (int) (UIUtils.getStatusBarHeight(getActivity()) * 3));
         headMarketRoot.setVisibility(View.VISIBLE);
         headMarketRoot.setLayoutParams(lp4);
         toolbar.setLayoutParams(lp);
@@ -280,19 +291,21 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
         swipeLayouts.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
 
             @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
+            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int
+                    extendHeight) {
                 KLog.e("松");
                 // headMarketRoot.setVisibility(View.VISIBLE);
                 headMarketRoot.setAlpha(1 - Math.min(percent, 1));
-               // marketSearch.setVisibility(View.VISIBLE);
+                // marketSearch.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int
+                    extendHeight) {
                 // headMarketRoot.setVisibility(View.GONE);
                 KLog.e("拉");
                 headMarketRoot.setAlpha(1 - Math.min(percent, 1));
-              //  marketSearch.setVisibility(View.GONE);
+                //  marketSearch.setVisibility(View.GONE);
             }
         });
         mSwipeLayoutsTwo.setOnRefreshListener(new OnRefreshListener() {
@@ -307,13 +320,15 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
         mSwipeLayoutsTwo.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
 
             @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
+            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int
+                    extendHeight) {
                 KLog.e("松");
                 toolbar.setAlpha(1 - Math.min(percent, 1));
             }
 
             @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int
+                    extendHeight) {
                 KLog.e("拉");
                 toolbar.setAlpha(1 - Math.min(percent, 1));
             }
@@ -363,7 +378,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
                     map.put("cartSpmingcheng", xinPingAdapter.getData().get(i).getShangpinMing());
                     map.put("cartSpzhutu", xinPingAdapter.getData().get(i).getZhutu());
                     map.put("uuid", Contains.uuid);
-                    mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(xinPingAdapter.getData().get(i).getZhutu()));
+                    mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(xinPingAdapter.getData().get
+                            (i).getZhutu()));
                 } else {
                     ToastUtil.displayShortToast("库存不足哦");
                 }
@@ -390,7 +406,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
                 map.put("cartSpmingcheng", tuijianAdapter.getData().get(i).getShangpinMing());
                 map.put("cartSpzhutu", tuijianAdapter.getData().get(i).getZhutu());
                 map.put("uuid", Contains.uuid);
-                mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(tuijianAdapter.getData().get(i).getZhutu()));
+                mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(tuijianAdapter.getData().get(i)
+                        .getZhutu()));
             }
         });
 
@@ -408,7 +425,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
                     map.put("cartSpmingcheng", yeJianAdapter.getData().get(i).getShangpinMing());
                     map.put("cartSpzhutu", yeJianAdapter.getData().get(i).getZhutu());
                     map.put("uuid", Contains.uuid);
-                    mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(yeJianAdapter.getData().get(i).getZhutu()));
+                    mPresenter.addGood2ShopCart(map, view, StringUitl.replaceEndFenHao(yeJianAdapter.getData().get(i)
+                            .getZhutu()));
                 } else {
                     ToastUtil.displayShortToast("库存不足哦");
                 }
@@ -568,64 +586,40 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
 
     private void setReXiao(ArrayList<GoodsKind.RowsBean.RexiaoListsBean> reXiao) {
         if (reXiao.size() >= 1) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(0).getRexiaoHuodongtupian())
-                    .into(ivRexiao1);
+            Glide.with(this).load(API.PIC + reXiao.get(0).getRexiaoHuodongtupian()).into(ivRexiao1);
             setReXiaoClick(ivRexiao1, reXiao.get(0).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_big)
-                    .into(ivRexiao1);
+            Glide.with(this).load(R.mipmap.qidai_big).into(ivRexiao1);
         }
         if (reXiao.size() >= 2) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(1).getRexiaoHuodongtupian())
-                    .into(ivRexiao2);
+            Glide.with(this).load(API.PIC + reXiao.get(1).getRexiaoHuodongtupian()).into(ivRexiao2);
             setReXiaoClick(ivRexiao2, reXiao.get(1).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_big)
-                    .into(ivRexiao2);
+            Glide.with(this).load(R.mipmap.qidai_big).into(ivRexiao2);
         }
         if (reXiao.size() >= 3) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(2).getRexiaoHuodongtupian())
-                    .into(ivRexiao3);
+            Glide.with(this).load(API.PIC + reXiao.get(2).getRexiaoHuodongtupian()).into(ivRexiao3);
             setReXiaoClick(ivRexiao3, reXiao.get(2).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_small)
-                    .into(ivRexiao3);
+            Glide.with(this).load(R.mipmap.qidai_small).into(ivRexiao3);
         }
         if (reXiao.size() >= 4) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(3).getRexiaoHuodongtupian())
-                    .into(ivRexiao4);
+            Glide.with(this).load(API.PIC + reXiao.get(3).getRexiaoHuodongtupian()).into(ivRexiao4);
             setReXiaoClick(ivRexiao4, reXiao.get(3).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_small)
-                    .into(ivRexiao4);
+            Glide.with(this).load(R.mipmap.qidai_small).into(ivRexiao4);
         }
         if (reXiao.size() >= 5) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(4).getRexiaoHuodongtupian())
-                    .into(ivRexiao5);
+            Glide.with(this).load(API.PIC + reXiao.get(4).getRexiaoHuodongtupian()).into(ivRexiao5);
             setReXiaoClick(ivRexiao5, reXiao.get(4).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_small)
-                    .into(ivRexiao5);
+            Glide.with(this).load(R.mipmap.qidai_small).into(ivRexiao5);
         }
         if (reXiao.size() >= 6) {
-            Glide.with(this)
-                    .load(API.PIC + reXiao.get(5).getRexiaoHuodongtupian())
-                    .into(ivRexiao6);
+            Glide.with(this).load(API.PIC + reXiao.get(5).getRexiaoHuodongtupian()).into(ivRexiao6);
             setReXiaoClick(ivRexiao6, reXiao.get(5).getRexiaoShangpinId());
         } else {
-            Glide.with(this)
-                    .load(R.mipmap.qidai_small)
-                    .into(ivRexiao6);
+            Glide.with(this).load(R.mipmap.qidai_small).into(ivRexiao6);
         }
     }
 
@@ -769,7 +763,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
      * @param mallClassify
      * @param type
      */
-    private void ToFeileiActivity(MallClassify mallClassify, String type, ArrayList<String> list, ArrayList<String> listname) {
+    private void ToFeileiActivity(MallClassify mallClassify, String type, ArrayList<String> list, ArrayList<String>
+            listname) {
         Intent intent = new Intent(getActivity(), GoodsFenLeiActivity.class);
         intent.putExtra(TO_FEILEI_TYPE, type);
         intent.putStringArrayListExtra("listid", list);
@@ -829,18 +824,15 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
     private View createAnimationViewer(int[] itemCartLocation, String url) {
         ImageView view = new ImageView(getActivity());
 
-        AutoRelativeLayout.LayoutParams params = new AutoRelativeLayout.LayoutParams
-                (100, 100);
+        AutoRelativeLayout.LayoutParams params = new AutoRelativeLayout.LayoutParams(100, 100);
         params.leftMargin = itemCartLocation[0];
         params.topMargin = itemCartLocation[1];
         view.setLayoutParams(params);
-        Glide.with(getActivity())
-                .load(API.PIC + url)
-                .asBitmap().centerCrop().into(new BitmapImageViewTarget(view) {
+        Glide.with(getActivity()).load(API.PIC + url).asBitmap().centerCrop().into(new BitmapImageViewTarget(view) {
             @Override
             protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
+                RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(getActivity()
+                        .getResources(), resource);
                 circularBitmapDrawable.setCircular(true);
                 view.setImageDrawable(circularBitmapDrawable);
             }
@@ -875,12 +867,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
 
     @Override
     protected void setupFragmentComponent() {
-        DaggerMallComponent
-                .builder()
-                .appComponent(((AppConfig) getActivity().getApplication()).getApplicationComponent())
-                .mallModule(new MallModule(this))
-                .build()
-                .inject(this);
+        DaggerMallComponent.builder().appComponent(((AppConfig) getActivity().getApplication())
+                .getApplicationComponent()).mallModule(new MallModule(this)).build().inject(this);
 
     }
 
@@ -914,18 +902,16 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
      * 晚上销售时间的dialog
      */
     private void showIsNiaghtDialog() {
-        AutoRelativeLayout inflate = (AutoRelativeLayout) getActivity().getLayoutInflater().inflate(R.layout.dialog_isnight, null);
+        AutoRelativeLayout inflate = (AutoRelativeLayout) getActivity().getLayoutInflater().inflate(R.layout
+                .dialog_isnight, null);
 
-        AlertDialog dialog = new AlertDialog.Builder(getActivity(), R.style.dialog_translucent)
-                .setView(inflate)
-                .setCancelable(true)
-                .setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public void onDismiss(DialogInterface dialog) {
-                        dialog.dismiss();
-                    }
-                })
-                .show();
+        AlertDialog dialog = new AlertDialog.Builder(getActivity(), R.style.dialog_translucent).setView(inflate)
+                .setCancelable(true).setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                dialog.dismiss();
+            }
+        }).show();
         ImageView viewById = (ImageView) inflate.findViewById(R.id.imageView6);
         viewById.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1001,7 +987,8 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
                     listname.add(mNormalTypeAdapter.getData().get(i).getFenleiMing());
                 }
 
-                ToFeileiActivity(mMallClassify, mNormalTypeAdapter.getData().get(position).getId() + "", list, listname);
+                ToFeileiActivity(mMallClassify, mNormalTypeAdapter.getData().get(position).getId() + "", list,
+                        listname);
 
             }
         });
@@ -1031,14 +1018,10 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
             type.setText(rows.get(position).getFenleiMing());
             ImageView iv = (ImageView) inflate.findViewById(R.id.iv_mall_normal_type);
             if ("所有".equals(type.getText())) {
-                Glide.with(getActivity())
-                        .load(R.mipmap.icon_mall_all)
-                        .into(iv);
+                Glide.with(getActivity()).load(R.mipmap.icon_mall_all).into(iv);
             } else {
 
-                Glide.with(getActivity())
-                        .load(API.PIC + rows.get(position).getFenleiTubiao())
-                        .into(iv);
+                Glide.with(getActivity()).load(API.PIC + rows.get(position).getFenleiTubiao()).into(iv);
             }
             return inflate;
         }
