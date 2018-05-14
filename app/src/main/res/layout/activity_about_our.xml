@@ -30,11 +30,13 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/img_logo"
                 android:layout_width="240px"
                 android:layout_height="240px"
                 android:layout_marginTop="84px"
                 android:src="@mipmap/gyem_logo"
                 android:layout_gravity="center_horizontal"
+                android:scaleType="fitXY"
                 />
 
             <TextView

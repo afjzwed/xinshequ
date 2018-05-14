@@ -12,21 +12,20 @@ public interface API {
     String IP_Camera = "http://api1.cloudlinks.cn";
     //欣周边地址
 //    String Periphery = "http://pay.iot.xin/cxwy_consumer_terminal";
-    String Periphery = "http://119.23.162.25/cxwy_consumer_terminal";
 
 
-    //    String IP_PRODUCT = "http://192.168.8.122:8080/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.122:8080/wygl/";
-//    String IP_PRODUCT = "http://pay.iot.xin";
+//    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
+    //    String IP_PRODUCT = "http://pay.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://pay.iot.xin/";
-//    String IP_PRODUCT = "http://wy.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
-    String IP_PRODUCT = "http://119.23.162.25";
-    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
+    String IP_PRODUCT = "http://wy.iot.xin";
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+//    String IP_PRODUCT = "http://119.23.162.25";
+//    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
 //    String IP_PRODUCT = "http://120.25.73.87";
 //    String BASE_URL_DEVOLOP = "http://120.25.73.87/";
     String BASE_URL = IP_PRODUCT + "/";
-
+    String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     /**
      * 两个协议用https的链接
      * 派安缴费协议
@@ -37,7 +36,7 @@ public interface API {
     String URL_XIEYI = HTTPS + "paianjiaofeixieyi.html";
     String PINGTAI_XIEYI = HTTPS + "userxieyi.jsp";
     String PAY_CAR_XIEYI = "http://dz.hnchxwl.com/cxwy_daozha/protocol.html";
-    String URL_SATISFICING =HTTPS + "manyidu.jsp?";
+    String URL_SATISFICING = HTTPS + "manyidu.jsp?";
 
 
     /**
@@ -55,7 +54,8 @@ public interface API {
 
     /**
      * 登录接口 20170220校验
-     * shouji=%1$s&pwd=%2$s&macAddr=%3$s&id=%4$s&app_version=%5$s&mobile_type=%6$s&mobile_brand=%7$s&mobile_version=%8$s"
+     * shouji=%1$s&pwd=%2$s&macAddr=%3$s&id=%4$s&app_version=%5$s&mobile_type=%6$s&mobile_brand=%7$s&mobile_version
+     * =%8$s"
      */
     String URL_GET_ALL_LOGIN = "mall/androidUser_findUser";
 
@@ -212,13 +212,11 @@ public interface API {
 
     /*
      * 获取所有报修项目列表 0222 校验
-     */
-    String URL_GET_ALL_COMPLAINT = "daily/androidComm_findAllXm.action";
+     */ String URL_GET_ALL_COMPLAINT = "daily/androidComm_findAllXm.action";
 
     /*
      * 提交私有报修数据到服务器 0221 校验  -0223已增加uuid验证
-     */
-    String URL_GET_ALL_PRIVATE_SUBMIT = "daily/androidBaoxiu_savebaoxiu.action?";
+     */ String URL_GET_ALL_PRIVATE_SUBMIT = "daily/androidBaoxiu_savebaoxiu.action?";
 
     /**
      * 查询全部报修 0221校验   -0223已增加uuid验证
@@ -308,20 +306,17 @@ public interface API {
 
     /*
        * 获取全部摄像头列表  -0223已增加uuid验证
-       */
-    String URL_GET_CAMERA_All = "security/findAllShebeiByYzid";
+       */ String URL_GET_CAMERA_All = "security/findAllShebeiByYzid";
 
 
     /*
      * 摄像头修改密码         ?sb.sb_ipc_id=%1$s&sb.sb_ipc_pwd=%2$s&uuid=%3$s
-    */
-    String URL_GET_CAMERA_UPDATE = "security/updateInfo";
+    */ String URL_GET_CAMERA_UPDATE = "security/updateInfo";
 
 
     /*
      * 删除摄像头  -0223已增加uuid验证
-     */
-    String URL_GET_CAMERA_DEL = "security/delete";
+     */ String URL_GET_CAMERA_DEL = "security/delete";
 
     /**
      * 获取业主 电子券
@@ -349,32 +344,27 @@ public interface API {
     /**
      * 欣周边 获取投诉详情 ?complainId=%1$s&uuId=%2$s
      */
-    String URL_GET_ALL_COMPLAIN_DETAIL = Periphery
-            + "/app/complaininfo";
+    String URL_GET_ALL_COMPLAIN_DETAIL = Periphery + "/app/complaininfo";
 
     /**
      * 欣周边 获取订单列表 orderStatus=%1$s&page=%2$s&rows=%3$s&uuId=%4$s
      */
-    String URL_GET_ALL_ORDER_LIST = Periphery
-            + "/app/orderlist";
+    String URL_GET_ALL_ORDER_LIST = Periphery + "/app/orderlist";
 
     /**
      * 欣周边 获取订单动态跟踪orderNumber=%1$s&uuId=%2$s
      */
-    String URL_GET_ALL_ORDER_DYNAMIC = Periphery
-            + "/app/dynamictrace";
+    String URL_GET_ALL_ORDER_DYNAMIC = Periphery + "/app/dynamictrace";
 
     /**
      * 欣周边 获取订单发表评价
      */
-    String URL_GET_ALL_ORDER_COMMENT = Periphery
-            + "/app/evaluate?";
+    String URL_GET_ALL_ORDER_COMMENT = Periphery + "/app/evaluate?";
 
     /**
      * 欣周边 订单投诉列表 page=%1$s&rows=%2$s&uuId=%3$s
      */
-    String URL_GET_ALL_ORDER_COMPLAIN = Periphery
-            + "/app/complainlist";
+    String URL_GET_ALL_ORDER_COMPLAIN = Periphery + "/app/complainlist";
     /**
      * 欣周边 商家首页
      */
@@ -392,20 +382,17 @@ public interface API {
     /**
      * 欣周边 取消订单
      */
-    String URL_RIM_ORDER_CANCEL = Periphery
-            + "/app/cancelorder";
+    String URL_RIM_ORDER_CANCEL = Periphery + "/app/cancelorder";
 
     /**
      * 欣周边 确认送达orderNumber=%1$s&uuId=%2$s
      */
-    String URL_GET_ALL_CONFIRM_ORDER = Periphery
-            + "/app/confirmorder";
+    String URL_GET_ALL_CONFIRM_ORDER = Periphery + "/app/confirmorder";
 
     /**
      * 欣周边 订单投诉
      */
-    String URL_GET_ADD_ORDER_COMPLAIN = Periphery
-            + "/app/complain";
+    String URL_GET_ADD_ORDER_COMPLAIN = Periphery + "/app/complain";
 
     /**
      * 欣周边 删除订单
@@ -485,18 +472,15 @@ public interface API {
     String URL_YUE = "mall/androidUser_findUserInfoByid?";
     /*
      * 提交私有楼盘数据到服务器
-     */
-    String URL_GET_ALL_PRIVARE_LOUPAN = "daily/androidComm_findLoudong.action?id=%1$s";
+     */ String URL_GET_ALL_PRIVARE_LOUPAN = "daily/androidComm_findLoudong.action?id=%1$s";
 
     /*
      * 提交私有楼栋数据到服务器
-     */
-    String URL_GET_ALL_PRIVARE_DANYUAN = "daily/androidComm_findDanyuan.action?id=%1$s";
+     */ String URL_GET_ALL_PRIVARE_DANYUAN = "daily/androidComm_findDanyuan.action?id=%1$s";
 
     /*
      * 提交物业管理投诉数据到服务器
-     */
-    String URL_GET_ALL_COMPAINT_WUYE_SUBMIT = "daily/androidTousu_tousu.action?";
+     */ String URL_GET_ALL_COMPAINT_WUYE_SUBMIT = "daily/androidTousu_tousu.action?";
 
     /**
      * 获取报修项目
@@ -556,7 +540,8 @@ public interface API {
     /**
      * 删除收藏商品 0221 校验
      */
-    String URL_DELETE_COLLECT_GOODS_FROM_ID = "mall/collection_deleteCollection?collection.collectionId=%1$s&collection.collectionShangpId=%2$s&collection.collectionUserId=%3$s";
+    String URL_DELETE_COLLECT_GOODS_FROM_ID = "mall/collection_deleteCollection?collection" + "" + "" + "" +
+            ".collectionId=%1$s&collection.collectionShangpId=%2$s&collection.collectionUserId=%3$s";
 
     /***2017-02-21 整理废弃功能接口end***********************************************************************/
 
@@ -593,19 +578,16 @@ public interface API {
     /**
      * 预约订单
      */
-    String URL_APPOINTMENT = Periphery
-            + "/app/appointment";
+    String URL_APPOINTMENT = Periphery + "/app/appointment";
     /**
      * 修改订单
      */
-    String URL_UPDATEORDER = Periphery
-            + "/app/updateorder?";
+    String URL_UPDATEORDER = Periphery + "/app/updateorder?";
 
     /**
      * 订单状态查询
      */
-    String URL_CONFIRMORDER = Periphery
-            + "/app/confirmorder?orderNumber=%1$s&uuId=%2$s";
+    String URL_CONFIRMORDER = Periphery + "/app/confirmorder?orderNumber=%1$s&uuId=%2$s";
 
     //公共安防摄像头Token获取
     String URL_COMMON_Token = "https://open.ys7.com/api/lapp/token/get";
@@ -804,5 +786,9 @@ public interface API {
 
     //**********************商城改版***********************//
 
+    // TODO: 2018/5/11 东升物业新增闪屏广告
+    String URL_DONGSHENG_AD = "mall2app/qidong/didong_info.mvc";
 
+    // TODO: 2018/5/11 维修流程
+    String URL_WEIXIU_LIUCHENG = "baoxiu_/find.mvc";
 }

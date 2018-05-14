@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.wuye.contract;
 
+import com.yxld.yxchuangxin.entity.LocalAd;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 /**
@@ -19,6 +20,7 @@ public interface AboutOurContract {
          *
          */
         void closeProgressDialog();
+        void setData(LocalAd localAd);
     }
 
     interface AboutOurContractPresenter extends BasePresenter {
@@ -26,5 +28,6 @@ public interface AboutOurContract {
 //         *
 //         */
 //        void getBusinessInfo(Map map);
+        void getData();
     }
 }

@@ -1,9 +1,12 @@
 package com.yxld.yxchuangxin.ui.activity.wuye;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +16,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hubcloud.adhubsdk.NativeAd;
+import com.hubcloud.adhubsdk.NativeAdListener;
+import com.hubcloud.adhubsdk.NativeAdResponse;
+import com.hubcloud.adhubsdk.internal.nativead.NativeAdEventListener;
+import com.hubcloud.adhubsdk.internal.nativead.NativeAdUtil;
+import com.hubcloud.adhubsdk.internal.network.ServerResponse;
 import com.socks.library.KLog;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 import com.yxld.yxchuangxin.R;
@@ -31,6 +40,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.presenter.YeZhuPresenter;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +68,8 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
     AutoRelativeLayout rlQrcode;
     @BindView(R.id.tv_shuaxin)
     TextView tvShuaxin;
+    @BindView(R.id.image)
+    ImageView mImageView;
 
     private String address;
 
@@ -93,6 +105,7 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
 
     @Override
     protected void initDataFromLocal() {
+        fetchAd(getActivity());
         KLog.i("开始获取开门信息");
         shareInfo.setTitle("业主开门二维码");
         shareInfo.setShareCon(address);
@@ -176,5 +189,75 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
     @OnClick(R.id.tv_shuaxin)
     public void onViewClicked() {
         initDataFromLocal();
+    }
+
+    /**
+     * 获取广告
+     *
+     * @param activity
+     */
+    public void fetchAd(final Activity activity) {
+        final NativeAd nativeAd = new NativeAd(activity, "5429", new NativeAdListener() {
+
+            @Override
+            public void onAdFailed(int errorcode) {
+                Toast.makeText(activity, "onAdFailedToLoad reason: " + errorcode, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onAdLoaded(NativeAdResponse response) {
+                KLog.e("onAdLoaded");
+                // 一个广告只允许展现一次，多次展现、点击只会计入一次
+                // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
+               updateView(response);
+                //返回设置的广告的多个图片的URL，SDK并未处理加载urls里面的图片，需要集成者自己去加载展示
+                ArrayList<String> imageUrls = response.getImageUrls();
+
+                //返回设置的广告的多个视频流的URL，SDK并未处理加载urls里面的视频，需要集成者自己去加载展示
+                ArrayList<String> vedioUrls = response.getVedioUrls();
+                //返回设置的广告的多个文本信息
+                ArrayList<String> texts = response.getTexts();
+                Log.e("wh", imageUrls.toString()+"---"+vedioUrls.toString()+"---"+texts.toString());
+
+                //根据广告法新规定，必须加入广告标识和广告来源。此处返回广告字样及广告来源标识图片。需要开发者分别放置于广告左下和右下角
+                //sdk内部提供了NativeAdUtil.addADLogo（View v，NativeAdResponse response）方法，可以将一个view加上logo并返回一个加入了logo的FrameLayout替代原本无logo的view;
+                //注意若传入此方法的view之前已经有父view，调用了此方法之后原来的view会从父view中移除，须将方法返回的framelayout加入之前view的父view之中。
+                //若此方法不满足要求，请开发者自己实现加入logo及广告字样。具体请参考本样例及样例效果
+                // ServerResponse.AdLogoInfo结构
+                // public static class AdLogoInfo {
+                //    public static int TYPE_PIC = 0;
+                //    public static int TYPE_TEXT = 1;
+                //    String adurl;
+                //    int type = 0;
+                //    }
+                //其中属性type为广告表示的类型共2种：图片和文字，如果type==TYPE_PIC则属性adurl是图片的url
+                //如果是type==TYPE_TEXT则属性adurl是文字字符串
+
+                //广告字样
+                ServerResponse.AdLogoInfo adUrl = response.getAdUrl();
+                //广告来源标识
+                ServerResponse.AdLogoInfo adLogoInfo = response.getlogoUrl();
+            }
+        });
+        //此方法已过时，请不要使用。SDK不再为接入者下载资源图片
+        nativeAd.shouldLoadIcon(true);
+        //此方法已过时，请不要使用。SDK不再为接入者下载资源图片
+        //nativeAd.shouldLoadImage(true);
+        nativeAd.loadAd();
+    }
+    private void updateView(NativeAdResponse response) {
+        Glide.with(getActivity()).load(Uri.parse(response.getImageUrls().get(0))).into(mImageView);
+        NativeAdUtil.registerTracking(response,mImageView, new NativeAdEventListener() {
+            @Override
+            public void onAdWasClicked() {
+                Toast.makeText(getActivity(), "onAdWasClicked", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdWillLeaveApplication() {
+                Toast.makeText(getActivity(), "onAdWillLeaveApplication", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

@@ -11,6 +11,7 @@ import android.support.multidex.MultiDex;
 import com.alibaba.sdk.android.push.CloudPushService;
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
+import com.hubcloud.adhubsdk.AdHub;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.p2p.core.P2PSpecial.P2PSpecial;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -200,6 +201,8 @@ static {
 
         // 初始化阿里云推送
         initCloudChannel(this);
+        //初始化广告位
+        AdHub.initialize(this,"1874");
     }
     static DaoSession mDaoSessin;
     public static DaoSession getGreenDaoSession() {

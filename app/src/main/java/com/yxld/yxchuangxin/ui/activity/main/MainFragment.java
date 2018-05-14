@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.main;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -36,6 +37,7 @@ import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.CxwyMallPezhi;
 import com.yxld.yxchuangxin.entity.GoodsKind;
+import com.yxld.yxchuangxin.entity.LocalAd;
 import com.yxld.yxchuangxin.entity.MainToMarket;
 import com.yxld.yxchuangxin.entity.MallClassify;
 import com.yxld.yxchuangxin.entity.User;
@@ -90,8 +92,7 @@ import static com.yxld.yxchuangxin.ui.activity.goods.GoodDetailActivity.KEY_PROD
 import static com.yxld.yxchuangxin.ui.activity.goods.MallFragment.TO_FEILEI_MALLCLASSFY;
 import static com.yxld.yxchuangxin.ui.activity.goods.MallFragment.TO_FEILEI_TYPE;
 
-public class MainFragment extends BaseFragment implements MainContract.View, MiaoshaTimeView
-        .MiaoshaWanchengListener {
+public class MainFragment extends BaseFragment implements MainContract.View, MiaoshaTimeView.MiaoshaWanchengListener {
 
 
     @Inject
@@ -165,17 +166,16 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main, null);
         ButterKnife.bind(this, view);
         toolbar.setLogo(R.mipmap.main_navigation_left);
         toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
-        AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils
-                .getDisplayWidth(getActivity()), (int) (UIUtils.getStatusBarHeight(getActivity())
-                * 3));
+        AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity
+                ()), (int) (UIUtils.getStatusBarHeight(getActivity()) * 3));
         toolbar.setLayoutParams(lp);
         toolbar.setPadding(0, (int) (UIUtils.getStatusBarHeight(getActivity()) * 0.8), 0, 0);
         toolbar.setTitleMarginTop((int) (UIUtils.getStatusBarHeight(getActivity()) * 0.55));
@@ -185,7 +185,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         mTvMenu.setTextSize(10);
         Drawable drawable = this.getResources().getDrawable(R.mipmap.saomiao);
 
-        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());  //width即为你需要设置的图片宽度，height即为你设置的图片的高度
+        drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
+        //width即为你需要设置的图片宽度，height即为你设置的图片的高度
 
         mTvMenu.setCompoundDrawables(null, drawable, null, null);
         mTvMenu.setCompoundDrawablePadding(1);
@@ -193,33 +194,26 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
             @Override
             public void onClick(View v) {
                 //ToastUtil.showShort("查看订单");
-                AndPermission.with(getActivity())
-                        .requestCode(101)
-                        .permission(Manifest.permission.CAMERA)
-                        .rationale((requestCode, rationale) -> {
-                                    AndPermission
-                                            .rationaleDialog(getActivity(), rationale)
-                                            .setNegativeButton("关闭", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    ToastUtil.show(getActivity(), "没有权限,您不能扫描二维码,请进入设置打开权限!!!");
-                                                }
-                                            })
-                                            .show();
-                                }
-                        )
-                        .callback(new PermissionListener() {
-                            @Override
-                            public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
-                                startActivity(ScanActivityActivity.class);
-                            }
+                AndPermission.with(getActivity()).requestCode(101).permission(Manifest.permission.CAMERA).rationale(
+                        (requestCode, rationale) -> {
+                    AndPermission.rationaleDialog(getActivity(), rationale).setNegativeButton("关闭", new
+                            DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ToastUtil.show(getActivity(), "没有权限,您不能扫描二维码,请进入设置打开权限!!!");
+                        }
+                    }).show();
+                }).callback(new PermissionListener() {
+                    @Override
+                    public void onSucceed(int requestCode, @NonNull List<String> grantPermissions) {
+                        startActivity(ScanActivityActivity.class);
+                    }
 
-                            @Override
-                            public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
-                                ToastUtil.show(getActivity(), "没有权限,您不能扫描二维码,请进入设置打开权限!!!");
-                            }
-                        })
-                        .start();
+                    @Override
+                    public void onFailed(int requestCode, @NonNull List<String> deniedPermissions) {
+                        ToastUtil.show(getActivity(), "没有权限,您不能扫描二维码,请进入设置打开权限!!!");
+                    }
+                }).start();
 
             }
         });
@@ -249,28 +243,29 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         refreshLayout.setOnMultiPurposeListener(new SimpleMultiPurposeListener() {
 
             @Override
-            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int extendHeight) {
+            public void onHeaderReleasing(RefreshHeader header, float percent, int offset, int bottomHeight, int
+                    extendHeight) {
                 toolbar.setAlpha(1 - Math.min(percent, 1));
             }
 
             @Override
-            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int extendHeight) {
+            public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int
+                    extendHeight) {
                 toolbar.setAlpha(1 - Math.min(percent, 1));
             }
         });
         Bundle mBundle = getArguments();
-        Glide.with(this)
-                .load(R.mipmap.soye_km)
-                .asGif()
-                .into(ivMenjin);
+        Glide.with(this).load(R.mipmap.soye_km).asGif().into(ivMenjin);
         initView();
         mPresenter.setReStart();
+        //mPresenter.getLocalAd();
         return view;
     }
 
 
     @Override
     protected void initDataFromLocal() {
+
 
     }
 
@@ -279,15 +274,14 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         if (relogin.equals("reLogin")) {
             initData();
             toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
-            KLog.i("toolbar重新设置标题" + Contains.appYezhuFangwus.get(Contains.curFangwu)
-                    .getXiangmuLoupan());
+            KLog.i("toolbar重新设置标题" + Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
         }
     }
 
     protected void initData() {
         Map<String, String> action = new HashMap<>();
-        if (Contains.curSelectXiaoQuName != null && !"".equals(Contains.curSelectXiaoQuName)
-                && Contains.curSelectXiaoQuId != 0) {
+        if (Contains.curSelectXiaoQuName != null && !"".equals(Contains.curSelectXiaoQuName) && Contains
+                .curSelectXiaoQuId != 0) {
             action.put("luopan", Contains.curSelectXiaoQuId + "");
         } else {
             action.put("luopan", "");
@@ -344,7 +338,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
     protected void initView() {
         toolbar.setLogo(R.mipmap.main_navigation_left);
         toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
-        mScrollView.setTransView(toolbar, getResources().getColor(R.color.main_color), UIUtils.dip2px(50), UIUtils.dip2px(100));
+        mScrollView.setTransView(toolbar, getResources().getColor(R.color.main_color), UIUtils.dip2px(50), UIUtils
+                .dip2px(100));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         Drawable divider = getActivity().getResources().getDrawable(R.drawable.shape_divider);
@@ -391,12 +386,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
 
     @Override
     protected void setupFragmentComponent() {
-        DaggerMainComponent
-                .builder()
-                .appComponent(((AppConfig) getActivity().getApplication()).getApplicationComponent())
-                .mainmodule(new Mainmodule(this))
-                .build()
-                .inject(this);
+        DaggerMainComponent.builder().appComponent(((AppConfig) getActivity().getApplication())
+                .getApplicationComponent()).mainmodule(new Mainmodule(this)).build().inject(this);
     }
 
 
@@ -434,8 +425,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                     list.add(mainShopAdapter.getData().get(j).getId() + "");
                     listname.add(mainShopAdapter.getData().get(j).getFenleiMing());
                 }
-                ToFeileiActivity(mallClassify, mainShopAdapter.getData().get(i).getId() + "",
-                        list, listname);
+                ToFeileiActivity(mallClassify, mainShopAdapter.getData().get(i).getId() + "", list, listname);
             }
         });
         shopRecyclerview.setAdapter(mainShopAdapter);
@@ -447,8 +437,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
      * @param mallClassify
      * @param type
      */
-    private void ToFeileiActivity(MallClassify mallClassify, String type, ArrayList<String> list,
-                                  ArrayList<String> listname) {
+    private void ToFeileiActivity(MallClassify mallClassify, String type, ArrayList<String> list, ArrayList<String>
+            listname) {
         Intent intent = new Intent(getActivity(), GoodsFenLeiActivity.class);
         intent.putExtra(TO_FEILEI_TYPE, type);
         intent.putStringArrayListExtra("listid", list);
@@ -490,39 +480,42 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 urls.add(API.PIC + info.getLblist().get(i).getMallPeizhiValue());
             }
 //            Log.d("geek", "首页轮播图路径urls=" + urls.toString());
-            indexAdvs.setImageResources(urls,
-                    new ImageCycleView.ImageCycleViewListener() {
-                        @Override
-                        public void onImageClick(int position, View imageView) {
-                            if (position == 0) {  //手机开门
-                                if (Contains.user == null || Contains.user.getYezhuType() == null || Contains.user.getYezhuType() != 0 || Contains.appYezhuFangwus.size() == 0) {
-                                    ToastUtil.show(getActivity(), "业主信息不完善");
-                                    return;
-                                }
-                                startActivity(MenJinActivity.class);
-                            } else if (position == 1) {  //物业缴费
-                                if (Contains.appYezhuFangwus == null || Contains.appYezhuFangwus.size() == 0) {
-                                    ToastUtil.show(getActivity(), "请配置房屋信息再进行查询");
-                                    return;
-                                }
-                                startActivity(WuyeMoneyActivity.class);
-                            } else if (position == 2) {  //居家安防
-                                startActivity(DeviceActivity.class);
-                            } else if (position == 3) {  //便利商店
-                                if (Contains.curSelectXiaoQuId == 0 || Contains.curSelectXiaoQuName == null || "".equals(Contains.curSelectXiaoQuName)) {
-                                    new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE).setTitleText("未获取到房屋信息").setContentText("请手动选择小区").setConfirmText("确认").setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                        @Override
-                                        public void onClick(SweetAlertDialog sDialog) {
+            indexAdvs.setImageResources(urls, new ImageCycleView.ImageCycleViewListener() {
+                @Override
+                public void onImageClick(int position, View imageView) {
+                    if (position == 0) {  //手机开门
+                        if (Contains.user == null || Contains.user.getYezhuType() == null || Contains.user
+                                .getYezhuType() != 0 || Contains.appYezhuFangwus.size() == 0) {
+                            ToastUtil.show(getActivity(), "业主信息不完善");
+                            return;
+                        }
+                        startActivity(MenJinActivity.class);
+                    } else if (position == 1) {  //物业缴费
+                        if (Contains.appYezhuFangwus == null || Contains.appYezhuFangwus.size() == 0) {
+                            ToastUtil.show(getActivity(), "请配置房屋信息再进行查询");
+                            return;
+                        }
+                        startActivity(WuyeMoneyActivity.class);
+                    } else if (position == 2) {  //居家安防
+                        startActivity(DeviceActivity.class);
+                    } else if (position == 3) {  //便利商店
+                        if (Contains.curSelectXiaoQuId == 0 || Contains.curSelectXiaoQuName == null || "".equals
+                                (Contains.curSelectXiaoQuName)) {
+                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE).setTitleText
+                                    ("未获取到房屋信息").setContentText("请手动选择小区").setConfirmText("确认")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sDialog) {
 //                                            startActivity(SelectPlaceActivity.class);
 //                                            sDialog.dismissWithAnimation();
-                                        }
-                                    }).show();
-                                    return;
                                 }
-                                EventBus.getDefault().post(MainToMarket.Main2Market.home);
-                            }
+                            }).show();
+                            return;
                         }
-                    }, 0);
+                        EventBus.getDefault().post(MainToMarket.Main2Market.home);
+                    }
+                }
+            }, 0);
         }
     }
 
@@ -558,6 +551,18 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         setShopRecyclerview(mallClassify);
     }
 
+    /**
+     * 保存广告信息
+     */
+    @Override
+    public void saveAdInfo(LocalAd localAd) {
+        if (localAd.status == 1) {
+//            SharedPreferences.Editor edit = sp.edit();
+//            edit.putString("")
+        }
+
+    }
+
     @Override
     public void setPresenter(MainContract.MainPresenter presenter) {
         mPresenter = (MainPresenter) presenter;
@@ -584,7 +589,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
 
     }
 
-    @OnClick({R.id.iv_menjin, R.id.cv_car, R.id.cv_anfang, R.id.cv_jiaofei, R.id.cv_baoxiu, R.id.tv_action, R.id.iv_tongzhi_more, R.id.iv_market, R.id.xiyi, R.id.jiazheng, R.id.lipin})
+    @OnClick({R.id.iv_menjin, R.id.cv_car, R.id.cv_anfang, R.id.cv_jiaofei, R.id.cv_baoxiu, R.id.tv_action, R.id
+            .iv_tongzhi_more, R.id.iv_market, R.id.xiyi, R.id.jiazheng, R.id.lipin})
     public void onViewClicked(View view) {
         Intent intent = new Intent();
         intent.setClass(getActivity(), // context

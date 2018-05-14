@@ -4,7 +4,7 @@
     
     <corners android:radius="360dip"/>
     
-    <solid android:color="@color/tran_bg"/>
+    <solid android:color="@color/line1"/>
     
     
     

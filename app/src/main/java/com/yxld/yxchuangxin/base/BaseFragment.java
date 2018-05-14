@@ -82,7 +82,7 @@ public abstract class BaseFragment extends Fragment {
 	 */
 	protected int pageCode = 0;
 
-	private SharedPreferences sp;
+	public SharedPreferences sp;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

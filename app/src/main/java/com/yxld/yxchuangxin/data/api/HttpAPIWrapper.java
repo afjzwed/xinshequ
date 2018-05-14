@@ -40,6 +40,8 @@ import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
 import com.yxld.yxchuangxin.entity.IsNight;
 import com.yxld.yxchuangxin.entity.JiaofeiMingxi;
+import com.yxld.yxchuangxin.entity.LiuCheng;
+import com.yxld.yxchuangxin.entity.LocalAd;
 import com.yxld.yxchuangxin.entity.LockCar;
 import com.yxld.yxchuangxin.entity.LoginEntity;
 import com.yxld.yxchuangxin.entity.LoginPhoneEntity;
@@ -776,7 +778,12 @@ public class HttpAPIWrapper {
     }
     //*********************************商城改版******************************************//
 
-
+    public Observable<LocalAd> getLocalAd(Map<String, String> params) {
+        return wrapper(mHttpAPI.getLocalAd(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<LiuCheng> getWeiXiuLiucheng(Map<String, String> params) {
+        return wrapper(mHttpAPI.getWeiXiuLiucheng(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
     /**
      * 给任何Http的Observable加上通用的线程调度器
      */

@@ -184,6 +184,7 @@
             android:label="添加账号"
             android:screenOrientation="portrait">
         </activity>
+
         /*********************************↑↑其它模块↑↑******************************************/
 
         /*********************************↓↓物业模块↓↓******************************************/
@@ -285,6 +286,11 @@
         <activity
             android:name=".ui.activity.wuye.FixListActivity"
             android:label="维修服务"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.FixLiuChengActivity"
+            android:label="维修流程"
             android:screenOrientation="portrait">
         </activity>
         <activity

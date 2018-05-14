@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="240px"
+    android:layout_marginLeft="32px"
+    android:orientation="vertical"
+    >
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:paddingTop="15px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="60px"
+        android:orientation="vertical"
+        android:paddingBottom="15px">
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text=""/>
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text=""/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <View style="@style/line"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="60px"/>
+    <View
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20px"
+        android:background="@color/line1"
+        />
+
+    <View
+        android:id="@+id/view_bg"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_centerVertical="true"
+        android:background="@drawable/circle_bg"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>

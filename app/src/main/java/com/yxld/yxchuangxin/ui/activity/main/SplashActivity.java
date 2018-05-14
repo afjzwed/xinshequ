@@ -10,10 +10,11 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.hubcloud.adhubsdk.AdListener;
+import com.hubcloud.adhubsdk.SplashAd;
 import com.socks.library.KLog;
 import com.umeng.analytics.MobclickAgent;
 import com.yxld.yxchuangxin.R;
@@ -24,13 +25,10 @@ import com.yxld.yxchuangxin.ui.activity.main.component.DaggerSplashComponent;
 import com.yxld.yxchuangxin.ui.activity.main.contract.SplashContract;
 import com.yxld.yxchuangxin.ui.activity.main.module.SplashModule;
 import com.yxld.yxchuangxin.ui.activity.main.presenter.SplashPresenter;
-import com.zhy.autolayout.AutoRelativeLayout;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.yxld.yxchuangxin.ui.activity.mine.FingerProveActivity.SP_FINGER_STATE;
 import static com.yxld.yxchuangxin.ui.activity.mine.FingerProveActivity.SP_PATTERN_STATE;
@@ -46,12 +44,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Inject
     SplashPresenter mPresenter;
-    @BindView(R.id.main)
-    AutoRelativeLayout mMain;
-    @BindView(R.id.img_bg)
-    ImageView mImgBg;
-    @BindView(R.id.tv_jump)
-    TextView mTvJump;
 
     private android.support.v7.app.AlertDialog dialog;
     public static int LOCATION_FINISH = 65;
@@ -61,38 +53,107 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         KLog.i("Splash创建");
         super.onCreate(savedInstanceState);
+        initAD();
+
+        // countDownTimer.start();
+    }
+
+    private void initAD() {
+        FrameLayout adsParent = (FrameLayout) this.findViewById(R.id.adsFl);
+
+        // the observer of AD
+        AdListener listener = new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                KLog.i("onAdLoaded");
+                //Toast.makeText(SplashActivity.this, "onAdLoaded", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdShown() {
+                KLog.i("onAdShown");
+                countDownTimer.cancel();
+                // Toast.makeText(SplashActivity.this, "onAdShown", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                KLog.i("onAdFailedToLoad" + errorCode);
+                //  Toast.makeText(SplashActivity.this, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
+               // jump();
+            }
+
+            @Override
+            public void onAdClosed() {
+                Log.i("RSplashActivity", "onAdDismissed");
+                jumpWhenCanClick();
+                countDownTimer.cancel();
+                //Toast.makeText(SplashActivity.this, "onAdClosed", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAdClicked() {
+                KLog.i("onAdClick");
+                // 设置开屏可接受点击时，该回调可用
+                //  mPresenter.observeJump();
+            }
+        };
+        SplashAd splashAd = new SplashAd(this, adsParent, listener, "5435");
     }
 
     @Override
     protected void initData() {
-        Glide.with(this).load("https://timgsa.baidu" + "" + "" + "" + "" +
-                ".com/timg?image&quality=80&size=b9999_10000&sec=1525959683754&di=5b45848a904c10b6e2b352a86251713a" +
-                "&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu" + "" + "" + "" + "" +
-                ".com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034f788a1cd2a5c379310b551d9a.jpg").into(mImgBg);
         countDownTimer = new CountDownTimer(5000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                KLog.i("--------" + (millisUntilFinished / 1000));
-                mTvJump.setText("跳过(" + (millisUntilFinished / 1000) + ")");
+                KLog.i("-------------------剩余"+millisUntilFinished/1000);
             }
 
             @Override
             public void onFinish() {
-                KLog.i("--------" + 0);
-                mTvJump.setText("跳过(" + 0 + ")");
-                jumpWhenCanClick();
+                KLog.i("剩余"+0);
+                jump();
             }
         };
         AppConfig.getInstance().mAppActivityManager.finishAllActivityWithoutThis();
-        if (SplashPresenter.isXsqAvilible(this)) {
+        if (mPresenter.isXsqAvilible(this)) {
             showHasOldDialog();
         } else {
-
-//            mPresenter.observeJump();
+            // mPresenter.observeJump();
             countDownTimer.start();
             mPresenter.queryShipperInfo();
             mPresenter.getPermission();
             mPresenter.getLastVersion();
+        }
+    }
+
+    /**
+     * 不可点击的开屏，使用该jump方法，而不是用jumpWhenCanClick
+     */
+    private void jump() {
+        if (!hasJump) {
+            countDownTimer.cancel();
+            hasJump = true;
+            mPresenter.observeJump();
+        }
+    }
+
+    /**
+     * 当设置开屏可点击时，需要等待跳转页面关闭后，再切换至您的主窗口。故此时需要增加canJumpImmediately判断。 另外，点击开屏还需要在onResume中调用jumpWhenCanClick接口。
+     */
+    public boolean canJumpImmediately = false;
+    boolean hasJump = false;
+
+    private void jumpWhenCanClick() {
+        Log.d("test", "this.hasWindowFocus():" + this.hasWindowFocus() + "canJumpImmediately" + canJumpImmediately);
+        if (!hasJump) {
+            if (canJumpImmediately) {
+                hasJump = true;
+                countDownTimer.cancel();
+                mPresenter.observeJump();
+            } else {
+                canJumpImmediately = true;
+            }
         }
     }
 
@@ -185,8 +246,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {// 消极
             @Override
             public void onClick(DialogInterface dialog, int which) {
+//                        mPresenter.observeJump();
                 countDownTimer.start();
-                // mPresenter.observeJump();
                 mPresenter.queryShipperInfo();
                 mPresenter.getPermission();
                 mPresenter.getLastVersion();
@@ -198,35 +259,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         alertDialog.show();
     }
 
-    /**
-     * 不可点击的开屏，使用该jump方法，而不是用jumpWhenCanClick
-     */
-    private void jump() {
-        if (!hasJump) {
-            countDownTimer.cancel();
-            hasJump = true;
-            mPresenter.observeJump();
-        }
-    }
-
-    /**
-     * 当设置开屏可点击时，需要等待跳转页面关闭后，再切换至您的主窗口。故此时需要增加canJumpImmediately判断。 另外，点击开屏还需要在onResume中调用jumpWhenCanClick接口。
-     */
-    public boolean canJumpImmediately = false;
-    boolean hasJump = false;
-
-    private void jumpWhenCanClick() {
-        Log.d("test", "this.hasWindowFocus():" + this.hasWindowFocus() + "canJumpImmediately" + canJumpImmediately);
-        if (!hasJump) {
-            if (canJumpImmediately) {
-                hasJump = true;
-                countDownTimer.cancel();
-                mPresenter.observeJump();
-            } else {
-                canJumpImmediately = true;
-            }
-        }
-    }
 
     //        以下代码可以跳转到应用详情，可以通过应用详情跳转到权限界面(6.0系统测试可用)
     private void getAppDetailSettingIntent(Context context) {
@@ -267,29 +299,9 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         canJumpImmediately = true;
     }
 
-    private void toUrl(String url) {
-        Intent intent = new Intent();
-        intent.setData(Uri.parse(url));//Url 就是你要打开的网址
-        intent.setAction(Intent.ACTION_VIEW);
-        this.startActivity(intent); //启动浏览器
-    }
-
-
-    @OnClick({R.id.img_bg, R.id.tv_jump})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.img_bg:
-                toUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1525959683754&di" +
-                        "=5b45848a904c10b6e2b352a86251713a&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu" + "" + "" + "" +
-                        "" + ".com%2Fimgad%2Fpic%2Fitem%2F4afbfbedab64034f788a1cd2a5c379310b551d9a.jpg");
-                break;
-            case R.id.tv_jump:
-                hasJump = true;
-                countDownTimer.cancel();
-                mPresenter.observeJump();
-                break;
-            default:
-                break;
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        KLog.e("onDestroy");
     }
 }

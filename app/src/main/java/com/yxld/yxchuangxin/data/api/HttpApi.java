@@ -38,6 +38,8 @@ import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
 import com.yxld.yxchuangxin.entity.IsNight;
 import com.yxld.yxchuangxin.entity.JiaofeiMingxi;
+import com.yxld.yxchuangxin.entity.LiuCheng;
+import com.yxld.yxchuangxin.entity.LocalAd;
 import com.yxld.yxchuangxin.entity.LockCar;
 import com.yxld.yxchuangxin.entity.LoginEntity;
 import com.yxld.yxchuangxin.entity.LoginPhoneEntity;
@@ -694,4 +696,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(url_confirm_order)
     Observable<BaseEntityAll> confirmOrder(@FieldMap Map<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST(URL_DONGSHENG_AD)
+    Observable<LocalAd> getLocalAd(@FieldMap Map<String, RequestBody> params);
+    @GET(URL_WEIXIU_LIUCHENG)
+    Observable<LiuCheng> getWeiXiuLiucheng(@QueryMap Map<String, RequestBody> params);
 }

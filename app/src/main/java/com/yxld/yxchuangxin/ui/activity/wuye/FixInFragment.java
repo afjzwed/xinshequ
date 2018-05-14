@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.wuye;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseFragment;
@@ -55,6 +57,15 @@ public class FixInFragment extends BaseFragment implements FixInContract.View {
         notDataView = getActivity().getLayoutInflater().inflate(R.layout.layout_empty_data, (ViewGroup) recyclerView.getParent(), false);
         fixiListAdapter.setEmptyView(notDataView);
         recyclerView.setAdapter(fixiListAdapter);
+        fixiListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
+                CxwyBaoxiu.RowsBean item = (CxwyBaoxiu.RowsBean) baseQuickAdapter.getItem(i);
+                Intent intent = new Intent(getActivity(),FixLiuChengActivity.class);
+                intent.putExtra(FixLiuChengActivity.BAOXIU_ID, item.getBaoxiu_id());
+                startActivity(intent);
+            }
+        });
         Map<String, String> parm = new HashMap<String, String>();
         if (Contains.appYezhuFangwus != null && Contains.appYezhuFangwus.size() > 0) {
             parm.put("loupan", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoupanId() + "");

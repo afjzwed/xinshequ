@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:orientation="vertical">
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/rl_qrcode"
         android:layout_width="407px"
+        android:layout_height="407px"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50px"
-        android:background="@drawable/menjin_imageview_bg"
-        android:layout_height="407px">
+        android:background="@drawable/menjin_imageview_bg">
+
         <ImageView
             android:id="@+id/iv_qrcode"
             android:layout_width="406px"
-            android:layout_centerInParent="true"
             android:layout_height="406px"
+            android:layout_centerInParent="true"
             />
     </com.zhy.autolayout.AutoRelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="二维码实时更新中，复制无效\n若光线太暗，请调亮屏幕亮度"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="34px"
-        android:textSize="40px"
+        android:text="二维码实时更新中，复制无效\n若光线太暗，请调亮屏幕亮度"
         android:textColor="@color/color_646464"
+        android:textSize="40px"
         />
 
     <TextView
@@ -34,19 +36,33 @@
         android:layout_height="84px"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="34px"
-        android:text="刷新"
-        android:gravity="center"
-        android:textColor="@color/main_color"
         android:background="@drawable/menjin_shuaxin_bg"
+        android:gravity="center"
+        android:text="刷新"
+        android:textColor="@color/main_color"
         />
     <!--android:foreground="@drawable/menjin_shuaxin_fg"-->
     <View
         style="@style/layout_bg"
         android:layout_marginTop="50px"
         />
-    <ImageView
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="784px"-->
+    <!--android:background="@mipmap/mjgl_ff"-->
+    <!--android:id="@+id/image"-->
+    <!--android:scaleType="fitXY"-->
+    <!--/>-->
+    <View
         android:layout_width="match_parent"
-        android:layout_height="784px"
-        android:background="@mipmap/mjgl_ff"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="600px"
+        android:scaleType="fitXY"
+
         />
 </com.zhy.autolayout.AutoLinearLayout>

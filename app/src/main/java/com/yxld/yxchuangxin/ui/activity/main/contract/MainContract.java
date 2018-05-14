@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.main.contract;
 
 import com.yxld.yxchuangxin.entity.CxwyMallPezhi;
 import com.yxld.yxchuangxin.entity.GoodsKind;
+import com.yxld.yxchuangxin.entity.LocalAd;
 import com.yxld.yxchuangxin.entity.MallClassify;
 import com.yxld.yxchuangxin.entity.User;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
@@ -38,6 +39,8 @@ public interface MainContract {
         void onRefreshFailure();
 
         void setFenleiAdapter(MallClassify mallClassify);
+
+        void saveAdInfo(LocalAd localAd);
     }
 
     interface MainPresenter extends BasePresenter {
@@ -60,5 +63,7 @@ public interface MainContract {
 
         //获取分类数据
         void getFenlei();
+
+        void getLocalAd();
     }
 }
