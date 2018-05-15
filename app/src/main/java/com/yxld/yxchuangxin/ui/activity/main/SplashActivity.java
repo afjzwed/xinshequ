@@ -80,7 +80,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
             public void onAdFailedToLoad(int errorCode) {
                 KLog.i("onAdFailedToLoad" + errorCode);
                 //  Toast.makeText(SplashActivity.this, "onAdFailedToLoad", Toast.LENGTH_SHORT).show();
-               // jump();
+                jump();
             }
 
             @Override
@@ -103,7 +103,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Override
     protected void initData() {
-        countDownTimer = new CountDownTimer(5000, 1000) {
+        countDownTimer = new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 KLog.i("-------------------剩余"+millisUntilFinished/1000);

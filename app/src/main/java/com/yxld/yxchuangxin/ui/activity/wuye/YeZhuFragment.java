@@ -70,7 +70,8 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
     TextView tvShuaxin;
     @BindView(R.id.image)
     ImageView mImageView;
-
+    @BindView(R.id.tv_guanggao)
+    TextView tvGuanggao;
     private String address;
 
     private ShareInfo shareInfo = new ShareInfo();
@@ -201,7 +202,8 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
 
             @Override
             public void onAdFailed(int errorcode) {
-                Toast.makeText(activity, "onAdFailedToLoad reason: " + errorcode, Toast.LENGTH_LONG).show();
+               // Toast.makeText(activity, "onAdFailedToLoad reason: " + errorcode, Toast.LENGTH_LONG).show();
+                KLog.e( "onAdFailedToLoad reason: " + errorcode);
             }
 
             @Override
@@ -209,6 +211,7 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
                 KLog.e("onAdLoaded");
                 // 一个广告只允许展现一次，多次展现、点击只会计入一次
                 // demo仅简单地显示一条。可将返回的多条广告保存起来备用。
+                KLog.e(response.toString());
                updateView(response);
                 //返回设置的广告的多个图片的URL，SDK并未处理加载urls里面的图片，需要集成者自己去加载展示
                 ArrayList<String> imageUrls = response.getImageUrls();
@@ -246,6 +249,7 @@ public class YeZhuFragment extends BaseFragment implements YeZhuContract.View {
         nativeAd.loadAd();
     }
     private void updateView(NativeAdResponse response) {
+        tvGuanggao.setVisibility(View.VISIBLE);
         Glide.with(getActivity()).load(Uri.parse(response.getImageUrls().get(0))).into(mImageView);
         NativeAdUtil.registerTracking(response,mImageView, new NativeAdEventListener() {
             @Override
