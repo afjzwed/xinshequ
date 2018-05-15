@@ -3,49 +3,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="240px"
+    android:layout_height="280px"
     android:layout_marginLeft="32px"
     android:orientation="vertical"
     >
 
-    <com.zhy.autolayout.AutoLinearLayout
-        android:paddingTop="15px"
+    <com.zhy.autolayout.AutoRelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="60px"
-        android:orientation="vertical"
-        android:paddingBottom="15px">
+
+        >
 
         <TextView
             android:id="@+id/tv_status"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:gravity="center_vertical"
             />
 
 
         <TextView
             android:id="@+id/tv_name"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_status"
             android:gravity="center_vertical"
+
             android:text=""/>
 
 
         <TextView
             android:id="@+id/tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+           android:layout_alignTop="@+id/tv_name"
+            android:layout_marginRight="32px"
             android:gravity="center_vertical"
             android:text=""/>
 
-    </com.zhy.autolayout.AutoLinearLayout>
-    <View style="@style/line"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="60px"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+
+
     <View
         android:layout_width="1px"
         android:layout_height="match_parent"

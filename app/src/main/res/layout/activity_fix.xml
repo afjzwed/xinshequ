@@ -241,7 +241,7 @@
         android:id="@+id/tv_fix_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="进入维修列表"
+        android:text="进入报修列表"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="68px"
         android:textColor="@color/main_color"

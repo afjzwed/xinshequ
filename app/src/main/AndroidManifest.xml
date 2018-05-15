@@ -280,17 +280,17 @@
         </activity>
         <activity
             android:name=".ui.activity.wuye.FixActivity"
-            android:label="维修服务"
+            android:label="我要报修"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.wuye.FixListActivity"
-            android:label="维修服务"
+            android:label="报修列表"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".ui.activity.wuye.FixLiuChengActivity"
-            android:label="维修流程"
+            android:label="报修流程"
             android:screenOrientation="portrait">
         </activity>
         <activity
