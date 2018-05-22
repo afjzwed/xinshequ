@@ -22,7 +22,7 @@ android {
         applicationId "com.yxld.yxchuangxin"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 84
+        versionCode 85
         versionName "1.5.9.5"
         multiDexEnabled true
         ndk {
@@ -124,7 +124,7 @@ buildscript {
 }
 
 greendao {
-    schemaVersion 4
+    schemaVersion 5
     daoPackage 'com.yxld.yxchuangxin.db.green'
     targetGenDir 'src/main/java'
 }
