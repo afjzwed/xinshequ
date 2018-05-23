@@ -1,11 +1,18 @@
 package com.yxld.yxchuangxin.ui.activity.main;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
+import android.os.Messenger;
 import android.os.Parcelable;
+import android.os.RemoteException;
 import android.support.v4.app.FragmentTabHost;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -19,6 +26,7 @@ import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.socks.library.KLog;
 import com.umeng.analytics.MobclickAgent;
+import com.yxld.yxchuangxin.HomeService;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.CxUtil;
 import com.yxld.yxchuangxin.Utils.DoubleClickExitHelper;
@@ -212,6 +220,10 @@ public class HomeActivity extends BaseActivity {
         //友盟统计
         //当用户使用自有账号登录时，可以这样统计：统计UUID
         MobclickAgent.onProfileSignIn(Contains.uuid);
+
+        //启动服务rtc
+        initHandler();
+        startMainService();
     }
 
     @Override
@@ -399,6 +411,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
+        unbindService();
         super.onDestroy();
     }
 
@@ -413,4 +426,53 @@ public class HomeActivity extends BaseActivity {
         super.onResume();
         MobclickAgent.onResume(this);//统计时长
     }
+
+    protected Messenger serviceMessenger;
+    protected Messenger homeMessenger;
+    private Handler handler;
+
+    private void initHandler() {
+        handler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+            }
+        };
+        homeMessenger = new Messenger(handler);
+    }
+
+    public Messenger getServiceMessenger() {
+        return serviceMessenger;
+    }
+
+    protected void startMainService() {
+        Intent intent = new Intent(HomeActivity.this, HomeService.class);
+        //    startService(intent);
+        bindService(intent, connection, Service.BIND_AUTO_CREATE);
+    }
+
+    public void unbindService() {
+        unbindService(connection);
+    }
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            //获取Service端的Messenger
+            KLog.i("获取Service端的Messenger");
+            serviceMessenger = new Messenger(service);
+            Message message = Message.obtain();
+            message.what = HomeService.REGISTER_ACTIVITY_HOME;
+            message.replyTo = homeMessenger;
+            try {
+                //通过ServiceMessenger将注册消息发送到Service中的Handler
+                serviceMessenger.send(message);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+        }
+    };
 }
