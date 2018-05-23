@@ -106,7 +106,8 @@
                     android:layout_centerHorizontal="true"
                     android:textColor="@color/color_909090"
                     android:gravity="center"
-                    android:padding="10px"
+                    android:textSize="36px"
+                    android:padding="15px"
                     android:background="@drawable/jiaofei_mingxi_bg"
                      />
             </com.zhy.autolayout.AutoRelativeLayout>
