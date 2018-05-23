@@ -218,7 +218,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     protected void onRestart() {
         super.onRestart();
-        initData();
+      //  initData();
     }
 
     @Override
