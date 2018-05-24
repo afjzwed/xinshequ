@@ -79,7 +79,7 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
     ImageView guestImage = null;
     ImageView voiceImage = null;
 
-    FrameLayout videoLayout = null;
+    RelativeLayout videoLayout = null;
     SurfaceView remoteView = null;
     SurfaceView localView = null;
     LinearLayout remoteLayout = null;
@@ -147,6 +147,7 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
         KLog.i("onDestroy");
         unbindService(connection);
         isStop=true;
+
     }
 
     private void initHandler() {
@@ -238,7 +239,7 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
     };
 
     protected void initScreen() {
-        videoLayout = (FrameLayout) findViewById(R.id.videoLayout);
+        videoLayout = (RelativeLayout) findViewById(R.id.videoLayout);
         remoteLayout = (LinearLayout) findViewById(R.id.remoteLayout);
         localLayout = (LinearLayout) findViewById(R.id.localLayout);
         speakingLayout = (RelativeLayout) findViewById(R.id.speakingLayout);
@@ -331,8 +332,8 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
         remoteView.setVisibility(View.VISIBLE);
         remoteLayout.addView(remoteView);
         remoteView.setKeepScreenOn(true);
-        remoteView.setZOrderMediaOverlay(true);
         remoteView.setZOrderOnTop(true);
+        remoteView.setZOrderMediaOverlay(true);
 
         localView.setVisibility(View.VISIBLE);
         localLayout.addView(localView);
@@ -505,4 +506,10 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
         progressDialog.hide();
     }
 
+    @Override
+    public boolean supportSlideBack() {
+        KLog.e("supportSlideBack");
+        //sendMainMessenge(HomeService.MSG_CLOSE_CALL);
+        return false;
+    }
 }
