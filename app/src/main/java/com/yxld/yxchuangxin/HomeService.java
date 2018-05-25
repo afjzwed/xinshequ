@@ -43,26 +43,16 @@ import rtc.sdk.iface.RtcClient;
 
 public class HomeService extends Service {
     private static final String TAG = "HomeService";
-    public static final int REGISTER_ACTIVITY_HOME = 1; //MainActivity绑定Service的消息编号
-    public static final int REGISTER_ACTIVITY_INBOUND = 2; //InboundActivity绑定Service的消息编号
-    public static final int REGISTER_ACTIVITY_OUTBOUND = 3; //OutboundActivity绑定Service的消息编号
-    public static final int MSG_OPEN_DOOR = 20030; //开门消息编号
-    public static final int MSG_ONE_OPEN_DOOR = 200333; //一键开门消息编号
-    public static final int MSG_OPEN_RTC = 20031; //打开视频对讲消息编号
-    public static final int MSG_REJECT_CALL = 20032; //拒绝接听消息编号
-    public static final int MSG_CLOSE_CALL = 20035; //挂断接听消息编号
-    public static final int MSG_OPEN_LOCK = 20033; //直接开门消息编号
-    public static final int MSG_SWITCH_MIC = 20034;//切换免提
-    public static final int MSG_CHECK_RTC_STATUS = 40001; //查看RTC连接状态
-    public static final int MSG_CALL_INDOOR = 50001; //呼叫室内机
-    public static final int MSG_CALL_ADMIN_CENTER = 50002; //呼叫管理中心
+    public static final int REGISTER_ACTIVITY_HOME = 10001; //MainActivity绑定Service的消息编号
+    public static final int REGISTER_ACTIVITY_INBOUND = 10002; //InboundActivity绑定Service的消息编号
+    public static final int MSG_OPEN_DOOR = 10003; //开门消息编号
+    public static final int MSG_ONE_OPEN_DOOR = 10004; //一键开门消息编号
+    public static final int MSG_OPEN_RTC = 10005; //打开视频对讲消息编号
+    public static final int MSG_REJECT_CALL = 10006; //拒绝接听消息编号
+    public static final int MSG_CLOSE_CALL = 10007; //挂断接听消息编号
+    public static final int MSG_SWITCH_MIC = 10008;//切换免提
+    public static final int MSG_RELOGIN_RTC = 10009; //重新登陆rtc
 
-    public static final int MSG_SCAN_BLE_LOCK = 60001; //扫描蓝牙门禁设备
-    public static final int MSG_OPEN_BLE_LOCK = 60002; //发送打开蓝牙门禁请求
-    public static final int MSG_OPEN_BLE_LOCK_FAILED = 60003; //打开蓝牙门禁失败
-    public static final int MSG_OPEN_BLE_LOCK_SUCCESS = 60004; //打开蓝牙门禁失败
-    public static final int MSG_FIND_BLE_LOCK = 60005; //扫描蓝牙门禁设备
-    public static final int MSG_STOP_BLE_SCAN = 60006; //扫描蓝牙门禁设备
     //rtc
     public static final String APP_ID = "71012";
     public static final String APP_KEY = "71007b1c-6b75-4d6f-85aa-40c1f3b842ef";
@@ -91,14 +81,9 @@ public class HomeService extends Service {
         KLog.i(TAG, "启动HomeService");
         initHandle();
         initRingPlayer();
-        if (Contains.user.getYezhuShouji() != null) {
-            username = Contains.user.getYezhuShouji();
-            username = "18670819116";
-//            username = "17769259130";
-            KLog.i(TAG, "username" + username);
-            setRtcStatus(1); //设置状态，获取到用户账号
-            initRtcClient();
-        }
+        setRtcStatus(1); //设置状态，获取到用户账号
+        initRtcClient();
+
     }
 
     private void initRingPlayer() {
@@ -147,6 +132,10 @@ public class HomeService extends Service {
                     case MSG_SWITCH_MIC:
                         // 切换免提
                         switchMic();
+                        break;
+                    case MSG_RELOGIN_RTC:
+                        // 重新登陆rtc
+                        rtcRegister();
                         break;
                     default:
                         break;
@@ -210,7 +199,15 @@ public class HomeService extends Service {
     }
 
     private void rtcRegister() {
-        KLog.i(TAG, "开始注册rtc  username:" + username + "token:" + token);
+        if (device != null) {
+            device.release();
+            device = null;
+        }
+        if (Contains.user.getYezhuShouji() != null) {
+            username = Contains.user.getYezhuShouji();
+            KLog.i(TAG, "username" + username);
+        }
+        KLog.i(TAG, "开始登陆rtc  username:" + username + "token:" + token);
         if (token != null) {
             try {
                 JSONObject jargs = SdkSettings.defaultDeviceSetting();
@@ -389,6 +386,7 @@ public class HomeService extends Service {
             } else if (result == RtcConst.DeviceEvt_MultiLogin) {
             } else if (result == RtcConst.CallCode_Forbidden) {
                 KLog.i(TAG, "密码错误 重新注册啦 result=" + result);
+                initRtcClient();
             } else if (result == RtcConst.CallCode_NotFound) {
                 KLog.i(TAG, "被叫号码从未获取token登录过 result=" + result);
             } else {

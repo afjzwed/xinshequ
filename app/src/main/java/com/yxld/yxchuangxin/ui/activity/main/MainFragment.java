@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Message;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -28,6 +30,7 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.socks.library.KLog;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
+import com.yxld.yxchuangxin.HomeService;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.Utils.UIUtils;
@@ -357,6 +360,16 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                     case 0:
                         //开门
                         getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
+                        HomeActivity activity = (HomeActivity) getActivity();
+                        //sendMainMessenge(HomeService.MSG_OPEN_DOOR);
+                        Message message = Message.obtain();
+                        message.what = HomeService.MSG_ONE_OPEN_DOOR;
+                        try {
+                            // Log.e(TAG, "发送主消息code1=" + code);
+                            activity.getServiceMessenger().send(message);
+                        } catch (RemoteException e) {
+                            e.printStackTrace();
+                        }
                         break;
                     case 1:
                         //物业缴费

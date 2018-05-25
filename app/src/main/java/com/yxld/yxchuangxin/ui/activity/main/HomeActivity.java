@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
@@ -32,6 +33,7 @@ import com.yxld.yxchuangxin.Utils.CxUtil;
 import com.yxld.yxchuangxin.Utils.DoubleClickExitHelper;
 import com.yxld.yxchuangxin.Utils.JPushUtil;
 import com.yxld.yxchuangxin.Utils.StringUitl;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.contain.Contains;
@@ -66,16 +68,16 @@ public class HomeActivity extends BaseActivity {
     AutoFrameLayout tabcontent;
     @BindView(android.R.id.tabhost)
     FragmentTabHost tabhost;
-//    private Intent main;
+    //    private Intent main;
 //    private Intent wuye;
 //    private Intent zhoubian;
 //    private Intent shangcheng;
     private ArrayList<TabDataBean> tabDataList = new ArrayList<>(4);
 
-    private static final String ACTION_CHANGETAB = "com.yxld.yxchuangxin.ui.activity.main.HomeActivity.action.changetab";//(没有实例则创建实例)changeTabIndex
+    private static final String ACTION_CHANGETAB = "com.yxld.yxchuangxin.ui.activity.main.HomeActivity.action" + "" +
+            ".changetab";//(没有实例则创建实例)changeTabIndex
     private static final String EXTRA_TABINDEX = "com.yxld.yxchuangxin.ui.activity.main.HomeActivity.extra.tabindex";
 
-    private DoubleClickExitHelper doulebClickAction;
     private LayoutInflater mInflater;
 
     public static void startActionChangeTab(Context context, int tabIndex) {
@@ -143,40 +145,44 @@ public class HomeActivity extends BaseActivity {
     public void onOutLogin(String outlogin) {
         if ("退出登录".equals(outlogin)) {
             CxUtil.clearData(sp);
-            PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
-                @Override
-                public void onSuccess(String s) {
-                    KLog.i("阿里云推送设置移除成功" +  "removeAlias success"+s);
-                }
-
-                @Override
-                public void onFailed(String s, String s1) {
-
-                }
-            });
-            PushServiceFactory.getCloudPushService().unbindAccount(new CommonCallback() {
-                @Override
-                public void onSuccess(String s) {
-                    KLog.i("阿里云推送解除绑定账号" +  "removeAlias success"+s);
-                }
-
-                @Override
-                public void onFailed(String s, String s1) {
-
-                }
-            });
+            removeAlPush();
             startActivity(LoginActivity.class);
         }
         if (outlogin.equals("reLogin")) {
-            //极光
-            initPush();
             //阿里
+            removeAlPush();
             initALPush();
             handleActionChangeTab(getIntent());
-            doulebClickAction = new DoubleClickExitHelper();
 //            initTabHost();
+            reLoginRtc();
         }
     }
+
+    private void removeAlPush() {
+        PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                KLog.i("阿里云推送设置移除成功" + "removeAlias success" + s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+
+            }
+        });
+        PushServiceFactory.getCloudPushService().unbindAccount(new CommonCallback() {
+            @Override
+            public void onSuccess(String s) {
+                KLog.i("阿里云推送解除绑定账号" + "removeAlias success" + s);
+            }
+
+            @Override
+            public void onFailed(String s, String s1) {
+
+            }
+        });
+    }
+
 
     /**
      * 在@link HttpAPIWrapper 中发过来的消息
@@ -209,12 +215,10 @@ public class HomeActivity extends BaseActivity {
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
         mInflater = LayoutInflater.from(this);
-        //极光
-        initPush();
+
         //阿里
         initALPush();
         handleActionChangeTab(getIntent());
-        doulebClickAction = new DoubleClickExitHelper();
         initTabHost();
 
         //友盟统计
@@ -247,8 +251,10 @@ public class HomeActivity extends BaseActivity {
         /*初始化数据源*/
         TabDataBean tabHome = new TabDataBean(R.string.main_main, R.drawable.tab_main_selector, MainFragment.class);
         TabDataBean tabHot = new TabDataBean(R.string.main_wuye, R.drawable.tab_wuye_selector, WuyeFragment.class);
-        TabDataBean tabCategory = new TabDataBean(R.string.main_zhoubian, R.drawable.tab_rim_selector, RimFragment.class);
-        TabDataBean tabCart = new TabDataBean(R.string.main_shangcheng, R.drawable.tab_market_selector, MallFragment.class);
+        TabDataBean tabCategory = new TabDataBean(R.string.main_zhoubian, R.drawable.tab_rim_selector, RimFragment
+                .class);
+        TabDataBean tabCart = new TabDataBean(R.string.main_shangcheng, R.drawable.tab_market_selector, MallFragment
+                .class);
         tabDataList.add(tabHome);
         tabDataList.add(tabHot);
         tabDataList.add(tabCategory);
@@ -304,12 +310,13 @@ public class HomeActivity extends BaseActivity {
             }
         }
     };
-    private void initALPush(){
+
+    private void initALPush() {
         PushServiceFactory.getCloudPushService().addAlias(StringUitl.getDeviceId(this), new CommonCallback() {
             @Override
             public void onSuccess(String s) {
 
-                KLog.i("阿里云推送设置添加别名成功" +StringUitl.getDeviceId(HomeActivity.this));
+                KLog.i("阿里云推送设置添加别名成功" + StringUitl.getDeviceId(HomeActivity.this));
             }
 
             @Override
@@ -320,7 +327,7 @@ public class HomeActivity extends BaseActivity {
         PushServiceFactory.getCloudPushService().listAliases(new CommonCallback() {
             @Override
             public void onSuccess(String s) {
-                KLog.i("阿里云查询别名成功" +s);
+                KLog.i("阿里云查询别名成功" + s);
             }
 
             @Override
@@ -331,7 +338,7 @@ public class HomeActivity extends BaseActivity {
         PushServiceFactory.getCloudPushService().bindAccount(Contains.user.getYezhuShouji(), new CommonCallback() {
             @Override
             public void onSuccess(String s) {
-                KLog.i("阿里云推送设置绑定账号成功" +Contains.user.getYezhuShouji());
+                KLog.i("阿里云推送设置绑定账号成功" + Contains.user.getYezhuShouji());
             }
 
             @Override
@@ -341,22 +348,7 @@ public class HomeActivity extends BaseActivity {
         });
 
     }
-    private void initPush() {
-        String alias = Contains.user.getYezhuShouji();
-        //极光推送 设置别名和标签
-//        JPushInterface.setAlias(HomeActivity.this, alias, tagAliasCallback);
-//        Set<String> tags = new ArraySet<>();
-//        tags.add(StringUitl.getDeviceId(this));
-//        Log.d("geek", "initContentView: tags=" + StringUitl.getDeviceId(this));
-//        JPushInterface.setTags(HomeActivity.this, tags, new TagAliasCallback() {
-//            @Override
-//            public void gotResult(int i, String s, Set<String> set) {
-//                Log.d("geek", "gotResult: set = " + set.toString());
-//                Log.d("geek", "JPushInterface setTags gotResult: " + i);
-//            }
-//        });
 
-    }
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -383,27 +375,30 @@ public class HomeActivity extends BaseActivity {
                 iv_tab_icon.setImageResource(R.drawable.tab_market_selector);
                 tv_tab_label.setText("欣商城");
             }
-            return tabhost.newTabSpec(tag).setIndicator(view)
-                    .setContent(intent);
+            return tabhost.newTabSpec(tag).setIndicator(view).setContent(intent);
         }
         return null;
-    }
-
-    private boolean onBack() {
-        return doulebClickAction.onBackKeyDown();
     }
 
     // 用下面这个函数拦截子Activity的返回操作
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_DOWN
-                && event.getRepeatCount() == 0) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN && event
+                .getRepeatCount() == 0) {
             if (MenuView.getInstance() != null && MenuView.getInstance().isShow) {
                 MenuView.getInstance().close();
                 return true;
             }
-            return onBack();
+            if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
+                if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                    ToastUtil.showShort("再按一次退出欣社区");
+                    mExitTime = System.currentTimeMillis();
+                } else {
+                    unbindService();
+                    AppConfig.getInstance().mAppActivityManager.AppExit();
+                }
+                return true;
+            }
         }
         return super.dispatchKeyEvent(event);//此处默认是false
     }
@@ -454,6 +449,17 @@ public class HomeActivity extends BaseActivity {
         unbindService(connection);
     }
 
+    private void reLoginRtc() {
+        Message message = Message.obtain();
+        message.what = HomeService.MSG_RELOGIN_RTC;
+        try {
+            //通过ServiceMessenger将注册消息发送到Service中的Handler
+            serviceMessenger.send(message);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     private ServiceConnection connection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -475,4 +481,21 @@ public class HomeActivity extends BaseActivity {
         public void onServiceDisconnected(ComponentName name) {
         }
     };
+
+    private long mExitTime;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+                ToastUtil.showShort("再按一次退出欣社区");
+                mExitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                AppConfig.getInstance().mAppActivityManager.AppExit();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
