@@ -28,11 +28,7 @@ android {
         ndk {
             abiFilters "armeabi", 'x86'
         }
-        manifestPlaceholders = [
-                JPUSH_PKGNAME: "com.yxld.yxchuangxin.xsq",
-                JPUSH_APPKEY : "66ff20ae6f616064cf6af75c", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
-        ]
+//
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -259,9 +255,7 @@ dependencies {
     //仿ios对话框
     compile 'com.bigkoo:alertview:1.0.3'
     compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
-    //极光推送
-    compile 'cn.jiguang.sdk:jpush:3.0.3'
-    compile 'cn.jiguang.sdk:jcore:1.1.1'
+
     compile 'com.bm.photoview:library:1.4.1'
     //    //LeakCanary
 
@@ -297,4 +291,6 @@ dependencies {
     compile 'com.github.ihsg:PatternLocker:2.0.0'
     //adhup广告位
     compile name: 'sdk-release', ext: 'aar'
+    //选择器
+    compile 'com.contrarywind:Android-PickerView:4.1.3'
 }

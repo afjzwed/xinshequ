@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.jpush.android.api.JPushInterface;
+
 
 /**
  * @author wwx
@@ -435,8 +435,7 @@ public class StringUitl {
             return deviceId.toString();
         } catch (Exception e) {
             Log.d("geek", "getDeviceId: e");
-            deviceId.append("e" + deviceId.toString() + JPushInterface.getRegistrationID(context) +
-                    PushServiceFactory.getCloudPushService().getDeviceId());
+            deviceId.append("e" + deviceId.toString() + PushServiceFactory.getCloudPushService().getDeviceId());
         }
         return deviceId.toString();
     }

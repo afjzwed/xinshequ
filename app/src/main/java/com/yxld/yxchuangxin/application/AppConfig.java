@@ -112,7 +112,7 @@ public class AppConfig extends Application {
     // com.xiaomi.mipushdemo
     public static final String TAG = "com.yxld.yxchuangxin";
 
-//	//在自己的Application中添加如下代码
+    //	//在自己的Application中添加如下代码
 //	public static RefWatcher getRefWatcher(Context context) {
 //		AppConfig application = (AppConfig) context
 //				.getApplicationContext();
@@ -121,24 +121,26 @@ public class AppConfig extends Application {
 //
 //	//在自己的Application中添加如下代码
 //	private  RefWatcher refWatcher;
-static {
-    //设置全局的Header构建器
-    SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
-        @Override
-        public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
-         //   layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
-            return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
-        }
-    });
-    //设置全局的Footer构建器
-    SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
-        @Override
-        public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-            //指定为经典Footer，默认是 BallPulseFooter
-            return new ClassicsFooter(context).setDrawableSize(20);
-        }
-    });
-}
+    static {
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreater(new DefaultRefreshHeaderCreater() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                //   layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);//全局设置主题颜色
+                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));
+                // 指定为经典Header，默认是 贝塞尔雷达Header
+            }
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                //指定为经典Footer，默认是 BallPulseFooter
+                return new ClassicsFooter(context).setDrawableSize(20);
+            }
+        });
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -158,11 +160,8 @@ static {
         // TODO: 2017/11/3 bugly的key要改
 //        CrashReport.initCrashReport(this, "b272dac831", BuildConfig.LOG_DEBUG);
         CrashReport.initCrashReport(this, "86d37d22a0", true);
-//        JPushInterface.setDebugMode(true);
-//        JPushInterface.init(this);
         //初始化log打印
         KLog.init(BuildConfig.LOG_DEBUG);
-      //  KLog.i("geek", "onCreate: jpush id " + JPushInterface.getRegistrationID(this));
         KLog.i("----------------------------------------应用初始化---------------------------------");
         //在自己的Application中添加如下代码
 //		refWatcher = LeakCanary.install(this);
@@ -196,15 +195,17 @@ static {
          * 参数2:设备类型，UMConfigure.DEVICE_TYPE_PHONE为手机、UMConfigure.DEVICE_TYPE_BOX为盒子，默认为手机
          * 参数3:Push推送业务的secret
          */
-        UMConfigure.init(this,UMConfigure.DEVICE_TYPE_PHONE,"");
+        UMConfigure.init(this, UMConfigure.DEVICE_TYPE_PHONE, "");
 //        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
         // 初始化阿里云推送
         initCloudChannel(this);
         //初始化广告位
-        AdHub.initialize(this,"1874");
+        AdHub.initialize(this, "1874");
     }
+
     static DaoSession mDaoSessin;
+
     public static DaoSession getGreenDaoSession() {
         if (mDaoSessin == null) {
             DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(instance, "user-db", null);
@@ -220,10 +221,7 @@ static {
     }
 
     protected void setupApplicationComponent() {
-        mAppComponent = DaggerAppComponent
-                .builder()
-                .appModule(new AppModule(this))
-                .aPIModule(new APIModule(this))
+        mAppComponent = DaggerAppComponent.builder().appModule(new AppModule(this)).aPIModule(new APIModule(this))
 //                .databaseModule(new DatabaseModule(this))
                 .build();
         mAppComponent.inject(this);
@@ -301,6 +299,7 @@ static {
     /**
      * 初始化技威
      * 居家安防摄像头
+     *
      * @param app
      */
     public void initP2P(AppConfig app) {

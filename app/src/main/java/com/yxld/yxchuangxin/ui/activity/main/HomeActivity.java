@@ -21,7 +21,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.sdk.android.push.CommonCallback;
 import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
@@ -30,8 +29,6 @@ import com.umeng.analytics.MobclickAgent;
 import com.yxld.yxchuangxin.HomeService;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.CxUtil;
-import com.yxld.yxchuangxin.Utils.DoubleClickExitHelper;
-import com.yxld.yxchuangxin.Utils.JPushUtil;
 import com.yxld.yxchuangxin.Utils.StringUitl;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
@@ -53,12 +50,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import cn.jpush.android.api.JPushInterface;
-import cn.jpush.android.api.TagAliasCallback;
 
 public class HomeActivity extends BaseActivity {
 
@@ -278,38 +272,7 @@ public class HomeActivity extends BaseActivity {
         return view;
     }
 
-    private android.os.Handler mHandler = new android.os.Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            String alias = Contains.user.getYezhuShouji();
-            JPushInterface.setAlias(HomeActivity.this, alias, tagAliasCallback);
-        }
-    };
 
-    private TagAliasCallback tagAliasCallback = new TagAliasCallback() {
-        @Override
-        public void gotResult(int code, String alias, Set<String> set) {
-            String logs;
-            switch (code) {
-                case 0:
-                    logs = "Set tag and alias success";
-                    KLog.i("极光设置别名成功" + logs);
-                    break;
-                case 6002:
-                    logs = "Failed to set alias and tags due to timeout. Try again after 30s.";
-                    KLog.i("极光设置别名失败" + logs);
-                    if (JPushUtil.isConnected(getApplicationContext())) {
-                        mHandler.sendEmptyMessageDelayed(0, 1000 * 30);
-                    } else {
-                        KLog.i("No network");
-                    }
-                    break;
-                default:
-                    logs = "Failed with errorCode = " + code;
-                    KLog.i("极光设置别名失败,错误码为:" + logs);
-            }
-        }
-    };
 
     private void initALPush() {
         PushServiceFactory.getCloudPushService().addAlias(StringUitl.getDeviceId(this), new CommonCallback() {
