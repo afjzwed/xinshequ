@@ -3,11 +3,8 @@ package com.yxld.yxchuangxin.ui.activity.main;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Message;
-import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -30,7 +27,6 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.socks.library.KLog;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
-import com.yxld.yxchuangxin.HomeService;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.Utils.UIUtils;
@@ -58,11 +54,9 @@ import com.yxld.yxchuangxin.ui.activity.rim.WebViewActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.CarManageActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.MenJinNewActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
 import com.yxld.yxchuangxin.ui.adapter.main.MainMiaoshaAdapter;
 import com.yxld.yxchuangxin.ui.adapter.main.MainShopAdapter;
 import com.yxld.yxchuangxin.ui.adapter.main.WuyeAdapter1;
@@ -359,21 +353,13 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 switch (position) {
                     case 0:
                         //开门
-                        getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
-                        HomeActivity activity = (HomeActivity) getActivity();
-                        //sendMainMessenge(HomeService.MSG_OPEN_DOOR);
-                        Message message = Message.obtain();
-                        message.what = HomeService.MSG_ONE_OPEN_DOOR;
-                        try {
-                            // Log.e(TAG, "发送主消息code1=" + code);
-                            activity.getServiceMessenger().send(message);
-                        } catch (RemoteException e) {
-                            e.printStackTrace();
-                        }
+                        //getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
+                        getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
                         break;
                     case 1:
                         //物业缴费
-                        getActivity().startActivity(new Intent(getActivity(), WuyeMoneyActivity.class));
+                        getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
+                       // getActivity().startActivity(new Intent(getActivity(), WuyeMoneyActivity.class));
                         break;
                     case 2:
                         //物业报修

@@ -16,8 +16,12 @@ import android.util.Log;
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.EvenBusMsg;
 import com.yxld.yxchuangxin.ui.activity.door.InboundActivity;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,6 +47,7 @@ import rtc.sdk.iface.RtcClient;
 
 public class HomeService extends Service {
     private static final String TAG = "HomeService";
+
     public static final int REGISTER_ACTIVITY_HOME = 10001; //MainActivity绑定Service的消息编号
     public static final int REGISTER_ACTIVITY_INBOUND = 10002; //InboundActivity绑定Service的消息编号
     public static final int MSG_OPEN_DOOR = 10003; //开门消息编号
@@ -78,6 +83,7 @@ public class HomeService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        EventBus.getDefault().register(this);
         KLog.i(TAG, "启动HomeService");
         initHandle();
         initRingPlayer();
@@ -114,7 +120,7 @@ public class HomeService extends Service {
                         break;
                     case MSG_ONE_OPEN_DOOR:
                         //开门
-                        openDoor("");
+                        //  openDoor("");
                         break;
                     case MSG_CLOSE_CALL:
                         //挂断
@@ -299,10 +305,11 @@ public class HomeService extends Service {
         }
         JSONObject data = new JSONObject();
         try {
-            data.put("mac", "cc:4b:73:08:5d:e4");
+            String regex = "(.{2})";
+            data.put("mac", call.from.replaceAll(regex, "$1:").substring(0,call.from.replaceAll(regex, "$1:").length()-1));
             data.put("phone", Contains.user.getYezhuShouji());
             data.put("ka_id", "");
-            data.put("kaimenfangshi", "1");
+            data.put("kaimenfangshi", "2");
             if (call.imageUrl != null && call.imageUrl.length() > 0) {
                 data.put("kaimenjietu", call.imageUrl);
             } else {
@@ -329,14 +336,15 @@ public class HomeService extends Service {
 
     protected void openDoor(String str) {
         isOpenDoor = true;
-        String userUrl = RtcRules.UserToRemoteUri_new("cc4b73085de4", RtcConst.UEType_Any);
+        String toUserName = str.replace(":", "");
+        String userUrl = RtcRules.UserToRemoteUri_new(toUserName, RtcConst.UEType_Any);
         if (device == null) return;
         JSONObject data = new JSONObject();
         try {
-            data.put("mac", "cc:4b:73:08:5d:e4");
+            data.put("mac", str);
             data.put("phone", Contains.user.getYezhuShouji());
             data.put("ka_id", "");
-            data.put("kaimenfangshi", "1");
+            data.put("kaimenfangshi", "2");
             data.put("kaimenjietu", "");
             data.put("kaimenshijian", System.currentTimeMillis());
             data.put("uuid", Contains.uuid);
@@ -708,6 +716,13 @@ public class HomeService extends Service {
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void receiveMessage(EvenBusMsg event) {
+        KLog.i("收到EvenBusMsg" + event.toString());
+        if ("HomeService".equals(event.getRecode())) {
+            openDoor(event.getResult());
+        }
+    }
 
     @Nullable
     @Override
@@ -718,6 +733,7 @@ public class HomeService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
         KLog.i("HomeService", "onDestroy()");
         // closeCallingConnection();
         if (device != null) {

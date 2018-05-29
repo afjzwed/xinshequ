@@ -14,12 +14,12 @@ public interface API {
 //    String Periphery = "http://pay.iot.xin/cxwy_consumer_terminal";
 
 
-//    String IP_PRODUCT = "http://192.168.8.121:8080/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.121:8080/wygl/";
+    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
+    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
     //    String IP_PRODUCT = "http://pay.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://pay.iot.xin/";
-    String IP_PRODUCT = "http://wy.iot.xin";
-    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+//    String IP_PRODUCT = "http://wy.iot.xin";
+//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
 //    String IP_PRODUCT = "http://120.25.73.87";
@@ -264,7 +264,15 @@ public interface API {
      * 获取业主开门二维码   /业主姓名/业主电话/业主角色/楼盘ID/楼栋/单元120.25.78.92   0221 校验
      */
     String URL_GET_YEZHUOPENCODE = "door/androidDoor_getYezhuCodes";
+    /**
+     * 获取门禁列表
+     */
+    String URL_GET_MENJINLIST = "http://192.168.8.132:80/xdoor/device/getXdoorApp";
 
+    /**
+     * 获取门禁访客密码
+     */
+    String URL_POST_MENJINMIMA = "http://192.168.8.132:80/xdoor/device/appShare";
     /**
      * 获取业主访客二维码  coed/getcodes/{bName}/{bPhone}/{bRole}/{name}/{phone}/{role}/{building}/{buildingHouse}/{buildingUnit}
      * 0221 校验

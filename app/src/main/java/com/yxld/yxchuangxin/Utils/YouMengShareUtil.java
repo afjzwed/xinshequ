@@ -2,10 +2,12 @@ package com.yxld.yxchuangxin.Utils;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.bean.SocializeConfig;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.media.QQShareContent;
@@ -48,9 +50,9 @@ public class YouMengShareUtil {
 		// 配置需要分享的相关平台
 		configPlatforms();
 		// 设置分享的内容
-		setShareContent(shareInfo.Title, shareInfo.ShareCon, shareInfo.ImgUrl,shareInfo.bitmap
+		setShareContent1(shareInfo.Title, shareInfo.ShareCon, shareInfo.ImgUrl,shareInfo.bitmap
 		,shareInfo.getQQImgUrl());
-
+		mController.setConfig(SocializeConfig.getSocializeConfig());
 		mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.QQ, SHARE_MEDIA.SMS);
 		mController.openShare(mActivity, false);
 	}
@@ -101,6 +103,54 @@ public class YouMengShareUtil {
 		mController.setShareContent("分享地址为"+url);
 	}
 
+	/**
+	 * 根据不同的平台设置不同的分享内容</br>
+	 */
+	public void setShareContent1(String title, String content, String url, Bitmap bitmap,String qqurl) {
+		UMImage urlBitMap = null;
+		if (null != bitmap) {
+			urlBitMap = new UMImage(mActivity, bitmap);
+		}
+
+		//微信分享内容
+		WeiXinShareContent weixinContent = new WeiXinShareContent();
+		if (!TextUtils.isEmpty(title)) {
+			weixinContent.setTitle(title);
+		}
+		if (!TextUtils.isEmpty(url)) {
+			weixinContent.setTargetUrl(url);
+		}
+		if (null != bitmap&&null!=urlBitMap) {
+			weixinContent.setShareImage(urlBitMap);
+		}
+		if (!TextUtils.isEmpty(content)) {
+			weixinContent.setShareContent(content);
+		}
+		mController.setShareMedia(weixinContent);
+
+		//QQ分享内容
+		QQShareContent qqShareContent = new QQShareContent();
+		if (!TextUtils.isEmpty(content)) {
+			qqShareContent.setShareContent(content);
+		}
+		if (!TextUtils.isEmpty(title)) {
+			qqShareContent.setTitle(title);
+		}
+		if (null != bitmap&&null!=urlBitMap) {
+			qqShareContent.setShareImage(urlBitMap);
+		}
+		if (!TextUtils.isEmpty(qqurl)) {
+			qqShareContent.setTargetUrl(qqurl);
+		}
+		mController.setShareMedia(qqShareContent);
+
+		//短信分享内容
+		SmsShareContent smsShareContent = new SmsShareContent();
+		smsShareContent.setShareContent("分享地址为"+url);
+
+		// 设置分享内容
+		mController.setShareContent("分享地址为"+url);
+	}
 	/**
 	 * @功能描述 : 添加微信平台分享
 	 * @return

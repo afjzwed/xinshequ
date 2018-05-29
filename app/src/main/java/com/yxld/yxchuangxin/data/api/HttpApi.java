@@ -33,6 +33,7 @@ import com.yxld.yxchuangxin.entity.CxwyMallProduct;
 import com.yxld.yxchuangxin.entity.CxwyMessage;
 import com.yxld.yxchuangxin.entity.CxwyOrderInfo;
 import com.yxld.yxchuangxin.entity.CxwyProductInfo;
+import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.entity.FangquEntity;
 import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
@@ -288,6 +289,13 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_GET_YEZHUOPENCODE)
     Observable<OpenDoorCode> getQRCode(@FieldMap Map<String, RequestBody> params);
+
+    @GET(URL_GET_MENJINLIST)
+    Observable<DoorInfo> getDoorList(@QueryMap Map<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST(URL_POST_MENJINMIMA)
+    Observable<DoorInfo> getDoorMima(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_GET_FANGKEOPENCODE)

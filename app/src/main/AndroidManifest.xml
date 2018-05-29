@@ -199,6 +199,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.activity.wuye.MenJinNewActivity"
+            android:label="门禁管理"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.wuye.AboutOurActivity"
             android:label="关于我们"
             android:screenOrientation="portrait">

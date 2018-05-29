@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="32px"
+    android:background="@color/white"
+    android:padding="32px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="门禁名字： "/>
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大门"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="32px">
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="门禁类型： "/>
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:id="@+id/tv_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大门"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="32px">
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="离线密码： "/>
+
+            <TextView
+                android:textColor="@color/color_323232"
+                android:id="@+id/tv_mima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="大门"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:id="@+id/tv_open"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/circle_blue"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="开门"/>
+</com.zhy.autolayout.AutoRelativeLayout>

@@ -35,6 +35,7 @@ import com.yxld.yxchuangxin.entity.CxwyMallProduct;
 import com.yxld.yxchuangxin.entity.CxwyMessage;
 import com.yxld.yxchuangxin.entity.CxwyOrderInfo;
 import com.yxld.yxchuangxin.entity.CxwyProductInfo;
+import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.entity.FangquEntity;
 import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
@@ -167,7 +168,12 @@ public class HttpAPIWrapper {
     public Observable<OpenDoorCode> getQRCode(Map data) {
         return wrapper(mHttpAPI.getQRCode(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }
-
+    public Observable<DoorInfo> getDoorList(Map data) {
+        return wrapper(mHttpAPI.getDoorList(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<DoorInfo> getDoorMima(Map data) {
+        return wrapper(mHttpAPI.getDoorMima(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
     public Observable<OpenDoorCode> getVisitorQRCode(Map data) {
         return wrapper(mHttpAPI.getVisitorQRCode(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }

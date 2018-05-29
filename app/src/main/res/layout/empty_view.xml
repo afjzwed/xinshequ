@@ -11,6 +11,7 @@
         android:src="@mipmap/icon_empty"/>
 
     <TextView
+        android:id="@+id/tv_empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

@@ -147,6 +147,9 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
         KLog.i("onDestroy");
         unbindService(connection);
         isStop=true;
+        if (instance!=null){
+            instance=null;
+        }
 
     }
 
@@ -173,8 +176,8 @@ public class InboundActivity extends BaseActivity implements InboundContract.Vie
                     String imageUrl = (String) msg.obj;
                     // setImageView(imageUrl);
                     KLog.i(TAG, API.PIC+ imageUrl);
-                    Glide.with(InboundActivity.this).load("http://p8i51cxnv.bkt.clouddn.com/"+ imageUrl).into(guestImage);
-                    Glide.with(InboundActivity.this).load("http://p8i51cxnv.bkt.clouddn.com/"+ imageUrl).into(voiceImage);
+                    Glide.with(InboundActivity.this).load(API.PIC+ imageUrl).into(guestImage);
+                    Glide.with(InboundActivity.this).load(API.PIC+ imageUrl).into(voiceImage);
                 }
             }
         };

@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+<com.zhy.autolayout.AutoLinearLayout
+    android:layout_marginTop="32px"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:text="当前小区"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/tv1"
+            android:text="中远公馆1栋1单元"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <View
+            style="@style/line"
+            android:layout_alignParentBottom="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        >
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:text="访客姓名"
+            android:textColor="@color/color_323232"
+
+            android:textSize="40px"/>
+        <ImageView
+            android:id="@+id/contact"
+            android:layout_width="70px"
+            android:layout_height="70px"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="40px"
+            android:background="@mipmap/mjgl_dfb"
+            />
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv2"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/tv2"
+            android:background="@null"
+            android:hint="请输入分享人姓名"
+            android:inputType="text"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"/>
+
+        <View
+            style="@style/line"
+            android:layout_alignParentBottom="true"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:text="联系方式"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <EditText
+            android:id="@+id/et_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/tv3"
+            android:background="@null"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyz_"
+            android:hint="请输入分享人电话"
+            android:inputType="number"
+            android:maxLength="16"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+
+
+        <View
+            style="@style/line"
+            android:layout_alignParentBottom="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/relativelayout4"
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:text="选择门禁"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <TextView
+            android:id="@+id/tv_door"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/tv4"
+            android:hint="请选择分享的门禁"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+        <ImageView
+            android:id="@+id/img_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="50px"
+            android:background="@mipmap/arrow_bottom"
+            />
+
+        <View
+            style="@style/line"
+            android:layout_alignParentBottom="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/relativelayout5"
+        android:layout_width="match_parent"
+        android:layout_height="150px">
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:text="车 牌 号 "
+
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+        <TextView
+            android:id="@+id/tv_car_number_take"
+            android:layout_width="150px"
+            android:layout_height="70px"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv5"
+            android:gravity="center"
+            android:paddingRight="20px"
+            android:text="湘 A"
+            android:textSize="40px"
+            android:textColor="@color/white"
+            android:background="@mipmap/car_nuber"/>
+        <EditText
+            android:id="@+id/et_chepai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50px"
+            android:layout_toRightOf="@+id/tv_car_number_take"
+            android:background="@null"
+            android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="请输入（字母大写）"
+            android:inputType="number"
+            android:maxLength="16"
+            android:textColor="@color/color_323232"
+            android:textSize="40px"
+            />
+
+
+
+
+        <View
+            style="@style/line"
+            android:layout_alignParentBottom="true"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoLinearLayout>
+    <TextView
+        android:id="@+id/tv_new_erweima"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_marginLeft="40px"
+        android:text="分享"
+        android:gravity="center"
+        android:layout_marginRight="40px"
+        android:textColor="@color/white"
+        android:textSize="40px"
+        android:background="@drawable/color_main"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="58px"
+        />
+</com.zhy.autolayout.AutoRelativeLayout>
