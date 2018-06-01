@@ -358,8 +358,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                         break;
                     case 1:
                         //物业缴费
-                        getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
-                       // getActivity().startActivity(new Intent(getActivity(), WuyeMoneyActivity.class));
+//                        getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
+                        getActivity().startActivity(new Intent(getActivity(), WuyeMoneyActivity.class));
                         break;
                     case 2:
                         //物业报修

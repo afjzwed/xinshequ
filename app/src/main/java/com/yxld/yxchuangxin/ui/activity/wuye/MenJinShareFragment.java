@@ -34,6 +34,7 @@ import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
+import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.entity.ShareInfo;
 import com.yxld.yxchuangxin.ui.activity.wuye.component.DaggerMenJinShareComponent;
@@ -59,6 +60,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.content.Context.INPUT_METHOD_SERVICE;
 
 /**
  * @author xlei
@@ -139,6 +142,34 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
 
     }
 
+    //    @Override
+//    public void onPause() {
+//        super.onPause();
+//    KLog.e("onPause-----------------");
+//        ((InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow
+// (getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+//        InputMethodManager inputmanger = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+//        inputmanger.hideSoftInputFromWindow(etNumber.getWindowToken(), 0);
+//    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        KLog.e("setUserVisibleHint-----------------" + isVisibleToUser);
+        if (isVisibleToUser) {
+            // 相当于onResume()方法
+        } else {
+            //切换fragment 隐藏软键盘
+            if (etName!=null) {
+                InputMethodManager imm = (InputMethodManager) etName.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                if (imm.isActive()) {
+                    imm.hideSoftInputFromWindow(etName.getApplicationWindowToken(), 0);
+                }
+            }
+
+        }
+    }
+
     private void initShare() {
         shareInfo.setTitle("门禁临时密码");
         shareInfo.setBitmap(BitmapFactory.decodeResource(getResources(), R.mipmap.login_icon_bg));
@@ -204,13 +235,13 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
         mOptionsPickerView = new OptionsPickerBuilder(getActivity(), new OnOptionsSelectListener() {
             @Override
             public void onOptionsSelect(int options1, int options2, int options3, View v) {
-                mTvCarNumber.setText(options1Items.get(options1)+options2Items.get(options2));
+                mTvCarNumber.setText(options1Items.get(options1) + options2Items.get(options2));
             }
         })
                 // .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
 //                .isCenterLabel(false)//是否只显示中间选中项的label文字，false则每项item全部都带有label。
                 .build();
-        mOptionsPickerView.setNPicker(options1Items, options2Items,null);
+        mOptionsPickerView.setNPicker(options1Items, options2Items, null);
         mOptionsPickerView.show();
 
 
@@ -229,11 +260,13 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
     }
 
     @Override
-    public void setDoorMima(DoorInfo baseEntity) {
+    public void setDoorMima(BaseBack2 baseEntity) {
         if ("0".equals(baseEntity.getCode())) {
-            YouMengShareUtil mengShareUtil = new YouMengShareUtil(getActivity());
-            shareInfo.setShareCon(shareCon);
-            mengShareUtil.addCustomPlatforms(shareInfo);
+            if (StringUitl.isNoEmpty(baseEntity.getData())) {
+                YouMengShareUtil mengShareUtil = new YouMengShareUtil(getActivity());
+                shareInfo.setShareCon(shareCon + baseEntity.getData());
+                mengShareUtil.addCustomPlatforms(shareInfo);
+            }
         } else {
             onError(baseEntity.getMsg());
         }
@@ -264,7 +297,7 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
     }
 
     private void showWheelView(View showView, final int flag) {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(showView.getWindowToken(), 0);
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.picker_xiangmu, null);
         AutoLinearLayout ll_content = (AutoLinearLayout) view.findViewById(R.id.ll_content);
@@ -300,9 +333,8 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
             case 0:
                 mTvDoor.setText(mDoorInfoBeen.get(position).getName());
                 mac = mDoorInfoBeen.get(position).getMac();
-                tempPassword = mDoorInfoBeen.get(position).getTempPassword();
                 shareCon = mDoorInfoBeen.get(position).getName() + ("0".equals(mDoorInfoBeen.get(position).getType())
-                        ? "大门" : "单元门") + "临时密码" + tempPassword;
+                        ? "大门" : "单元门") + "临时密码";
                 break;
             default:
                 break;

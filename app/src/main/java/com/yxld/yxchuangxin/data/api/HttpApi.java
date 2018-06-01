@@ -12,6 +12,7 @@ import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 import com.yxld.yxchuangxin.entity.BaoJingEntity;
 import com.yxld.yxchuangxin.entity.BaseBack;
 import com.yxld.yxchuangxin.entity.BaseBack1;
+import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.BuCheFang;
 import com.yxld.yxchuangxin.entity.CarJiaofeiRecord;
 import com.yxld.yxchuangxin.entity.CarList;
@@ -295,7 +296,7 @@ public interface HttpApi {
 
     @FormUrlEncoded
     @POST(URL_POST_MENJINMIMA)
-    Observable<DoorInfo> getDoorMima(@FieldMap Map<String, RequestBody> params);
+    Observable<BaseBack2> getDoorMima(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_GET_FANGKEOPENCODE)

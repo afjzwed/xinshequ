@@ -293,6 +293,7 @@ public class HomeService extends Service {
      * 开门
      */
     protected void openDoor() {
+        isOpenDoor = true;
         KLog.i("开门  openDoor()");
         lastOpenedCallUuid = call.imageUuid;
         stopRing();
@@ -344,7 +345,7 @@ public class HomeService extends Service {
             data.put("mac", str);
             data.put("phone", Contains.user.getYezhuShouji());
             data.put("ka_id", "");
-            data.put("kaimenfangshi", "2");
+            data.put("kaimenfangshi", "1");
             data.put("kaimenjietu", "");
             data.put("kaimenshijian", System.currentTimeMillis());
             data.put("uuid", Contains.uuid);
@@ -547,7 +548,7 @@ public class HomeService extends Service {
      * 关闭 接受视频页面
      */
     protected void stopInboundActivity() {
-        KLog.i(TAG, "stopInboundActivity");
+        KLog.i(TAG, "stopInboundActivity InboundActivity.instance"+InboundActivity.instance==null?"为空":"不为空");
         if (InboundActivity.instance != null) {
             InboundActivity.instance.finish();
             InboundActivity.instance = null;

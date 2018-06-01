@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.wuye.contract;
 import android.content.Intent;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
@@ -29,7 +30,7 @@ public interface MenJinShareContract {
 
         void setOnResult(String name, String number);
 
-        void setDoorMima(DoorInfo baseEntity);
+        void setDoorMima(BaseBack2 baseEntity);
 
         void setDoorList(DoorInfo baseEntity);
     }

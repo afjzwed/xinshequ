@@ -14,6 +14,7 @@ import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 import com.yxld.yxchuangxin.entity.BaoJingEntity;
 import com.yxld.yxchuangxin.entity.BaseBack;
 import com.yxld.yxchuangxin.entity.BaseBack1;
+import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.BuCheFang;
 import com.yxld.yxchuangxin.entity.CarJiaofeiRecord;
 import com.yxld.yxchuangxin.entity.CarList;
@@ -171,7 +172,7 @@ public class HttpAPIWrapper {
     public Observable<DoorInfo> getDoorList(Map data) {
         return wrapper(mHttpAPI.getDoorList(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }
-    public Observable<DoorInfo> getDoorMima(Map data) {
+    public Observable<BaseBack2> getDoorMima(Map data) {
         return wrapper(mHttpAPI.getDoorMima(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }
     public Observable<OpenDoorCode> getVisitorQRCode(Map data) {

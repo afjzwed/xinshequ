@@ -9,6 +9,7 @@ import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.ui.activity.wuye.contract.MenJinShareContract;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinShareFragment;
@@ -103,9 +104,9 @@ public class MenJinSharePresenter implements MenJinShareContract.MenJinShareCont
 
     @Override
     public void getDoorMima(Map<String, String> map) {
-        Disposable disposable = httpAPIWrapper.getDoorMima(map).subscribe(new Consumer<DoorInfo>() {
+        Disposable disposable = httpAPIWrapper.getDoorMima(map).subscribe(new Consumer<BaseBack2>() {
             @Override
-            public void accept(DoorInfo user) throws Exception {
+            public void accept(BaseBack2 user) throws Exception {
                 //isSuccesse
                 mView.setDoorMima(user);
                 //mView.closeProgressDialog();

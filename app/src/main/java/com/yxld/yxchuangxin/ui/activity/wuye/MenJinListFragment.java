@@ -15,7 +15,10 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.yhy.gvp.utils.ToastUtils;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.TimeUtil;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.entity.DoorInfo;
@@ -24,6 +27,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.component.DaggerMenJinListComponent
 import com.yxld.yxchuangxin.ui.activity.wuye.contract.MenJinListContract;
 import com.yxld.yxchuangxin.ui.activity.wuye.module.MenJinListModule;
 import com.yxld.yxchuangxin.ui.activity.wuye.presenter.MenJinListPresenter;
+import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.utils.StringUtils;
 import com.yxld.yxchuangxin.ui.adapter.wuye.MenJinListAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -83,8 +87,12 @@ public class MenJinListFragment extends BaseFragment implements MenJinListContra
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                EvenBusMsg evenBusMsg = new EvenBusMsg("HomeService", mList.get(i).getMac(), "opendoor");
-                EventBus.getDefault().post(evenBusMsg);
+                if (TimeUtil.isFastClick()) {
+                    EvenBusMsg evenBusMsg = new EvenBusMsg("HomeService", mList.get(i).getMac(), "opendoor");
+                    EventBus.getDefault().post(evenBusMsg);
+                } else {
+                    ToastUtil.showShort("点击频率过快");
+                }
             }
         });
         mTextView.setText("暂无数据");
