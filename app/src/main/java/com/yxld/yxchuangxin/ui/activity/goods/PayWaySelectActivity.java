@@ -137,7 +137,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
             //表示从扫码支付进来 不需要提示 15分钟未支付取消的提醒显示
             mTvShuoming.setVisibility(View.INVISIBLE);
         }
-        KLog.i("订单数据: orderId" + orderId + ",orderMoney+" + orderMoney + ",orderShop+" + orderShop + ",orderBianhao+" + orderBianhao + ",orderDetails" + orderDetails);
+        KLog.i("订单数据: orderId" + orderId + ",orderMoney+" + orderMoney + ",orderShop+" + orderShop + ",orderBianhao+"
+                + orderBianhao + ",orderDetails" + orderDetails);
         //设置金额
         if (StringUitl.isNoEmpty(orderMoney)) {
             money.setText("¥" + StringUitl.get2xiaoshu(Double.parseDouble(orderMoney)));
@@ -231,12 +232,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
 
     @Override
     protected void setupActivityComponent() {
-        DaggerPayWaySelectComponent
-                .builder()
-                .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-                .payWaySelectModule(new PayWaySelectModule(this))
-                .build()
-                .inject(this);
+        DaggerPayWaySelectComponent.builder().appComponent(((AppConfig) getApplication()).getApplicationComponent())
+                .payWaySelectModule(new PayWaySelectModule(this)).build().inject(this);
     }
 
     @Override
@@ -318,8 +315,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
     protected void onResume() {
         super.onResume();
         if (PayContain.weixinPayResult != null && PayContain.weixinPayResult == PayContain.WEI_XIN_CHECKED &&
-                PayContain.payResult != null && PayContain.payResult == PayContain.PAY_SUCCESS
-                && PayContain.requestPayModule != null && PayContain.requestPayModule == PayContain.MODULE_MALL_ORDER) {
+                PayContain.payResult != null && PayContain.payResult == PayContain.PAY_SUCCESS && PayContain
+                .requestPayModule != null && PayContain.requestPayModule == PayContain.MODULE_MALL_ORDER) {
             jumpOrderListView();
             KLog.i("onResume 支付成功");
         }
@@ -364,12 +361,14 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
                         // 构造PayTask 对象
                         PayTask alipay = new PayTask(PayWaySelectActivity.this);
                         // 调用支付接口，获取支付结果
-                        String result = alipay.pay(payInfo, true);
+                        if (StringUitl.isNoEmpty(payInfo)) {
+                            String result = alipay.pay(payInfo, true);
 
-                        Message msg = new Message();
-                        msg.what = SDK_PAY_FLAG;
-                        msg.obj = result;
-                        mHandler.sendMessage(msg);
+                            Message msg = new Message();
+                            msg.what = SDK_PAY_FLAG;
+                            msg.obj = result;
+                            mHandler.sendMessage(msg);
+                        }
                     }
                 };
 
@@ -385,7 +384,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
     public void weixinPay() {
         boolean wx = CxUtil.isWeixinAvilible(PayWaySelectActivity.this);
         if (!wx) {
-            Toast.makeText(PayWaySelectActivity.this, getResources().getString(R.string.weixin_no_install), Toast.LENGTH_SHORT).show();
+            Toast.makeText(PayWaySelectActivity.this, getResources().getString(R.string.weixin_no_install), Toast
+                    .LENGTH_SHORT).show();
         } else {
             PayContain.weixinPayResult = PayContain.WEI_XIN_CHECKED;
             new CreateOrderThread().start();
@@ -404,8 +404,11 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
 //        intent.setClass(PayWaySelectActivity.this, WebViewActivity.class);
 //        Bundle ylzf = new Bundle();
 //        //Todo 多了一个斜杠？
-//        String str = yuming_api + "/CHINAPAY_DEMO/signServlet.do?BusiType=0001&Version=20140728&CommodityMsg=wwxtest&MerPageUrl=" + yuming_api + "/CHINAPAY_DEMO/pgReturn.do&MerBgUrl=" + yuming_api + "/CHINAPAY_DEMO/bgReturn.do&MerId=531121608230001&" +
-//                "MerOrderNo=" + orderBianhao + "&OrderAmt=" + money + "&TranDate=" + StringUitl.getNowDateShort() + "&TranTime=" + StringUitl.getTimeShort() + "&MerResv=1";
+//        String str = yuming_api + "/CHINAPAY_DEMO/signServlet
+// .do?BusiType=0001&Version=20140728&CommodityMsg=wwxtest&MerPageUrl=" + yuming_api + "/CHINAPAY_DEMO/pgReturn
+// .do&MerBgUrl=" + yuming_api + "/CHINAPAY_DEMO/bgReturn.do&MerId=531121608230001&" +
+//                "MerOrderNo=" + orderBianhao + "&OrderAmt=" + money + "&TranDate=" + StringUitl.getNowDateShort() +
+// "&TranTime=" + StringUitl.getTimeShort() + "&MerResv=1";
 //        ylzf.putString("name", "银联支付");
 //        ylzf.putString("address", str);
 ////        KLog.i("YinLian",str);
@@ -463,8 +466,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
     }
 
     public boolean isPaySucceed() {
-        return (PayContain.payResult != null && PayContain.payResult == PayContain.PAY_SUCCESS
-                && PayContain.requestPayModule != null && PayContain.requestPayModule == PayContain.MODULE_MALL_ORDER);
+        return (PayContain.payResult != null && PayContain.payResult == PayContain.PAY_SUCCESS && PayContain
+                .requestPayModule != null && PayContain.requestPayModule == PayContain.MODULE_MALL_ORDER);
     }
 
     //微信支付
@@ -511,7 +514,8 @@ public class PayWaySelectActivity extends BaseActivity implements PayWaySelectCo
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(PayWaySelectActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                         Log.d("geek", "支付成功result" + payResult.getResult());
-//                        if (PayContain.requestPayModule != null && PayContain.requestPayModule == PayContain.MODULE_MALL_ORDER) {
+//                        if (PayContain.requestPayModule != null && PayContain.requestPayModule == PayContain
+// .MODULE_MALL_ORDER) {
 //                            /** 用于请求参数 */
 //                            Map<String, String> map = new HashMap<String, String>();
 //                            map.put("ord.dingdanId", orderId);

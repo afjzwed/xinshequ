@@ -407,8 +407,10 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                     list.add(rows.get(i));
                 }
             } else {
-                for (int i = 0; i < rows.size(); i++) {
-                    list.add(rows.get(i));
+                if (rows.size() > 0) {
+                    for (int i = 0; i < rows.size(); i++) {
+                        list.add(rows.get(i));
+                    }
                 }
             }
             mainShopAdapter.setNewData(list);

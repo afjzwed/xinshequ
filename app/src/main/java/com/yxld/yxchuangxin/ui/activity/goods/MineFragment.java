@@ -85,7 +85,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mine, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
@@ -119,12 +120,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
 
     @Override
     protected void setupFragmentComponent() {
-        DaggerMineComponent
-                .builder()
-                .appComponent(((AppConfig) getActivity().getApplication()).getApplicationComponent())
-                .mineModule(new MineModule(this))
-                .build()
-                .inject(this);
+        DaggerMineComponent.builder().appComponent(((AppConfig) getActivity().getApplication())
+                .getApplicationComponent()).mineModule(new MineModule(this)).build().inject(this);
     }
 
     @Override
@@ -142,7 +139,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
 
     @Override
     protected void initDataFromLocal() {
-        AutoLinearLayout.LayoutParams settingParams = new AutoLinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, AutoLinearLayout.LayoutParams.WRAP_CONTENT);
+        AutoLinearLayout.LayoutParams settingParams = new AutoLinearLayout.LayoutParams(ViewGroup.LayoutParams
+                .MATCH_PARENT, AutoLinearLayout.LayoutParams.WRAP_CONTENT);
         MineSettingView settingView = null;
         for (int i = 0; i < 4; i++) {
             settingView = new MineSettingView(getContext());
@@ -208,8 +206,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
         mPresenter = null;
     }
 
-    @OnClick({R.id.mine_order_waiting_pay, R.id.mine_order_waiting_send, R.id.mine_order_waiting_receive,
-            R.id.mine_order_waiting_comment, R.id.mine_order_refund, R.id.rl_mine_order_check_all})
+    @OnClick({R.id.mine_order_waiting_pay, R.id.mine_order_waiting_send, R.id.mine_order_waiting_receive, R.id
+            .mine_order_waiting_comment, R.id.mine_order_refund, R.id.rl_mine_order_check_all})
     public void onViewClicked(View view) {
         int item = 0;
         switch (view.getId()) {
@@ -236,7 +234,8 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
             case R.id.rl_mine_order_check_all:
                 //查看详情
                 break;
-            default:break;
+            default:
+                break;
         }
         Intent intent = new Intent(getContext(), OrderListActivity.class);
         intent.putExtra(OrderListActivity.ITEM, item);
@@ -313,13 +312,17 @@ public class MineFragment extends BaseFragment implements MineContract.View, Swi
     @Override
     public void showProgressDialog() {
 //        progressDialog.show();
-        swipeLayouts.setRefreshing(true);
+        if (swipeLayouts != null) {
+            swipeLayouts.setRefreshing(true);
+        }
     }
 
     @Override
     public void closeProgressDialog() {
 //        progressDialog.hide();
-        swipeLayouts.setRefreshing(false);
+        if (swipeLayouts != null) {
+            swipeLayouts.setRefreshing(false);
+        }
     }
 
     @Override
