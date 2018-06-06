@@ -310,7 +310,7 @@ public class HomeService extends Service {
             data.put("mac", call.from.replaceAll(regex, "$1:").substring(0,call.from.replaceAll(regex, "$1:").length()-1));
             data.put("phone", Contains.user.getYezhuShouji());
             data.put("ka_id", "");
-            data.put("kaimenfangshi", "2");
+            data.put("kaimenfangshi", 2);
             if (call.imageUrl != null && call.imageUrl.length() > 0) {
                 data.put("kaimenjietu", call.imageUrl);
             } else {
@@ -345,7 +345,7 @@ public class HomeService extends Service {
             data.put("mac", str);
             data.put("phone", Contains.user.getYezhuShouji());
             data.put("ka_id", "");
-            data.put("kaimenfangshi", "1");
+            data.put("kaimenfangshi", 1);
             data.put("kaimenjietu", "");
             data.put("kaimenshijian", System.currentTimeMillis());
             data.put("uuid", Contains.uuid);

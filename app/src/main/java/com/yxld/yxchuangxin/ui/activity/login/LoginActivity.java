@@ -520,11 +520,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             return;
         }
         if (info.getMSG().equals("登录成功")) {
-            if (!sp.getString("NAME", "").equals(userNameValue) || sp.getInt("xiangmuId", 0) != xiangmuId) {
-                // TODO: 2017/12/27   如果账号不等于当前的账号或者项目  清空外埠商城的购物车
-                DbRimUtil.getInstans().deleteAll();
-                KLog.i("清空外埠商城购物车成功");
-            }
             mExplosionField.explode(loginSubmit);
             loginSubmit.setOnClickListener(null);
             Contains.uuid = info.getUuid();
@@ -595,7 +590,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                             UserInfo user = users.get(j);
                             user.setPassword(passwordValue);
                             if (user.getLouPan() == null) {
-                                user.setLouPan(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
+                                user.setLouPan(Contains.curSelectXiaoQuName);
                             }
                             user.setIsLogin(true);
                             userInfoDao.update(user);
@@ -612,7 +607,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         KLog.i("添加一条、、、、");
         KLog.i(users.size());
         KLog.i(userNameValue);
-        KLog.i(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
+        KLog.i(Contains.curSelectXiaoQuName);
         KLog.i(passwordValue);
         KLog.i(xiangmuId);
 //        Log.e("wh", "userNameValue" + userNameValue + " louPan" + louPan + " passwordValue" +
@@ -626,7 +621,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         }
         try {
-            UserInfo userInfo = new UserInfo(null, userNameValue, true, Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan(), passwordValue, xiangmuId);
+            UserInfo userInfo = new UserInfo(null, userNameValue, true,Contains.curSelectXiaoQuName, passwordValue, xiangmuId);
             userInfoDao.insert(userInfo);
         } catch (Exception e) {
             e.printStackTrace();

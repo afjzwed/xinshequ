@@ -168,7 +168,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         View view = inflater.inflate(R.layout.activity_main, null);
         ButterKnife.bind(this, view);
         toolbar.setLogo(R.mipmap.main_navigation_left);
-        toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
+        toolbar.setTitle(Contains.curSelectXiaoQuName);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
         AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(getActivity
@@ -270,8 +270,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
     public void reLogin(String relogin) {
         if (relogin.equals("reLogin")) {
             initData();
-            toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
-            KLog.i("toolbar重新设置标题" + Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
+            toolbar.setTitle(Contains.curSelectXiaoQuName);
+            KLog.i("toolbar重新设置标题" +Contains.curSelectXiaoQuName);
         }
     }
 
@@ -333,8 +333,6 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
     }
 
     protected void initView() {
-        toolbar.setLogo(R.mipmap.main_navigation_left);
-        toolbar.setTitle(Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());
         mScrollView.setTransView(toolbar, getResources().getColor(R.color.main_color), UIUtils.dip2px(50), UIUtils
                 .dip2px(100));
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
