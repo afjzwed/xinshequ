@@ -5,9 +5,12 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="32px"
     android:background="@color/white"
-    android:padding="32px">
+    android:paddingTop="32px"
+    android:paddingLeft="32px"
+    android:paddingRight="32px">
 
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/autoLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -18,17 +21,17 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="门禁名字： "/>
+                android:text="门禁名字： "
+                android:textColor="@color/color_323232"/>
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="大门"/>
+                android:text="大门"
+                android:textColor="@color/color_323232"/>
 
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -39,17 +42,17 @@
             android:paddingTop="32px">
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="门禁类型： "/>
+                android:text="门禁类型： "
+                android:textColor="@color/color_323232"/>
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:id="@+id/tv_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="大门"/>
+                android:text="大门"
+                android:textColor="@color/color_323232"/>
 
         </com.zhy.autolayout.AutoLinearLayout>
 
@@ -60,17 +63,17 @@
             android:paddingTop="32px">
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="离线密码： "/>
+                android:text="离线密码： "
+                android:textColor="@color/color_323232"/>
 
             <TextView
-                android:textColor="@color/color_323232"
                 android:id="@+id/tv_mima"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="大门"/>
+                android:text="大门"
+                android:textColor="@color/color_323232"/>
 
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
@@ -79,10 +82,29 @@
         android:id="@+id/tv_open"
         android:layout_width="45dp"
         android:layout_height="45dp"
-        android:gravity="center"
-        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="11dp"
         android:background="@drawable/circle_blue"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="开门"/>
+        android:gravity="center"
+        android:text="开门"
+        android:textColor="@color/white"/>
+
+    <View
+        style="@style/line"
+        android:id="@+id/line"
+        android:layout_below="@+id/autoLinearLayout"
+        android:layout_marginTop="20px"
+  />
+
+    <ImageView
+        android:id="@+id/img_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/line"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/share_camera"
+        android:paddingTop="10px"
+        android:paddingBottom="10px"
+        />
 </com.zhy.autolayout.AutoRelativeLayout>

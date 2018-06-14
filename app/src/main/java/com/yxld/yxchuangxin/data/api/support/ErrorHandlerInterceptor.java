@@ -4,6 +4,7 @@ package com.yxld.yxchuangxin.data.api.support;
  * Created by hu on 2016/11/11.
  */
 
+import com.orhanobut.logger.*;
 import com.socks.library.KLog;
 
 import java.io.EOFException;
@@ -70,7 +71,7 @@ public class ErrorHandlerInterceptor implements Interceptor {
                 //do something .... <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 String result = buffer.clone().readString(charset);
                 KLog.i("拦截到的okhttp结果:" + result);
-                KLog.e("拦截到的okhttp结果:" + result);
+//                KLog.e("拦截到的okhttp结果:" + result);
                 com.orhanobut.logger.Logger.json(result);
                 result = "{\"data\": " + result + "}";
 //                KLog.json(result);

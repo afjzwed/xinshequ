@@ -25,5 +25,6 @@ public class MenJinListAdapter extends BaseQuickAdapter<DoorInfo.DoorInfoBean, B
         viewHolder.setText(R.id.tv_type, s.getType().equals("0") ? "大门" : "单元门");
         viewHolder.setText(R.id.tv_mima, s.getLixian_mima());
         viewHolder.addOnClickListener(R.id.tv_open);
+        viewHolder.addOnClickListener(R.id.img_share);
     }
 }

@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.wuye;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -87,11 +88,20 @@ public class MenJinListFragment extends BaseFragment implements MenJinListContra
         mAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                if (TimeUtil.isFastClick()) {
-                    EvenBusMsg evenBusMsg = new EvenBusMsg("HomeService", mList.get(i).getMac(), "opendoor");
-                    EventBus.getDefault().post(evenBusMsg);
-                } else {
-                    ToastUtil.showShort("点击频率过快");
+                if (view.getId() == R.id.tv_open) {
+                    if (TimeUtil.isFastClick()) {
+                        EvenBusMsg evenBusMsg = new EvenBusMsg("HomeService", mList.get(i).getMac(), "opendoor");
+                        EventBus.getDefault().post(evenBusMsg);
+                    } else {
+                        ToastUtil.showShort("点击频率过快");
+                    }
+                } else if (view.getId() == R.id.img_share) {
+                    Intent intent = new Intent(getActivity(), MenJinShareMemberActivity.class);
+                    intent.putExtra("gsid", mList.get(i).getGongsi_id()+"");
+                    intent.putExtra("xmid", mList.get(i).getXiangmu_id()+"");
+                    intent.putExtra("dyid", mList.get(i).getDanyuan_id());
+                    intent.putExtra("ldid", mList.get(i).getLoudong_id());
+                    startActivity(intent);
                 }
             }
         });

@@ -252,6 +252,7 @@ public class AddAccountActivity extends BaseActivity implements AddAccountContra
             mExplosionField.explode(loginSubmit);
             loginSubmit.setOnClickListener(null);
             Contains.uuid = info.getUuid();
+            Contains.yeZhuVo=info.getYezhuVo();
             user = info.getUser();
             if (info.getHouse() != null && info.getHouse().size() > 0) {
                 Contains.appYezhuFangwus = info.getHouse();

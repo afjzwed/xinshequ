@@ -523,6 +523,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             mExplosionField.explode(loginSubmit);
             loginSubmit.setOnClickListener(null);
             Contains.uuid = info.getUuid();
+            Contains.yeZhuVo = info.getYezhuVo();
             Contains.user = info.getUser();
             if (info.getHouse() != null && info.getHouse().size() > 0) {
                 Contains.appYezhuFangwus = info.getHouse();

@@ -20,6 +20,15 @@ public class LoginEntity extends BaseEntity {
 	private CxwyYezhu user;
 	private String uuid;
 	private List<AppYezhuFangwu> house;
+	private YeZhuVo yezhuVo;
+
+	public YeZhuVo getYezhuVo() {
+		return yezhuVo;
+	}
+
+	public void setYezhuVo(YeZhuVo yezhuVo) {
+		this.yezhuVo = yezhuVo;
+	}
 
 	public String getMSG() {
 		return MSG;

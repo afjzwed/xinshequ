@@ -48,6 +48,7 @@ import com.yxld.yxchuangxin.entity.LockCar;
 import com.yxld.yxchuangxin.entity.LoginEntity;
 import com.yxld.yxchuangxin.entity.LoginPhoneEntity;
 import com.yxld.yxchuangxin.entity.MallClassify;
+import com.yxld.yxchuangxin.entity.MenJinShareMemberBean;
 import com.yxld.yxchuangxin.entity.MsgAndSuccess;
 import com.yxld.yxchuangxin.entity.MyAllComment;
 import com.yxld.yxchuangxin.entity.Onlymsg;
@@ -174,6 +175,12 @@ public class HttpAPIWrapper {
     }
     public Observable<BaseBack2> getDoorMima(Map data) {
         return wrapper(mHttpAPI.getDoorMima(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<MenJinShareMemberBean> getDoorShareMember(Map data) {
+        return wrapper(mHttpAPI.getDoorShareMember(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> saveDoorShareMember(Map data) {
+        return wrapper(mHttpAPI.saveDoorShareMember(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }
     public Observable<OpenDoorCode> getVisitorQRCode(Map data) {
         return wrapper(mHttpAPI.getVisitorQRCode(addParams(data))).compose(SCHEDULERS_TRANSFORMER);

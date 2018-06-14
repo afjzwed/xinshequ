@@ -236,6 +236,11 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.activity.wuye.MenJinShareMemberActivity"
+            android:label="设置呼叫列表"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.wuye.AddLiveMemberActivity"
             android:label="添加成员"
             android:screenOrientation="portrait">

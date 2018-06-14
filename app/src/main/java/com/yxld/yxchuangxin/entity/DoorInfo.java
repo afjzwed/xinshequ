@@ -58,10 +58,10 @@ public class DoorInfo extends BaseEntity {
         private String ip;
         private String mac;
         private String type;
-        private Object danyuan_id;
-        private Object loudong_id;
+        private String danyuan_id;
+        private String loudong_id;
         private int xiangmu_id;
-        private String gongsi_id;
+        private int gongsi_id;
         private String lixian_mima;
         private Object version;
         private Object danyuan_name;
@@ -119,19 +119,19 @@ public class DoorInfo extends BaseEntity {
             this.type = type;
         }
 
-        public Object getDanyuan_id() {
+        public String getDanyuan_id() {
             return danyuan_id;
         }
 
-        public void setDanyuan_id(Object danyuan_id) {
+        public void setDanyuan_id(String danyuan_id) {
             this.danyuan_id = danyuan_id;
         }
 
-        public Object getLoudong_id() {
+        public String getLoudong_id() {
             return loudong_id;
         }
 
-        public void setLoudong_id(Object loudong_id) {
+        public void setLoudong_id(String loudong_id) {
             this.loudong_id = loudong_id;
         }
 
@@ -143,11 +143,11 @@ public class DoorInfo extends BaseEntity {
             this.xiangmu_id = xiangmu_id;
         }
 
-        public String getGongsi_id() {
+        public int getGongsi_id() {
             return gongsi_id;
         }
 
-        public void setGongsi_id(String gongsi_id) {
+        public void setGongsi_id(int gongsi_id) {
             this.gongsi_id = gongsi_id;
         }
 

@@ -12,6 +12,7 @@ import com.yxld.yxchuangxin.entity.CxwyProductInfo;
 import com.yxld.yxchuangxin.entity.CxwyYezhu;
 import com.yxld.yxchuangxin.entity.FangquEntity;
 import com.yxld.yxchuangxin.entity.SureOrderEntity;
+import com.yxld.yxchuangxin.entity.YeZhuVo;
 import com.yxld.yxchuangxin.entity.goods.ShopCart;
 
 import java.util.ArrayList;
@@ -80,6 +81,8 @@ public class Contains {
 
 	/** uuid*/
 	public static String uuid="";
+	/**业主信息*/
+	public static YeZhuVo yeZhuVo;
 
 //	/** Pay Callback Server URL **/
 //	public final static String URL_PAY_CALLBACK = API.yuming_api+"/WechatPayServer";

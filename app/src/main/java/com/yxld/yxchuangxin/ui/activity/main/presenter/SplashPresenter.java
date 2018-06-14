@@ -163,6 +163,7 @@ public class SplashPresenter implements SplashContract.SplashContractPresenter {
                         }
                         Contains.uuid = info.getUuid();
                         Contains.user = info.getUser();
+                        Contains.yeZhuVo=info.getYezhuVo();
                         if (info.getHouse() != null && info.getHouse().size() > 0) {
                             Contains.appYezhuFangwus = info.getHouse();
                             Contains.curSelectXiaoQuName = info.getHouse().get(0).getXiangmuLoupan();

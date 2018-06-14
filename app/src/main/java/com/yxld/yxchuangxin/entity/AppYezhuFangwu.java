@@ -14,7 +14,7 @@ import java.util.List;
  * @author wwx
  * @date 2016-11-24 下午6:09:20
  */
-public class AppYezhuFangwu extends BaseEntity implements Parcelable{
+public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 
 	private List<AppYezhuFangwu> rows;
 
@@ -43,24 +43,7 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable{
 	private String xiangmuTelphone;//电话号码
 
 	private String yezhuName; //业主姓名
-
-	//性别
-	private int sex;
-
-	public int getSex() {
-		return sex;
-	}
-
-	public void setSex(int sex) {
-		this.sex = sex;
-	}
-
-	public static Creator<AppYezhuFangwu> getCREATOR() {
-		return CREATOR;
-	}
-
-	public AppYezhuFangwu() {
-	}
+	private boolean isMenjinSave;
 
 	protected AppYezhuFangwu(Parcel in) {
 		rows = in.createTypedArrayList(AppYezhuFangwu.CREATOR);
@@ -76,6 +59,8 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable{
 		xiangmuLoupan = in.readString();
 		xiangmuTelphone = in.readString();
 		yezhuName = in.readString();
+		isMenjinSave = in.readByte() != 0;
+		sex = in.readInt();
 	}
 
 	public static final Creator<AppYezhuFangwu> CREATOR = new Creator<AppYezhuFangwu>() {
@@ -89,6 +74,28 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable{
 			return new AppYezhuFangwu[size];
 		}
 	};
+
+	public boolean isMenjinSave() {
+		return isMenjinSave;
+	}
+
+	public void setMenjinSave(boolean menjinSave) {
+		isMenjinSave = menjinSave;
+	}
+
+	//性别
+	private int sex;
+
+	public int getSex() {
+		return sex;
+	}
+
+	public void setSex(int sex) {
+		this.sex = sex;
+	}
+
+
+
 
 	public List<AppYezhuFangwu> getRows() {
 		return rows;
@@ -194,27 +201,7 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable{
 		this.yezhuName = yezhuName;
 	}
 
-	@Override
-	public int describeContents() {
-		return 0;
-	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		dest.writeTypedList(rows);
-		dest.writeInt(yezhuId);
-		dest.writeInt(fwId);
-		dest.writeString(fwLoudong);
-		dest.writeString(fwDanyuan);
-		dest.writeString(fwFanghao);
-		dest.writeString(fwHuxing);
-		dest.writeString(fwMainji);
-		dest.writeInt(fwLoupanId);
-		dest.writeInt(fwyzType);
-		dest.writeString(xiangmuLoupan);
-		dest.writeString(xiangmuTelphone);
-		dest.writeString(yezhuName);
-	}
 
 	@Override
 	public String toString() {
@@ -233,5 +220,30 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable{
 				", xiangmuTelphone='" + xiangmuTelphone + '\'' +
 				", yezhuName='" + yezhuName + '\'' +
 				'}';
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+	public AppYezhuFangwu() {
+	}
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeTypedList(rows);
+		dest.writeInt(yezhuId);
+		dest.writeInt(fwId);
+		dest.writeString(fwLoudong);
+		dest.writeString(fwDanyuan);
+		dest.writeString(fwFanghao);
+		dest.writeString(fwHuxing);
+		dest.writeString(fwMainji);
+		dest.writeInt(fwLoupanId);
+		dest.writeInt(fwyzType);
+		dest.writeString(xiangmuLoupan);
+		dest.writeString(xiangmuTelphone);
+		dest.writeString(yezhuName);
+		dest.writeByte((byte) (isMenjinSave ? 1 : 0));
+		dest.writeInt(sex);
 	}
 }

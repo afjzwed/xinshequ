@@ -13,7 +13,7 @@ public interface API {
     //欣周边地址
 //    String Periphery = "http://pay.iot.xin/cxwy_consumer_terminal";
 
-
+//
     String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
     String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
     //    String IP_PRODUCT = "http://pay.iot.xin";
@@ -267,12 +267,21 @@ public interface API {
     /**
      * 获取门禁列表
      */
-    String URL_GET_MENJINLIST = "http://192.168.8.132:80/xdoor/device/getXdoorApp";
+    String URL_GET_MENJINLIST = "xdoor/device/getXdoorApp.mvc";
 
     /**
      * 获取门禁访客密码
      */
-    String URL_POST_MENJINMIMA = "http://192.168.8.132:80/xdoor/device/appShare";
+    String URL_POST_MENJINMIMA = "xdoor/device/appShare.mvc";
+    /**
+     * 获取已经分享是门禁可以呼叫的成员
+     */
+    String URL_POST_MENJIN_SHAREMEMBER = "xdoor/device/findMubiao.mvc";
+
+    /**
+     * 设置门禁可以呼叫的成员
+     */
+    String URL_POST_MENJIN_SAVE = "xdoor/device/mubiaoSave.mvc";
     /**
      * 获取业主访客二维码  coed/getcodes/{bName}/{bPhone}/{bRole}/{name}/{phone}/{role}/{building}/{buildingHouse}/{buildingUnit}
      * 0221 校验

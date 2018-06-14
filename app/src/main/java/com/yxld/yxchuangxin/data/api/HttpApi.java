@@ -46,6 +46,7 @@ import com.yxld.yxchuangxin.entity.LockCar;
 import com.yxld.yxchuangxin.entity.LoginEntity;
 import com.yxld.yxchuangxin.entity.LoginPhoneEntity;
 import com.yxld.yxchuangxin.entity.MallClassify;
+import com.yxld.yxchuangxin.entity.MenJinShareMemberBean;
 import com.yxld.yxchuangxin.entity.MsgAndSuccess;
 import com.yxld.yxchuangxin.entity.MyAllComment;
 import com.yxld.yxchuangxin.entity.Onlymsg;
@@ -297,6 +298,13 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_POST_MENJINMIMA)
     Observable<BaseBack2> getDoorMima(@FieldMap Map<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST(URL_POST_MENJIN_SHAREMEMBER)
+    Observable<MenJinShareMemberBean> getDoorShareMember(@FieldMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(URL_POST_MENJIN_SAVE)
+    Observable<BaseEntity> saveDoorShareMember(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_GET_FANGKEOPENCODE)
