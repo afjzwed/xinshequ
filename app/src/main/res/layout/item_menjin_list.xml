@@ -5,17 +5,17 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="32px"
     android:background="@color/white"
-    android:paddingTop="32px"
     android:paddingLeft="32px"
-    android:paddingRight="32px">
+    android:paddingRight="32px"
+    android:paddingTop="32px">
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/autoLinearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/autoLinearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -36,8 +36,10 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/autoLinearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/autoLinearLayout1"
             android:orientation="horizontal"
             android:paddingTop="32px">
 
@@ -59,6 +61,7 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/autoLinearLayout2"
             android:orientation="horizontal"
             android:paddingTop="32px">
 
@@ -76,26 +79,26 @@
                 android:textColor="@color/color_323232"/>
 
         </com.zhy.autolayout.AutoLinearLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
 
-    <TextView
-        android:id="@+id/tv_open"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="11dp"
-        android:background="@drawable/circle_blue"
-        android:gravity="center"
-        android:text="开门"
-        android:textColor="@color/white"/>
+        <TextView
+            android:id="@+id/tv_open"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_blue"
+            android:gravity="center"
+            android:text="开门"
+            android:textColor="@color/white"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
 
     <View
-        style="@style/line"
         android:id="@+id/line"
+        style="@style/line"
         android:layout_below="@+id/autoLinearLayout"
         android:layout_marginTop="20px"
-  />
+        />
 
     <ImageView
         android:id="@+id/img_share"
@@ -103,8 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/line"
         android:layout_centerHorizontal="true"
+        android:padding="20px"
         android:src="@mipmap/share_camera"
-        android:paddingTop="10px"
-        android:paddingBottom="10px"
         />
 </com.zhy.autolayout.AutoRelativeLayout>
