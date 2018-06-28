@@ -213,5 +213,29 @@ public class MallClassify extends BaseEntity  implements Parcelable{
             dest.writeInt(fenleiXiangmu);
             dest.writeInt(fenleiGongsi);
         }
+
+        @Override
+        public String toString() {
+            return "RowsBean{" +
+                    "id=" + id +
+                    ", fenleiMing='" + fenleiMing + '\'' +
+                    ", fenleiQiyong=" + fenleiQiyong +
+                    ", fenleiPaixu=" + fenleiPaixu +
+                    ", fenleiFuId=" + fenleiFuId +
+                    ", fenleiTubiao='" + fenleiTubiao + '\'' +
+                    ", fenleiXiangmu=" + fenleiXiangmu +
+                    ", fenleiGongsi=" + fenleiGongsi +
+                    ", xiangmuMing=" + xiangmuMing +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "MallClassify{" +
+                "success=" + success +
+                ", total=" + total +
+                ", rows=" + rows +
+                '}';
     }
 }

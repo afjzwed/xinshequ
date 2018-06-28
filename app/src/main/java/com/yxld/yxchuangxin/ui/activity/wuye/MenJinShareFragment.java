@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bigkoo.pickerview.builder.OptionsPickerBuilder;
 import com.bigkoo.pickerview.listener.OnOptionsSelectListener;
@@ -183,13 +185,16 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
         switch (view.getId()) {
             case R.id.tv_new_erweima:
                 //分享按钮
-                if (StringUitl.isNotEmpty(getActivity(), etName.getText().toString(), "请输入分享人姓名")) {
-                    if (StringUitl.isNotEmpty(getActivity(), etNumber.getText().toString(), "请输入分享人电话")) {
+                if (StringUitl.isNotEmpty1(getActivity(), etName.getText().toString(), "请输入分享人姓名")) {
+                    if (StringUitl.isNotEmpty1(getActivity(), etNumber.getText().toString(), "请输入分享人电话")) {
                         if (!StringUitl.isMobileNum(etNumber.getText().toString())) {
-                            ToastUtil.show(getActivity(), "请输入正确的手机号码");
+//                            ToastUtil.show(getActivity(), "请输入正确的手机号码");
+                            Toast toast = Toast.makeText(getActivity(), "请输入正确的手机号码", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.CENTER, 0, 0);
+                            toast.show();
                             return;
                         }
-                        if (StringUitl.isNotEmpty(getActivity(), mac, "请选择分享门禁")) {
+                        if (StringUitl.isNotEmpty1(getActivity(), mac, "请选择分享门禁")) {
 
                             Map<String, String> map = new HashMap<>();
                             map.put("uuid", Contains.uuid);
@@ -240,6 +245,7 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
         })
                 // .isRestoreItem(true)//切换时是否还原，设置默认选中第一项。
 //                .isCenterLabel(false)//是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .setTitleText("车牌号")
                 .build();
         mOptionsPickerView.setNPicker(options1Items, options2Items, null);
         mOptionsPickerView.show();

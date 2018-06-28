@@ -7,6 +7,7 @@ import android.telephony.TelephonyManager;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Log;
+import android.view.Gravity;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -101,12 +102,45 @@ public class StringUitl {
                                      String isEmptyStr) {
         if (text == null) {
             if (isEmptyStr != null) {
-                Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
             return false;
         } else if ("".equals(text.toString())) {
             if (isEmptyStr != null) {
-                Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG).show();
+                Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * @param context
+     * @param text
+     * @param isEmptyStr 为空串提示语
+     * @return boolean
+     * @throws
+     * @Title: hasEmptyItem
+     * @Description: 判断输入框EditText是否不为空和空串
+     */
+    public static boolean isNotEmpty1(Context context, String text,
+                                     String isEmptyStr) {
+        if (text == null) {
+            if (isEmptyStr != null) {
+                Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+            return false;
+        } else if ("".equals(text.toString())) {
+            if (isEmptyStr != null) {
+                Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
             return false;
         }

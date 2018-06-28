@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.goods.presenter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
 import com.socks.library.KLog;
@@ -65,6 +66,7 @@ public class MallPresenter implements MallContract.MallContractPresenter {
 
     @Override
     public void getFenlei() {
+        Log.e("wh", "走分类");
         Map<String, String> params = new HashMap<>();
         params.put("uuid", Contains.uuid);
         params.put("fenlei1", "");
