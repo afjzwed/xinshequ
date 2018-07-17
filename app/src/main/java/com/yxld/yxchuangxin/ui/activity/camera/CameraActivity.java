@@ -48,6 +48,7 @@ import com.p2p.core.P2PView;
 import com.socks.library.KLog;
 import com.videogo.util.Utils;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.StringUitl;
 import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.contain.Contains;
@@ -56,6 +57,9 @@ import com.yxld.yxchuangxin.ui.activity.camera.component.DaggerCameraComponent;
 import com.yxld.yxchuangxin.ui.activity.camera.contract.CameraContract;
 import com.yxld.yxchuangxin.ui.activity.camera.module.CameraModule;
 import com.yxld.yxchuangxin.ui.activity.camera.presenter.CameraPresenter;
+import com.yxld.yxchuangxin.ui.activity.rim.BusinessActivity;
+import com.yxld.yxchuangxin.view.CommentDialog;
+import com.yxld.yxchuangxin.view.ConfirmDialog;
 import com.yxld.yxchuangxin.view.ProgressDialog;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
@@ -74,6 +78,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.smssdk.gui.CommonDialog;
 
 import static com.p2p.core.P2PView.scale;
 import static com.yxld.yxchuangxin.R.id.camera_quality_btn;
@@ -150,8 +155,49 @@ public class CameraActivity extends BaseMonitorActivity implements CameraContrac
         EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         initView();
+
         initData();
         setupActivityComponent();
+    }
+
+    /**
+     * 密码过于简单的提示框
+     */
+    private void showDialog() {
+        CommentDialog dialog=new CommentDialog(this);
+        dialog.setCancelable(false);
+        dialog.getTv_dialog_title().setText("欣提示");
+        dialog.getTv_dialog_message().setText("密码过于简单");
+        dialog.getBt_dialog_cancel().setVisibility(View.GONE);
+        dialog.getBt_dialog_confirm().setText("确定");
+        dialog.getBt_dialog_confirm().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                Intent s = new Intent(CameraActivity.this, CameraSettingActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("deviceId", deviceId);
+                bundle.putString("devicePwd", devicePwd);
+                bundle.putString("deviceName", deviceName);
+                bundle.putInt("videoVolume", videoVolume);
+                s.putExtras(bundle);
+                startActivity(s);
+                finish();
+            }
+        });
+        dialog.show();
+//        ConfirmDialog.showDialog(this, "欣提示", "密码过于简单", new ConfirmDialog
+//                .OnConfirmListener() {
+//            @Override
+//            public void onCancel() {
+//
+//            }
+//
+//            @Override
+//            public void onConfirm() {
+//
+//            }
+//        });
     }
 
     private void initData() {
@@ -219,6 +265,10 @@ public class CameraActivity extends BaseMonitorActivity implements CameraContrac
         Bundle bundle = intent.getExtras();
         deviceId = bundle.getString("deviceId");
         devicePwd = bundle.getString("devicePwd");
+        if (devicePwd.length()<6||devicePwd.length()>20|| !StringUitl.isLetterDigit(devicePwd)){
+            KLog.i("密码过于简单");
+            showDialog();
+        }
         devicePwd = P2PHandler.getInstance().EntryPassword(devicePwd);//转换设备密码，如果为数字原样返回，如果为字母数字组合转为数字返回
         deviceName = bundle.getString("deviceName");
         defenceState = bundle.getString("defenceState");
@@ -515,7 +565,7 @@ public class CameraActivity extends BaseMonitorActivity implements CameraContrac
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
-                P2PHandler.getInstance().p2pDisconnect();
+               // P2PHandler.getInstance().p2pDisconnect();
                 break;
             case R.id.setting:
                 Intent s = new Intent(this, CameraSettingActivity.class);

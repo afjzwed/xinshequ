@@ -117,8 +117,10 @@ public class SettingListener implements ISetting {
 
     @Override
     public void ACK_vRetSetDevicePassword(int msgId, int result) {
+        if (result!=9997){
+            EventBus.getDefault().post("SetDevicePassword" + 1);
+        }
         KLog.i("msgId:" + msgId + "  result:" + result);
-
     }
 
     @Override

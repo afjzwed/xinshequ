@@ -47,6 +47,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.yxld.yxchuangxin.contain.ContainValue.ISSHOWXIEYI;
+
 /**
  * @author hu
  * @Package com.yxld.yxchuangxin.ui.activity.camera
@@ -75,7 +77,7 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
     private View notDataView;
 
     int currentPage = 0;
-
+    private boolean isShow = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +90,8 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 //        EventBus.getDefault().register(this);
-//        notDataView = getLayoutInflater().inflate(R.layout.layout_empty_data, (ViewGroup) recyclerView.getParent(), false);
+//        notDataView = getLayoutInflater().inflate(R.layout.layout_empty_data, (ViewGroup) recyclerView.getParent(),
+// false);
 //        cameraListAdapter.setEmptyView(notDataView);
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.addItemDecoration(new MyItemDecoration());
@@ -102,6 +105,9 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
 //                mPresenter.getAllCamera();
 //            }
 //        });
+        if (ISSHOWXIEYI) {
+            showXieyi();
+        }
     }
 
     @Override
@@ -165,9 +171,7 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
     protected void onResume() {
 //        P2PHandler.getInstance().p2pDisconnect();
 //        mPresenter.Login();
-        if (!SpUtil.getBoolean(this, ContainValue.NOSHOWXIEYI, false)) {
-            showXieyi();
-        }
+
         super.onResume();
     }
 
@@ -179,12 +183,8 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
 
     @Override
     protected void setupActivityComponent() {
-        DaggerDeviceComponent
-                .builder()
-                .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-                .deviceModule(new DeviceModule(this))
-                .build()
-                .inject(this);
+        DaggerDeviceComponent.builder().appComponent(((AppConfig) getApplication()).getApplicationComponent())
+                .deviceModule(new DeviceModule(this)).build().inject(this);
     }
 
     @Override
@@ -310,15 +310,20 @@ public class DeviceActivity extends BaseActivity implements DeviceContract.View 
         webView.getSettings().setAppCacheEnabled(false);
         webView.getSettings().setUseWideViewPort(true);
         webView.getSettings().setLoadWithOverviewMode(true);
-        webView.getSettings().setLayoutAlgorithm(
-                WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+        webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
         webView.loadUrl(API.URL_XIEYI);
         checkbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                SpUtil.putBoolean(DeviceActivity.this, ContainValue.NOSHOWXIEYI, isChecked);
+//                SpUtil.putBoolean(DeviceActivity.this, ContainValue.NOSHOWXIEYI, isChecked);
+                if (isChecked){
+                    ISSHOWXIEYI = false;
+                }else {
+                    ISSHOWXIEYI = true;
+                }
             }
         });
+        ISSHOWXIEYI = false;
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

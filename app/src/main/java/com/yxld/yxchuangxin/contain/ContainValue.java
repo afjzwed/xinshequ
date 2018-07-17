@@ -14,4 +14,5 @@ public class ContainValue {
     public static final String INTERVALTIME = "intervalTime";
     public static final String WATCHTIME = "watchTime";
     public static final String NOSHOWXIEYI = "noShowxieyi";
+    public static  boolean ISSHOWXIEYI = true;
 }

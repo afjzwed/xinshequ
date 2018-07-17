@@ -26,7 +26,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-
 /**
  * @author wwx
  * @ClassName: StringUitl
@@ -34,19 +33,18 @@ import java.util.regex.Pattern;
  * @date 2015年7月22日 下午3:03:36
  */
 public class StringUitl {
-    private static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-            'A', 'B', 'C', 'D', 'E', 'F'};
+    private static final char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D',
+            'E', 'F'};
 
     /**
      * 正则：身份证号码15位
      */
-    public static final String REGEX_ID_CARD15 = "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)" +
-            "|3[0-1])\\d{3}$";
+    public static final String REGEX_ID_CARD15 = "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)" + "|3[0-1])\\d{3}$";
     /**
      * 正则：身份证号码18位
      */
-    public static final String REGEX_ID_CARD18 = "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(" +
-            "([0|1|2]\\d)|3[0-1])\\d{3}([0-9Xx])$";
+    public static final String REGEX_ID_CARD18 = "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(" + "([0|1|2]\\d)|3[0-1])"
+            + "\\d{3}([0-9Xx])$";
 
     /**
      * @param str
@@ -73,8 +71,7 @@ public class StringUitl {
      * @Title: hasEmptyItem
      * @Description: 判断输入框EditText是否不为空和空串
      */
-    public static boolean isNotEmpty(Context context, EditText edittext,
-                                     String isEmptyStr) {
+    public static boolean isNotEmpty(Context context, EditText edittext, String isEmptyStr) {
         if (edittext.getText() == null) {
             if (isEmptyStr != null) {
                 Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG).show();
@@ -98,8 +95,7 @@ public class StringUitl {
      * @Title: hasEmptyItem
      * @Description: 判断输入框EditText是否不为空和空串
      */
-    public static boolean isNotEmpty(Context context, String text,
-                                     String isEmptyStr) {
+    public static boolean isNotEmpty(Context context, String text, String isEmptyStr) {
         if (text == null) {
             if (isEmptyStr != null) {
                 Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
@@ -127,8 +123,7 @@ public class StringUitl {
      * @Title: hasEmptyItem
      * @Description: 判断输入框EditText是否不为空和空串
      */
-    public static boolean isNotEmpty1(Context context, String text,
-                                     String isEmptyStr) {
+    public static boolean isNotEmpty1(Context context, String text, String isEmptyStr) {
         if (text == null) {
             if (isEmptyStr != null) {
                 Toast toast = Toast.makeText(context, isEmptyStr, Toast.LENGTH_LONG);
@@ -156,8 +151,7 @@ public class StringUitl {
      */
     public static String intToIp(int i) {
 
-        return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF)
-                + "." + (i >> 24 & 0xFF);
+        return (i & 0xFF) + "." + ((i >> 8) & 0xFF) + "." + ((i >> 16) & 0xFF) + "." + (i >> 24 & 0xFF);
     }
 
     /**
@@ -281,10 +275,8 @@ public class StringUitl {
             StringBuffer buf = new StringBuffer("");
             for (int offset = 0; offset < b.length; offset++) {
                 i = b[offset];
-                if (i < 0)
-                    i += 256;
-                if (i < 16)
-                    buf.append("0");
+                if (i < 0) i += 256;
+                if (i < 16) buf.append("0");
                 buf.append(Integer.toHexString(i));
             }
             result = buf.toString(); //md5 32bit
@@ -421,6 +413,28 @@ public class StringUitl {
 //	}
 
     /**
+     * 字符串包含字母和数字
+     *
+     * @param str
+     * @return
+     */
+    public static boolean isLetterDigit(String str) {
+        boolean isDigit = false;//定义一个boolean值，用来表示是否包含数字
+        boolean isLetter = false;//定义一个boolean值，用来表示是否包含字母
+        for (int i = 0; i < str.length(); i++) {
+            if (Character.isDigit(str.charAt(i))) {   //用char包装类中的判断数字的方法判断每一个字符
+                isDigit = true;
+            }
+            if (Character.isLetter(str.charAt(i))) {  //用char包装类中的判断字母的方法判断每一个字符
+                isLetter = true;
+            }
+        }
+        String regex = "^[a-zA-Z0-9]+$";
+        return isDigit && isLetter && str.matches(regex);
+
+    }
+
+    /**
      * deviceID的组成为：渠道标志+识别符来源标志+hash后的终端识别符
      * <p>
      * 渠道标志为：
@@ -450,8 +464,7 @@ public class StringUitl {
 //                deviceId.append(wifiMac);
 //            }
             //IMEI（imei）
-            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context
-                    .TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
             String imei = tm.getDeviceId();
             if (!hasEmptyItem(imei)) {
                 deviceId.append("m");
@@ -542,14 +555,12 @@ public class StringUitl {
     public static void setEditTextInhibitInputSpeChat(EditText editText) {
 
         InputFilter filter = new InputFilter() {
-            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" +
-                    ".<>/?~！@#￥%……&*（）——+|{}【】  " +
-                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" +
-                    "]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" + ".<>/?~！@#￥%……&*（）——+|{}【】  " +
+                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" + "]", Pattern
+                    .UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int
-                    dstart, int dend) {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 Matcher matcher = pattern.matcher(source);
                 if (matcher.find()) return "";
                 else return null;
@@ -565,14 +576,12 @@ public class StringUitl {
      */
     public static void setEditTextInhibitInputSpeOnlyChnese50(EditText editText) {
         InputFilter filter = new InputFilter() {
-            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" +
-                    ".<>/?~！@#￥%……&*（）——+|{}【】  " +
-                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" +
-                    "]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" + ".<>/?~！@#￥%……&*（）——+|{}【】  " +
+                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" + "]", Pattern
+                    .UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int
-                    dstart, int dend) {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 Matcher matcher = pattern.matcher(source);
                 if (matcher.find()) return "";
                 else return null;
@@ -590,14 +599,12 @@ public class StringUitl {
      */
     public static void setEditTextInhibitInputSpeOnlyChnese500(EditText editText) {
         InputFilter filter = new InputFilter() {
-            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" +
-                    ".<>/?~！@#￥%……&*（）——+|{}【】  " +
-                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" +
-                    "]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" + ".<>/?~！@#￥%……&*（）——+|{}【】  " +
+                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" + "]", Pattern
+                    .UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int
-                    dstart, int dend) {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 Matcher matcher = pattern.matcher(source);
                 if (matcher.find()) return "";
                 else return null;
@@ -614,14 +621,12 @@ public class StringUitl {
      */
     public static void setInputName(EditText editText) {
         InputFilter filter = new InputFilter() {
-            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" +
-                    ".<>/?~！@#￥%……&*（）——+|{}【】  " +
-                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" +
-                    "]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("[`~!@#$%^&*()+=|{}':;',\\[\\]" + ".<>/?~！@#￥%……&*（）——+|{}【】  " +
+                    "<>《》]|[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff" + "]", Pattern
+                    .UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int
-                    dstart, int dend) {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 Matcher matcher = pattern.matcher(source);
                 if (matcher.find()) return "";
                 else return null;
@@ -630,32 +635,29 @@ public class StringUitl {
         InputFilter lengthFilter = new InputFilter.LengthFilter(10);
         editText.setFilters(new InputFilter[]{filter, lengthFilter});
     }
-    
+
     /**
      * 禁止输入表情，控制字数
+     *
      * @param editText
-     * @param num  限制字数
+     * @param num      限制字数
      * @param context  上下文环境
      */
     public static void forbidEmoji(EditText editText, int num, Context context) {
-        Pattern emoji = Pattern.compile
-                ("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]",
+        Pattern emoji = Pattern.compile("[\ud83c\udc00-\ud83c\udfff]|[\ud83d\udc00-\ud83d\udfff]|[\u2600-\u27ff]",
                 Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
         InputFilter lengthFilter = new InputFilter.LengthFilter(num);
-        editText.setFilters(new InputFilter[]{
-                new InputFilter() {
-                    @Override
-                    public CharSequence filter(CharSequence source, int start, int end, Spanned
-                            dest, int dstart, int dend) {
-                        Matcher emojiMatcher = emoji.matcher(source);
-                        if (emojiMatcher.find()) {
-                            Toast.makeText(context, "不支持输入表情", Toast.LENGTH_SHORT).show();
-                            return "";
-                        }
-                        return null;
-                    }
-                }, lengthFilter
-        });
+        editText.setFilters(new InputFilter[]{new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                Matcher emojiMatcher = emoji.matcher(source);
+                if (emojiMatcher.find()) {
+                    Toast.makeText(context, "不支持输入表情", Toast.LENGTH_SHORT).show();
+                    return "";
+                }
+                return null;
+            }
+        }, lengthFilter});
     }
 
     //[\\u4e00-\\u9fa5]+   中文过滤器
@@ -671,12 +673,11 @@ public class StringUitl {
      */
     public static void setMyInput(EditText editText) {
         InputFilter filter = new InputFilter() {
-            Pattern pattern = Pattern.compile("![\\u4e00-\\u9fa5]+&![a-zA-Z /]+ " +
-                    "&![0-9]*&![，。？！；、‘“’”：]", Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
+            Pattern pattern = Pattern.compile("![\\u4e00-\\u9fa5]+&![a-zA-Z /]+ " + "&![0-9]*&![，。？！；、‘“’”：]",
+                    Pattern.UNICODE_CASE | Pattern.CASE_INSENSITIVE);
 
             @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int
-                    dstart, int dend) {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 Matcher matcher = pattern.matcher(source);
                 if (matcher.find()) return "";
                 else return null;
@@ -750,9 +751,7 @@ public class StringUitl {
         String phone = "^((13[0-9])|(17[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}$";
         String phone2 = "\\+\\d{2}((13[0-9])|(17[0-9])|(14[0-9])|(15[^4,\\D])|(18[0,0-9]))\\d{8}";
         String tel = "0\\d+-*\\d+";
-        if (num.matches(phone) ||
-                num.matches(tel)
-                || num.matches(phone2)) {
+        if (num.matches(phone) || num.matches(tel) || num.matches(phone2)) {
             return true;
         }
 

@@ -19,6 +19,7 @@ import com.bigkoo.alertview.OnItemClickListener;
 import com.p2p.core.P2PHandler;
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.StringUitl;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.contain.Contains;
@@ -75,7 +76,7 @@ public class CameraSettingActivity extends BaseActivity implements CameraSetting
     private AlertView mAlertViewExt;
     private AlertView mAlertView;
     private InputMethodManager imm;
-    private String new_pwd, deviceId, devicePwd, deviceName, filepath; //输入的新密码  设备号  设备密码 设备名称 文件地址
+    private String new_pwd, yuan_pwd,deviceId, devicePwd, deviceName, filepath; //输入的新密码  设备号  设备密码 设备名称 文件地址
 
     private EditText password;
     private EditText new_password;
@@ -157,8 +158,9 @@ public class CameraSettingActivity extends BaseActivity implements CameraSetting
         //设置设备的密码
 
         Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
-        AppConfig.getInstance().mAppActivityManager.finishActivity(CameraActivity.class);
-        AppConfig.getInstance().mAppActivityManager.finishActivity(DeviceActivity.class);
+//        AppConfig.getInstance().mAppActivityManager.finishActivity(CameraActivity.class);
+//        AppConfig.getInstance().mAppActivityManager.finishActivity(DeviceActivity.class);
+        finish();
     }
 
     @OnClick({R.id.s_baojin, R.id.s_tianjia, R.id.s_update, R.id.s_video, R.id.s_firmware})
@@ -239,12 +241,19 @@ public class CameraSettingActivity extends BaseActivity implements CameraSetting
         if (o == mAlertViewExt && position != AlertView.CANCELPOSITION) {
             closeKeyboard();
             new_pwd = new_password.getText().toString();
-            if (new_pwd.isEmpty()) {
-                Toast.makeText(this, "请输入好密码和新密码", Toast.LENGTH_SHORT).show();
+            yuan_pwd = password.getText().toString();
+            if (new_pwd.isEmpty()||yuan_pwd.isEmpty()) {
+                Toast.makeText(this, "请输入原密码和新密码", Toast.LENGTH_SHORT).show();
                 return;
             }
+            if (new_pwd.length()<6||new_pwd.length()>20||!StringUitl.isLetterDigit(new_pwd)) {
+                Toast.makeText(this, "必须为包含字母、数字、两种的6~20位", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             String pwd = P2PHandler.getInstance().EntryPassword(new_pwd);//经过转换后的设备密码
-            String ordpwd = P2PHandler.getInstance().EntryPassword(devicePwd);//经过转换后的设备密码
+            String ordpwd = P2PHandler.getInstance().EntryPassword(yuan_pwd);//经过转换后的设备密码
+            KLog.e("pwd"+ordpwd+"--"+devicePwd);
             P2PHandler.getInstance().setDevicePassword(deviceId, ordpwd, pwd, new_pwd, new_pwd);
 
 //            if (pwd.isEmpty() && new_pwd.isEmpty()) {

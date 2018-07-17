@@ -119,6 +119,8 @@ public class DeviceListFragment extends BaseFragment implements DeviceListContra
                 mPresenter.getAllCamera();
             }
         });
+        P2PHandler.getInstance().p2pDisconnect();
+        mPresenter.Login();
         return view;
     }
 
@@ -136,11 +138,7 @@ public class DeviceListFragment extends BaseFragment implements DeviceListContra
     @Override
     public void onResume() {
         super.onResume();
-        P2PHandler.getInstance().p2pDisconnect();
-        mPresenter.Login();
-        if (isVisible) {
-
-        }
+        mPresenter.getAllCamera();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

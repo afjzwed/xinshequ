@@ -101,7 +101,9 @@ public class RecordFilesActivity extends BaseActivity implements RecordFilesCont
 //        });
         regFilter();
         //获取录像列表
-        P2PHandler.getInstance().getRecordFiles(deviceId, devicePwd, startDate, endDate);
+        String pwd = P2PHandler.getInstance().EntryPassword(devicePwd);//经过转换后的设备密码
+
+        P2PHandler.getInstance().getRecordFiles(deviceId, pwd, startDate, endDate);
         recyclerView.setAdapter(recordFileAdapter);
     }
 
@@ -138,11 +140,11 @@ public class RecordFilesActivity extends BaseActivity implements RecordFilesCont
                 //获取到的录像文件名字
                 // 该数组中的文件名按照录像时间从近到远开始排序 且 每次获取到的nams的长度不大于64
                 KLog.i(intent);
+                progressDialog.hide();
                 String[] names = (String[]) intent.getCharSequenceArrayExtra("recordList");
                 KLog.i("names大小：" +names.length);
                 byte option = intent.getByteExtra("option1", (byte) -1);
                 if (option == 82) {
-                    progressDialog.hide();
                     ToastUtil.show(RecordFilesActivity.this, "存储卡不存在!!!");
                 }if (names.length > 0) {
                     updateAdapter(names);
