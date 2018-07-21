@@ -145,20 +145,18 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     private void showHasOldDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("存在老版本").setIcon(R.drawable.ic_launcher)
-                .setMessage("请先卸载老版本的app!!!")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {// 积极
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        getAppDetailSettingIntent(LoginActivity.this);
-                        Toast.makeText(LoginActivity.this, "点击了确定", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {// 消极
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
+        builder.setTitle("存在老版本").setIcon(R.drawable.ic_launcher).setMessage("请先卸载老版本的app!!!").setPositiveButton
+                ("确定", new DialogInterface.OnClickListener() {// 积极
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                getAppDetailSettingIntent(LoginActivity.this);
+                Toast.makeText(LoginActivity.this, "点击了确定", Toast.LENGTH_SHORT).show();
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {// 消极
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
         AlertDialog alertDialog = builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
         alertDialog.show();
@@ -222,7 +220,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 }
             }
         });
-        loginXiaoqu.getPopupWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable.bg_login_material_spinner));
+        loginXiaoqu.getPopupWindow().setBackgroundDrawable(getResources().getDrawable(R.drawable
+                .bg_login_material_spinner));
         mExplosionField = ExplosionField.attach2Window(this);
         checkEnvironment.setChecked(SpUtil.getBoolean(AppConfig.getInstance(), ContainValue.ENVIRONMENT, true));
         checkEnvironment.setOnCheckedChangeListener(new SmoothCheckBox.OnCheckedChangeListener() {
@@ -241,12 +240,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     @Override
     protected void setupActivityComponent() {
-        DaggerLoginComponent
-                .builder()
-                .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-                .loginModule(new LoginModule(this))
-                .build()
-                .inject(this);
+        DaggerLoginComponent.builder().appComponent(((AppConfig) getApplication()).getApplicationComponent())
+                .loginModule(new LoginModule(this)).build().inject(this);
     }
 
     @Override
@@ -333,9 +328,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
      * 设置沉浸式状态栏
      */
     protected void setImmersiveStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                || OsUtil.isMIUI()
-                || OsUtil.isFlyme()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M || OsUtil.isMIUI() || OsUtil.isFlyme()) {
             setStatusBarFontIconDark(true);
         }
     }
@@ -387,7 +380,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
         // 这个设置和在xml的style文件中用这个<item name="android:windowLightStatusBar">true</item>属性是一样的
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (dark) {
-                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View
+                        .SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
             }
         }
     }
@@ -433,7 +427,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     private void attemptLogin() {
         userNameValue = loginTel.getText().toString().trim();
         passwordValue = loginPwd.getText().toString().trim();
-        if (StringUitl.isNotEmpty(LoginActivity.this, userNameValue, getString(R.string.please_enter_phone_number)) && StringUitl.isNotEmpty(LoginActivity.this, passwordValue, getString(R.string.please_enter_password))) {
+        if (StringUitl.isNotEmpty(LoginActivity.this, userNameValue, getString(R.string.please_enter_phone_number))
+                && StringUitl.isNotEmpty(LoginActivity.this, passwordValue, getString(R.string.please_enter_password)
+        )) {
             if (xiangmuId == -1) {
                 ToastUtil.show(this, "请选择所属项目");
                 return;
@@ -520,8 +516,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             return;
         }
         if (info.getMSG().equals("登录成功")) {
-            mExplosionField.explode(loginSubmit);
-            loginSubmit.setOnClickListener(null);
+
+
             Contains.uuid = info.getUuid();
             Contains.yeZhuVo = info.getYezhuVo();
             Contains.user = info.getUser();
@@ -538,12 +534,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                     Contains.defuleAddress.setAddName(Contains.user.getYezhuShouji());
                 }
                 Contains.defuleAddress.setAddTel(Contains.user.getYezhuShouji());
-                Contains.defuleAddress.setAddAdd(info.getHouse().get(0).getXiangmuLoupan() +
-                        info.getHouse().get(0).getFwLoudong() + "栋" +
-                        info.getHouse().get(0).getFwDanyuan() + "单元" +
-                        info.getHouse().get(0).getFwFanghao());
+                Contains.defuleAddress.setAddAdd(info.getHouse().get(0).getXiangmuLoupan() + info.getHouse().get(0)
+                        .getFwLoudong() + "栋" + info.getHouse().get(0).getFwDanyuan() + "单元" + info.getHouse().get(0)
+                        .getFwFanghao());
+            } else {
+                ToastUtil.showShort("账号异常请联系管理员");
+                return;
             }
-
+            mExplosionField.explode(loginSubmit);
+            loginSubmit.setOnClickListener(null);
             if (info.getAddr() != null) {
                 Contains.defuleAddress = info.getAddr();
             }
@@ -571,8 +570,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 }
             }.start();
         } else {
-            Toast.makeText(LoginActivity.this, "你输入的手机号或者密码错误",
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(LoginActivity.this, "你输入的手机号或者密码错误", Toast.LENGTH_LONG).show();
             loginSubmit.setClickable(true);
         }
     }
@@ -622,7 +620,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
             }
         }
         try {
-            UserInfo userInfo = new UserInfo(null, userNameValue, true,Contains.curSelectXiaoQuName, passwordValue, xiangmuId);
+            UserInfo userInfo = new UserInfo(null, userNameValue, true, Contains.curSelectXiaoQuName, passwordValue,
+                    xiangmuId);
             userInfoDao.insert(userInfo);
         } catch (Exception e) {
             e.printStackTrace();
