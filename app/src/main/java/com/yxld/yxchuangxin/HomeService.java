@@ -120,7 +120,7 @@ public class HomeService extends Service {
                         break;
                     case MSG_ONE_OPEN_DOOR:
                         //开门
-                        //  openDoor("");
+//                          openDoor("");
                         break;
                     case MSG_CLOSE_CALL:
                         //挂断

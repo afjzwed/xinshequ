@@ -296,8 +296,9 @@ public class MenJinShareFragment extends BaseFragment implements MenJinShareCont
         List<AppYezhuFangwu> list = Contains.appYezhuFangwus;
         if (list != null && list.size() != 0) {
             house = list.get(Contains.curFangwu);
-            address = house.getXiangmuLoupan() + "" + house.getFwLoudong() + "栋" + house.getFwDanyuan() + "单元" +
-                    house.getFwFanghao();
+//            address = house.getXiangmuLoupan() + "" + house.getFwLoudong() + "栋" + house.getFwDanyuan() + "单元" +
+//                    house.getFwFanghao();
+            address = house.getXiangmuLoupan();//8.22改为小区名，不拼接
             tvAddress.setText(address);
         }
     }
