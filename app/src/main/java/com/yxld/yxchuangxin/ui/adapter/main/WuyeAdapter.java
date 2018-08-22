@@ -29,6 +29,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.FangxingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.LiveMemberActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.MenJinNewActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
@@ -81,7 +82,8 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     switch (position) {
                         case 0:
-                            mContext.startActivity(new Intent(mContext, MenJinActivity.class));
+//                            mContext.startActivity(new Intent(mContext, MenJinActivity.class));
+                            mContext.startActivity(new Intent(mContext, MenJinNewActivity.class));
                             break;
                         case 1:
                             mContext.startActivity(new Intent(mContext, CarManageActivity.class));
