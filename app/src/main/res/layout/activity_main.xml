@@ -60,7 +60,6 @@
                         android:marqueeRepeatLimit="marquee_forever"
                         android:singleLine="true"
                         android:text=""/>
-                    />
 
                     <ImageView
                         android:id="@+id/iv_tongzhi_more"
@@ -69,8 +68,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="40px"
-                        android:src="@mipmap/main_communite_more"
-                        />
+                        android:src="@mipmap/main_communite_more"/>
 
                     <View
                         style="@style/line"

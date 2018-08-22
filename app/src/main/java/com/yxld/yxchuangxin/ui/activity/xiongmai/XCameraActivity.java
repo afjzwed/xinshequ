@@ -1478,7 +1478,6 @@ public class XCameraActivity extends BaseActivity implements XCameraContract.Vie
         }
     };
 
-
     private void onContrlPTZ1(int nPTZCommand, boolean bStop) {
         FunSupport.getInstance().requestDevicePTZControl(mFunDevice,
                 nPTZCommand, bStop, mFunDevice.CurrChannel);
@@ -1493,7 +1492,6 @@ public class XCameraActivity extends BaseActivity implements XCameraContract.Vie
             playRealMedia();
         }
     }
-
 
     @Override
     public void onDeviceFileListGetFailed(FunDevice funDevice) {

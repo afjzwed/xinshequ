@@ -32,13 +32,14 @@
                 android:id="@+id/tv_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginLeft="50px"
-                android:layout_toRightOf="@+id/tv1"
                 android:text="中远公馆1栋1单元"
                 android:textColor="@color/color_323232"
                 android:textSize="40px"
-                />
+                android:layout_alignBaseline="@+id/tv1"
+                android:layout_alignBottom="@+id/tv1"
+                android:layout_toEndOf="@+id/tv1"
+                android:layout_marginStart="26dp"/>
 
             <View
                 style="@style/line"

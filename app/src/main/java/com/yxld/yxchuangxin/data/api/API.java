@@ -13,13 +13,13 @@ public interface API {
     //欣周边地址
 //    String Periphery = "http://pay.iot.xin/cxwy_consumer_terminal";
 
-//
-    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
-    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
-    //    String IP_PRODUCT = "http://pay.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://pay.iot.xin/";
-//    String IP_PRODUCT = "http://wy.iot.xin";
+    //
+//    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
+    //    String IP_PRODUCT = "http://wy.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
+    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
 //    String IP_PRODUCT = "http://120.25.73.87";
