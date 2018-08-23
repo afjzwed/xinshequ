@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                                       xmlns:tools="http://schemas.android.com/tools"
                                        android:id="@+id/activity_main"
                                        android:layout_width="match_parent"
                                        android:layout_height="match_parent"
@@ -44,11 +43,12 @@
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="430px"
-                android:layout_marginTop="74px">
+                android:layout_marginTop="74px"
+                android:scrollbars="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/textView"
@@ -58,12 +58,11 @@
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="40px"
 
-                        android:layout_marginLeft="74px"
-                        android:layout_marginRight="74px"
-                        android:lineSpacingExtra="10px"
+                        android:layout_marginLeft="54px"
+                        android:layout_marginRight="54px"
                         android:text="湖南创欣物联科技有限公司，是全国首家面向以市场化物业服务企业为导体，提供智能化社区解决方案，让业主品质生活和工作充满无限乐趣为宗旨的综合物联网服务提供商。公司始终以卓越的市场前瞻力和科技创新力推动物联网发展，为用户创造价值，推动现代社区服务发展，让社区生活与工作更便捷、更简单、更精彩。"
                         android:textColor="@color/color_646464"
-                        android:textSize="40px"
+                        android:textSize="30px"
                         />
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>

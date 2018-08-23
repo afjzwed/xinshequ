@@ -82,8 +82,8 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                     switch (position) {
                         case 0:
-//                            mContext.startActivity(new Intent(mContext, MenJinActivity.class));
-                            mContext.startActivity(new Intent(mContext, MenJinNewActivity.class));
+                            mContext.startActivity(new Intent(mContext, MenJinActivity.class));
+//                            mContext.startActivity(new Intent(mContext, MenJinNewActivity.class));
                             break;
                         case 1:
                             mContext.startActivity(new Intent(mContext, CarManageActivity.class));
