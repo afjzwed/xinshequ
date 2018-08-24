@@ -167,7 +167,7 @@ public class CameraActivity extends BaseMonitorActivity implements CameraContrac
         CommentDialog dialog=new CommentDialog(this);
         dialog.setCancelable(false);
         dialog.getTv_dialog_title().setText("欣提示");
-        dialog.getTv_dialog_message().setText("密码过于简单");
+        dialog.getTv_dialog_message().setText("密码过于简单，请立即修改！");
         dialog.getBt_dialog_cancel().setVisibility(View.GONE);
         dialog.getBt_dialog_confirm().setText("确定");
         dialog.getBt_dialog_confirm().setOnClickListener(new View.OnClickListener() {
