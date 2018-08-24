@@ -7,10 +7,9 @@ import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
-import com.yxld.yxchuangxin.entity.BaseBack2;
 import com.yxld.yxchuangxin.entity.MenJinShareMemberBean;
-import com.yxld.yxchuangxin.ui.activity.wuye.contract.MenJinShareMemberContract;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinShareMemberActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.contract.MenJinShareMemberContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +77,9 @@ public class MenJinShareMemberPresenter implements MenJinShareMemberContract.Men
                             appYezhuFangwu.setFwFanghao("******************");
                             appYezhuFangwu.setFwId(Contains.yeZhuVo.getFwyzType());
                             appYezhuFangwu.setYezhuId(Contains.yeZhuVo.getYezhu_id());
-                            appYezhuFangwu.setSex(Integer.parseInt(Contains.yeZhuVo.getYezhu_sex()));
+                            if (Contains.yeZhuVo.getYezhu_sex() != null) {
+                                appYezhuFangwu.setSex(Integer.parseInt(Contains.yeZhuVo.getYezhu_sex()));
+                            }
                             mAppYezhuFangwuList.add(appYezhuFangwu);
                         }
                         mAppYezhuFangwuList.addAll(data.getRows());
