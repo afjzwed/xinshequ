@@ -77,7 +77,7 @@ public class TranslucentScrollView extends NestedScrollView {
         float offset = 1 - Math.max((viewOffsetY - scrollY) / viewOffsetY, 0f);
 
         //透明度
-        KLog.i("scrollY--"+scrollY+"viewOffsetY"+viewOffsetY+""+"offset-----"+offset+"trans------"+Math.abs((int) (offset * 255)));
+//        KLog.i("scrollY--"+scrollY+"viewOffsetY"+viewOffsetY+""+"offset-----"+offset+"trans------"+Math.abs((int) (offset * 255)));
         return Math.abs((int) (offset * 255));
     }
 

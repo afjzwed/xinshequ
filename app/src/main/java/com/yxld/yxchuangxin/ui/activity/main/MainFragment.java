@@ -356,7 +356,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 }
             }
         });
-        //// TODO: 2018/8/24 设置本地banner图 
+        //// TODO: 2018/8/24 设置本地banner图
         setBannerNew();
     }
 
