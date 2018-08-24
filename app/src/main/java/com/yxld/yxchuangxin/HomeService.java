@@ -59,8 +59,8 @@ public class HomeService extends Service {
     public static final int MSG_RELOGIN_RTC = 10009; //重新登陆rtc
 
     //rtc
-    public static final String APP_ID = "71012";
-    public static final String APP_KEY = "71007b1c-6b75-4d6f-85aa-40c1f3b842ef";
+    public static final String APP_ID = "72321";
+    public static final String APP_KEY = "9c4cd049-579d-431f-ba4b-5eb81edac064";
 
     private MediaPlayer ringingPlayer;//声音提示
     private Handler handler;//服务端handler
