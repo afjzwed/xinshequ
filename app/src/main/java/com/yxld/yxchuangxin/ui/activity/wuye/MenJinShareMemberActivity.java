@@ -142,7 +142,9 @@ public class MenJinShareMemberActivity extends BaseActivity implements MenJinSha
         map2.put("xiangmuId", getIntent().getStringExtra("xmid"));
         map2.put("loudongId", getIntent().getStringExtra("ldid")==null?"0":getIntent().getStringExtra("ldid"));
         map2.put("danyuanId", getIntent().getStringExtra("dyid")==null?"0":getIntent().getStringExtra("dyid"));
-        map2.put("fanghao", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao());
+        String fwFanghao = Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao();
+        String newfwFanghao = fwFanghao.replaceFirst("^0*", "");
+        map2.put("fanghao", newfwFanghao);
         int j=0;
         for (int i = 0; i < liveMemberAdapter.getData().size(); i++) {
             if (liveMemberAdapter.getData().get(i).isMenjinSave()) {
