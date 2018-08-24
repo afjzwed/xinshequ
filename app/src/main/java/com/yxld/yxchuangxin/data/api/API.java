@@ -16,12 +16,12 @@ public interface API {
     //
 //    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
-    //    String IP_PRODUCT = "http://wy.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
-//    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
+    String IP_PRODUCT = "http://wy.iot.xin";
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    //    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
-    String IP_PRODUCT = "http://119.23.162.25";
-    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
+//    String IP_PRODUCT = "http://119.23.162.25";
+//    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
 //    String IP_PRODUCT = "http://120.25.73.87";
 //    String BASE_URL_DEVOLOP = "http://120.25.73.87/";
     String BASE_URL = IP_PRODUCT + "/";
@@ -557,7 +557,7 @@ public interface API {
     /**
      * 删除收藏商品 0221 校验
      */
-    String URL_DELETE_COLLECT_GOODS_FROM_ID = "mall/collection_deleteCollection?collection" + "" + "" + "" +
+    String URL_DELETE_COLLECT_GOODS_FROM_ID = "mall/collection_deleteCollection?collection" + "" + "" + "" + "" + "" +
             ".collectionId=%1$s&collection.collectionShangpId=%2$s&collection.collectionUserId=%3$s";
 
     /***2017-02-21 整理废弃功能接口end***********************************************************************/

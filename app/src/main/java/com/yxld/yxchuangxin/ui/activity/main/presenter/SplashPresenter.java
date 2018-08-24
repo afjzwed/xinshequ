@@ -180,6 +180,10 @@ public class SplashPresenter implements SplashContract.SplashContractPresenter {
                                     info.getHouse().get(0).getFwLoudong() + "栋" +
                                     info.getHouse().get(0).getFwDanyuan() + "单元" +
                                     info.getHouse().get(0).getFwFanghao());
+                        }else {
+                            ToastUtil.showShort("账号异常请联系管理员");
+                            jump = JUMPTOLOGIN;
+                            return;
                         }
 
                         if (info.getAddr() != null) {

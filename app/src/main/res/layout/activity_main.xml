@@ -27,10 +27,14 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.yxld.yxchuangxin.view.ImageCycleView
-                    android:id="@+id/indexAdvs"
+                <!--<com.yxld.yxchuangxin.view.ImageCycleView-->
+                <!--android:id="@+id/indexAdvs"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="564px"/>-->
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="564px"/>
+                    android:layout_height="564px"></com.youth.banner.Banner>
 
                 <com.zhy.autolayout.AutoRelativeLayout
                     android:layout_width="match_parent"

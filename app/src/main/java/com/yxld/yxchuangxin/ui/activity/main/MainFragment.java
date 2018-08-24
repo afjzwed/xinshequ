@@ -27,6 +27,8 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener;
 import com.socks.library.KLog;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
+import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.Utils.UIUtils;
@@ -61,6 +63,7 @@ import com.yxld.yxchuangxin.ui.adapter.main.MainMiaoshaAdapter;
 import com.yxld.yxchuangxin.ui.adapter.main.MainShopAdapter;
 import com.yxld.yxchuangxin.ui.adapter.main.WuyeAdapter1;
 import com.yxld.yxchuangxin.view.AutoCardView;
+import com.yxld.yxchuangxin.view.GlideImagerBannerLoader;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;
 import com.yxld.yxchuangxin.view.ImageCycleView;
 import com.yxld.yxchuangxin.view.MiaoshaTimeView;
@@ -92,74 +95,43 @@ import static com.yxld.yxchuangxin.ui.activity.goods.MallFragment.TO_FEILEI_TYPE
 public class MainFragment extends BaseFragment implements MainContract.View, MiaoshaTimeView.MiaoshaWanchengListener {
 
 
-    @Inject
-    MainPresenter mPresenter;
-    @Inject
-    WuyeAdapter1 mAdapter1;
-    @BindView(R.id.scrollView)
-    TranslucentScrollView mScrollView;
-    @BindView(R.id.tv_menu)
-    TextView mTvMenu;
-    @BindView(R.id.recyclerView)
-    RecyclerView mRecyclerView;
+    @Inject MainPresenter mPresenter;
+    @Inject WuyeAdapter1 mAdapter1;
+    @BindView(R.id.scrollView) TranslucentScrollView mScrollView;
+    @BindView(R.id.tv_menu) TextView mTvMenu;
+    @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
 
     private MainShopAdapter mainShopAdapter;
-    @Inject
-    MainMiaoshaAdapter mainMiaoshaAdapter;
+    @Inject MainMiaoshaAdapter mainMiaoshaAdapter;
 
 
-    @BindView(R.id.indexAdvs)
+    @BindView(R.id.banner) Banner banner;
+    @BindView(R.id.recycerViewMiaosha) RecyclerView recycerViewMiaosha;
+    @BindView(R.id.shopRecyclerview) RecyclerView shopRecyclerview;
+    @BindView(R.id.miaosha_shijian) MiaoshaTimeView miaoshaShijian;
+    @BindView(R.id.cv_car) AutoCardView cvCar;
+    @BindView(R.id.cv_anfang) AutoCardView cvAnfang;
+    @BindView(R.id.cv_jiaofei) AutoCardView cvJiaofei;
+    @BindView(R.id.cv_baoxiu) AutoCardView cvBaoxiu;
+    @BindView(R.id.iv_toutiao) ImageView ivToutiao;
+    @BindView(R.id.tv_action) TextView tvAction;
+    @BindView(R.id.iv_tongzhi_more) ImageView ivTongzhiMore;
+    @BindView(R.id.car) ImageView car;
+    @BindView(R.id.anfang) ImageView anfang;
+    @BindView(R.id.jiaofei) ImageView jiaofei;
+    @BindView(R.id.baoxiu) ImageView baoxiu;
+    @BindView(R.id.iv_menjin) ImageView ivMenjin;
+    @BindView(R.id.iv_miaosha) ImageView ivMiaosha;
+    @BindView(R.id.tv_jiazheng) TextView tvJiazheng;
+    @BindView(R.id.tv_hua) TextView tvHua;
+    @BindView(R.id.iv_market) ImageView ivMarket;
+    @BindView(R.id.xiyi) AutoLinearLayout xiyi;
+    @BindView(R.id.jiazheng) AutoRelativeLayout jiazheng;
+    @BindView(R.id.lipin) AutoRelativeLayout lipin;
+    @BindView(R.id.miaosha_root) AutoLinearLayout miaoshaRoot;
+    @BindView(R.id.toolbarBusiness) Toolbar toolbar;
+    @BindView(R.id.refreshLayout) SmartRefreshLayout refreshLayout;
     ImageCycleView indexAdvs;
-    @BindView(R.id.recycerViewMiaosha)
-    RecyclerView recycerViewMiaosha;
-    @BindView(R.id.shopRecyclerview)
-    RecyclerView shopRecyclerview;
-    @BindView(R.id.miaosha_shijian)
-    MiaoshaTimeView miaoshaShijian;
-    @BindView(R.id.cv_car)
-    AutoCardView cvCar;
-    @BindView(R.id.cv_anfang)
-    AutoCardView cvAnfang;
-    @BindView(R.id.cv_jiaofei)
-    AutoCardView cvJiaofei;
-    @BindView(R.id.cv_baoxiu)
-    AutoCardView cvBaoxiu;
-    @BindView(R.id.iv_toutiao)
-    ImageView ivToutiao;
-    @BindView(R.id.tv_action)
-    TextView tvAction;
-    @BindView(R.id.iv_tongzhi_more)
-    ImageView ivTongzhiMore;
-    @BindView(R.id.car)
-    ImageView car;
-    @BindView(R.id.anfang)
-    ImageView anfang;
-    @BindView(R.id.jiaofei)
-    ImageView jiaofei;
-    @BindView(R.id.baoxiu)
-    ImageView baoxiu;
-    @BindView(R.id.iv_menjin)
-    ImageView ivMenjin;
-    @BindView(R.id.iv_miaosha)
-    ImageView ivMiaosha;
-    @BindView(R.id.tv_jiazheng)
-    TextView tvJiazheng;
-    @BindView(R.id.tv_hua)
-    TextView tvHua;
-    @BindView(R.id.iv_market)
-    ImageView ivMarket;
-    @BindView(R.id.xiyi)
-    AutoLinearLayout xiyi;
-    @BindView(R.id.jiazheng)
-    AutoRelativeLayout jiazheng;
-    @BindView(R.id.lipin)
-    AutoRelativeLayout lipin;
-    @BindView(R.id.miaosha_root)
-    AutoLinearLayout miaoshaRoot;
-    @BindView(R.id.toolbarBusiness)
-    Toolbar toolbar;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
 
     @Nullable
     @Override
@@ -271,7 +243,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         if (relogin.equals("reLogin")) {
             initData();
             toolbar.setTitle(Contains.curSelectXiaoQuName);
-            KLog.i("toolbar重新设置标题" +Contains.curSelectXiaoQuName);
+            KLog.i("toolbar重新设置标题" + Contains.curSelectXiaoQuName);
         }
     }
 
@@ -285,12 +257,15 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
         }
 
         mPresenter.getAction(action);
-        Map<String, String> banner = new HashMap<>();
-        banner.put("uuid", Contains.uuid);
-        banner.put("xmid", Contains.user.getYezhuXmId() + "");
-        mPresenter.getBanner(banner);
+        // TODO: 2018/8/24 废弃banner写死
+//        Map<String, String> banner = new HashMap<>();
+//        banner.put("uuid", Contains.uuid);
+//        banner.put("xmid", Contains.user.getYezhuXmId() + "");
+//        mPresenter.getBanner(banner);
+
         mPresenter.getMianShaData();
         mPresenter.getFenlei();
+
 //        EventBus.getDefault().register(this);
     }
 
@@ -366,7 +341,7 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                     case 3:
                         //居家安防
 //                        getActivity().startActivity(new Intent(getActivity(), DeviceActivity.class));
-                                                getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
+                        getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
 
                         break;
                     case 4:
@@ -381,6 +356,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 }
             }
         });
+        //// TODO: 2018/8/24 设置本地banner图 
+        setBannerNew();
     }
 
     @Override
@@ -518,6 +495,103 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 }
             }, 0);
         }
+    }
+
+    public void setBannerNew() {
+//        if (info.getLblist() != null && info.getLblist().size() != 0) {
+//            urls.clear();
+//            for (int i = 0; i < info.getLblist().size(); i++) {
+//                urls.add(API.PIC + info.getLblist().get(i).getMallPeizhiValue());
+//            }
+//            Log.d("geek", "首页轮播图路径urls=" + urls.toString());
+        List<Integer> list = new ArrayList<>();
+        list.add(R.mipmap.ic_banner1);
+        list.add(R.mipmap.ic_banner2);
+        list.add(R.mipmap.ic_banner3);
+        list.add(R.mipmap.ic_banner4);
+        banner.setImageLoader(new GlideImagerBannerLoader());
+        //设置图片集合
+        banner.setImages(list);
+        //banner设置方法全部调用完毕时最后调用
+        banner.start();
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+//                Intent intent = new Intent(getActivity(), GoodDetailActivity.class);
+//                if (mBannerListsBeen.get(position).getLunboShangpinId() != 0) {
+//                    intent.putExtra(KEY_PRODUCT_ID, mBannerListsBeen.get(position).getLunboShangpinId() + "");
+//                    startActivity(intent);
+//                }
+
+                if (position == 0) {  //手机开门
+                    if (Contains.user == null || Contains.user.getYezhuType() == null || Contains.user.getYezhuType()
+                            != 0 || Contains.appYezhuFangwus.size() == 0) {
+                        ToastUtil.show(getActivity(), "业主信息不完善");
+                        return;
+                    }
+                    startActivity(MenJinActivity.class);
+                } else if (position == 1) {  //物业缴费
+                    if (Contains.appYezhuFangwus == null || Contains.appYezhuFangwus.size() == 0) {
+                        ToastUtil.show(getActivity(), "请配置房屋信息再进行查询");
+                        return;
+                    }
+                    startActivity(WuyeMoneyActivity.class);
+                } else if (position == 2) {  //居家安防
+                    startActivity(DeviceActivity.class);
+                } else if (position == 3) {  //便利商店
+                    if (Contains.curSelectXiaoQuId == 0 || Contains.curSelectXiaoQuName == null || "".equals(Contains
+                            .curSelectXiaoQuName)) {
+                        new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE).setTitleText("未获取到房屋信息")
+                                .setContentText("请手动选择小区").setConfirmText("确认").setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+//                                            startActivity(SelectPlaceActivity.class);
+//                                            sDialog.dismissWithAnimation();
+                            }
+                        }).show();
+                        return;
+                    }
+                    EventBus.getDefault().post(MainToMarket.Main2Market.home);
+                }
+            }
+        });
+//            indexAdvs.setImageResources(urls, new ImageCycleView.ImageCycleViewListener() {
+//                @Override
+//                public void onImageClick(int position, View imageView) {
+//                    if (position == 0) {  //手机开门
+//                        if (Contains.user == null || Contains.user.getYezhuType() == null || Contains.user
+//                                .getYezhuType() != 0 || Contains.appYezhuFangwus.size() == 0) {
+//                            ToastUtil.show(getActivity(), "业主信息不完善");
+//                            return;
+//                        }
+//                        startActivity(MenJinActivity.class);
+//                    } else if (position == 1) {  //物业缴费
+//                        if (Contains.appYezhuFangwus == null || Contains.appYezhuFangwus.size() == 0) {
+//                            ToastUtil.show(getActivity(), "请配置房屋信息再进行查询");
+//                            return;
+//                        }
+//                        startActivity(WuyeMoneyActivity.class);
+//                    } else if (position == 2) {  //居家安防
+//                        startActivity(DeviceActivity.class);
+//                    } else if (position == 3) {  //便利商店
+//                        if (Contains.curSelectXiaoQuId == 0 || Contains.curSelectXiaoQuName == null || "".equals
+//                                (Contains.curSelectXiaoQuName)) {
+//                            new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE).setTitleText
+//                                    ("未获取到房屋信息").setContentText("请手动选择小区").setConfirmText("确认")
+//                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                        @Override
+//                                        public void onClick(SweetAlertDialog sDialog) {
+////                                            startActivity(SelectPlaceActivity.class);
+////                                            sDialog.dismissWithAnimation();
+//                                        }
+//                                    }).show();
+//                            return;
+//                        }
+//                        EventBus.getDefault().post(MainToMarket.Main2Market.home);
+//                    }
+//                }
+//            }, 0);
+//        }
     }
 
     @Override

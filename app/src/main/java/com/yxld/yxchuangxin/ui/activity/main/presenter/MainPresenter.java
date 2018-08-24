@@ -171,9 +171,9 @@ public class MainPresenter implements MainContract.MainPresenter {
 
     @Override
     public void setReStart() {
-        if (mPezhi != null) {
-            mView.setBanner(mPezhi);
-        }
+//        if (mPezhi != null) {
+//            mView.setBanner(mPezhi);
+//        }
         if (mGoodsKind != null) {
             mView.setMiaoShaDatas(mGoodsKind);
         }
