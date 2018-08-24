@@ -159,7 +159,7 @@ public class AppConfig extends Application {
         File cacheDir = new File(this.getCacheDir(), "volley");
         // TODO: 2017/11/3 bugly的key要改
 //        CrashReport.initCrashReport(this, "b272dac831", BuildConfig.LOG_DEBUG);
-        CrashReport.initCrashReport(this, "86d37d22a0", true);
+        CrashReport.initCrashReport(this, "1e83a5b1e3", true);
         //初始化log打印
         KLog.init(BuildConfig.LOG_DEBUG);
         KLog.i("----------------------------------------应用初始化---------------------------------");

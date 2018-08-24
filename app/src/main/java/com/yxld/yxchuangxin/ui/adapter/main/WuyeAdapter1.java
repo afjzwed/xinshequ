@@ -30,14 +30,14 @@ public class WuyeAdapter1 extends BaseQuickAdapter<Wuye.DataBean.ListBean, BaseV
     protected void convert(BaseViewHolder helper, Wuye.DataBean.ListBean item) {
         helper.setText(R.id.textView2, item.getName());
         ImageView imageView = helper.getView(R.id.imageView);
-        TextView textView = helper.getView(R.id.tv_shiyong);
-        if ("居家安防".equals(item.getName())) {
-            textView.setVisibility(View.VISIBLE);
-            setAnimation(textView);
-        } else {
-            textView.clearAnimation();
-            textView.setVisibility(View.GONE);
-        }
+//        TextView textView = helper.getView(R.id.tv_shiyong);
+//        if ("居家安防".equals(item.getName())) {
+//            textView.setVisibility(View.VISIBLE);
+//            setAnimation(textView);
+//        } else {
+//            textView.clearAnimation();
+//            textView.setVisibility(View.GONE);
+//        }
         Glide.with(mContext)
                 .load(mContext.getResources().getIdentifier(item.getIcon(), "mipmap", mContext.getPackageName()))
                 .into(imageView);

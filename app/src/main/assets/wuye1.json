@@ -3,8 +3,8 @@
     {
       "list": [
         {
-          "icon": "smkm",
-          "name": "一键开门"
+          "icon": "ewmkm",
+          "name": "二维码开门"
         },
         {
           "icon": "wyjf",
@@ -15,8 +15,8 @@
           "name": "物业报修"
         },
         {
-          "icon": "jjaf",
-          "name": "居家安防"
+          "icon": "rlkm",
+          "name": "一键开门"
         },
         {
           "icon": "clgl",

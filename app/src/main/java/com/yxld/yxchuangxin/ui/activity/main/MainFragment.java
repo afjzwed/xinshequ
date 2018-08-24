@@ -351,8 +351,8 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                 switch (position) {
                     case 0:
                         //开门
-                        //getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
-                        getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
+                        getActivity().startActivity(new Intent(getActivity(), MenJinActivity.class));
+//                        getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
                         break;
                     case 1:
                         //物业缴费
@@ -365,7 +365,9 @@ public class MainFragment extends BaseFragment implements MainContract.View, Mia
                         break;
                     case 3:
                         //居家安防
-                        getActivity().startActivity(new Intent(getActivity(), DeviceActivity.class));
+//                        getActivity().startActivity(new Intent(getActivity(), DeviceActivity.class));
+                                                getActivity().startActivity(new Intent(getActivity(), MenJinNewActivity.class));
+
                         break;
                     case 4:
                         //车辆管理
