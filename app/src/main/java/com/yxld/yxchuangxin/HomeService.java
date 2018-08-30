@@ -73,7 +73,7 @@ public class HomeService extends Service {
     int rtcStatus = 0; //0:初始状态 1：获得账号 2：  9:失去网络 10:正常
     protected Call call = new Call();
     protected String lastOpenedCallUuid = null;
-    private String username = null;
+    private String username = "123456789";
     private String token = null;
     private int micFlag = 0; //是否免提 0 听筒 1免提
 
@@ -85,6 +85,10 @@ public class HomeService extends Service {
         super.onCreate();
         EventBus.getDefault().register(this);
         KLog.i(TAG, "启动HomeService");
+        if (Contains.user.getYezhuShouji() != null) {
+            username = Contains.user.getYezhuShouji();
+            KLog.i(TAG, "username" + username);
+        }
         initHandle();
         initRingPlayer();
         setRtcStatus(1); //设置状态，获取到用户账号
