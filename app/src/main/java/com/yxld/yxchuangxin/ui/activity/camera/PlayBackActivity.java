@@ -102,6 +102,7 @@ public class PlayBackActivity extends BasePlayBackActivity {
         devicePwd = getIntent().getStringExtra("devicePwd");
         currentPosition = getIntent().getIntExtra("position", 0);
         Logger.d(recordFile + "=====" + deviceId + "----------" + devicePwd);
+        devicePwd = P2PHandler.getInstance().EntryPassword(devicePwd);
         initp2pView();
         regFilter();
         play();

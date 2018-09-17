@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -73,7 +74,7 @@ public class HomeService extends Service {
     int rtcStatus = 0; //0:初始状态 1：获得账号 2：  9:失去网络 10:正常
     protected Call call = new Call();
     protected String lastOpenedCallUuid = null;
-    private String username = "123456789";
+    private String username = "";
     private String token = null;
     private int micFlag = 0; //是否免提 0 听筒 1免提
 
@@ -88,6 +89,8 @@ public class HomeService extends Service {
         if (Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
             KLog.i(TAG, "username" + username);
+        }else {
+            username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
         initHandle();
         initRingPlayer();
@@ -216,6 +219,8 @@ public class HomeService extends Service {
         if (Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
             KLog.i(TAG, "username" + username);
+        }else {
+                username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
         KLog.i(TAG, "开始登陆rtc  username:" + username + "token:" + token);
         if (token != null) {
@@ -312,7 +317,7 @@ public class HomeService extends Service {
         try {
             String regex = "(.{2})";
             data.put("mac", call.from.replaceAll(regex, "$1:").substring(0,call.from.replaceAll(regex, "$1:").length()-1));
-            data.put("phone", Contains.user.getYezhuShouji());
+            data.put("phone", username);
             data.put("ka_id", "");
             data.put("kaimenfangshi", 2);
             if (call.imageUrl != null && call.imageUrl.length() > 0) {
@@ -347,7 +352,7 @@ public class HomeService extends Service {
         JSONObject data = new JSONObject();
         try {
             data.put("mac", str);
-            data.put("phone", Contains.user.getYezhuShouji());
+            data.put("phone", username);
             data.put("ka_id", "");
             data.put("kaimenfangshi", 1);
             data.put("kaimenjietu", "");
