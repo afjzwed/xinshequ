@@ -525,12 +525,18 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
     public void setShangpin(GoodsKind goodsKind) {
         if (goodsKind.getRows().getXinpinLists().size() == 0) {
             xinpinRoot.setVisibility(View.GONE);
+        }else {
+            xinpinRoot.setVisibility(View.VISIBLE);
         }
         if (goodsKind.getRows().getDianzhangtuijianLists().size() == 0) {
             tuijianRoot.setVisibility(View.GONE);
+        }else {
+            tuijianRoot.setVisibility(View.VISIBLE);
         }
         if (goodsKind.getRows().getRexiaoLists().size() == 0) {
             rexiaoRoot.setVisibility(View.GONE);
+        }else {
+            rexiaoRoot.setVisibility(View.VISIBLE);
         }
         xinPingAdapter.setNewData(goodsKind.getRows().getXinpinLists());
         tuijianAdapter.setNewData(goodsKind.getRows().getDianzhangtuijianLists());

@@ -738,7 +738,6 @@
             android:name=".xsq.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
             android:theme="@style/WXSplash">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
