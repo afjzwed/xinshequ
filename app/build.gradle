@@ -22,7 +22,7 @@ android {
         applicationId "com.yxld.yxchuangxin"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 87
+        versionCode 88
         versionName "1.5.9.6"
         multiDexEnabled true
         ndk {
