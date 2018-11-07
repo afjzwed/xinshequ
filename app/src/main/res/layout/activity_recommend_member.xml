@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_recommend_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="斯洛伐克的精髓开发商来得及法律的书法家"
+        android:textColor="@color/black"
+        android:textSize="50px"/>
+
+    <TextView
+        android:id="@+id/tv_send_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2018-05-11"/>
+
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="谁离开对方就考虑到福建省的分解落实到福建省的开发商将"/>
+
+
+    <Button
+        android:layout_marginTop="10px"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="推荐筹备组成员"/>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

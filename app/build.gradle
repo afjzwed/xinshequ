@@ -294,4 +294,6 @@ dependencies {
     compile name: 'sdk-release', ext: 'aar'
     //选择器
     compile 'com.contrarywind:Android-PickerView:4.1.3'
+    //顶部tab
+    compile 'com.shizhefei:ViewPagerIndicator:1.1.7'
 }

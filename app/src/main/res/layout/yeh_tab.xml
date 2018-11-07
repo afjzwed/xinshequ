@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <!--android:background="@drawable/ywtab_1_selector"-->
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="236px"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_marginTop="23px"
+            android:id="@+id/iv_selector"
+            android:src="@drawable/ywtab_1_selector"
+            android:layout_width="78px"
+            android:layout_height="78px"/>
+
+        <TextView
+            android:id="@+id/tv_selector"
+            android:layout_marginTop="23px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="34px"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:layout_marginBottom="23px"
+            android:textColor="@color/ywtab_text_selector"
+            android:text=""/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

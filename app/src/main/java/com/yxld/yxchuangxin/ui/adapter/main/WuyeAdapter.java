@@ -29,12 +29,12 @@ import com.yxld.yxchuangxin.ui.activity.wuye.FangxingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.LiveMemberActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.MenJinNewActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WebSatisficingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;
@@ -247,6 +247,18 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             break;
                         case 4:
                             mContext.startActivity(new Intent(mContext, AboutOurActivity.class));
+                            break;
+                    }
+                }
+            });
+        }
+        if (item.getName().equals("物业监管")) {
+            wuyeAdapter1.setOnItemClickListener(new OnItemClickListener() {
+                @Override
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    switch (position) {
+                        case 0:
+                            mContext.startActivity(new Intent(mContext, YeWeiHuiActivity.class));
                             break;
                     }
                 }

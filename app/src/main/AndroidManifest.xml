@@ -206,6 +206,31 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".ui.activity.wuye.ywh.YeWeiHuiActivity"
+            android:label="我的业委会"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ywh.YwhRequestActivity"
+            android:label="业委会成立条件"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ywh.RecommendMemberActivity"
+            android:label="推荐筹备组成员"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ywh.ResultShowActivity"
+            android:label="业主大会结果公示"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.wuye.ywh.YwhMemberShowActivity"
+            android:label="业主大会人员公示"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.wuye.SatisficingActivity"
             android:label="满意度调查"
             android:screenOrientation="portrait">

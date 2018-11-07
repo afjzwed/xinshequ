@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/color_f5f5f5"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_ywh_request"
+        android:textSize="50px"
+        android:textColor="@color/black"
+        android:text="斯洛伐克的精髓开发商来得及法律的书法家"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/content_ywh_request"
+        android:textSize="30px"
+        android:textColor="@color/black"
+        android:text="斯洛伐克的精髓开发商来得及法律的书法家塑料袋分解落实到SDK看了房间里的看法就事论事会计分录可视对讲发牢骚的看法松动了福建省地方绝对是六块腹肌"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_marginTop="10px"
+        android:background="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="5px"/>
+
+    <TextView
+        android:layout_marginTop="10px"
+        android:id="@+id/bottom_ywh_request"
+        android:textSize="20px"
+        android:textColor="@color/black"
+        android:text="史莱克的房间里发了速度快放假"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</com.zhy.autolayout.AutoLinearLayout>
