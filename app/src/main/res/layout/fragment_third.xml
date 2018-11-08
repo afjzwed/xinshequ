@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     >
 
-
     <TextView
         android:id="@+id/tv_status"
         android:layout_width="match_parent"
@@ -13,7 +12,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="24px"
-        android:text="开始成立阶段-未开始"
+        android:text="筹备组成立阶段-未开始"
         android:textColor="@color/color_ff9e04"
         android:textSize="43px"/>
 
@@ -22,29 +21,46 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
+        android:id="@+id/ll_status1"
         android:orientation="vertical"
-        android:visibility="gone"
         >
 
         <ImageView
-            android:layout_width="354px"
-            android:layout_height="354px"
+            android:layout_width="531px"
+            android:layout_height="531px"
             android:src="@mipmap/ic_no_data"/>
 
 
     </com.zhy.autolayout.AutoLinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_status"
         android:layout_marginTop="30px"
+        android:visibility="gone"
         android:orientation="vertical"
+        android:id="@+id/ll_status2"
         >
 
         <include layout="@layout/item_ywh"
-
+                 android:id="@+id/ll_ywh"
             />
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_status3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_status2"
+        android:layout_marginTop="30px"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <include
+            android:id="@+id/ll_ywh2"
+            layout="@layout/item_ywh"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoRelativeLayout>

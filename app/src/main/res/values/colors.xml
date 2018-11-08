@@ -7,6 +7,7 @@
 
     <!--  主题浅蓝色 -->
     <color name="color_main_color_1">#008CC7</color>
+    <color name="color_0061c0">#0061c0</color>
 
     <!-- 底部菜单栏字体颜色 -未选中 -->
     <color name="color_buttom_tv_color2">#5A5A5C</color>
@@ -167,6 +168,7 @@
     <color name="color_f5f5f5">#f5f5f5</color>
     <color name="color_333333">#333333</color>
     <color name="color_ff9e04">#ff9e04</color>
+    <color name="color_00b404">#00b404</color>
 
 
 

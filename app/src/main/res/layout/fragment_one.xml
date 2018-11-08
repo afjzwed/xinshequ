@@ -21,6 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:gravity="center"
+        android:id="@+id/ll_status1"
         android:orientation="vertical"
         >
 
@@ -33,11 +34,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="104px"
+            android:id="@+id/tv_tjcy_content"
+            android:gravity="center"
             android:text="当前小区暂不具备成立业委会条件"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
         <TextView
+            android:id="@+id/tv_tijian"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="37px"
@@ -46,18 +50,19 @@
             android:textSize="43px"/>
     </com.zhy.autolayout.AutoLinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_status"
         android:layout_marginTop="30px"
         android:orientation="vertical"
+        android:id="@+id/ll_status2"
         android:visibility="gone"
         >
 
         <include layout="@layout/item_ywh"
-
+                 android:id="@+id/ll_ycl"
             />
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
 </com.zhy.autolayout.AutoRelativeLayout>
