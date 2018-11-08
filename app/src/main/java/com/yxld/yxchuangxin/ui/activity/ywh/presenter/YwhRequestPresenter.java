@@ -3,6 +3,7 @@ import android.support.annotation.NonNull;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhRequestContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.YwhRequestActivity;
+
 import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -12,7 +13,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * @Description: presenter of YwhRequestActivity
  * @date 2018/11/07 18:59:19
  */
-public class YwhRequestPresenter implements YwhRequestContract.YwhRequestContractPresenter{
+public class YwhRequestPresenter implements YwhRequestContract.YwhRequestContractPresenter {
 
     HttpAPIWrapper httpAPIWrapper;
     private final YwhRequestContract.View mView;

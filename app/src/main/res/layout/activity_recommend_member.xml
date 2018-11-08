@@ -17,21 +17,24 @@
         android:id="@+id/tv_send_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2018-05-11"/>
+        android:text="2018-05-11"
+        android:textColor="@color/color_333333"
+        android:textSize="43px"/>
 
     <TextView
         android:id="@+id/tv_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="谁离开对方就考虑到福建省的分解落实到福建省的开发商将"/>
+        android:text="谁离开对方就考虑到福建省的分解落实到福建省的开发商将"
+        android:textColor="@color/color_333333"
+        android:textSize="43px"/>
 
 
     <Button
-        android:layout_marginTop="10px"
-        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10px"
         android:text="推荐筹备组成员"/>
-
 
 </com.zhy.autolayout.AutoLinearLayout>

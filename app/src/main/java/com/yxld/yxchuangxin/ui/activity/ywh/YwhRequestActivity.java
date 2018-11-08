@@ -5,6 +5,7 @@ import android.os.Bundle;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
+
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYwhRequestComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhRequestContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YwhRequestModule;
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 /**
  * @author William
  * @Package com.yxld.yxchuangxin.ui.activity.wuye
- * @Description: 业委会成立条件
+ * @Description: 业委会成立条件 完成
  * @date 2018/11/07 18:59:19
  */
 

@@ -12,7 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * @Description: presenter of RecommendMemberActivity
  * @date 2018/11/07 19:36:36
  */
-public class RecommendMemberPresenter implements RecommendMemberContract.RecommendMemberContractPresenter{
+public class RecommendMemberPresenter implements RecommendMemberContract.RecommendMemberContractPresenter {
 
     HttpAPIWrapper httpAPIWrapper;
     private final RecommendMemberContract.View mView;
