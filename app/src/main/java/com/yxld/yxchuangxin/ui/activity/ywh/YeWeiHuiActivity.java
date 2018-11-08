@@ -131,6 +131,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 //               startActivity(RecommendMemberActivity.class);//推荐筹备组成员
 //               startActivity(ResultShowActivity.class);//业主大会结果公示
 //               startActivity(YwhMemberShowActivity.class);//业主大会人员公示
+                startActivity(CheckNoticeActivity.class);//查看通知
                 break;
             case android.R.id.home:
                 finish();

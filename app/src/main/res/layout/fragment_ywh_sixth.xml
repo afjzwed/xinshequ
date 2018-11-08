@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv_status"
         android:layout_width="match_parent"
-        android:layout_height="190px"
+        android:layout_height="109px"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="46px"
@@ -206,8 +206,9 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20px"
-            android:background="@mipmap/bg_accessory"
+
+            android:layout_marginTop="43px"
+            android:background="@mipmap/bg_ywh_accessory"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="43px"
@@ -239,9 +240,11 @@
 
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:layout_marginBottom="52px"
+            android:layout_marginTop="43px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@mipmap/bg_accessory"
+            android:background="@mipmap/bg_ywh_accessory"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="43px"

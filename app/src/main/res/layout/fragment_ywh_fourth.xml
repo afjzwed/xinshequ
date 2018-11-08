@@ -8,7 +8,7 @@
     <TextView
         android:id="@+id/tv_status"
         android:layout_width="match_parent"
-        android:layout_height="190px"
+        android:layout_height="109px"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="46px"

@@ -11,13 +11,13 @@
         android:layout_height="match_parent">
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             android:paddingBottom="50px"
             android:paddingLeft="46px"
             android:paddingRight="46px"
-            android:paddingTop="50px"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:paddingTop="50px">
 
             <TextView
                 android:id="@+id/title_recommend_member"
