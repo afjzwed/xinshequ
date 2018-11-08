@@ -3,38 +3,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title_recommend_member"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="斯洛伐克的精髓开发商来得及法律的书法家"
-        android:textColor="@color/black"
-        android:textSize="50px"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_send_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="2018-05-11"
-        android:textColor="@color/color_333333"
-        android:textSize="43px"/>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:paddingBottom="50px"
+            android:paddingLeft="46px"
+            android:paddingRight="46px"
+            android:paddingTop="50px"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_notice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="谁离开对方就考虑到福建省的分解落实到福建省的开发商将"
-        android:textColor="@color/color_333333"
-        android:textSize="43px"/>
+            <TextView
+                android:id="@+id/title_recommend_member"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/color_333333"
+                android:textSize="50px"
+                android:textStyle="bold"/>
 
+            <TextView
+                android:id="@+id/tv_send_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43px"
+                android:text="发布时间："
+                android:textColor="@color/color_999999"
+                android:textSize="40px"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10px"
-        android:text="推荐筹备组成员"/>
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43px"
+                android:lineSpacingExtra="28px"
+                android:text=""
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="42px"/>
+
+            <Button
+                android:id="@+id/bt_recommend_member"
+                android:layout_width="988px"
+                android:layout_height="130px"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="60px"
+                android:background="@drawable/bg_btn_ywh15"
+                android:gravity="center"
+                android:text="推荐筹备组成员"
+                android:textColor="@color/white"
+                android:textSize="52px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
 
 </com.zhy.autolayout.AutoLinearLayout>

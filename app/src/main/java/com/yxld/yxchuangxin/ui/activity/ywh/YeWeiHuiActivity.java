@@ -147,8 +147,9 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     }
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
-        private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认","业主大会","备案阶段"};
-        private int[] tabIcons = {R.drawable.ywtab_1_selector, R.drawable.ywtab_2_selector, R.drawable.ywtab_3_selector};
+        private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"};
+        private int[] tabIcons = {R.drawable.ywtab_1_selector, R.drawable.ywtab_2_selector, R.drawable
+                .ywtab_3_selector};
         private LayoutInflater inflater;
 
         public MyAdapter(FragmentManager fragmentManager) {
@@ -169,8 +170,8 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 //            }
 //            convertView = inflater.inflate(R.layout.yeh_tab, container, false);
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
-            ImageView imageView = (ImageView)view.findViewById(R.id.iv_selector);
-            TextView textView =(TextView) view.findViewById(R.id.tv_selector);
+            ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
+            TextView textView = (TextView) view.findViewById(R.id.tv_selector);
             if (position < 3) {
                 imageView.setImageResource(R.drawable.ywtab_1_selector);
             } else if (position == 3) {
@@ -185,19 +186,26 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         @Override
         public Fragment getFragmentForPage(int position) {
             //测试
-            if (position==0){
+            if (position == 0) {
                 return new OneFragment();
-            }else if (position==1){
+            } else if (position == 1) {
                 return new TwoFragment();
-            }else if (position==2){
+            } else if (position == 2) {
                 return new ThirdFragment();
-            }else {
-            FirstLayerFragment mainFragment = new FirstLayerFragment();
+            } else if (position == 3) {
+                return new FourthFragment();
+            } else if (position == 4) {
+                return new FivethFragment();
+            } else if (position == 5) {
+                return new SixthFragment();
+            } else {
+                FirstLayerFragment mainFragment = new FirstLayerFragment();
 //            Bundle bundle = new Bundle();
 //            bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
 //            bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
 //            mainFragment.setArguments(bundle);
-            return mainFragment;}
+                return mainFragment;
+            }
         }
     }
 
