@@ -34,7 +34,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WebSatisficingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.ywh.YeWeiHuiActivity;
+import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;

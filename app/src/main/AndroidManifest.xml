@@ -12,7 +12,7 @@
 
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
-
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.CAMERA"/>
     <!-- 定位 -->
     <!-- 这个权限用于进行网络定位 -->
@@ -206,27 +206,27 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.wuye.ywh.YeWeiHuiActivity"
+            android:name=".ui.activity.ywh.YeWeiHuiActivity"
             android:label="我的业委会"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.wuye.ywh.YwhRequestActivity"
+            android:name=".ui.activity.ywh.YwhRequestActivity"
             android:label="业委会成立条件"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.wuye.ywh.RecommendMemberActivity"
+            android:name=".ui.activity.ywh.RecommendMemberActivity"
             android:label="推荐筹备组成员"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.wuye.ywh.ResultShowActivity"
+            android:name=".ui.activity.ywh.ResultShowActivity"
             android:label="业主大会结果公示"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".ui.activity.wuye.ywh.YwhMemberShowActivity"
+            android:name=".ui.activity.ywh.YwhMemberShowActivity"
             android:label="业主大会人员公示"
             android:screenOrientation="portrait">
         </activity>

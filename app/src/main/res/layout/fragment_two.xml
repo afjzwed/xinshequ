@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="109px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:paddingLeft="24px"
+        android:text="开始成立阶段-未开始"
+        android:textColor="@color/color_ff9e04"
+        android:textSize="43px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:layout_width="354px"
+            android:layout_height="354px"
+            android:src="@mipmap/ic_no_data"/>
+
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_status"
+        android:layout_marginTop="30px"
+        android:orientation="vertical"
+        >
+
+        <include layout="@layout/item_ywh"
+
+            />
+    </LinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>
