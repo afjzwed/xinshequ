@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="43px"
             android:gravity="center_vertical"
+            android:lineSpacingExtra="20px"
             android:maxLines="2"
             android:text="请在2018-09-02前确认"
             android:textColor="@color/color_999999"

@@ -3,19 +3,21 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
-
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerResultShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.ResultShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.ResultShowModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.ResultShowPresenter;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -29,6 +31,18 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 
     @Inject
     ResultShowPresenter mPresenter;
+    @BindView(R.id.title_recommend_member)
+    TextView titleRecommendMember;
+    @BindView(R.id.tv_send_time)
+    TextView tvSendTime;
+    @BindView(R.id.tv_notice)
+    TextView tvNotice;
+    @BindView(R.id.tv_click_name1)
+    TextView tvClickName1;
+    @BindView(R.id.tv_click_name2)
+    TextView tvClickName2;
+    @BindView(R.id.autoll)
+    AutoLinearLayout autoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +51,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 
     @Override
     protected void initView() {
-        setContentView(R.layout.activity_ywh_result_show);
+        setContentView(R.layout.activity_ywh_checknotice);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
@@ -76,12 +90,12 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 
     @Override
     protected void setupActivityComponent() {
-       DaggerResultShowComponent
-               .builder()
-               .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-               .resultShowModule(new ResultShowModule(this))
-               .build()
-               .inject(this);
+        DaggerResultShowComponent
+                .builder()
+                .appComponent(((AppConfig) getApplication()).getApplicationComponent())
+                .resultShowModule(new ResultShowModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override

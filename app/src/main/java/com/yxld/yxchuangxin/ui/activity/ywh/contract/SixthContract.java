@@ -19,12 +19,11 @@ public interface SixthContract {
          *
          */
         void closeProgressDialog();
+
+        void setSixthData();
     }
 
     interface SixthContractPresenter extends BasePresenter {
-//        /**
-//         *
-//         */
-//        void getBusinessInfo(Map map);
+         void getSixthData();
     }
 }

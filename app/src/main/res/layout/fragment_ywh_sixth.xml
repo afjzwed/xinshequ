@@ -43,13 +43,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/iv_img0"
                 android:layout_width="75px"
                 android:layout_height="75px"
                 android:src="@mipmap/ic_ywh_material"/>
 
             <TextView
-                android:id="@+id/tv_title0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
@@ -112,13 +110,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/iv_img"
                 android:layout_width="75px"
                 android:layout_height="75px"
                 android:src="@mipmap/ic_ywh_membershow"/>
 
             <TextView
-                android:id="@+id/tv_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
@@ -130,13 +126,11 @@
         </com.zhy.autolayout.AutoLinearLayout>
 
         <View
-            android:id="@+id/line"
             style="@style/line"
             android:layout_marginTop="49px"
             android:visibility="visible"/>
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/auto_click"
             android:layout_width="match_parent"
             android:layout_height="130px"
             android:gravity="center_vertical"
@@ -149,15 +143,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="查看业委会成员名单"
-                android:textColor="@color/main_color"
-                android:textSize="43px"/>
-
-            <TextView
-                android:id="@+id/tv_click_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10px"
-                android:text=""
                 android:textColor="@color/main_color"
                 android:textSize="43px"/>
 
@@ -229,6 +214,7 @@
                 android:textSize="43px"/>
 
             <TextView
+                android:id="@+id/tv_click_name2"
                 android:layout_width="173px"
                 android:layout_height="72px"
                 android:background="@drawable/bg_btn_ywh10"
@@ -265,6 +251,7 @@
                 android:textSize="43px"/>
 
             <TextView
+                android:id="@+id/tv_click_name3"
                 android:layout_width="173px"
                 android:layout_height="72px"
                 android:background="@drawable/bg_btn_ywh10"

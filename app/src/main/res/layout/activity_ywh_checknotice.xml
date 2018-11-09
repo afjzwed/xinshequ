@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--通知和结果公示页面通用-->
 <com.zhy.autolayout.AutoLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -47,10 +48,41 @@
                 android:textSize="42px"/>
 
             <com.zhy.autolayout.AutoLinearLayout
-                android:layout_marginTop="60px"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="60px"
                 android:background="@mipmap/bg_ywh_memberlist"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="43px"
+                android:paddingRight="29px"
+                android:paddingTop="52px">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="业主大会成员名单公示"
+                    android:textColor="@color/black"
+                    android:textSize="43px"/>
+
+                <TextView
+                    android:id="@+id/tv_click_name1"
+                    android:layout_width="173px"
+                    android:layout_height="72px"
+                    android:background="@drawable/bg_btn_ywh10"
+                    android:gravity="center"
+                    android:text="下载"
+                    android:textColor="@color/white"
+                    android:textSize="34px"/>
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43px"
+                android:background="@mipmap/bg_ywh_accessory"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:paddingLeft="43px"
@@ -66,12 +98,12 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="业主大会成员名单公示"
+                    android:text="居民健康素养自查表格"
                     android:textColor="@color/black"
                     android:textSize="43px"/>
 
                 <TextView
-                    android:id="@+id/textView7"
+                    android:id="@+id/tv_click_name2"
                     android:layout_width="173px"
                     android:layout_height="72px"
                     android:background="@drawable/bg_btn_ywh10"

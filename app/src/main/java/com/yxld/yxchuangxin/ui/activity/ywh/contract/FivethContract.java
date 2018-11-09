@@ -19,12 +19,11 @@ public interface FivethContract {
          *
          */
         void closeProgressDialog();
+
+        void setFivethData();
     }
 
     interface FivethContractPresenter extends BasePresenter {
-//        /**
-//         *
-//         */
-//        void getBusinessInfo(Map map);
+     void getFivethData();
     }
 }
