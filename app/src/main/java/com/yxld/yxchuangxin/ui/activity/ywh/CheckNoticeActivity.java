@@ -1,8 +1,11 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
@@ -12,10 +15,13 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCheckNoticeComponent
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CheckNoticePresenter;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author William
@@ -28,6 +34,18 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
     @Inject
     CheckNoticePresenter mPresenter;
+    @BindView(R.id.title_recommend_member)
+    TextView titleRecommendMember;
+    @BindView(R.id.tv_send_time)
+    TextView tvSendTime;
+    @BindView(R.id.tv_notice)
+    TextView tvNotice;
+    @BindView(R.id.tv_click_name1)
+    TextView tvClickName1;
+    @BindView(R.id.tv_click_name2)
+    TextView tvClickName2;
+    @BindView(R.id.autoll)
+    AutoLinearLayout autoll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +57,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         setContentView(R.layout.activity_ywh_checknotice);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        autoll.setVisibility(View.GONE);
     }
 
     @Override
@@ -98,4 +118,9 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         progressDialog.hide();
     }
 
+    @OnClick(R.id.tv_click_name1)
+    public void onViewClicked() {
+//        Intent intent = new Intent(this, YwhMemberShowActivity.class);
+//        startActivity(intent);
+    }
 }

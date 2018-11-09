@@ -41,6 +41,11 @@ public class FivethPresenter implements FivethContract.FivethContractPresenter{
         }
     }
 
+    @Override
+    public void getFivethData() {
+        mView.setFivethData();
+    }
+
 //    @Override
 //    public void getUser(HashMap map) {
 //        //mView.showProgressDialog();

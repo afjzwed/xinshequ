@@ -41,6 +41,11 @@ public class SixthPresenter implements SixthContract.SixthContractPresenter{
         }
     }
 
+    @Override
+    public void getSixthData() {
+        mView.setSixthData();
+    }
+
 //    @Override
 //    public void getUser(HashMap map) {
 //        //mView.showProgressDialog();

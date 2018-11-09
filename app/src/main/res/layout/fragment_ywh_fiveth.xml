@@ -44,13 +44,11 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/iv_img0"
                 android:layout_width="75px"
                 android:layout_height="75px"
                 android:src="@mipmap/ic_ywh_vote"/>
 
             <TextView
-                android:id="@+id/tv_title0"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
@@ -83,7 +81,6 @@
         android:layout_marginTop="28px"
         android:background="@color/white"
         android:orientation="vertical"
-
         android:paddingLeft="46px"
         android:paddingRight="72px"
         android:paddingTop="46px"
@@ -108,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40px"
                 android:layout_weight="1"
-                android:text="线下投票"
+                android:text="线上投票"
                 android:textColor="@color/color_333333"
                 android:textSize="43px"/>
 
@@ -116,7 +113,7 @@
                 android:id="@+id/tv_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2018-07-08至2018-07-08"
+                android:text=""
                 android:textColor="@color/color_999999"
                 android:textSize="43px"/>
         </com.zhy.autolayout.AutoLinearLayout>
@@ -128,6 +125,7 @@
             android:layout_marginBottom="43px"
             android:gravity="center_vertical"
             android:maxLines="2"
+            android:lineSpacingExtra="20px"
             android:text="请在2018-9-12之前完成推荐程序"
             android:textColor="@color/color_999999"
             android:textSize="43px"/>
@@ -137,45 +135,50 @@
             style="@style/line"
             android:layout_marginTop="6px"
             android:visibility="visible"/>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:id="@+id/auto_click"
-            android:layout_width="match_parent"
-            android:layout_height="130px"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:visibility="visible">
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/auto_click"
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:paddingLeft="46px"
+        android:paddingRight="72px"
+        android:background="@color/white"
+        android:layout_below="@id/autoll_data1"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="visible">
 
-            <TextView
-                android:id="@+id/tv_click_name1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="推荐候选人成员"
-                android:textColor="@color/main_color"
-                android:textSize="43px"/>
+        <TextView
+            android:id="@+id/tv_click_name1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="推荐候选人成员"
+            android:textColor="@color/main_color"
+            android:textSize="43px"/>
 
-            <TextView
-                android:id="@+id/tv_click_name2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10px"
-                android:text="未投票"
-                android:textColor="@color/main_color"
-                android:textSize="43px"/>
+        <TextView
+            android:id="@+id/tv_click_name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10px"
+            android:text="未投票"
+            android:textColor="@color/main_color"
+            android:textSize="43px"/>
 
-            <ImageView
-                android:layout_width="21px"
-                android:layout_height="38px"
-                android:src="@mipmap/ic_jt_blue"/>
-        </com.zhy.autolayout.AutoLinearLayout>
+        <ImageView
+            android:id="@+id/iv_arrow"
+            android:layout_width="21px"
+            android:layout_height="38px"
+            android:src="@mipmap/ic_jt_blue"/>
     </com.zhy.autolayout.AutoLinearLayout>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_data2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/autoll_data1"
+        android:layout_below="@id/auto_click"
         android:layout_marginTop="28px"
         android:background="@color/white"
         android:orientation="vertical"
@@ -239,7 +242,6 @@
                 android:textColor="@color/white"
                 android:textSize="34px"/>
         </com.zhy.autolayout.AutoLinearLayout>
-
 
         <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"

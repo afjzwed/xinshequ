@@ -448,6 +448,20 @@
         <item name="android:paddingLeft">2dp</item>
         <item name="android:paddingRight">2dp</item>
     </style>
+
+    <style name="ywh_member_tv1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/umeng_socialize_text_share_content</item>
+        <item name="android:textSize">43px</item>
+    </style>
+
+    <style name="ywh_member_tv2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">43px</item>
+    </style>
     <!--<style name="MyProgressBar" parent="Base.Widget.AppCompat.ProgressBar">-->
         <!--<item name="android:indeterminateTint">你自定义的颜色</item>-->
         <!--<item name="android:indeterminateTintMode">src_atop</item>-->
