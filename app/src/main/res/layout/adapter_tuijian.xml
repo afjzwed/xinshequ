@@ -74,7 +74,7 @@
             <TextView
                 android:layout_width="173px"
                 android:layout_height="86px"
-                android:background="@color/color_2d97ff"
+                android:background="@drawable/bg_btn_ywh10"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="推荐"

@@ -11,7 +11,7 @@
         android:layout_height="109px"
         android:background="@color/white"
         android:gravity="center_vertical"
-        android:paddingLeft="24px"
+        android:paddingLeft="46px"
         android:text="开始成立阶段-未开始"
         android:textColor="@color/color_ff9e04"
         android:textSize="43px"/>

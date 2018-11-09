@@ -75,6 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
     public AutoRelativeLayout rootLayout;
 
     public Toolbar toolbar;
+    public TextView tvMenu;
 
     /**
      * 数据加载失败时显示的视图
@@ -178,6 +179,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
 
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbarBusiness);
+        tvMenu = (TextView) findViewById(R.id.tv_menu);
         AutoRelativeLayout.LayoutParams lp = new AutoRelativeLayout.LayoutParams(UIUtils.getDisplayWidth(this), (int)(UIUtils.getStatusBarHeight(this) * 3));
         toolbar.setLayoutParams(lp);
         toolbar.setPadding(0, (int) (UIUtils.getStatusBarHeight(this) * 0.6), 0, 0);

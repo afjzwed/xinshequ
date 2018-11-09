@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginTop="29px"
+                                     android:background="@color/white"
+                                     android:orientation="vertical"
+                                     android:paddingBottom="49px"
+                                     android:paddingLeft="46px"
+                                     android:paddingRight="46px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="2018-02-01  15:30"
+            android:textColor="#999999"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="未回复"
+            android:textColor="@color/color_2d97ff"
+            android:textSize="43px"
+            />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View style="@style/line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34px"
+        android:lineSpacingExtra="34px"
+        android:text="福建省开了房间说开了房间时空大家反馈说房价快速减肥尖峰时刻冷风机"
+        android:textColor="@color/color_333333"
+        android:textSize="43px"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fafafa"
+        android:lineSpacingExtra="34px"
+        android:paddingBottom="29px"
+        android:paddingTop="29px"
+        android:text="福建省开了房间说开了房间时空大家反馈说房价快速减肥尖峰时刻冷风机"
+        android:textColor="#666666"
+        android:textSize="43px"/>
+</com.zhy.autolayout.AutoLinearLayout>

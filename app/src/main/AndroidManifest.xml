@@ -236,6 +236,21 @@
             android:label="业主大会人员公示"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.activity.ywh.CymdActivity"
+            android:label="业主大会人员公示"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.ywh.PqrzActivity"
+            android:label="业主大会人员公示"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.activity.ywh.FkyjActivity"
+            android:label="意见反馈"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- 业委会相关 -->
         <activity
             android:name=".ui.activity.ywh.CheckNoticeActivity"

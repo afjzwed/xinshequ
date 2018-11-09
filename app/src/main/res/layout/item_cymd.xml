@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="29px"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="43px"
+    android:paddingRight="43px">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="130px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+
+            android:text="程晓天"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1栋一单元一楼-2005"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View style="@style/line"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:layout_marginBottom="30px"
+        android:text="简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介"
+        android:textColor="#666666"
+        android:textSize="40px"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

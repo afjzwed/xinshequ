@@ -124,19 +124,36 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
     }
 
-    @OnClick(R.id.tv_status)
-    public void onViewClicked() {
-        if (type == 0) {
-            type = 1;
-        } else if (type == 1) {
-            type = 2;
-        } else if (type==2){
-            type = 3;
-        }else {
-            type = 0;
+
+    @OnClick({R.id.tv_status, R.id.ll_tjcy})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_status:
+                if (type == 0) {
+                    type = 1;
+                } else if (type == 1) {
+                    type = 2;
+                } else if (type == 2) {
+                    type = 3;
+                } else {
+                    type = 0;
+                }
+                initStatusView(type);
+                break;
+            case R.id.ll_tjcy:
+                if (type == 0) {
+                } else if (type == 1) {
+                    startActivity(TuiJianListActivity.class);//推荐成员
+                } else if (type == 2) {
+                    startActivity(CheckNoticeActivity.class);//查看通知
+                } else {
+                    startActivity(CymdActivity.class);//成员名单公示
+                }
+                initStatusView(type);
+                break;
         }
-        initStatusView(type);
     }
 }

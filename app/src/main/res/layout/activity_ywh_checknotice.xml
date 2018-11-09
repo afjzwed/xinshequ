@@ -71,6 +71,7 @@
                     android:textSize="43px"/>
 
                 <TextView
+                    android:id="@+id/textView7"
                     android:layout_width="173px"
                     android:layout_height="72px"
                     android:background="@drawable/bg_btn_ywh10"
