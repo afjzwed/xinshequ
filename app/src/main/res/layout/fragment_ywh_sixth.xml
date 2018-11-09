@@ -16,12 +16,35 @@
         android:textColor="@color/color_2d97ff"
         android:textSize="43px"/>
 
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/ll_no_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="531px"
+            android:layout_height="531px"
+            android:src="@mipmap/ic_ywh_record"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="37px"
+            android:text="备案中..."
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
     <ImageView
         android:id="@+id/iv_no_data"
         android:layout_width="531px"
         android:layout_height="531px"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_ywh_record"/>
+        android:src="@mipmap/ic_no_data"/>
 
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/autoll_data0"
@@ -226,10 +249,10 @@
 
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_marginBottom="52px"
-            android:layout_marginTop="43px"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="52px"
+            android:layout_marginTop="43px"
             android:background="@mipmap/bg_ywh_accessory"
             android:gravity="center_vertical"
             android:orientation="horizontal"

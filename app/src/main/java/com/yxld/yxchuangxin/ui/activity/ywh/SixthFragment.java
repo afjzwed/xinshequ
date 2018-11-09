@@ -38,8 +38,8 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     SixthPresenter mPresenter;
     @BindView(R.id.tv_status)
     TextView tvStatus;
-    @BindView(R.id.iv_no_data)
-    ImageView ivNoData;
+    @BindView(R.id.ll_no_data)
+    AutoLinearLayout llNoData;
     @BindView(R.id.tv_content_head)
     TextView tvContentHead;
     @BindView(R.id.tv_content_foot)
@@ -56,6 +56,8 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     AutoLinearLayout autollData1;
     @BindView(R.id.autoll_data2)
     AutoLinearLayout autollData2;
+    @BindView(R.id.iv_no_data)
+    ImageView ivNoData;
 
     private int status = 0;
 
@@ -80,14 +82,25 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
         switch (status) {
             case 0:
                 ivNoData.setVisibility(View.VISIBLE);
+                llNoData.setVisibility(View.GONE);
+                autollData0.setVisibility(View.GONE);
+                autollData1.setVisibility(View.GONE);
+                autollData2.setVisibility(View.GONE);
+                tvStatus.setText("备案阶段-未开始");
+                tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
+                break;
+            case 1:
+                ivNoData.setVisibility(View.GONE);
+                llNoData.setVisibility(View.VISIBLE);
                 autollData0.setVisibility(View.GONE);
                 autollData1.setVisibility(View.GONE);
                 autollData2.setVisibility(View.GONE);
                 tvStatus.setText("备案阶段-进行中");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                 break;
-            case 1:
+            case 2:
                 ivNoData.setVisibility(View.GONE);
+                llNoData.setVisibility(View.GONE);
                 autollData0.setVisibility(View.VISIBLE);
                 autollData1.setVisibility(View.VISIBLE);
                 autollData2.setVisibility(View.VISIBLE);
@@ -139,6 +152,8 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
             case R.id.tv_status:
                 if (status == 0) {
                     status = 1;
+                } else if (status == 1) {
+                    status = 2;
                 } else {
                     status = 0;
                 }

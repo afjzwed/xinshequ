@@ -19,7 +19,6 @@ import com.shizhefei.view.indicator.slidebar.ColorBar;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.FirstLayerFragment;
 
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYeWeiHuiComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YeWeiHuiContract;
@@ -49,7 +48,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     private IndicatorViewPager indicatorViewPager;
 
-    private int posti;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +131,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 //               startActivity(ResultShowActivity.class);//业主大会结果公示
 //               startActivity(YwhMemberShowActivity.class);//业主大会人员公示
 //                startActivity(CheckNoticeActivity.class);//查看通知
-//                startActivity(CheckNoticeActivity.class);//查看通知
+                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();
@@ -150,8 +149,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
         private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"};
-        private int[] tabIcons = {R.drawable.ywtab_1_selector, R.drawable.ywtab_2_selector, R.drawable
-                .ywtab_3_selector};
         private LayoutInflater inflater;
 
         public MyAdapter(FragmentManager fragmentManager) {
@@ -198,15 +195,8 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                 return new FourthFragment();
             } else if (position == 4) {
                 return new FivethFragment();
-            } else if (position == 5) {
+            } else  {
                 return new SixthFragment();
-            } else {
-                FirstLayerFragment mainFragment = new FirstLayerFragment();
-//            Bundle bundle = new Bundle();
-//            bundle.putString(FirstLayerFragment.INTENT_STRING_TABNAME, tabNames[position]);
-//            bundle.putInt(FirstLayerFragment.INTENT_INT_INDEX, position);
-//            mainFragment.setArguments(bundle);
-                return mainFragment;
             }
         }
     }

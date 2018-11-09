@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--android:fillViewport="false"-->
     <com.shizhefei.view.indicator.ScrollIndicatorView
         android:id="@+id/tab_indicator"
         android:layout_width="match_parent"
