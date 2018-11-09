@@ -120,7 +120,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
     @OnClick(R.id.tv_click_name1)
     public void onViewClicked() {
-//        Intent intent = new Intent(this, YwhMemberShowActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, CymdActivity.class);
+        startActivity(intent);
     }
 }

@@ -1,8 +1,10 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * @author William
@@ -113,4 +116,15 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         progressDialog.hide();
     }
 
+    @OnClick({R.id.tv_click_name1, R.id.tv_click_name2})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_click_name1:
+                Intent intent = new Intent(this, YwhMemberShowActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_click_name2:
+                break;
+        }
+    }
 }

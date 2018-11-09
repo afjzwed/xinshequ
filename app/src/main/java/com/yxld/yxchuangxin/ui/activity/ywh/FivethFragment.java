@@ -93,8 +93,8 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                 autollData1.setVisibility(View.GONE);
                 autoClick.setVisibility(View.GONE);
                 autollData2.setVisibility(View.GONE);
-                tvStatus.setText("业主大会阶段-进行中");
-                tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
+                tvStatus.setText("业主大会阶段-未开始");
+                tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
                 break;
             case 1:
                 ivNoData.setVisibility(View.GONE);
@@ -214,7 +214,7 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
 //                        startActivity(intent);
                         break;
                     case 2:
-                        intent = new Intent(getActivity(), CheckNoticeActivity.class);
+                        intent = new Intent(getActivity(), ResultShowActivity.class);
                         startActivity(intent);
                         break;
                     case 3:

@@ -238,7 +238,7 @@
         </activity>
         <activity
             android:name=".ui.activity.ywh.CymdActivity"
-            android:label="业主大会人员公示"
+            android:label="成员名单公示"
             android:screenOrientation="portrait">
         </activity>
         <activity

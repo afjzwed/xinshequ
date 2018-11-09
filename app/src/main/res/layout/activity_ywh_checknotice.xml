@@ -72,7 +72,7 @@
                     android:layout_height="72px"
                     android:background="@drawable/bg_btn_ywh10"
                     android:gravity="center"
-                    android:text="下载"
+                    android:text="查看"
                     android:textColor="@color/white"
                     android:textSize="34px"/>
             </com.zhy.autolayout.AutoLinearLayout>

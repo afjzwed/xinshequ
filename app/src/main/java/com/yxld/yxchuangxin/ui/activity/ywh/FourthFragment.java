@@ -83,12 +83,14 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
             case 0:
                 autollData.setVisibility(View.GONE);
                 ivNoData.setVisibility(View.VISIBLE);
-                tvStatus.setText("候选人确定阶段-进行中");
-                tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
+                tvStatus.setText("候选人确定阶段-未开始");
+                tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
                 break;
             case 1:
                 autollData.setVisibility(View.VISIBLE);
                 ivNoData.setVisibility(View.GONE);
+                tvStatus.setText("候选人确定阶段-进行中");
+                tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                 tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + "2018-9-12" + "</font>" +
                         "之前完成推荐程序"));
                 tvContentHead.setVisibility(View.VISIBLE);
@@ -169,8 +171,8 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
                         startActivity(intent);
                         break;
                     case 3:
-//                        intent = new Intent(getActivity(), YwhMemberShowActivity.class);
-//                        startActivity(intent);
+                        intent = new Intent(getActivity(), CymdActivity.class);
+                        startActivity(intent);
                         break;
                 }
                 break;
