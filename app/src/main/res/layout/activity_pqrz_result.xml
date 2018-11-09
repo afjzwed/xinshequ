@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1065px"
+        android:background="@mipmap/ic_pqrz_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="260px"
+            android:layout_height="260px"
+            android:layout_marginTop="220px"
+            android:src="@mipmap/ic_pqrz_success"/>
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43px"
+            android:gravity="center"
+            android:lineSpacingExtra="36px"
+            android:text="恭喜您 用于一张票权：\n您的专属物业面积为78㎡"
+            android:textColor="@color/white"
+            android:textSize="52px"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36px"
+            android:gravity="center"
+            android:text="请在投票开始后开始投票"
+            android:textColor="#0b447e"
+            android:textSize="43px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <TextView
+        android:layout_width="279px"
+        android:layout_height="117px"
+        android:layout_marginLeft="110px"
+        android:background="@mipmap/ic_pqrz_mine"
+        android:gravity="center"
+        android:paddingBottom="15px"
+        android:textColor="@color/white"
+        android:textSize="43px"
+        android:text="您的信息"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</com.zhy.autolayout.AutoLinearLayout>

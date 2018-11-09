@@ -45,6 +45,8 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
     TextView tvShzt;
     ImageView imgStep;
     TextView tvTjcy;
+    AutoLinearLayout llTjcy;
+    AutoLinearLayout llTjcy1;
     TextView tvDetails1;
     TextView tvStep1;
     TextView tvShzt1;
@@ -66,7 +68,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
 
     private void initIncludeView(View view) {
         ll_ywh = view.findViewById(R.id.ll_ywh);
-
+        llTjcy = ll_ywh.findViewById(R.id.ll_tjcy);
         tvDetails = ll_ywh.findViewById(R.id.tv_details);
         tvStep = ll_ywh.findViewById(R.id.tv_step);
         tvShzt = ll_ywh.findViewById(R.id.tv_shzt);
@@ -78,6 +80,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
         tvShzt1 = ll_ywh2.findViewById(R.id.tv_shzt);
         imgStep1 = ll_ywh2.findViewById(R.id.img_step);
         tvTjcy1 = ll_ywh2.findViewById(R.id.tv_tjcy);
+        llTjcy1 = ll_ywh2.findViewById(R.id.ll_tjcy);
 
     }
 
@@ -98,6 +101,12 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvStep.setText("筹备工作已开始，请及时领取票权");
             tvDetails.setText("请在2018-9-12之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。");
             tvTjcy.setText("立即领取票权");
+            llTjcy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(PqrzActivity.class);
+                }
+            });
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText("暂未提交资料");
         } else if (type == 2) {
@@ -112,7 +121,12 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText("审核失败");
-
+            llTjcy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(PqrzResultActivity.class);
+                }
+            });
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("关于业主大会筹备文件公示的通知");
             tvDetails1.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
@@ -130,11 +144,22 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText("审核成功");
-
+            llTjcy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(PqrzResultActivity.class);
+                }
+            });
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
             tvDetails1.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
             tvTjcy1.setText("业主大会及业主委员会相关筹备文件公示");
+            llTjcy1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(CheckNoticeActivity.class);
+                }
+            });
         }
     }
 

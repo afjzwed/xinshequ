@@ -1,19 +1,18 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
-import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerPqrzComponent;
-import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
-import com.yxld.yxchuangxin.ui.activity.ywh.module.PqrzModule;
-import com.yxld.yxchuangxin.ui.activity.ywh.presenter.PqrzPresenter;
-import com.yxld.yxchuangxin.ui.adapter.ywh.PqrzAdapter;
+import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerPqrzResultComponent;
+import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzResultContract;
+import com.yxld.yxchuangxin.ui.activity.ywh.module.PqrzResultModule;
+import com.yxld.yxchuangxin.ui.activity.ywh.presenter.PqrzResultPresenter;
+import com.yxld.yxchuangxin.ui.adapter.ywh.ImgAdapter;
+import com.yxld.yxchuangxin.view.GridLayoutSpace;
 
 import java.util.Arrays;
 
@@ -26,15 +25,14 @@ import butterknife.ButterKnife;
  * @author xlei
  * @Package com.yxld.yxchuangxin.ui.activity.ywh
  * @Description: $description
- * @date 2018/11/09 08:55:03
+ * @date 2018/11/09 14:52:55
  */
 
-public class PqrzActivity extends BaseActivity implements PqrzContract.View {
+public class PqrzResultActivity extends BaseActivity implements PqrzResultContract.View {
 
     @Inject
-    PqrzPresenter mPresenter;
+    PqrzResultPresenter mPresenter;
     @BindView(R.id.rv) RecyclerView rv;
-    private PqrzAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +41,17 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
 
     @Override
     protected void initView() {
-        setContentView(R.layout.activity_pqrz);
+        needFront = true;
+        setContentView(R.layout.activity_pqrz_result);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initRv();
     }
 
     private void initRv() {
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PqrzAdapter(Arrays.asList("", ""));
-        adapter.addHeaderView(getLayoutInflater().inflate(R.layout.layout_head_pqrz, (ViewGroup) rv.getParent(), false));
-        adapter.addFooterView(getLayoutInflater().inflate(R.layout.layout_foot_pqrz, (ViewGroup) rv.getParent(), false));
-        rv.setAdapter(adapter);
+        rv.setLayoutManager(new GridLayoutManager(this, 2));
+        rv.addItemDecoration(new GridLayoutSpace(2,20,true));
+        rv.setAdapter(new ImgAdapter(Arrays.asList("","","","")));
     }
 
     @Override
@@ -64,17 +61,17 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
 
     @Override
     protected void setupActivityComponent() {
-        DaggerPqrzComponent
+        DaggerPqrzResultComponent
                 .builder()
                 .appComponent(((AppConfig) getApplication()).getApplicationComponent())
-                .pqrzModule(new PqrzModule(this))
+                .pqrzResultModule(new PqrzResultModule(this))
                 .build()
                 .inject(this);
     }
 
     @Override
-    public void setPresenter(PqrzContract.PqrzContractPresenter presenter) {
-        mPresenter = (PqrzPresenter) presenter;
+    public void setPresenter(PqrzResultContract.PqrzResultContractPresenter presenter) {
+        mPresenter = (PqrzResultPresenter) presenter;
     }
 
     @Override

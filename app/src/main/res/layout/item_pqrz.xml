@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:layout_marginTop="30px"
+                                     android:background="@color/white"
+                                     android:orientation="vertical"
+                                     android:padding="40px">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="房屋信息：1栋一单元1楼-16-2303"
+        android:textColor="@color/color_0061c0"
+        android:layout_marginLeft="20px"
+        android:textSize="43px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40px"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="473px"
+                android:layout_height="303px"
+                android:src="@mipmap/ic_fcxxz"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43px"
+                android:text="上传房产证信息页照片\n"
+                android:textColor="@color/color_333333"
+                android:textSize="43px"/>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="@drawable/bg_btn_ywh15"
+                android:drawableLeft="@mipmap/ywh_help"
+                android:drawablePadding="10px"
+                android:gravity="center"
+                android:paddingBottom="10px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:paddingTop="15px"
+                android:text="示例"
+                android:textColor="@color/white"
+                android:textSize="43px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="473px"
+                android:layout_height="303px"
+                android:src="@mipmap/ic_sczjz"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="43px"
+                android:gravity="center"
+                android:text="上传房手持证件照\n(房产证+头像页身份证)"
+                android:textColor="@color/color_333333"
+                android:textSize="43px"/>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="@drawable/bg_btn_ywh15"
+                android:drawableLeft="@mipmap/ywh_help"
+                android:drawablePadding="10px"
+                android:gravity="center"
+                android:paddingBottom="10px"
+                android:paddingLeft="30px"
+                android:paddingRight="30px"
+                android:paddingTop="15px"
+                android:text="示例"
+                android:textColor="@color/white"
+                android:textSize="43px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>
