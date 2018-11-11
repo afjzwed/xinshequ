@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 /**
@@ -21,7 +22,7 @@ public interface YeWeiHuiContract {
          */
         void closeProgressDialog();
 
-        void setData(BaseEntity baseEntity);
+        void setData(YwhCurrentflow baseEntity);
     }
 
     interface YeWeiHuiContractPresenter extends BasePresenter {

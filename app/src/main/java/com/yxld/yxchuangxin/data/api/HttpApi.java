@@ -76,6 +76,7 @@ import com.yxld.yxchuangxin.entity.XMsxt;
 import com.yxld.yxchuangxin.entity.XuFeiBean;
 import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
 import com.yxld.yxchuangxin.entity.goods.BaseEntityAll;
@@ -719,4 +720,12 @@ public interface HttpApi {
     Observable<LocalAd> getLocalAd(@FieldMap Map<String, RequestBody> params);
     @GET(URL_WEIXIU_LIUCHENG)
     Observable<LiuCheng> getWeiXiuLiucheng(@QueryMap Map<String, RequestBody> params);
+
+    /****************************业委会********************************/
+
+    @FormUrlEncoded
+    @POST(URL_YWH_CURRENTFLOW)
+    Observable<YwhCurrentflow> getYwhCurrentflow(@FieldMap Map<String, RequestBody> params);
+
+    /****************************业委会********************************/
 }

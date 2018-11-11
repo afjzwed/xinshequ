@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,10 +23,14 @@ import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYeWeiHuiComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YeWeiHuiContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YeWeiHuiModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.YeWeiHuiPresenter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -51,6 +57,10 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     private MyAdapter myAdapter;
 
     private int currrentPosition = 0;//当前阶段
+    private int currentPhaseStatus = -1;//当前阶段状态(-1:未开始,1:进行中,2已完成)
+
+    private int[] status = new int[6];
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +86,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
         indicatorViewPager = new IndicatorViewPager(tabIndicator, tabViewPager);
 
-
-        myAdapter = new MyAdapter(getSupportFragmentManager());
-        indicatorViewPager.setAdapter(myAdapter);
-
         // 禁止viewpager的滑动事件
 //        indicatorViewPager.setPageCanScroll(false);
         //设置viewpager保留界面不重新加载的页面数量
@@ -90,21 +96,59 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     @Override
     protected void initData() {
-        currrentPosition = 3;
-        myAdapter.notifyDataSetChanged();
-        indicatorViewPager.setCurrentItem(currrentPosition,false);
-//        mPresenter.getData();
+        mPresenter.getData();
     }
 
     @Override
-    public void setData(BaseEntity baseEntity) {
-        currrentPosition = 3;
-        myAdapter.notifyDataSetChanged();
-        indicatorViewPager.setCurrentItem(currrentPosition,false);
+    public void setData(YwhCurrentflow ywhCurrentflow) {
+
+//        Log.e("whlog", baseEntity.toString());"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"
+        if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
+            YwhCurrentflow.DataBean.CurrentFlowBean currentFlow = ywhCurrentflow.getData().getCurrentFlow();
+            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getCurrentPhaseName())) {
+
+                switch (currentFlow.getCurrentPhaseName()) {
+                    case "开始成立":
+                        currrentPosition = 0;
+                        status[0]=ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
+                        break;
+                    case "成立筹备组":
+                        currrentPosition = 1;
+                        status[1]=ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
+                        break;
+                    case "筹备组工作":
+                        currrentPosition = 2;
+                        status[2]=ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
+                        break;
+                    case "候选人确认":
+                        currrentPosition = 3;
+                        status[3]=ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
+                        break;
+                    case "业主大会":
+                        currrentPosition = 4;
+                        status[4]=ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
+                        break;
+                    case "备案阶段":
+                        currrentPosition = 5;
+                        status[5]=ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
+                        break;
+                }
+                currentPhaseStatus = currentFlow.getCurrentPhaseStatus();
+                myAdapter = new MyAdapter(getSupportFragmentManager(),ywhCurrentflow);
+                indicatorViewPager.setAdapter(myAdapter);
+                indicatorViewPager.setCurrentItem(currrentPosition,false);
+            }
+        }
+//        myAdapter.notifyDataSetChanged();
+
     }
 
     public int getCurrentPosition() {
         return currrentPosition;
+    }
+
+    public int getCurrentPhaseStatus(int currentFlow) {
+        return status[currentFlow];
     }
 
     @Override
@@ -161,10 +205,12 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
         private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"};
         private LayoutInflater inflater;
+       private YwhCurrentflow currentflow;
 
-        public MyAdapter(FragmentManager fragmentManager) {
+        public MyAdapter(FragmentManager fragmentManager, YwhCurrentflow ywhCurrentflow) {
             super(fragmentManager);
             inflater = LayoutInflater.from(getApplicationContext());
+            currentflow = ywhCurrentflow;
         }
 
         @Override

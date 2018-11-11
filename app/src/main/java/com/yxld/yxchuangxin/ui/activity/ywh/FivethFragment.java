@@ -81,6 +81,8 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
     private int status = 0;
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle

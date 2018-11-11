@@ -41,6 +41,7 @@ public class OneFragment extends BaseFragment implements OneContract.View {
     @BindView(R.id.tv_details) TextView tvDetails;
     private int type = 0;//模拟页面状态
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

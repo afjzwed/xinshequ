@@ -78,6 +78,7 @@ import com.yxld.yxchuangxin.entity.XMsxt;
 import com.yxld.yxchuangxin.entity.XuFeiBean;
 import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
 import com.yxld.yxchuangxin.entity.goods.BaseEntityAll;
@@ -798,6 +799,12 @@ public class HttpAPIWrapper {
     public Observable<LiuCheng> getWeiXiuLiucheng(Map<String, String> params) {
         return wrapper(mHttpAPI.getWeiXiuLiucheng(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
+
+    public Observable<YwhCurrentflow> getYwhCurrentflow(Map<String, String> params) {
+        return wrapper(mHttpAPI.getYwhCurrentflow(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
+
     /**
      * 给任何Http的Observable加上通用的线程调度器
      */

@@ -5,6 +5,7 @@ import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YeWeiHuiContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 
@@ -52,9 +53,9 @@ public class YeWeiHuiPresenter implements YeWeiHuiContract.YeWeiHuiContractPrese
     public void getData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
-        httpAPIWrapper.getDoorList(map).subscribe(new Consumer<BaseEntity>() {
+        httpAPIWrapper.getYwhCurrentflow(map).subscribe(new Consumer<YwhCurrentflow>() {
             @Override
-            public void accept(BaseEntity baseEntity) throws Exception {
+            public void accept(YwhCurrentflow baseEntity) throws Exception {
                 mView.setData(baseEntity);
             }
         }, new Consumer<Throwable>() {
