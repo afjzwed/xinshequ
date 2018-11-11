@@ -1,8 +1,15 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 import android.support.annotation.NonNull;
+
+import com.socks.library.KLog;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.CxwyMessage;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.OneContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.OneFragment;
+
+import java.util.Map;
+
 import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -39,6 +46,37 @@ public class OnePresenter implements OneContract.OneContractPresenter{
         if (!mCompositeDisposable.isDisposed()) {
              mCompositeDisposable.dispose();
         }
+    }
+
+    @Override
+    public void getData(Map map) {
+        mView.showProgressDialog();
+        Disposable disposable = httpAPIWrapper.getLcxx(map)
+                .subscribe(new Consumer<BaseEntity>() {
+                    @Override
+                    public void accept(BaseEntity message) throws Exception {
+                        //isSuccesse
+                        KLog.i("onSuccesse");
+                        mView.getDataSuccess(message);
+                        mView.closeProgressDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //onError
+                        KLog.i("onError");
+                        throwable.printStackTrace();
+                        mView.closeProgressDialog();
+                        //ToastUtil.show(mActivity, mActivity.getString(R.string.loading_failed_1));
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //onComplete
+                        KLog.i("onComplete");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
 //    @Override

@@ -10,12 +10,17 @@ import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerOneComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.OneContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.OneModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.OnePresenter;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -48,13 +53,23 @@ public class OneFragment extends BaseFragment implements OneContract.View {
         View view = inflater.inflate(R.layout.fragment_one, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
-        initStatusView(type);
+
         Log.e("wh", "OneFragment");
+        YeWeiHuiActivity activity = (YeWeiHuiActivity) getActivity();
+        initStatusView(activity.getCurrentPhaseStatus(0));
         return view;
     }
 
+    private void initData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("type", "1");
+        mPresenter.getData(map);
+    }
+
     private void initStatusView(int type) {
-        if (type == 0) {
+
+        if (type == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
@@ -72,6 +87,7 @@ public class OneFragment extends BaseFragment implements OneContract.View {
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("开始成立阶段-已完成");
             tvDetails.setText("请在2018-9-12之前完成筹备组成员推荐程序");
+            initData();
         }
     }
 
@@ -104,6 +120,11 @@ public class OneFragment extends BaseFragment implements OneContract.View {
     @Override
     public void closeProgressDialog() {
         progressDialog.hide();
+    }
+
+    @Override
+    public void getDataSuccess(BaseEntity baseEntity) {
+
     }
 
     @Override

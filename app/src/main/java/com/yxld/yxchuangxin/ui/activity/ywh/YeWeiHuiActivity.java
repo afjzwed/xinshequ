@@ -91,6 +91,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         //设置viewpager保留界面不重新加载的页面数量
 //        tabViewPager.setOffscreenPageLimit(6);
         tabIndicator.setSplitAuto(true);
+        tabViewPager.setCurrentItem(4);
 
     }
 

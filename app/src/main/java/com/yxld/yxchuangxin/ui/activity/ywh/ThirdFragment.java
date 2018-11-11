@@ -133,7 +133,12 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvStep1.setText("关于业主大会筹备文件公示的通知");
             tvDetails1.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
             tvTjcy1.setText("查看业主大会筹备文件");
-
+            llTjcy1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(CheckNoticeActivity.class);
+                }
+            });
         } else {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);

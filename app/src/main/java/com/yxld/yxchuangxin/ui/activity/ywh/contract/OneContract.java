@@ -1,7 +1,11 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
+
+import java.util.Map;
+
 /**
  * @author xlei
  * @Package The contract for OneFragment
@@ -19,12 +23,15 @@ public interface OneContract {
          *
          */
         void closeProgressDialog();
+
+        void getDataSuccess(BaseEntity baseEntity);
     }
 
     interface OneContractPresenter extends BasePresenter {
-//        /**
+        //        /**
 //         *
 //         */
 //        void getBusinessInfo(Map map);
+        void getData(Map map);
     }
 }

@@ -805,6 +805,9 @@ public class HttpAPIWrapper {
     }
 
 
+    public Observable<BaseEntity> getLcxx(Map<String, String> params) {
+        return wrapper(mHttpAPI.getLcxx(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
     /**
      * 给任何Http的Observable加上通用的线程调度器
      */

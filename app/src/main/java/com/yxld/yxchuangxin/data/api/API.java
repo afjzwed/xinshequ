@@ -812,4 +812,7 @@ public interface API {
     //**********************业委会***********************//
     String URL_YWH_CURRENTFLOW = "http://192.168.8.223:8080/supervise/app/conference/currentflow";
     //**********************业委会***********************//
+
+
+    String url_ywh_lcxx = "http://192.168.8.223:8080/supervise/app/conference/flowlist";
 }

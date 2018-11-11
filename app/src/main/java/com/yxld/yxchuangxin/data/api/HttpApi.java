@@ -721,6 +721,10 @@ public interface HttpApi {
     @GET(URL_WEIXIU_LIUCHENG)
     Observable<LiuCheng> getWeiXiuLiucheng(@QueryMap Map<String, RequestBody> params);
 
+    @FormUrlEncoded
+    @POST(url_ywh_lcxx)
+    Observable<BaseEntity> getLcxx(@FieldMap Map<String, RequestBody> params);
+
     /****************************业委会********************************/
 
     @FormUrlEncoded
