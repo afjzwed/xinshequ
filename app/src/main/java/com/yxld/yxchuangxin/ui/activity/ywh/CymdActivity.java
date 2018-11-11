@@ -46,7 +46,12 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setTitle("成员名单公示");
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
-        tvMenu.setVisibility(View.VISIBLE);
+        // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏
+        if (true) {
+            tvMenu.setVisibility(View.VISIBLE);
+        } else {
+            tvMenu.setVisibility(View.GONE);
+        }
         tvMenu.setText("反馈意见");
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override

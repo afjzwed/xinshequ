@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 /**
@@ -20,7 +21,7 @@ public interface SixthContract {
          */
         void closeProgressDialog();
 
-        void setSixthData();
+        void setSixthData(BaseEntity baseEntity);
     }
 
     interface SixthContractPresenter extends BasePresenter {

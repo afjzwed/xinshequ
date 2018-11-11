@@ -3,15 +3,21 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.ui.activity.main.WebviewActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFivethComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FivethContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.FivethModule;
@@ -65,8 +71,15 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
     AutoLinearLayout autollData2;
     @BindView(R.id.iv_arrow)
     ImageView ivArrow;
+    @BindView(R.id.tv_download1)
+    TextView tvDownload1;
+    @BindView(R.id.tv_download2)
+    TextView tvDownload2;
+//    @BindView(R.id.et)
+//    EditText et;
 
     private int status = 0;
+
 
     @Nullable
     @Override
@@ -81,11 +94,16 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
     }
 
     private void initData() {
-        mPresenter.getFivethData();
+        YeWeiHuiActivity activity = (YeWeiHuiActivity) getActivity();
+        int currentPosition = activity.getCurrentPosition();
+
+        Log.e("wh", "FivethFragment" + currentPosition);
+//        mPresenter.getFivethData();
+        setFivethData(null);
     }
 
     @Override
-    public void setFivethData() {
+    public void setFivethData(BaseEntity baseEntity) {
         switch (status) {
             case 0:
                 ivNoData.setVisibility(View.VISIBLE);
@@ -118,6 +136,7 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                 tvClickName2.setVisibility(View.VISIBLE);
                 tvClickName2.setTextColor(getResources().getColor(R.color.color_ea3006));
                 ivArrow.setImageResource(R.mipmap.ic_jt_red);
+//                et.setText(Contains.uuid);
                 break;
             case 2:
                 ivNoData.setVisibility(View.GONE);
@@ -191,7 +210,7 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.tv_click_name1, R.id.tv_click_name2})
+    @OnClick({R.id.tv_status, R.id.auto_click,R.id.tv_download1,R.id.tv_download2})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
@@ -204,14 +223,21 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                 } else {
                     status = 0;
                 }
-                setFivethData();
+                setFivethData(null);
                 break;
-            case R.id.tv_click_name1:
+            case R.id.auto_click:
                 Intent intent;
                 switch (status) {
                     case 1:
 //                        intent = new Intent(getActivity(), RecommendMemberActivity.class);
 //                        startActivity(intent);
+                        intent = new Intent(getActivity(), WebviewActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("name", "投票");
+//                        bundle.putString("address", "http://m.kuaidihelp.com/" + Contains.uuid);
+                        bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" + Contains.uuid);
+                        intent.putExtras(bundle);
+                        startActivity(intent);
                         break;
                     case 2:
                         intent = new Intent(getActivity(), ResultShowActivity.class);
@@ -223,7 +249,11 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                         break;
                 }
                 break;
-            case R.id.tv_click_name2:
+            case R.id.tv_download1:
+                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_download2:
+                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

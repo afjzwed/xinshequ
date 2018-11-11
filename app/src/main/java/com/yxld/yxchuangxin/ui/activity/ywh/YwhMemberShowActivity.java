@@ -5,12 +5,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYwhMemberShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YwhMemberShowModule;
@@ -60,6 +62,22 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
 
         recyclerView.setAdapter(ywhMemberShowAdapter);//绑定适配器
         ywhMemberShowAdapter.setNewData(memberList);
+
+        // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏
+        if (true) {
+            tvMenu.setVisibility(View.VISIBLE);
+        } else {
+            tvMenu.setVisibility(View.GONE);
+        }
+        tvMenu.setText("意见反馈");
+        tvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(FkyjActivity.class);
+            }
+        });
+
+
     }
 
     @Override
@@ -68,27 +86,16 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
             memberList.add(i + "");
         }
         ywhMemberShowAdapter.setNewData(memberList);
+
+        //网络请求 获得数据
+//        Map<String, String> map = new HashMap<>();
+//        map.put("uuid", Contains.uuid);
+//        mPresenter.getData(map);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_ywh_advise, menu);
-        return true;
-    }
+    public void setData(BaseEntity baseEntity) {
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case R.id.ywh_advise:
-                Toast.makeText(this, "意见反馈", Toast.LENGTH_SHORT).show();
-                break;
-            case android.R.id.home:
-                finish();
-                System.gc();
-                break;
-        }
-        return true;
     }
 
     @Override

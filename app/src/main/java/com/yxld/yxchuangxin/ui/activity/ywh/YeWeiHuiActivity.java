@@ -20,6 +20,7 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYeWeiHuiComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YeWeiHuiContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YeWeiHuiModule;
@@ -47,8 +48,9 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     ViewPager tabViewPager;
 
     private IndicatorViewPager indicatorViewPager;
+    private MyAdapter myAdapter;
 
-    private int position;
+    private int currrentPosition = 0;//当前阶段
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,20 +76,35 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
         indicatorViewPager = new IndicatorViewPager(tabIndicator, tabViewPager);
 
-        indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+
+        myAdapter = new MyAdapter(getSupportFragmentManager());
+        indicatorViewPager.setAdapter(myAdapter);
 
         // 禁止viewpager的滑动事件
 //        indicatorViewPager.setPageCanScroll(false);
-
         //设置viewpager保留界面不重新加载的页面数量
-        tabViewPager.setOffscreenPageLimit(6);
+//        tabViewPager.setOffscreenPageLimit(6);
         tabIndicator.setSplitAuto(true);
 
     }
 
     @Override
     protected void initData() {
+        currrentPosition = 3;
+        myAdapter.notifyDataSetChanged();
+        indicatorViewPager.setCurrentItem(currrentPosition,false);
+//        mPresenter.getData();
+    }
 
+    @Override
+    public void setData(BaseEntity baseEntity) {
+        currrentPosition = 3;
+        myAdapter.notifyDataSetChanged();
+        indicatorViewPager.setCurrentItem(currrentPosition,false);
+    }
+
+    public int getCurrentPosition() {
+        return currrentPosition;
     }
 
     @Override
@@ -125,12 +142,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ywh_help:
-//               startActivity(MenJinNewActivity.class);
-//               startActivity(YwhRequestActivity.class);//业委会成立条件
-//               startActivity(RecommendMemberActivity.class);//推荐筹备组成员
-//               startActivity(ResultShowActivity.class);//业主大会结果公示
-//               startActivity(YwhMemberShowActivity.class);//业主大会人员公示
-//                startActivity(CheckNoticeActivity.class);//查看通知
                 startActivity(YwhMessageGuideActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
@@ -171,11 +182,11 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
             TextView textView = (TextView) view.findViewById(R.id.tv_selector);
-            if (position < 3) {
+            if (position < currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_1_selector);
-            } else if (position == 3) {
+            } else if (position == currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_3_selector);
-            } else if (position > 3) {
+            } else if (position > currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_2_selector);
             }
             textView.setText(tabNames[position]);
@@ -195,7 +206,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                 return new FourthFragment();
             } else if (position == 4) {
                 return new FivethFragment();
-            } else  {
+            } else {
                 return new SixthFragment();
             }
         }

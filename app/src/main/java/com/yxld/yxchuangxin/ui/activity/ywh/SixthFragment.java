@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerSixthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
@@ -74,11 +76,14 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     }
 
     private void initData() {
-        mPresenter.getSixthData();
+        Log.e("wh", "SixthFragment");
+
+//        mPresenter.getSixthData();
+        setSixthData(null);
     }
 
     @Override
-    public void setSixthData() {
+    public void setSixthData(BaseEntity baseEntity) {
         switch (status) {
             case 0:
                 ivNoData.setVisibility(View.VISIBLE);
@@ -157,7 +162,7 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
                 } else {
                     status = 0;
                 }
-                setSixthData();
+                setSixthData(null);
                 break;
             case R.id.tv_click_name1:
                 Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();

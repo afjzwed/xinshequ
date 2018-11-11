@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerRecommendMemberComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.RecommendMemberContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.RecommendMemberModule;
@@ -50,11 +51,19 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
         setContentView(R.layout.activity_recommend_member);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // TODO: 2018/11/10 根据上级跳转页面显示推荐筹备组成员或候选人成员
+
     }
 
     @Override
     protected void initData() {
         //网络请求 获得数据
+//        mPresenter.getData(null);
+    }
+
+    @Override
+    public void setData(BaseEntity baseEntity) {
         titleRecommendMember.setText("标题");
         tvSendTime.setText("发布时间："+"时间");
         tvNotice.setText("内容");
@@ -84,6 +93,8 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     public void closeProgressDialog() {
         progressDialog.hide();
     }
+
+
 
     @Override
     protected void onDestroy() {

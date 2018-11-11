@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFourthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FourthContract;
@@ -69,7 +71,11 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
     }
 
     private void initData() {
-        mPresenter.getFourthData();
+
+        Log.e("wh", "FourthFragment");
+        status = 2;
+//        mPresenter.getFourthData();
+        setFourthData(null);
     }
 
     private void initLoacView() {
@@ -77,7 +83,9 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
     }
 
     @Override
-    public void setFourthData() {
+    public void setFourthData(BaseEntity baseEntity) {
+
+        Log.e("wh", "FourthFragment" + status);
         //获取数据
         switch (status) {
             case 0:
@@ -186,7 +194,7 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
                 } else {
                     status = 0;
                 }
-                setFourthData();
+                setFourthData(null);
                 break;
         }
     }

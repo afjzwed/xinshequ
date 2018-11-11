@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerResultShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.ResultShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.ResultShowModule;
@@ -57,32 +58,30 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         setContentView(R.layout.activity_ywh_checknotice);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        tvMenu.setVisibility(View.VISIBLE);
+        tvMenu.setText("意见反馈");
+        tvMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(FkyjActivity.class);
+            }
+        });
+
     }
 
     @Override
     protected void initData() {
-
+        //网络请求 获得数据
+//        Map<String, String> map = new HashMap<>();
+//        map.put("uuid", Contains.uuid);
+//        mPresenter.getData(map);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_ywh_advise, menu);
-        return true;
-    }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        switch (item.getItemId()) {
-            case R.id.ywh_advise:
-                Toast.makeText(this, "意见反馈", Toast.LENGTH_SHORT).show();
-                break;
-            case android.R.id.home:
-                finish();
-                System.gc();
-                break;
-        }
-        return true;
+    public void setData(BaseEntity baseEntity) {
+
     }
 
     @Override

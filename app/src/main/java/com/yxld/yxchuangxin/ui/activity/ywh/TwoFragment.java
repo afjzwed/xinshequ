@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
         initStatusView(type);
+        Log.e("wh", "TwoFragment");
         return view;
     }
 

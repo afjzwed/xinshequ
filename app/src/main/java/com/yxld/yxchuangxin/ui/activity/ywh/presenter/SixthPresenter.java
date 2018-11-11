@@ -1,8 +1,16 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 import android.support.annotation.NonNull;
+
+import com.socks.library.KLog;
+import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.SixthFragment;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -43,7 +51,24 @@ public class SixthPresenter implements SixthContract.SixthContractPresenter{
 
     @Override
     public void getSixthData() {
-        mView.setSixthData();
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        httpAPIWrapper.getDoorList(map).subscribe(new Consumer<BaseEntity>() {
+            @Override
+            public void accept(BaseEntity baseEntity) throws Exception {
+                mView.setSixthData(baseEntity);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                KLog.i("onError");
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                KLog.i("onComplete");
+            }
+        });
     }
 
 //    @Override
