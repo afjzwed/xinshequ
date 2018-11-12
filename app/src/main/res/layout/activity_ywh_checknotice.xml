@@ -7,13 +7,14 @@
     android:orientation="vertical">
 
     <ScrollView
+        android:id="@+id/sv"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zhy.autolayout.AutoRelativeLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_height="wrap_content"
             android:paddingBottom="50px"
             android:paddingLeft="46px"
             android:paddingRight="46px"
@@ -32,7 +33,6 @@
                 android:id="@+id/tv_send_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/title_recommend_member"
                 android:layout_marginTop="43px"
                 android:text="发布时间："
                 android:textColor="@color/color_999999"
@@ -40,7 +40,6 @@
 
             <TextView
                 android:id="@+id/tv_notice"
-                android:layout_below="@id/tv_send_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43px"
@@ -51,7 +50,6 @@
 
             <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/autoll"
-                android:layout_below="@id/tv_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60px"
@@ -81,15 +79,19 @@
                     android:textSize="34px"/>
             </com.zhy.autolayout.AutoLinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_below="@id/autoll"
-                android:id="@+id/rv"
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:visibility="gone"
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        </com.zhy.autolayout.AutoRelativeLayout>
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
     </ScrollView>
 
 </com.zhy.autolayout.AutoLinearLayout>

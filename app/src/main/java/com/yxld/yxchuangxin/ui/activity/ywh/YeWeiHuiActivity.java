@@ -105,33 +105,33 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                 switch (currentFlow.getCurrentPhaseName()) {
                     case "开始成立":
                         currrentPosition = 0;
-                        status[0]=ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
+                        status[0] = ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
                         break;
                     case "成立筹备组":
                         currrentPosition = 1;
-                        status[1]=ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
+                        status[1] = ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
                         break;
                     case "筹备组工作":
                         currrentPosition = 2;
-                        status[2]=ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
+                        status[2] = ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
                         break;
                     case "候选人确认":
                         currrentPosition = 3;
-                        status[3]=ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
+                        status[3] = ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
                         break;
                     case "业主大会":
                         currrentPosition = 4;
-                        status[4]=ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
+                        status[4] = ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
                         break;
                     case "备案阶段":
                         currrentPosition = 5;
-                        status[5]=ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
+                        status[5] = ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
                         break;
                 }
                 currentPhaseStatus = currentFlow.getCurrentPhaseStatus();
-                myAdapter = new MyAdapter(getSupportFragmentManager(),ywhCurrentflow);
+                myAdapter = new MyAdapter(getSupportFragmentManager(), ywhCurrentflow);
                 indicatorViewPager.setAdapter(myAdapter);
-                indicatorViewPager.setCurrentItem(currrentPosition,false);
+                indicatorViewPager.setCurrentItem(currrentPosition, false);
             }
         }
 //        myAdapter.notifyDataSetChanged();
@@ -183,7 +183,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             case R.id.ywh_help:
 //                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
 //                startActivity(FkyjActivity.class);
-                startActivity(YwhMemberShowActivity.class);//业委会信息指导
+//                startActivity(YwhMemberShowActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();
@@ -202,7 +202,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
         private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"};
         private LayoutInflater inflater;
-       private YwhCurrentflow currentflow;
+        private YwhCurrentflow currentflow;
 
         public MyAdapter(FragmentManager fragmentManager, YwhCurrentflow ywhCurrentflow) {
             super(fragmentManager);
@@ -228,7 +228,11 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             if (position < currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_1_selector);
             } else if (position == currrentPosition) {
-                imageView.setImageResource(R.drawable.ywtab_3_selector);
+                if (status[position] == 2) {//-1:未开始,1:进行中,2已完成
+                    imageView.setImageResource(R.drawable.ywtab_1_selector);
+                } else {
+                    imageView.setImageResource(R.drawable.ywtab_3_selector);
+                }
             } else if (position > currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_2_selector);
             }

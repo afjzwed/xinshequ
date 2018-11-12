@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,8 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
     TextView tvClickName1;
     @BindView(R.id.rv)
     RecyclerView recyclerView;
+    @BindView(R.id.sv)
+    ScrollView mScrollView;
 
     private YwhAccessoryAdapter ywhAccessoryAdapter;
 
@@ -62,8 +65,6 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         setContentView(R.layout.activity_ywh_checknotice);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        recyclerView.setVisibility(View.VISIBLE);
 
         tvMenu.setVisibility(View.VISIBLE);
         tvMenu.setText("意见反馈");
@@ -102,6 +103,10 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
             list.add("1");
         }
         ywhAccessoryAdapter.setNewData(list);
+        recyclerView.setVisibility(View.VISIBLE);
+
+//        recyclerView.setFocusable(false);
+        mScrollView.fullScroll(ScrollView.FOCUS_UP);//滑到顶部
     }
 
 

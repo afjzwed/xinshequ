@@ -80,6 +80,7 @@ import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
+import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
 import com.yxld.yxchuangxin.entity.goods.BaseEntityAll;
@@ -816,7 +817,7 @@ public class HttpAPIWrapper {
         return wrapper(mHttpAPI.getLcxx(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
 
-    public Observable<BaseEntity> getMemberShowList(Map<String, String> params) {
+    public Observable<YwhMember> getMemberShowList(Map<String, String> params) {
         return wrapper(mHttpAPI.getMemberShowList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     /**

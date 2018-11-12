@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.YwhMemberShowActivity;
 
@@ -49,10 +50,18 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
 
     @Override
     public void getData(LinkedHashMap<String, String> map, boolean isRefresh) {
-        httpAPIWrapper.getMemberShowList(map).subscribe(new Consumer<BaseEntity>() {
+        httpAPIWrapper.getMemberShowList(map).subscribe(new Consumer<YwhMember>() {
             @Override
-            public void accept(BaseEntity baseEntity) throws Exception {
-//                mView.setData(baseEntity);
+            public void accept(YwhMember baseEntity) throws Exception {
+                if (baseEntity.isSuccess()) {
+                    if (isRefresh) {
+                        mView.setData(true, baseEntity);
+                    } else {
+                        mView.setData(false, baseEntity);
+                    }
+                } else {
+                    mView.setError();
+                }
             }
         }, new Consumer<Throwable>() {
             @Override

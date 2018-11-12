@@ -100,7 +100,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
-            tvStep.setText("筹备工作已开始，请及时领取票权");
+            tvStep.setText("请及时领取票权");
             tvDetails.setText("请在2018-9-12之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。");
             tvTjcy.setText("立即领取票权");
             llTjcy.setOnClickListener(new View.OnClickListener() {
@@ -118,7 +118,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
-            tvStep.setText("筹备工作已开始，请及时领取票权");
+            tvStep.setText("请及时领取票权");
             tvDetails.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);

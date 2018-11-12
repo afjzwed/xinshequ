@@ -69,7 +69,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
             tvStatus.setText("筹备组成立阶段-进行中");
             tvStep.setText("已启动推荐组成员推荐程序");
             tvDetails.setVisibility(View.VISIBLE);
-            tvDetails.setText("请在2018-9-12之前完成筹备组成员推荐程序");
+            tvDetails.setText("请在2018-9-12之前完成筹备组成员推荐");
             tvTjcy.setText("推荐筹备组成员");
         } else if (type == 2) {
             llStatus1.setVisibility(View.GONE);

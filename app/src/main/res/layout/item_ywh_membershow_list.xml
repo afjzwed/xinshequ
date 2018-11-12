@@ -21,8 +21,10 @@
             android:text="姓            名："/>
 
         <TextView
+            android:id="@+id/tv_name"
             style="@style/ywh_member_tv2"
-            android:text="陈小天"/>
+            android:text=""
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout
@@ -36,8 +38,9 @@
             android:text="房 屋 信 息 ："/>
 
         <TextView
+            android:id="@+id/tv_house_message"
             style="@style/ywh_member_tv2"
-            android:text="1期1栋"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -51,8 +54,9 @@
             android:text="身份证号码："/>
 
         <TextView
+            android:id="@+id/tv_idcard"
             style="@style/ywh_member_tv2"
-            android:text="4301233455665123"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -66,8 +70,9 @@
             android:text="身            份："/>
 
         <TextView
+            android:id="@+id/tv_identity"
             style="@style/ywh_member_tv2"
-            android:text="业委会主席"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,8 +86,9 @@
             android:text="工 作 单 位 ："/>
 
         <TextView
+            android:id="@+id/tv_work_place"
             style="@style/ywh_member_tv2"
-            android:text="长沙建筑公司"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -96,8 +102,9 @@
             android:text="工 作 职 位 ："/>
 
         <TextView
+            android:id="@+id/tv_work"
             style="@style/ywh_member_tv2"
-            android:text="设计总监"/>
+            android:text=""/>
     </LinearLayout>
 
     <LinearLayout
@@ -111,18 +118,20 @@
             android:text="其 它 职 位 ："/>
 
         <TextView
+            android:id="@+id/tv_other"
             style="@style/ywh_member_tv2"
-            android:text="无"/>
+            android:text=""/>
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="34px"
         android:background="@color/color_f5f5f5"
         android:lineSpacingExtra="20px"
         android:padding="34px"
-        android:text="简介：塑料袋咖啡教室里解放东路是否校时来得及发了圣诞节发生了的解放了圣诞节福利德生科技反倒是离开房间了电视剧发生的浪费空间"
+        android:text=""
         android:textColor="@color/umeng_socialize_text_share_content"
         android:textSize="40px"/>
 

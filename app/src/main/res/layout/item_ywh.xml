@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40px"
-            android:text="已正式发起业委会成立阶段"
+            android:text="已开始发起业委会成立阶段"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
     </com.zhy.autolayout.AutoLinearLayout>

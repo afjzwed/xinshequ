@@ -14,6 +14,7 @@ import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYwhMemberShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YwhMemberShowModule;
@@ -48,7 +49,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     SwipeRefreshLayout swipRefresh;
 
     private YwhMemberShowAdapter ywhMemberShowAdapter;
-    private List<String> memberList = new ArrayList<>();
+    private List<YwhMember.DataBean> memberList = new ArrayList<>();
 
 
     private int page;//分页数
@@ -77,7 +78,6 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
             }
         }, recyclerView);
         recyclerView.setAdapter(ywhMemberShowAdapter);//绑定适配器
-//        ywhMemberShowAdapter.setNewData(memberList);
 
         // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏 根据上级页面阶段是否已完成来判断
         if (true) {
@@ -112,9 +112,9 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     }
 
     @Override
-    public void setData(boolean isRefresh,BaseEntity baseEntity) {
+    public void setData(boolean isRefresh,YwhMember data) {
         page++;
-//        memberList = data.getData();
+        memberList = data.getData();
         final int size = memberList == null ? 0 : memberList.size();
 
         if (isRefresh) {
