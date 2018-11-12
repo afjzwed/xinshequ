@@ -3,16 +3,19 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
@@ -22,7 +25,13 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFivethComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FivethContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.FivethModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.FivethPresenter;
+import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
+import com.yxld.yxchuangxin.ui.adapter.ywh.YwhMemberShowAdapter;
+import com.yxld.yxchuangxin.view.CustomLoadMoreView;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -71,16 +80,11 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
     AutoLinearLayout autollData2;
     @BindView(R.id.iv_arrow)
     ImageView ivArrow;
-    @BindView(R.id.tv_download1)
-    TextView tvDownload1;
-    @BindView(R.id.tv_download2)
-    TextView tvDownload2;
-//    @BindView(R.id.et)
-//    EditText et;
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
 
     private int status = 0;
-
-
+    private YwhAccessoryAdapter ywhAccessoryAdapter;
 
 
     @Nullable
@@ -90,6 +94,18 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
         View view = inflater.inflate(R.layout.fragment_ywh_fiveth, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
+        ywhAccessoryAdapter = new YwhAccessoryAdapter();
+        ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+//                ywhAccessoryAdapter.getData().get(position);
+                Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
 
         initData();
         return view;
@@ -102,6 +118,12 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
         Log.e("wh", "FivethFragment" + currentPosition);
 //        mPresenter.getFivethData();
         setFivethData(null);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("1");
+        }
+        ywhAccessoryAdapter.setNewData(list);
     }
 
     @Override
@@ -138,7 +160,6 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                 tvClickName2.setVisibility(View.VISIBLE);
                 tvClickName2.setTextColor(getResources().getColor(R.color.color_ea3006));
                 ivArrow.setImageResource(R.mipmap.ic_jt_red);
-//                et.setText(Contains.uuid);
                 break;
             case 2:
                 ivNoData.setVisibility(View.GONE);
@@ -212,7 +233,7 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.auto_click,R.id.tv_download1,R.id.tv_download2})
+    @OnClick({R.id.tv_status, R.id.auto_click})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
@@ -237,7 +258,8 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                         Bundle bundle = new Bundle();
                         bundle.putString("name", "投票");
 //                        bundle.putString("address", "http://m.kuaidihelp.com/" + Contains.uuid);
-                        bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" + Contains.uuid);
+                        bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" + Contains
+                                .uuid);
                         intent.putExtras(bundle);
                         startActivity(intent);
                         break;
@@ -251,12 +273,12 @@ public class FivethFragment extends BaseFragment implements FivethContract.View 
                         break;
                 }
                 break;
-            case R.id.tv_download1:
-                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tv_download2:
-                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.tv_download1:
+//                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tv_download2:
+//                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
+//                break;
         }
     }
 }

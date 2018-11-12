@@ -816,7 +816,7 @@ public interface API {
 
     String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";
 
-    String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/yadd";
+    String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";
 
     //**********************业委会***********************//
 

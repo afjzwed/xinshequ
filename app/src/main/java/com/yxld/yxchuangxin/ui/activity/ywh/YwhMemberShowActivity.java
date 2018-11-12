@@ -68,10 +68,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         UIUtils.configSwipeRefreshLayoutColors(swipRefresh);
         swipRefresh.setOnRefreshListener(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        memberList = new ArrayList<>();
         ywhMemberShowAdapter = new YwhMemberShowAdapter();
-
         ywhMemberShowAdapter.setLoadMoreView(new CustomLoadMoreView());
         ywhMemberShowAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override

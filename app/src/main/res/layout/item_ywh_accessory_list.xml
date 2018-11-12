@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="52px"
+    android:layout_marginTop="43px"
+    android:background="@mipmap/bg_ywh_accessory"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="43px"
+    android:paddingRight="29px"
+    android:paddingTop="52px">
+
+    <ImageView
+        android:layout_width="57px"
+        android:layout_height="50px"
+        android:src="@mipmap/ic_ywh_accessory1"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="居民健康素养自查表格"
+        android:textColor="@color/black"
+        android:textSize="43px"/>
+
+    <TextView
+        android:id="@+id/tv_download"
+        android:layout_width="173px"
+        android:layout_height="72px"
+        android:background="@drawable/bg_btn_ywh10"
+        android:gravity="center"
+        android:text="查看"
+        android:textColor="@color/white"
+        android:textSize="34px"/>
+
+</com.zhy.autolayout.AutoLinearLayout>

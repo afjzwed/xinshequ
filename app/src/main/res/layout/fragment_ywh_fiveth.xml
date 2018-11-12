@@ -23,268 +23,207 @@
         android:layout_centerInParent="true"
         android:src="@mipmap/ic_no_data"/>
 
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/autoll_data0"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+    <ScrollView
         android:layout_below="@+id/tv_status"
-        android:layout_marginTop="28px"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="46px"
-        android:paddingRight="72px"
-        android:paddingTop="46px"
-        android:visibility="visible">
-
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="75px"
-                android:layout_height="75px"
-                android:src="@mipmap/ic_ywh_vote"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="40px"
-                android:layout_weight="1"
-                android:text="线下投票"
-                android:textColor="@color/color_333333"
-                android:textSize="43px"/>
-
-        </com.zhy.autolayout.AutoLinearLayout>
-
-        <TextView
-            android:id="@+id/tv_content_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="43px"
-            android:layout_marginTop="43px"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:text="请关注社区通知的线下投票方式和时间"
-            android:textColor="@color/color_999999"
-            android:textSize="43px"/>
-
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/autoll_data1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/autoll_data0"
-        android:layout_marginTop="28px"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="46px"
-        android:paddingRight="72px"
-        android:paddingTop="46px"
-        android:visibility="visible">
+        android:layout_height="match_parent">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="43px"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_img"
-                android:layout_width="75px"
-                android:layout_height="75px"
-                android:src="@mipmap/ic_ywh_vote"/>
-
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="0dp"
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoll_data0"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40px"
-                android:layout_weight="1"
-                android:text="线上投票"
-                android:textColor="@color/color_333333"
-                android:textSize="43px"/>
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="28px"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="46px"
+                android:paddingRight="72px"
+                android:paddingTop="46px"
+                android:visibility="visible">
 
-            <TextView
-                android:id="@+id/tv_time1"
-                android:layout_width="wrap_content"
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="75px"
+                        android:layout_height="75px"
+                        android:src="@mipmap/ic_ywh_vote"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40px"
+                        android:layout_weight="1"
+                        android:text="线下投票"
+                        android:textColor="@color/color_333333"
+                        android:textSize="43px"/>
+
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_content_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="43px"
+                    android:layout_marginTop="43px"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:text="请关注社区通知的线下投票方式和时间"
+                    android:textColor="@color/color_999999"
+                    android:textSize="43px"/>
+
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoll_data1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/color_999999"
-                android:textSize="43px"/>
-        </com.zhy.autolayout.AutoLinearLayout>
+                android:layout_below="@id/autoll_data0"
+                android:layout_marginTop="28px"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="46px"
+                android:paddingRight="72px"
+                android:paddingTop="46px"
+                android:visibility="visible">
 
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="43px"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:lineSpacingExtra="20px"
-            android:text="请在2018-9-12之前完成推荐程序"
-            android:textColor="@color/color_999999"
-            android:textSize="43px"/>
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="43px"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-        <View
-            android:id="@+id/line"
-            style="@style/line"
-            android:layout_marginTop="6px"
-            android:visibility="visible"/>
-    </com.zhy.autolayout.AutoLinearLayout>
+                    <ImageView
+                        android:id="@+id/iv_img"
+                        android:layout_width="75px"
+                        android:layout_height="75px"
+                        android:src="@mipmap/ic_ywh_vote"/>
 
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/auto_click"
-        android:layout_width="match_parent"
-        android:layout_height="130px"
-        android:paddingLeft="46px"
-        android:paddingRight="72px"
-        android:background="@color/white"
-        android:layout_below="@id/autoll_data1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:visibility="visible">
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40px"
+                        android:layout_weight="1"
+                        android:text="线上投票"
+                        android:textColor="@color/color_333333"
+                        android:textSize="43px"/>
 
-        <TextView
-            android:id="@+id/tv_click_name1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="推荐候选人成员"
-            android:textColor="@color/main_color"
-            android:textSize="43px"/>
+                    <TextView
+                        android:id="@+id/tv_time1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/color_999999"
+                        android:textSize="43px"/>
+                </com.zhy.autolayout.AutoLinearLayout>
 
-        <TextView
-            android:id="@+id/tv_click_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10px"
-            android:text="未投票"
-            android:textColor="@color/main_color"
-            android:textSize="43px"/>
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="43px"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:lineSpacingExtra="20px"
+                    android:text="请在2018-9-12之前完成推荐程序"
+                    android:textColor="@color/color_999999"
+                    android:textSize="43px"/>
 
-        <ImageView
-            android:id="@+id/iv_arrow"
-            android:layout_width="21px"
-            android:layout_height="38px"
-            android:src="@mipmap/ic_jt_blue"/>
-    </com.zhy.autolayout.AutoLinearLayout>
+                <View
+                    android:id="@+id/line"
+                    style="@style/line"
+                    android:layout_marginTop="6px"
+                    android:visibility="visible"/>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-    <!--<EditText-->
-        <!--android:id="@+id/et"-->
-        <!--android:hint=""-->
-        <!--android:layout_below="@id/auto_click"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"/>-->
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto_click"
+                android:layout_width="match_parent"
+                android:layout_height="130px"
+                android:paddingLeft="46px"
+                android:paddingRight="72px"
+                android:background="@color/white"
+                android:layout_below="@id/autoll_data1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
-    <com.zhy.autolayout.AutoLinearLayout
-        android:id="@+id/autoll_data2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/auto_click"
-        android:layout_marginTop="28px"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingLeft="46px"
-        android:paddingRight="72px"
-        android:paddingTop="46px"
-        android:visibility="visible">
+                <TextView
+                    android:id="@+id/tv_click_name1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="推荐候选人成员"
+                    android:textColor="@color/main_color"
+                    android:textSize="43px"/>
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tv_click_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10px"
+                    android:text="未投票"
+                    android:textColor="@color/main_color"
+                    android:textSize="43px"/>
 
-            <ImageView
-                android:layout_width="75px"
-                android:layout_height="75px"
-                android:src="@mipmap/ic_ywh_accessory"/>
+                <ImageView
+                    android:id="@+id/iv_arrow"
+                    android:layout_width="21px"
+                    android:layout_height="38px"
+                    android:src="@mipmap/ic_jt_blue"/>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
+            <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoll_data2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40px"
-                android:layout_weight="1"
-                android:text="业主大会相关文件"
-                android:textColor="@color/color_333333"
-                android:textSize="43px"/>
+                android:layout_below="@id/auto_click"
+                android:layout_marginTop="28px"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:paddingLeft="46px"
+                android:paddingRight="72px"
+                android:paddingTop="46px"
+                android:visibility="visible">
 
-        </com.zhy.autolayout.AutoLinearLayout>
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="43px"
-            android:background="@mipmap/bg_ywh_accessory"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="43px"
-            android:paddingRight="29px"
-            android:paddingTop="52px">
+                    <ImageView
+                        android:layout_width="75px"
+                        android:layout_height="75px"
+                        android:src="@mipmap/ic_ywh_accessory"/>
 
-            <ImageView
-                android:layout_width="57px"
-                android:layout_height="50px"
-                android:src="@mipmap/ic_ywh_accessory1"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="40px"
+                        android:layout_weight="1"
+                        android:text="业主大会相关文件"
+                        android:textColor="@color/color_333333"
+                        android:textSize="43px"/>
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="居民健康素养自查表格"
-                android:textColor="@color/black"
-                android:textSize="43px"/>
+                </com.zhy.autolayout.AutoLinearLayout>
 
-            <TextView
-                android:id="@+id/tv_download1"
-                android:layout_width="173px"
-                android:layout_height="72px"
-                android:background="@drawable/bg_btn_ywh10"
-                android:gravity="center"
-                android:text="下载"
-                android:textColor="@color/white"
-                android:textSize="34px"/>
-        </com.zhy.autolayout.AutoLinearLayout>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="52px"
-            android:layout_marginTop="43px"
-            android:background="@mipmap/bg_ywh_accessory"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="43px"
-            android:paddingRight="29px"
-            android:paddingTop="52px">
-
-            <ImageView
-                android:layout_width="57px"
-                android:layout_height="50px"
-                android:src="@mipmap/ic_ywh_accessory1"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="居民健康素养自查表格"
-                android:textColor="@color/black"
-                android:textSize="43px"/>
-
-            <TextView
-                android:id="@+id/tv_download2"
-                android:layout_width="173px"
-                android:layout_height="72px"
-                android:background="@drawable/bg_btn_ywh10"
-                android:gravity="center"
-                android:text="下载"
-                android:textColor="@color/white"
-                android:textSize="34px"/>
-        </com.zhy.autolayout.AutoLinearLayout>
-    </com.zhy.autolayout.AutoLinearLayout>
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </ScrollView>
 </com.zhy.autolayout.AutoRelativeLayout>

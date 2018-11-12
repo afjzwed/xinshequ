@@ -3,6 +3,8 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
@@ -19,7 +22,11 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerSixthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.SixthModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.SixthPresenter;
+import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -50,18 +57,17 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     AutoLinearLayout autollData0;
     @BindView(R.id.tv_click_name1)
     TextView tvClickName1;
-    @BindView(R.id.tv_click_name2)
-    TextView tvClickName2;
-    @BindView(R.id.tv_click_name3)
-    TextView tvClickName3;
     @BindView(R.id.autoll_data1)
     AutoLinearLayout autollData1;
     @BindView(R.id.autoll_data2)
     AutoLinearLayout autollData2;
     @BindView(R.id.iv_no_data)
     ImageView ivNoData;
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
 
     private int status = 0;
+    private YwhAccessoryAdapter ywhAccessoryAdapter;
 
     @Nullable
     @Override
@@ -70,6 +76,18 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
         View view = inflater.inflate(R.layout.fragment_ywh_sixth, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setNestedScrollingEnabled(false);
+        ywhAccessoryAdapter = new YwhAccessoryAdapter();
+        ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+//                ywhAccessoryAdapter.getData().get(position);
+                Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
 
         initData();
         return view;
@@ -80,6 +98,12 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
 
 //        mPresenter.getSixthData();
         setSixthData(null);
+
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("1");
+        }
+        ywhAccessoryAdapter.setNewData(list);
     }
 
     @Override
@@ -151,7 +175,7 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.tv_click_name1, R.id.tv_click_name2, R.id.tv_click_name3})
+    @OnClick({R.id.tv_status, R.id.tv_click_name1})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
@@ -169,12 +193,12 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
                 Intent intent = new Intent(getActivity(), YwhMemberShowActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tv_click_name2:
-                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.tv_click_name3:
-                Toast.makeText(getActivity(), "点击3", Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.tv_click_name2:
+//                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.tv_click_name3:
+//                Toast.makeText(getActivity(), "点击3", Toast.LENGTH_SHORT).show();
+//                break;
         }
     }
 }

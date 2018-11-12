@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.zhy.autolayout.AutoLinearLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingBottom="50px"
             android:paddingLeft="46px"
@@ -32,6 +32,7 @@
                 android:id="@+id/tv_send_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/title_recommend_member"
                 android:layout_marginTop="43px"
                 android:text="发布时间："
                 android:textColor="@color/color_999999"
@@ -39,6 +40,7 @@
 
             <TextView
                 android:id="@+id/tv_notice"
+                android:layout_below="@id/tv_send_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43px"
@@ -48,6 +50,8 @@
                 android:textSize="42px"/>
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/autoll"
+                android:layout_below="@id/tv_notice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60px"
@@ -77,43 +81,15 @@
                     android:textSize="34px"/>
             </com.zhy.autolayout.AutoLinearLayout>
 
-            <com.zhy.autolayout.AutoLinearLayout
-                android:id="@+id/autoll"
+            <android.support.v7.widget.RecyclerView
+                android:layout_below="@id/autoll"
+                android:id="@+id/rv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="43px"
-                android:background="@mipmap/bg_ywh_accessory"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="43px"
-                android:paddingRight="29px"
-                android:paddingTop="52px">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:layout_width="57px"
-                    android:layout_height="50px"
-                    android:src="@mipmap/ic_ywh_accessory1"/>
+            </android.support.v7.widget.RecyclerView>
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="居民健康素养自查表格"
-                    android:textColor="@color/black"
-                    android:textSize="43px"/>
-
-                <TextView
-                    android:id="@+id/tv_click_name2"
-                    android:layout_width="173px"
-                    android:layout_height="72px"
-                    android:background="@drawable/bg_btn_ywh10"
-                    android:gravity="center"
-                    android:text="下载"
-                    android:textColor="@color/white"
-                    android:textSize="34px"/>
-            </com.zhy.autolayout.AutoLinearLayout>
-
-        </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
     </ScrollView>
 
 </com.zhy.autolayout.AutoLinearLayout>

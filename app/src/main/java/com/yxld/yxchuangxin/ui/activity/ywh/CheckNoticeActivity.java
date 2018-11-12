@@ -2,12 +2,13 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
@@ -16,7 +17,10 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCheckNoticeComponent
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CheckNoticePresenter;
-import com.zhy.autolayout.AutoLinearLayout;
+import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,10 +47,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     TextView tvNotice;
     @BindView(R.id.tv_click_name1)
     TextView tvClickName1;
-    @BindView(R.id.tv_click_name2)
-    TextView tvClickName2;
-    @BindView(R.id.autoll)
-    AutoLinearLayout autoll;
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        autoll.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
 
         tvMenu.setVisibility(View.VISIBLE);
         tvMenu.setText("意见反馈");
@@ -72,6 +74,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
         // TODO: 2018/11/12 整个页面内容都从上级页面取
 
+
     }
 
     @Override
@@ -80,6 +83,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //        Map<String, String> map = new HashMap<>();
 //        map.put("uuid", Contains.uuid);
 //        mPresenter.getData(map);
+
     }
 
     @Override
