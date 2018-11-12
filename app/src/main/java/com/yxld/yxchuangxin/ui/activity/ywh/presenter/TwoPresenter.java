@@ -48,7 +48,7 @@ public class TwoPresenter implements TwoContract.TwoContractPresenter{
     }
     @Override
     public void getData(Map map) {
-//        mView.showProgressDialog();
+        mView.showProgressDialog();
         Disposable disposable = httpAPIWrapper.getLcxx(map)
                 .subscribe(new Consumer<YwhInfo>() {
                     @Override

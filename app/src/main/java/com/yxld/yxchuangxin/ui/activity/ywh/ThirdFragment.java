@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,12 +13,16 @@ import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerThirdComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.ThirdContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.ThirdModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.ThirdPresenter;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -32,7 +37,7 @@ import butterknife.OnClick;
  * @date 2018/11/08 09:53:49
  */
 
-public class ThirdFragment extends BaseFragment implements ThirdContract.View {
+public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View {
 
     @Inject
     ThirdPresenter mPresenter;
@@ -58,22 +63,51 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
     TextView tvShzt1;
     ImageView imgStep1;
     TextView tvTjcy1;
-    private int type = 0;//模拟页面状态
-
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
-            savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
         initIncludeView(view);
-        initStatusView(type);
         Log.e("wh", "ThirdFragment");
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        initDataFromLocal();
+    }
+
+    private boolean isload;
+    @Override
+    protected void initDataFromLocal() {
+        if (!isViewCreated || !isUIVisible||isload ) {
+            return;
+        }
+        isload = true;
+//        Log.e("wh", "OneFragment 加载数据");
+        initData();
+    }
+
+    private void initData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("type", "3");
+        mPresenter.getData(map);
+    }
+
+    @Override
+    public void getDataSuccess(YwhInfo baseEntity) {
+        if (baseEntity.isSuccess()) {
+            initStatusView(baseEntity);
+        } else {
+            onError(baseEntity.msg);
+        }
+    }
     private void initIncludeView(View view) {
         ll_ywh = view.findViewById(R.id.ll_ywh);
         llTjcy = ll_ywh.findViewById(R.id.ll_tjcy);
@@ -92,14 +126,14 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
 
     }
 
-    private void initStatusView(int type) {
-        if (type == 0) {
+    private void initStatusView(YwhInfo ywhInfo) {
+        if (ywhInfo.getData().getFlow().getPhaseState() == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             llStatus3.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("筹备组工作阶段-未开始");
-        } else if (type == 1) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi()==null) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             llStatus3.setVisibility(View.GONE);
@@ -117,7 +151,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             });
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText("暂未提交资料");
-        } else if (type == 2) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi()!=null) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             llStatus3.setVisibility(View.VISIBLE);
@@ -145,7 +179,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
                     startActivity(CheckNoticeActivity.class);
                 }
             });
-        } else {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             llStatus3.setVisibility(View.VISIBLE);
@@ -156,7 +190,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             tvDetails.setText("恭喜您成功领取票权");
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText("审核成功");
+            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -194,10 +228,7 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
         mPresenter = (ThirdPresenter) presenter;
     }
 
-    @Override
-    protected void initDataFromLocal() {
 
-    }
 
     @Override
     public void showProgressDialog() {
@@ -214,17 +245,4 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
         super.onDestroyView();
     }
 
-    @OnClick(R.id.tv_status)
-    public void onViewClicked() {
-        if (type == 0) {
-            type = 1;
-        } else if (type == 1) {
-            type = 2;
-        } else if (type == 2) {
-            type = 3;
-        } else {
-            type = 0;
-        }
-        initStatusView(type);
-    }
 }

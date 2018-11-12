@@ -82,9 +82,8 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         // 禁止viewpager的滑动事件
 //        indicatorViewPager.setPageCanScroll(false);
         //设置viewpager保留界面不重新加载的页面数量
-//        tabViewPager.setOffscreenPageLimit(6);
+        tabViewPager.setOffscreenPageLimit(6);
         tabIndicator.setSplitAuto(true);
-        tabViewPager.setCurrentItem(4);
 
     }
 
@@ -98,10 +97,10 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
 //        Log.e("whlog", baseEntity.toString());"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"
         if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
-            YwhCurrentflow.DataBean.CurrentFlowBean currentFlow = ywhCurrentflow.getData().getCurrentFlow();
-            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getCurrentPhaseName())) {
+            YwhCurrentflow.DataBean.FlowBean currentFlow = ywhCurrentflow.getData().getFlow();
+            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getPhaseName())) {
 
-                switch (currentFlow.getCurrentPhaseName()) {
+                switch (currentFlow.getPhaseName()) {
                     case "开始成立":
                         currrentPosition = 0;
                         status[0] = ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
@@ -127,10 +126,11 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                         status[5] = ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
                         break;
                 }
-                currentPhaseStatus = currentFlow.getCurrentPhaseStatus();
+                currentPhaseStatus = currentFlow.getPhaseState();
                 myAdapter = new MyAdapter(getSupportFragmentManager(), ywhCurrentflow);
                 indicatorViewPager.setAdapter(myAdapter);
                 indicatorViewPager.setCurrentItem(currrentPosition, false);
+
             }
         }
     }

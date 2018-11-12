@@ -19,15 +19,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-
-            android:text="程晓天"
+            android:id="@+id/tv_name"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
         <TextView
+            android:id="@+id/tv_ld"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1栋一单元一楼-2005"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
     </com.zhy.autolayout.AutoLinearLayout>
@@ -35,11 +34,11 @@
     <View style="@style/line"/>
 
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30px"
         android:layout_marginBottom="30px"
-        android:text="简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介"
         android:textColor="#666666"
         android:textSize="40px"/>
 

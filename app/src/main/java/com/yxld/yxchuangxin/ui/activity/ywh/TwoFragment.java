@@ -2,6 +2,8 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
@@ -22,6 +24,7 @@ import com.yxld.yxchuangxin.ui.activity.ywh.module.TwoModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.TwoPresenter;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +41,7 @@ import butterknife.OnClick;
  * @date 2018/11/08 09:44:57
  */
 
-public class TwoFragment extends BaseFragment implements TwoContract.View {
+public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
 
     @Inject
     TwoPresenter mPresenter;
@@ -50,6 +53,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     @BindView(R.id.img_step) ImageView imgStep;
     @BindView(R.id.tv_tjcy) TextView tvTjcy;
     private int type;
+    private YwhInfo ywhInfo;
 
 
     @Nullable
@@ -59,10 +63,25 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
         Log.e("wh", "TwoFragment");
-        initData();
         return view;
     }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        initDataFromLocal();
+    }
 
+    private boolean isload;
+    @Override
+    protected void initDataFromLocal() {
+        if (!isViewCreated || !isUIVisible||isload ) {
+            return;
+        }
+        isload = true;
+//        Log.e("wh", "OneFragment 加载数据");
+        initData();
+    }
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
@@ -71,12 +90,13 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     }
 
     private void initStatusView(YwhInfo ywhInfo) {
+
         if (ywhInfo.getData().getFlow().getPhaseState() == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("筹备组成立阶段-未开始");
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getGongshiData().getGongshiType() == 7) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 7) {
             type = 1;
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
@@ -84,10 +104,10 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
             tvStatus.setText("筹备组成立阶段-进行中");
             tvStep.setText("已启动推荐组成员推荐程序");
             tvDetails.setVisibility(View.VISIBLE);
-            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getGongshiData().getEndtime() + "</font>" +
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
                     "之前完成筹备组成员推荐"));
             tvTjcy.setText("推荐筹备组成员");
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getGongshiData().getGongshiType() == 1) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 1) {
             type = 2;
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
@@ -96,7 +116,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
             imgStep.setImageResource(R.mipmap.ic_ywh_start2);
             tvStep.setText("筹备组成员公示");
             tvDetails.setVisibility(View.VISIBLE);
-            tvDetails.setText(ywhInfo.getData().getGongshiData().getTitle());
+            tvDetails.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
             tvTjcy.setText("查看筹备组成员公示信息");
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             type = 3;
@@ -127,11 +147,6 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     }
 
     @Override
-    protected void initDataFromLocal() {
-
-    }
-
-    @Override
     public void showProgressDialog() {
         progressDialog.show();
     }
@@ -144,6 +159,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     @Override
     public void getDataSuccess(YwhInfo baseEntity) {
         if (baseEntity.isSuccess()) {
+            ywhInfo = baseEntity;
             initStatusView(baseEntity);
         } else {
             onError(baseEntity.msg);
@@ -171,7 +187,9 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
                     startActivity(intent);
 //                    startActivity(CheckNoticeActivity.class);//查看通知
                 } else if (type == 3) {
-                    startActivity(CymdActivity.class);//成员名单公示
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
+                    startActivity(CymdActivity.class,bundle);//成员名单公示
                 }
                 break;
         }

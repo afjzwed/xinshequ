@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
@@ -36,7 +37,7 @@ import butterknife.OnClick;
  * @date 2018/11/08 08:54:54
  */
 
-public class OneFragment extends BaseFragment implements OneContract.View {
+public class OneFragment extends BaseYwhFragment implements OneContract.View {
 
     @Inject
     OnePresenter mPresenter;
@@ -54,10 +55,24 @@ public class OneFragment extends BaseFragment implements OneContract.View {
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
         Log.e("wh", "OneFragment");
-        initData();
         return view;
     }
-
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        initDataFromLocal();
+    }
+    private boolean isload;
+    @Override
+    protected void initDataFromLocal() {
+        if (!isViewCreated || !isUIVisible||isload ) {
+            return;
+        }
+        isload = true;
+//        Log.e("wh", "OneFragment 加载数据");
+        initData();
+    }
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
@@ -84,7 +99,7 @@ public class OneFragment extends BaseFragment implements OneContract.View {
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("开始成立阶段-已完成");
-            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getGongshiData().getEndtime() + "</font>" +
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
                     "之前完成筹备组成员推荐程序"));
         }
     }
@@ -105,10 +120,6 @@ public class OneFragment extends BaseFragment implements OneContract.View {
         mPresenter = (OnePresenter) presenter;
     }
 
-    @Override
-    protected void initDataFromLocal() {
-
-    }
 
     @Override
     public void showProgressDialog() {

@@ -1,5 +1,8 @@
 package com.yxld.yxchuangxin.entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.yxld.yxchuangxin.base.BaseEntity;
 
 import java.util.List;
@@ -138,25 +141,17 @@ public class YwhCurrentflow extends BaseEntity {
          * currentFlow : {"id":1,"currentPhaseName":"开始成立","currentPhaseStatus":-1,"projectId":346,"pici":1}
          */
 
-        private GongshiDataBean gongshiData;
-        private CurrentFlowBean currentFlow;
+        private FlowBean flow;
         private List<FlowsBean> flows;
 
-        public GongshiDataBean getGongshiData() {
-            return gongshiData;
+        public FlowBean getFlow() {
+            return flow;
         }
 
-        public void setGongshiData(GongshiDataBean gongshiData) {
-            this.gongshiData = gongshiData;
+        public void setFlow(FlowBean flow) {
+            this.flow = flow;
         }
 
-        public CurrentFlowBean getCurrentFlow() {
-            return currentFlow;
-        }
-
-        public void setCurrentFlow(CurrentFlowBean currentFlow) {
-            this.currentFlow = currentFlow;
-        }
 
         public List<FlowsBean> getFlows() {
             return flows;
@@ -166,197 +161,538 @@ public class YwhCurrentflow extends BaseEntity {
             this.flows = flows;
         }
 
-        public static class GongshiDataBean {
+        public static class FlowBean {
+
+
             /**
-             * id : 2
-             * title : 发起成立业委会申请
-             * content : 发起成立业委会申请
-             * fileurl : 1233
-             * starttime : 2018-11-08 15:23:06.0
-             * endtime : 2018-11-10 17:01:00.0
-             * startmanid : 1
-             * startman : 杜坤
-             * gongshiType : 7
-             * manNumber : null
-             * projectId : 346
-             * piCi : 1
-             * faPiao : 2018-11-10 17:01:00.0
+             * phaseState : 1
+             * phaseName : 成立筹备组
+             * isChengli : null
+             * gongshi : {"id":2,"title":"发起成立业委会申请","content":"发起成立业委会申请","fileurl":"http://p9zwbgynz.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720181112195210.gif","starttime":"2018-11-08 15:23:06","endtime":"2018-11-12 15:00:00","startmanid":1,"startman":"杜坤","gongshiType":7,"manNumber":null,"projectId":346,"piCi":1,"faPiao":"2018-11-12 19:53:19"}
+             * confirmPeople : null
+             * proprietorAduitVo : null
+             * voteVo : null
+             * files : null
+             * beianPeoples : null
+             * beianInfo : null
              */
 
-            private int id;
-            private String title;
-            private String content;
-            private String fileurl;
-            private String starttime;
-            private String endtime;
-            private int startmanid;
-            private String startman;
-            private int gongshiType;
-            private Object manNumber;
-            private int projectId;
-            private int piCi;
-            private String faPiao;
+            private int phaseState;
+            private String phaseName;
+            private int isChengli;
+            private GongshiBean gongshi;
+            private List<ConfirmPeopleBean> confirmPeople;
+            private ProprietorAduitVoBean proprietorAduitVo;
+            private Object voteVo;
+            private Object files;
+            private Object beianPeoples;
+            private Object beianInfo;
 
-            public int getId() {
-                return id;
+            public int getPhaseState() {
+                return phaseState;
             }
 
-            public void setId(int id) {
-                this.id = id;
+            public void setPhaseState(int phaseState) {
+                this.phaseState = phaseState;
             }
 
-            public String getTitle() {
-                return title;
+            public String getPhaseName() {
+                return phaseName;
             }
 
-            public void setTitle(String title) {
-                this.title = title;
+            public void setPhaseName(String phaseName) {
+                this.phaseName = phaseName;
             }
 
-            public String getContent() {
-                return content;
+            public int getIsChengli() {
+                return isChengli;
             }
 
-            public void setContent(String content) {
-                this.content = content;
+            public void setIsChengli(int isChengli) {
+                this.isChengli = isChengli;
             }
 
-            public String getFileurl() {
-                return fileurl;
+            public GongshiBean getGongshi() {
+                return gongshi;
             }
 
-            public void setFileurl(String fileurl) {
-                this.fileurl = fileurl;
+            public void setGongshi(GongshiBean gongshi) {
+                this.gongshi = gongshi;
             }
 
-            public String getStarttime() {
-                return starttime;
+            public List<ConfirmPeopleBean> getConfirmPeople() {
+                return confirmPeople;
             }
 
-            public void setStarttime(String starttime) {
-                this.starttime = starttime;
+            public void setConfirmPeople(List<ConfirmPeopleBean> confirmPeople) {
+                this.confirmPeople = confirmPeople;
             }
 
-            public String getEndtime() {
-                return endtime;
+            public ProprietorAduitVoBean getProprietorAduitVo() {
+                return proprietorAduitVo;
             }
 
-            public void setEndtime(String endtime) {
-                this.endtime = endtime;
+            public void setProprietorAduitVo(ProprietorAduitVoBean proprietorAduitVo) {
+                this.proprietorAduitVo = proprietorAduitVo;
             }
 
-            public int getStartmanid() {
-                return startmanid;
+            public Object getVoteVo() {
+                return voteVo;
             }
 
-            public void setStartmanid(int startmanid) {
-                this.startmanid = startmanid;
+            public void setVoteVo(Object voteVo) {
+                this.voteVo = voteVo;
             }
 
-            public String getStartman() {
-                return startman;
+            public Object getFiles() {
+                return files;
             }
 
-            public void setStartman(String startman) {
-                this.startman = startman;
+            public void setFiles(Object files) {
+                this.files = files;
             }
 
-            public int getGongshiType() {
-                return gongshiType;
+            public Object getBeianPeoples() {
+                return beianPeoples;
             }
 
-            public void setGongshiType(int gongshiType) {
-                this.gongshiType = gongshiType;
+            public void setBeianPeoples(Object beianPeoples) {
+                this.beianPeoples = beianPeoples;
             }
 
-            public Object getManNumber() {
-                return manNumber;
+            public Object getBeianInfo() {
+                return beianInfo;
             }
 
-            public void setManNumber(Object manNumber) {
-                this.manNumber = manNumber;
+            public void setBeianInfo(Object beianInfo) {
+                this.beianInfo = beianInfo;
             }
 
-            public int getProjectId() {
-                return projectId;
-            }
+            public static class ProprietorAduitVoBean  {
 
-            public void setProjectId(int projectId) {
-                this.projectId = projectId;
-            }
+                /**
+                 * aduitname : 筹备工作开始,请及时领取票权
+                 * aduitstate : 1
+                 * aduitStateContext : 待审核
+                 * aduitTime : 2018-11-12 15:00:00
+                 * aduitOpinion : null
+                 */
 
-            public int getPiCi() {
-                return piCi;
-            }
+                private String aduitname;
+                private int aduitstate;
+                private String aduitStateContext;
+                private String aduitTime;
+                private String aduitOpinion;
 
-            public void setPiCi(int piCi) {
-                this.piCi = piCi;
-            }
+                public String getAduitname() {
+                    return aduitname;
+                }
 
-            public String getFaPiao() {
-                return faPiao;
-            }
+                public void setAduitname(String aduitname) {
+                    this.aduitname = aduitname;
+                }
 
-            public void setFaPiao(String faPiao) {
-                this.faPiao = faPiao;
+                public int getAduitstate() {
+                    return aduitstate;
+                }
+
+                public void setAduitstate(int aduitstate) {
+                    this.aduitstate = aduitstate;
+                }
+
+                public String getAduitStateContext() {
+                    return aduitStateContext;
+                }
+
+                public void setAduitStateContext(String aduitStateContext) {
+                    this.aduitStateContext = aduitStateContext;
+                }
+
+                public String getAduitTime() {
+                    return aduitTime;
+                }
+
+                public void setAduitTime(String aduitTime) {
+                    this.aduitTime = aduitTime;
+                }
+
+                public String getAduitOpinion() {
+                    return aduitOpinion;
+                }
+
+                public void setAduitOpinion(String aduitOpinion) {
+                    this.aduitOpinion = aduitOpinion;
+                }
+            }
+            public static class ConfirmPeopleBean implements Parcelable {
+
+                /**
+                 * id : 1
+                 * cfname : 张三
+                 * idcard : 43062119951223275x
+                 * phone : 15173009326
+                 * expect : 2
+                 * building : 3
+                 * unit : 四单元
+                 * roomNumber : 209
+                 * driscipt : 非常和善的一个人
+                 * isdelel : 1
+                 * addtime : 2018-09-05 09:13:10
+                 * type : 1
+                 * projectid : 346
+                 * workUnit : 长沙工商银行分行
+                 * otherWorks : null
+                 * workPosition : 大堂经理
+                 * pici : 1
+                 */
+
+                private int id;
+                private String cfname;
+                private String idcard;
+                private String phone;
+                private String expect;
+                private String building;
+                private String unit;
+                private String roomNumber;
+                private String driscipt;
+                private int isdelel;
+                private String addtime;
+                private int type;
+                private int projectid;
+                private String workUnit;
+                private Object otherWorks;
+                private String workPosition;
+                private int pici;
+
+                protected ConfirmPeopleBean(Parcel in) {
+                    id = in.readInt();
+                    cfname = in.readString();
+                    idcard = in.readString();
+                    phone = in.readString();
+                    expect = in.readString();
+                    building = in.readString();
+                    unit = in.readString();
+                    roomNumber = in.readString();
+                    driscipt = in.readString();
+                    isdelel = in.readInt();
+                    addtime = in.readString();
+                    type = in.readInt();
+                    projectid = in.readInt();
+                    workUnit = in.readString();
+                    workPosition = in.readString();
+                    pici = in.readInt();
+                }
+
+                public static final Creator<ConfirmPeopleBean> CREATOR = new Creator<ConfirmPeopleBean>() {
+                    @Override
+                    public ConfirmPeopleBean createFromParcel(Parcel in) {
+                        return new ConfirmPeopleBean(in);
+                    }
+
+                    @Override
+                    public ConfirmPeopleBean[] newArray(int size) {
+                        return new ConfirmPeopleBean[size];
+                    }
+                };
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getCfname() {
+                    return cfname;
+                }
+
+                public void setCfname(String cfname) {
+                    this.cfname = cfname;
+                }
+
+                public String getIdcard() {
+                    return idcard;
+                }
+
+                public void setIdcard(String idcard) {
+                    this.idcard = idcard;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getExpect() {
+                    return expect;
+                }
+
+                public void setExpect(String expect) {
+                    this.expect = expect;
+                }
+
+                public String getBuilding() {
+                    return building;
+                }
+
+                public void setBuilding(String building) {
+                    this.building = building;
+                }
+
+                public String getUnit() {
+                    return unit;
+                }
+
+                public void setUnit(String unit) {
+                    this.unit = unit;
+                }
+
+                public String getRoomNumber() {
+                    return roomNumber;
+                }
+
+                public void setRoomNumber(String roomNumber) {
+                    this.roomNumber = roomNumber;
+                }
+
+                public String getDriscipt() {
+                    return driscipt;
+                }
+
+                public void setDriscipt(String driscipt) {
+                    this.driscipt = driscipt;
+                }
+
+                public int getIsdelel() {
+                    return isdelel;
+                }
+
+                public void setIsdelel(int isdelel) {
+                    this.isdelel = isdelel;
+                }
+
+                public String getAddtime() {
+                    return addtime;
+                }
+
+                public void setAddtime(String addtime) {
+                    this.addtime = addtime;
+                }
+
+                public int getType() {
+                    return type;
+                }
+
+                public void setType(int type) {
+                    this.type = type;
+                }
+
+                public int getProjectid() {
+                    return projectid;
+                }
+
+                public void setProjectid(int projectid) {
+                    this.projectid = projectid;
+                }
+
+                public String getWorkUnit() {
+                    return workUnit;
+                }
+
+                public void setWorkUnit(String workUnit) {
+                    this.workUnit = workUnit;
+                }
+
+                public Object getOtherWorks() {
+                    return otherWorks;
+                }
+
+                public void setOtherWorks(Object otherWorks) {
+                    this.otherWorks = otherWorks;
+                }
+
+                public String getWorkPosition() {
+                    return workPosition;
+                }
+
+                public void setWorkPosition(String workPosition) {
+                    this.workPosition = workPosition;
+                }
+
+                public int getPici() {
+                    return pici;
+                }
+
+                public void setPici(int pici) {
+                    this.pici = pici;
+                }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(id);
+                    dest.writeString(cfname);
+                    dest.writeString(idcard);
+                    dest.writeString(phone);
+                    dest.writeString(expect);
+                    dest.writeString(building);
+                    dest.writeString(unit);
+                    dest.writeString(roomNumber);
+                    dest.writeString(driscipt);
+                    dest.writeInt(isdelel);
+                    dest.writeString(addtime);
+                    dest.writeInt(type);
+                    dest.writeInt(projectid);
+                    dest.writeString(workUnit);
+                    dest.writeString(workPosition);
+                    dest.writeInt(pici);
+                }
+            }
+            public static class GongshiBean {
+                /**
+                 * id : 2
+                 * title : 发起成立业委会申请
+                 * content : 发起成立业委会申请
+                 * fileurl : http://p9zwbgynz.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720181112195210.gif
+                 * starttime : 2018-11-08 15:23:06
+                 * endtime : 2018-11-12 15:00:00
+                 * startmanid : 1
+                 * startman : 杜坤
+                 * gongshiType : 7
+                 * manNumber : null
+                 * projectId : 346
+                 * piCi : 1
+                 * faPiao : 2018-11-12 19:53:19
+                 */
+
+                private int id;
+                private String title;
+                private String content;
+                private String fileurl;
+                private String starttime;
+                private String endtime;
+                private int startmanid;
+                private String startman;
+                private int gongshiType;
+                private Object manNumber;
+                private int projectId;
+                private int piCi;
+                private String faPiao;
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getTitle() {
+                    return title;
+                }
+
+                public void setTitle(String title) {
+                    this.title = title;
+                }
+
+                public String getContent() {
+                    return content;
+                }
+
+                public void setContent(String content) {
+                    this.content = content;
+                }
+
+                public String getFileurl() {
+                    return fileurl;
+                }
+
+                public void setFileurl(String fileurl) {
+                    this.fileurl = fileurl;
+                }
+
+                public String getStarttime() {
+                    return starttime;
+                }
+
+                public void setStarttime(String starttime) {
+                    this.starttime = starttime;
+                }
+
+                public String getEndtime() {
+                    return endtime;
+                }
+
+                public void setEndtime(String endtime) {
+                    this.endtime = endtime;
+                }
+
+                public int getStartmanid() {
+                    return startmanid;
+                }
+
+                public void setStartmanid(int startmanid) {
+                    this.startmanid = startmanid;
+                }
+
+                public String getStartman() {
+                    return startman;
+                }
+
+                public void setStartman(String startman) {
+                    this.startman = startman;
+                }
+
+                public int getGongshiType() {
+                    return gongshiType;
+                }
+
+                public void setGongshiType(int gongshiType) {
+                    this.gongshiType = gongshiType;
+                }
+
+                public Object getManNumber() {
+                    return manNumber;
+                }
+
+                public void setManNumber(Object manNumber) {
+                    this.manNumber = manNumber;
+                }
+
+                public int getProjectId() {
+                    return projectId;
+                }
+
+                public void setProjectId(int projectId) {
+                    this.projectId = projectId;
+                }
+
+                public int getPiCi() {
+                    return piCi;
+                }
+
+                public void setPiCi(int piCi) {
+                    this.piCi = piCi;
+                }
+
+                public String getFaPiao() {
+                    return faPiao;
+                }
+
+                public void setFaPiao(String faPiao) {
+                    this.faPiao = faPiao;
+                }
             }
         }
 
-        public static class CurrentFlowBean {
-            /**
-             * id : 1
-             * currentPhaseName : 开始成立
-             * currentPhaseStatus : -1
-             * projectId : 346
-             * pici : 1
-             */
-
-            private int id;
-            private String currentPhaseName;//当前阶段名称
-            private int currentPhaseStatus;
-            private int projectId;
-            private int pici;
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            public String getCurrentPhaseName() {
-                return currentPhaseName;
-            }
-
-            public void setCurrentPhaseName(String currentPhaseName) {
-                this.currentPhaseName = currentPhaseName;
-            }
-
-            public int getCurrentPhaseStatus() {
-                return currentPhaseStatus;
-            }
-
-            public void setCurrentPhaseStatus(int currentPhaseStatus) {
-                this.currentPhaseStatus = currentPhaseStatus;
-            }
-
-            public int getProjectId() {
-                return projectId;
-            }
-
-            public void setProjectId(int projectId) {
-                this.projectId = projectId;
-            }
-
-            public int getPici() {
-                return pici;
-            }
-
-            public void setPici(int pici) {
-                this.pici = pici;
-            }
-        }
 
         public static class FlowsBean {
             /**

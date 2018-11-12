@@ -812,7 +812,7 @@ public interface API {
     String URL_WEIXIU_LIUCHENG = "baoxiu_/find.mvc";
 
     //**********************业委会***********************//
-    String URL_YWH_CURRENTFLOW = "http://192.168.8.223:8080/supervise/app/conference/currentflow";
+    String URL_YWH_CURRENTFLOW = "http://192.168.8.106:8083/supervise/app/conference/currentflow";
 
     String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";
 
@@ -827,10 +827,10 @@ public interface API {
     //**********************业委会***********************//
 
 
-    String url_ywh_lcxx = "http://192.168.8.223:8080/supervise/app/conference/flowlist";
+    String url_ywh_lcxx = "http://192.168.8.106:8083/supervise/app/conference/flowlist";
     String url_ywh_tjcbz = "http://192.168.8.223:8080/supervise/app/prepare/recommend";//推荐筹备组成员理由
     String url_ywh_tjcbz_list = "http://192.168.8.223:8080/supervise/app/prepare/cblist";//推荐筹备组成员列表
-    String url_ywh_gsmd = "http://192.168.8.223:8080/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表
+    String url_ywh_gsmd = "http://192.168.8.223:8080/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表//暂时不需要
     String url_ywh_tjyj = "http://192.168.8.223:8080/supervise/app/prepare/padd";//提交反馈信息
     String url_ywh_lhlb = "http://192.168.8.223:8080/supervise/app/prepare/pdetail";//查看提交的反馈意见
 }

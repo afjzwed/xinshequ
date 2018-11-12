@@ -10,13 +10,14 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCymdComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CymdContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CymdModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CymdPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.CymdAdapter;
 
-import java.util.Arrays;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -35,6 +36,8 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
     @Inject
     CymdPresenter mPresenter;
     @BindView(R.id.rv) RecyclerView rv;
+    private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> data;
+    private CymdAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
         setContentView(R.layout.activity_cymd);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        data = getIntent().getParcelableArrayListExtra("data");
         toolbar.setTitle("成员名单公示");
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
         // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏
@@ -69,12 +73,16 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
 
     private void initRv() {
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new CymdAdapter(Arrays.asList("","")));
+        adapter = new CymdAdapter();
+        rv.setAdapter(adapter);
+        if (data != null && data.size() > 0) {
+            adapter.setNewData(data);
+        }
     }
 
     @Override
     protected void initData() {
-        mPresenter.getList();
+//        mPresenter.getList();
     }
 
     @Override
