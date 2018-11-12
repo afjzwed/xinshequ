@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -165,7 +166,10 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
                 if (type == 1) {
                     startActivity(TuiJianListActivity.class);//推荐成员
                 } else if (type == 2) {
-                    startActivity(CheckNoticeActivity.class);//查看通知
+                    Intent intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
+                    intent.putExtra("ywh_position", 1);
+                    startActivity(intent);
+//                    startActivity(CheckNoticeActivity.class);//查看通知
                 } else if (type == 3) {
                     startActivity(CymdActivity.class);//成员名单公示
                 }

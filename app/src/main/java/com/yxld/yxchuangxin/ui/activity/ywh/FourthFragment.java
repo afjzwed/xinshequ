@@ -175,7 +175,10 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
                         startActivity(intent);
                         break;
                     case 2:
-                        intent = new Intent(getActivity(), CheckNoticeActivity.class);
+//                        intent = new Intent(getActivity(), CheckNoticeActivity.class);
+//                        startActivity(intent);
+                         intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
+                        intent.putExtra("ywh_position", 3);
                         startActivity(intent);
                         break;
                     case 3:

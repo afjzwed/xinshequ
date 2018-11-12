@@ -51,6 +51,7 @@ import com.yxld.yxchuangxin.entity.MsgAndSuccess;
 import com.yxld.yxchuangxin.entity.MyAllComment;
 import com.yxld.yxchuangxin.entity.Onlymsg;
 import com.yxld.yxchuangxin.entity.OpenDoorCode;
+import com.yxld.yxchuangxin.entity.OpinionSurveyEntity;
 import com.yxld.yxchuangxin.entity.OrderComplainEntity;
 import com.yxld.yxchuangxin.entity.OrderDetailEntity;
 import com.yxld.yxchuangxin.entity.OrderRemainDianZiQuanEntity;
@@ -759,6 +760,10 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_YWH_GETMEMBERSHOWLIST)
     Observable<YwhMember> getMemberShowList(@FieldMap Map<String, RequestBody> params);
+
+    @FormUrlEncoded
+    @POST(URL_YWH_GETSURVEYLIST)
+    Observable<OpinionSurveyEntity> getSurveyList(@FieldMap Map<String, RequestBody> params);
 
     /****************************业委会********************************/
 }

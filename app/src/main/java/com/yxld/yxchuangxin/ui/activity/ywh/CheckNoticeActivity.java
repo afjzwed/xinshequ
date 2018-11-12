@@ -50,6 +50,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     @BindView(R.id.rv)
     RecyclerView recyclerView;
 
+    private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +70,15 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(FkyjActivity.class);
+                Intent intent = new Intent(CheckNoticeActivity.this,FkyjActivity.class);
+                intent.putExtra("ywh_position", position);
+                startActivity(intent);
+//                startActivity(FkyjActivity.class);
             }
         });
 
         // TODO: 2018/11/12 整个页面内容都从上级页面取
-
+        position = getIntent().getIntExtra("ywh_position",0);
 
     }
 

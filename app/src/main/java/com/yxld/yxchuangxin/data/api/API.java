@@ -818,6 +818,8 @@ public interface API {
 
     String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";
 
+    String URL_YWH_GETSURVEYLIST = "http://192.168.8.128:8888/supervise/app/research/slist";
+
     //**********************业委会***********************//
 
 

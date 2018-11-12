@@ -57,6 +57,8 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
         View view = inflater.inflate(R.layout.fragment_fkyj1, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
+
+
         return view;
     }
 
@@ -137,23 +139,38 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
             Toast.makeText(getActivity(), "内容不能为空", Toast.LENGTH_SHORT).show();
             return;
         }
-        //// TODO: 2018/11/12  判断掉哪个接口
-//            LinkedHashMap<String, String> map = new LinkedHashMap<>();
-//            map.put("uuid", Contains.uuid);
-//            map.put("gongshiId", 1 + "");//公示ID
-//            map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
-//            map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
-//            map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
-//            map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
-//            map.put("resultdesc", etContent.getText().toString().trim());
-//
-//            mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
+        FkyjActivity fkyjActivity = (FkyjActivity) getActivity();
+        //判断调哪个接口
+        switch (fkyjActivity.getPosition()) {
+            case 1: {//成立筹备组
+                Map<String, String> map1 = new HashMap<>();
+                map1.put("uuid", Contains.uuid);
+                map1.put("fwid", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
+                map1.put("reason", etContent.getText().toString().trim());
+                mPresenter.commitFkyj2(map1);
+                break;
+            }
+            case 2: {//筹备组工作
 
-        Map<String, String> map1 = new HashMap<>();
-        map1.put("uuid", Contains.uuid);
-        map1.put("fwid", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId()+"");
-        map1.put("reason", etContent.getText().toString().trim());
-        mPresenter.commitFkyj2(map1);
+                break;
+            }
+            case 3: {//候选人确认
 
+                break;
+            }
+            case 4: {//业主大会
+            LinkedHashMap<String, String> map = new LinkedHashMap<>();
+            map.put("uuid", Contains.uuid);
+            map.put("gongshiId", 1 + "");//公示ID
+            map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
+            map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
+            map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
+            map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
+            map.put("resultdesc", etContent.getText().toString().trim());
+
+            mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
+                break;
+            }
+        }
     }
 }

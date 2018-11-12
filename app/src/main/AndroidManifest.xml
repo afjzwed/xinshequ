@@ -270,6 +270,11 @@
         </activity>
         <!-- 业委会相关 -->
         <activity
+            android:name=".ui.activity.wuye.OpinionSurveyActivity"
+            android:label="民意调查"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.wuye.SatisficingActivity"
             android:label="满意度调查"
             android:screenOrientation="portrait">

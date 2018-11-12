@@ -30,6 +30,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.LiveMemberActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.OpinionSurveyActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WebSatisficingActivity;
@@ -259,6 +260,9 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                     switch (position) {
                         case 0:
                             mContext.startActivity(new Intent(mContext, YeWeiHuiActivity.class));
+                            break;
+                        case 1:
+                            mContext.startActivity(new Intent(mContext, OpinionSurveyActivity.class));
                             break;
                     }
                 }

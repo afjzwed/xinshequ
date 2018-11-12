@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,15 +76,12 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
 
     private void initData() {
         // TODO: 2018/11/12 判断掉哪个接口
-//        page = 1;
-//        swipRefresh.setRefreshing(true);//显示加载进度条.要在主线程中执行
-//        fkyjListAdapter.setEnableLoadMore(false);//这里的作用是防止下拉刷新的时候还可以上拉加载，设置为true就是自动加载更多
-//        getData(true);
-        Map<String, String> map = new HashMap<>();
-        map.put("uuid", Contains.uuid);
-        map.put("page", "1");
-        map.put("rows", "5");
-        mPresenter.getData2(map);
+        page = 1;
+        swipRefresh.setRefreshing(true);//显示加载进度条.要在主线程中执行
+        fkyjListAdapter.setEnableLoadMore(false);//这里的作用是防止下拉刷新的时候还可以上拉加载，设置为true就是自动加载更多
+        getData(true);
+
+
     }
 
     private void initRv() {
@@ -103,15 +101,39 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
     }
 
     private void getData(boolean isRefresh) {
-        LinkedHashMap<String, String> map = new LinkedHashMap<>();
-        map.put("uuid", Contains.uuid);
-        map.put("page", page + "");
-        map.put("rows", rows + "");
-        mPresenter.getData1(map,isRefresh);//业主大会的意见列表接口
+        FkyjActivity fkyjActivity = (FkyjActivity) getActivity();
+        switch (fkyjActivity.getPosition()) {
+            case 1: {//成立筹备组
+                Log.e("wh", "11");
+                Map<String, String> map = new HashMap<>();
+                map.put("uuid", Contains.uuid);
+                map.put("page", page + "");
+                map.put("rows", rows + "");
+                mPresenter.getData2(map);
+                break;
+            }
+            case 2: {//筹备组工作
+                Log.e("wh", "22");
+                break;
+            }
+            case 3: {//候选人确认
+                Log.e("wh", "33");
+                break;
+            }
+            case 4: {//业主大会
+                Log.e("wh", "44");
+                LinkedHashMap<String, String> map = new LinkedHashMap<>();
+                map.put("uuid", Contains.uuid);
+                map.put("page", page + "");
+                map.put("rows", rows + "");
+                mPresenter.getData1(map, isRefresh);//业主大会的意见列表接口
+                break;
+            }
+        }
     }
 
     @Override
-    public void setData(boolean isRefresh,YwhFkyj data) {
+    public void setData(boolean isRefresh, YwhFkyj data) {
         page++;
         orderBeanList = data.getData();
         final int size = orderBeanList == null ? 0 : orderBeanList.size();

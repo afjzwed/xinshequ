@@ -88,6 +88,7 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
+        recyclerView.setFocusable(false);
 
         initData();
         return view;

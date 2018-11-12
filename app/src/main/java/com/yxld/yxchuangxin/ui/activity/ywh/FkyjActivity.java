@@ -45,6 +45,8 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
     private String[] title = new String[]{"提交反馈意见", "查看反馈意见"};
     private IndicatorViewPager indicatorViewPager;
 
+    private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,11 +80,16 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
         indicatorViewPager = new IndicatorViewPager(moretabIndicator, moretabViewPager);
         indicatorViewPager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
 
+        position = getIntent().getIntExtra("ywh_position",0);
     }
 
     @Override
     protected void initData() {
 
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {

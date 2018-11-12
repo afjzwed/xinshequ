@@ -55,7 +55,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     private int[] status = new int[6];
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,8 +133,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                 indicatorViewPager.setCurrentItem(currrentPosition, false);
             }
         }
-//        myAdapter.notifyDataSetChanged();
-
     }
 
     public int getCurrentPosition() {
@@ -183,7 +180,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             case R.id.ywh_help:
 //                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
 //                startActivity(FkyjActivity.class);
-//                startActivity(YwhMemberShowActivity.class);//业委会信息指导
+                startActivity(YwhMemberShowActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();
@@ -230,8 +227,10 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             } else if (position == currrentPosition) {
                 if (status[position] == 2) {//-1:未开始,1:进行中,2已完成
                     imageView.setImageResource(R.drawable.ywtab_1_selector);
-                } else {
+                } else if (status[position] == 1) {
                     imageView.setImageResource(R.drawable.ywtab_3_selector);
+                } else {
+                    imageView.setImageResource(R.drawable.ywtab_2_selector);
                 }
             } else if (position > currrentPosition) {
                 imageView.setImageResource(R.drawable.ywtab_2_selector);

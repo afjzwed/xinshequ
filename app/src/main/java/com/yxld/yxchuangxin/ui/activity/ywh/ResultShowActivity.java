@@ -71,7 +71,10 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(FkyjActivity.class);
+                Intent intent = new Intent(ResultShowActivity.this,FkyjActivity.class);
+                intent.putExtra("ywh_position", 4);
+                startActivity(intent);
+//                startActivity(FkyjActivity.class);
             }
         });
 
@@ -105,8 +108,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         ywhAccessoryAdapter.setNewData(list);
         recyclerView.setVisibility(View.VISIBLE);
 
-//        recyclerView.setFocusable(false);
-        mScrollView.fullScroll(ScrollView.FOCUS_UP);//滑到顶部
+        recyclerView.setFocusable(false);
     }
 
 
@@ -153,8 +155,6 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
                 Intent intent = new Intent(this, YwhMemberShowActivity.class);
                 startActivity(intent);
                 break;
-//            case R.id.tv_click_name2:
-//                break;
         }
     }
 }

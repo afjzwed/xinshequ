@@ -50,8 +50,6 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
 
     private YwhMemberShowAdapter ywhMemberShowAdapter;
     private List<YwhMember.DataBean> memberList = new ArrayList<>();
-
-
     private int page;//分页数
     private int rows = 6;//每页加载数
 

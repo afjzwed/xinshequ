@@ -53,6 +53,7 @@ import com.yxld.yxchuangxin.entity.MsgAndSuccess;
 import com.yxld.yxchuangxin.entity.MyAllComment;
 import com.yxld.yxchuangxin.entity.Onlymsg;
 import com.yxld.yxchuangxin.entity.OpenDoorCode;
+import com.yxld.yxchuangxin.entity.OpinionSurveyEntity;
 import com.yxld.yxchuangxin.entity.OrderComplainEntity;
 import com.yxld.yxchuangxin.entity.OrderDetailEntity;
 import com.yxld.yxchuangxin.entity.OrderRemainDianZiQuanEntity;
@@ -835,6 +836,9 @@ public class HttpAPIWrapper {
     }
     public Observable<YwhFkyj> getLhlb(Map<String, String> params) {
         return wrapper(mHttpAPI.getLhlb(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<OpinionSurveyEntity> getSurveyList(Map<String, String> params) {
+        return wrapper(mHttpAPI.getSurveyList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     /**
      * 给任何Http的Observable加上通用的线程调度器

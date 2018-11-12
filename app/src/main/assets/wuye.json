@@ -88,6 +88,10 @@
         {
           "icon": "wyfw_wy01",
           "name": "业委会"
+        },
+        {
+          "icon": "wyfw_wy02",
+          "name": "民意调查"
         }
       ],
       "name": "物业监管"

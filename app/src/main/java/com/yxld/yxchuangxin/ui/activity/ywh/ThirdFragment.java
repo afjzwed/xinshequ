@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -35,12 +36,16 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
 
     @Inject
     ThirdPresenter mPresenter;
-    @BindView(R.id.tv_status) TextView tvStatus;
-    @BindView(R.id.ll_status1) AutoLinearLayout llStatus1;
-     AutoLinearLayout ll_ywh;
-     AutoLinearLayout ll_ywh2;
-    @BindView(R.id.ll_status2) AutoLinearLayout llStatus2;
-    @BindView(R.id.ll_status3) AutoLinearLayout llStatus3;
+    @BindView(R.id.tv_status)
+    TextView tvStatus;
+    @BindView(R.id.ll_status1)
+    AutoLinearLayout llStatus1;
+    AutoLinearLayout ll_ywh;
+    AutoLinearLayout ll_ywh2;
+    @BindView(R.id.ll_status2)
+    AutoLinearLayout llStatus2;
+    @BindView(R.id.ll_status3)
+    AutoLinearLayout llStatus3;
     TextView tvDetails;
     TextView tvStep;
     TextView tvShzt;
@@ -58,7 +63,8 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
@@ -164,7 +170,10 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
             llTjcy1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(CheckNoticeActivity.class);
+//                    startActivity(CheckNoticeActivity.class);
+                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
+                    intent.putExtra("ywh_position", 2);
+                    startActivity(intent);
                 }
             });
         }
@@ -204,15 +213,16 @@ public class ThirdFragment extends BaseFragment implements ThirdContract.View {
     public void onDestroyView() {
         super.onDestroyView();
     }
+
     @OnClick(R.id.tv_status)
     public void onViewClicked() {
         if (type == 0) {
             type = 1;
         } else if (type == 1) {
             type = 2;
-        } else if (type==2){
+        } else if (type == 2) {
             type = 3;
-        }else {
+        } else {
             type = 0;
         }
         initStatusView(type);
