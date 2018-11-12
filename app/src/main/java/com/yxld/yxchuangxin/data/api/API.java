@@ -1,5 +1,7 @@
 package com.yxld.yxchuangxin.data.api;
 
+import com.yxld.yxchuangxin.contain.Contains;
+
 /**
  * Created by hu on 2017/5/16.
  */
@@ -815,6 +817,8 @@ public interface API {
     String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";
 
     String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";
+
+    String URL_YWH_COMMITFKYJ2 = "http://192.168.8.128:8888/app/obtain/feedback/submit";
 
     String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";
 

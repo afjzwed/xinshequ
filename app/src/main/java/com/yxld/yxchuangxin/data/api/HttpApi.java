@@ -101,6 +101,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -758,8 +759,11 @@ public interface HttpApi {
     Observable<BaseEntity> commitFkyj(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
-    @POST(URL_YWH_GETMEMBERSHOWLIST)
-    Observable<YwhMember> getMemberShowList(@FieldMap Map<String, RequestBody> params);
+    @POST(URL_YWH_COMMITFKYJ2+"/"+"{fwbh}"+"/"+"{uuid}")
+    Observable<BaseEntity> commitFkyj2(@Path("fwbh") String fwid,@Path("uuid") String uuid, @FieldMap Map<String, RequestBody> params);
+
+    @GET(URL_YWH_GETMEMBERSHOWLIST)
+    Observable<BaseEntity> getMemberShowList(@QueryMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_YWH_GETSURVEYLIST)

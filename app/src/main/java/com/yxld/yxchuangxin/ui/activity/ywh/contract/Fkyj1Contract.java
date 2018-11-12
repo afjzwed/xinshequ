@@ -33,6 +33,7 @@ public interface Fkyj1Contract {
 
     interface Fkyj1ContractPresenter extends BasePresenter {
         void conmitFkyjInfo1(Map map);
+        void conmitFkyjInfo2(String fwid,String uuid,Map map);
 
         void commitFkyj2(Map map);
     }

@@ -86,6 +86,41 @@ public class Fkyj2Presenter implements Fkyj2Contract.Fkyj2ContractPresenter{
     }
 
     @Override
+    public void getData3(LinkedHashMap<String, String> map, boolean isRefresh) {
+        Disposable disposable = httpAPIWrapper.getFkyjList(map)
+                .subscribe(new Consumer<YwhFkyj>() {
+                    @Override
+                    public void accept(YwhFkyj order) throws Exception {
+                        //这里接收数据项
+                        KLog.i("成功的回调" + order.toString());
+                        if (order.isSuccess()) {
+                            if (isRefresh) {
+                                mView.setData(true, order);
+                            } else {
+                                mView.setData(false, order);
+                            }
+                        } else {
+                            mView.setError();
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //这里接收onError
+                        KLog.i("onError的回调");
+                        mView.setError();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //这里接收onComplete。
+                        KLog.i("run的回调");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    @Override
     public void getData2(Map map) {
         Disposable disposable = httpAPIWrapper.getLhlb(map)
                 .subscribe(new Consumer<YwhFkyj>() {

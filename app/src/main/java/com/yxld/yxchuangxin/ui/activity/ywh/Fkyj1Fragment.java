@@ -155,20 +155,22 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
                 break;
             }
             case 3: {//候选人确认
-
+//                LinkedHashMap<String, String> map2 = new LinkedHashMap<>();
+//                map2.put("reason", etContent.getText().toString().trim());
+//                mPresenter.conmitFkyjInfo2(Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId()+"", Contains.uuid,
+//                        map2);//候选人确认的意见反馈接口
                 break;
             }
             case 4: {//业主大会
-            LinkedHashMap<String, String> map = new LinkedHashMap<>();
-            map.put("uuid", Contains.uuid);
-            map.put("gongshiId", 1 + "");//公示ID
-            map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
-            map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
-            map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
-            map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
-            map.put("resultdesc", etContent.getText().toString().trim());
-
-            mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
+                LinkedHashMap<String, String> map = new LinkedHashMap<>();
+                map.put("uuid", Contains.uuid);
+                map.put("gongshiId", 1 + "");//公示ID
+                map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
+                map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
+                map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
+                map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
+                map.put("resultdesc", etContent.getText().toString().trim());
+                mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
                 break;
             }
         }

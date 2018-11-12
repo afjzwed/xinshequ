@@ -38,6 +38,8 @@ public interface Fkyj2Contract {
     interface Fkyj2ContractPresenter extends BasePresenter {
         void getData1(LinkedHashMap<String, String> map, boolean isRefresh);
 
+        void getData3(LinkedHashMap<String, String> map, boolean isRefresh);
+
         void getData2(Map map);
     }
 }

@@ -118,6 +118,11 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
             }
             case 3: {//候选人确认
                 Log.e("wh", "33");
+//                LinkedHashMap<String, String> map = new LinkedHashMap<>();
+////                map.put("uuid", Contains.uuid);
+////                map.put("page", page + "");
+////                map.put("rows", rows + "");
+//                mPresenter.getData3(map, isRefresh);//候选人确认的意见列表接口
                 break;
             }
             case 4: {//业主大会
@@ -126,6 +131,7 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
                 map.put("uuid", Contains.uuid);
                 map.put("page", page + "");
                 map.put("rows", rows + "");
+                map.put("resultType", "4");//反馈类型 （1:成立筹备组阶段 2:筹备组工作阶段 3:候选人确认阶段 4:业主大会阶段 5:备案阶段）
                 mPresenter.getData1(map, isRefresh);//业主大会的意见列表接口
                 break;
             }

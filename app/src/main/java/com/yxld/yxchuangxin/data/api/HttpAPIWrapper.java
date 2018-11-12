@@ -815,6 +815,10 @@ public class HttpAPIWrapper {
         return wrapper(mHttpAPI.commitFkyj(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
 
+    public Observable<BaseEntity> commitFkyj2(String fwid,String uuid,Map<String, String> params) {
+        return wrapper(mHttpAPI.commitFkyj2(fwid,uuid,addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
     public Observable<YwhInfo> getLcxx(Map<String, String> params) {
         return wrapper(mHttpAPI.getLcxx(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
