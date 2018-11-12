@@ -18,12 +18,12 @@ public interface API {
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
 //    String IP_PRODUCT = "http://wy.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    //    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
     String IP_PRODUCT = "http://192.168.8.222:8080";
     String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
-//    String IP_PRODUCT = "http://192.168.8.128:8888";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.128:8888/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     /**
@@ -822,4 +822,9 @@ public interface API {
 
 
     String url_ywh_lcxx = "http://192.168.8.223:8080/supervise/app/conference/flowlist";
+    String url_ywh_tjcbz = "http://192.168.8.223:8080/supervise/app/prepare/recommend";//推荐筹备组成员理由
+    String url_ywh_tjcbz_list = "http://192.168.8.223:8080/supervise/app/prepare/cblist";//推荐筹备组成员列表
+    String url_ywh_gsmd = "http://192.168.8.223:8080/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表
+    String url_ywh_tjyj = "http://192.168.8.223:8080/supervise/app/prepare/padd";//提交反馈信息
+    String url_ywh_lhlb = "http://192.168.8.223:8080/supervise/app/prepare/pdetail";//查看提交的反馈意见
 }

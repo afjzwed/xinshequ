@@ -1,8 +1,14 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 import android.support.annotation.NonNull;
+
+import com.socks.library.KLog;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.TwoContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.TwoFragment;
+
+import java.util.Map;
+
 import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -40,7 +46,36 @@ public class TwoPresenter implements TwoContract.TwoContractPresenter{
              mCompositeDisposable.dispose();
         }
     }
-
+    @Override
+    public void getData(Map map) {
+//        mView.showProgressDialog();
+        Disposable disposable = httpAPIWrapper.getLcxx(map)
+                .subscribe(new Consumer<YwhInfo>() {
+                    @Override
+                    public void accept(YwhInfo message) throws Exception {
+                        //isSuccesse
+                        KLog.i("onSuccesse");
+                        mView.getDataSuccess(message);
+                        mView.closeProgressDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //onError
+                        KLog.i("onError");
+                        throwable.printStackTrace();
+                        mView.closeProgressDialog();
+                        //ToastUtil.show(mActivity, mActivity.getString(R.string.loading_failed_1));
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //onComplete
+                        KLog.i("onComplete");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
 //    @Override
 //    public void getUser(HashMap map) {
 //        //mView.showProgressDialog();

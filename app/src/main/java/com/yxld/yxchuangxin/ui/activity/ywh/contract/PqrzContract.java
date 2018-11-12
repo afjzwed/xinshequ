@@ -19,12 +19,14 @@ public interface PqrzContract {
          *
          */
         void closeProgressDialog();
+
+        void uploadimg(String token);
     }
 
     interface PqrzContractPresenter extends BasePresenter {
 //        /**
 //         *
 //         */
-//        void getBusinessInfo(Map map);
+        void getQnToken();
     }
 }

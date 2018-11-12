@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 
@@ -24,7 +25,7 @@ public interface OneContract {
          */
         void closeProgressDialog();
 
-        void getDataSuccess(BaseEntity baseEntity);
+        void getDataSuccess(YwhInfo baseEntity);
     }
 
     interface OneContractPresenter extends BasePresenter {

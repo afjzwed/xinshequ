@@ -8,6 +8,7 @@ import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author xlei
@@ -30,9 +31,13 @@ public interface Fkyj2Contract {
         void setData(boolean isRefresh,YwhFkyj baseEntity);
 
         void setError();
+
+        void setData2(YwhFkyj baseEntity);
     }
 
     interface Fkyj2ContractPresenter extends BasePresenter {
         void getData1(LinkedHashMap<String, String> map, boolean isRefresh);
+
+        void getData2(Map map);
     }
 }

@@ -5,6 +5,7 @@ import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.CxwyMessage;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.OneContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.OneFragment;
 
@@ -50,11 +51,11 @@ public class OnePresenter implements OneContract.OneContractPresenter{
 
     @Override
     public void getData(Map map) {
-        mView.showProgressDialog();
+//        mView.showProgressDialog();
         Disposable disposable = httpAPIWrapper.getLcxx(map)
-                .subscribe(new Consumer<BaseEntity>() {
+                .subscribe(new Consumer<YwhInfo>() {
                     @Override
-                    public void accept(BaseEntity message) throws Exception {
+                    public void accept(YwhInfo message) throws Exception {
                         //isSuccesse
                         KLog.i("onSuccesse");
                         mView.getDataSuccess(message);

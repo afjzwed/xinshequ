@@ -8,6 +8,7 @@ import android.view.View;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCymdComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CymdContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CymdModule;
@@ -70,7 +71,7 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
 
     @Override
     protected void initData() {
-
+        mPresenter.getList();
     }
 
     @Override
@@ -96,6 +97,11 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
     @Override
     public void closeProgressDialog() {
         progressDialog.hide();
+    }
+
+    @Override
+    public void getListSuccess(BaseEntity baseEntity) {
+
     }
 
 }

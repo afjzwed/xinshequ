@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,9 +11,9 @@ import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerOneComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.OneContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.OneModule;
@@ -44,7 +45,6 @@ public class OneFragment extends BaseFragment implements OneContract.View {
     @BindView(R.id.ll_status2) AutoLinearLayout llStatus2;
     @BindView(R.id.tv_tjcy_content) TextView tvTjcyContent;
     @BindView(R.id.tv_details) TextView tvDetails;
-    private int type = 0;//模拟页面状态
 
 
     @Nullable
@@ -53,10 +53,8 @@ public class OneFragment extends BaseFragment implements OneContract.View {
         View view = inflater.inflate(R.layout.fragment_one, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
-
         Log.e("wh", "OneFragment");
-        YeWeiHuiActivity activity = (YeWeiHuiActivity) getActivity();
-        initStatusView(activity.getCurrentPhaseStatus(0));
+        initData();
         return view;
     }
 
@@ -67,27 +65,27 @@ public class OneFragment extends BaseFragment implements OneContract.View {
         mPresenter.getData(map);
     }
 
-    private void initStatusView(int type) {
+    private void initStatusView(YwhInfo ywhInfo) {
 
-        if (type == -1) {
+        if (ywhInfo.getData().getFlow().getPhaseState() == -1 && ywhInfo.getData().getFlow().getIsChengli() == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("开始成立阶段-未开始");
             tvTjcyContent.setText("当前小区暂不具备成立业委会条件");
-        } else if (type == 1) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == -1 && ywhInfo.getData().getFlow().getIsChengli() == 1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("开始成立阶段-未开始");
             tvTjcyContent.setText("当前小区已具备成立业委会条件\n您可以向街道申请成立业委会");
-        } else if (type == 2) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("开始成立阶段-已完成");
-            tvDetails.setText("请在2018-9-12之前完成筹备组成员推荐程序");
-            initData();
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getGongshiData().getEndtime() + "</font>" +
+                    "之前完成筹备组成员推荐程序"));
         }
     }
 
@@ -123,8 +121,12 @@ public class OneFragment extends BaseFragment implements OneContract.View {
     }
 
     @Override
-    public void getDataSuccess(BaseEntity baseEntity) {
-
+    public void getDataSuccess(YwhInfo baseEntity) {
+        if (baseEntity.isSuccess()) {
+            initStatusView(baseEntity);
+        } else {
+            onError(baseEntity.msg);
+        }
     }
 
     @Override
@@ -137,21 +139,12 @@ public class OneFragment extends BaseFragment implements OneContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_tijian:
-
                 startActivity(YwhRequestActivity.class);
                 break;
             case R.id.ll_tjcy:
                 startActivity(TuiJianListActivity.class);
                 break;
             case R.id.tv_status:
-                if (type == 0) {
-                    type = 1;
-                } else if (type == 1) {
-                    type = 2;
-                } else {
-                    type = 0;
-                }
-                initStatusView(type);
                 break;
         }
     }

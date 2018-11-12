@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,16 @@ import android.widget.TextView;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerTwoComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.TwoContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.TwoModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.TwoPresenter;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -42,7 +48,7 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     @BindView(R.id.tv_step) TextView tvStep;
     @BindView(R.id.img_step) ImageView imgStep;
     @BindView(R.id.tv_tjcy) TextView tvTjcy;
-    private int type = 0;//模拟页面状态
+    private int type;
 
 
     @Nullable
@@ -51,27 +57,37 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
         View view = inflater.inflate(R.layout.fragment_two, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
-        initStatusView(type);
         Log.e("wh", "TwoFragment");
+        initData();
         return view;
     }
 
-    private void initStatusView(int type) {
-        if (type == 0) {
+    private void initData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("type", "2");
+        mPresenter.getData(map);
+    }
+
+    private void initStatusView(YwhInfo ywhInfo) {
+        if (ywhInfo.getData().getFlow().getPhaseState() == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("筹备组成立阶段-未开始");
-        } else if (type == 1) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getGongshiData().getGongshiType() == 7) {
+            type = 1;
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
             tvStatus.setText("筹备组成立阶段-进行中");
             tvStep.setText("已启动推荐组成员推荐程序");
             tvDetails.setVisibility(View.VISIBLE);
-            tvDetails.setText("请在2018-9-12之前完成筹备组成员推荐");
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getGongshiData().getEndtime() + "</font>" +
+                    "之前完成筹备组成员推荐"));
             tvTjcy.setText("推荐筹备组成员");
-        } else if (type == 2) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getGongshiData().getGongshiType() == 1) {
+            type = 2;
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
@@ -79,9 +95,10 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
             imgStep.setImageResource(R.mipmap.ic_ywh_start2);
             tvStep.setText("筹备组成员公示");
             tvDetails.setVisibility(View.VISIBLE);
-            tvDetails.setText("读取通知读取通知读取通知读取通知读取通知读取通知读取通知读取通知读取通知");
+            tvDetails.setText(ywhInfo.getData().getGongshiData().getTitle());
             tvTjcy.setText("查看筹备组成员公示信息");
-        } else {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
+            type = 3;
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
@@ -124,6 +141,15 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     }
 
     @Override
+    public void getDataSuccess(YwhInfo baseEntity) {
+        if (baseEntity.isSuccess()) {
+            initStatusView(baseEntity);
+        } else {
+            onError(baseEntity.msg);
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
 
@@ -134,27 +160,15 @@ public class TwoFragment extends BaseFragment implements TwoContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
-                if (type == 0) {
-                    type = 1;
-                } else if (type == 1) {
-                    type = 2;
-                } else if (type == 2) {
-                    type = 3;
-                } else {
-                    type = 0;
-                }
-                initStatusView(type);
                 break;
             case R.id.ll_tjcy:
-                if (type == 0) {
-                } else if (type == 1) {
+                if (type == 1) {
                     startActivity(TuiJianListActivity.class);//推荐成员
                 } else if (type == 2) {
                     startActivity(CheckNoticeActivity.class);//查看通知
-                } else {
+                } else if (type == 3) {
                     startActivity(CymdActivity.class);//成员名单公示
                 }
-                initStatusView(type);
                 break;
         }
     }

@@ -78,6 +78,7 @@ import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
@@ -725,8 +726,22 @@ public interface HttpApi {
 
     @FormUrlEncoded
     @POST(url_ywh_lcxx)
-    Observable<BaseEntity> getLcxx(@FieldMap Map<String, RequestBody> params);
+    Observable<YwhInfo> getLcxx(@FieldMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(url_ywh_tjcbz)
+    Observable<BaseEntity> getTjcbz(@FieldMap Map<String, RequestBody> params);
 
+    @FormUrlEncoded
+    @POST(url_ywh_tjcbz_list)
+    Observable<BaseEntity> getTjcbzList(@FieldMap Map<String, RequestBody> params);
+    @GET(url_ywh_gsmd)
+    Observable<BaseEntity> getGsmd(@QueryMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(url_ywh_tjyj)
+    Observable<BaseEntity> getTjyj(@FieldMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(url_ywh_lhlb)
+    Observable<YwhFkyj> getLhlb(@FieldMap Map<String, RequestBody> params);
     /****************************业委会********************************/
 
     @FormUrlEncoded

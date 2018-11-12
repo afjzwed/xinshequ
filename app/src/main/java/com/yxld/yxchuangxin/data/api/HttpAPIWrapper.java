@@ -80,6 +80,7 @@ import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
@@ -813,12 +814,27 @@ public class HttpAPIWrapper {
         return wrapper(mHttpAPI.commitFkyj(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
 
-    public Observable<BaseEntity> getLcxx(Map<String, String> params) {
+    public Observable<YwhInfo> getLcxx(Map<String, String> params) {
         return wrapper(mHttpAPI.getLcxx(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
 
+    public Observable<BaseEntity> getTjcbz(Map<String, String> params) {
+        return wrapper(mHttpAPI.getTjcbz(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> getTjcbzList(Map<String, String> params) {
+        return wrapper(mHttpAPI.getTjcbzList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
     public Observable<YwhMember> getMemberShowList(Map<String, String> params) {
         return wrapper(mHttpAPI.getMemberShowList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> getGsmd(Map<String, String> params) {
+        return wrapper(mHttpAPI.getGsmd(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> getTjyj(Map<String, String> params) {
+        return wrapper(mHttpAPI.getTjyj(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<YwhFkyj> getLhlb(Map<String, String> params) {
+        return wrapper(mHttpAPI.getLhlb(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     /**
      * 给任何Http的Observable加上通用的线程调度器

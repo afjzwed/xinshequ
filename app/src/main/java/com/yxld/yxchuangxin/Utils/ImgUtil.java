@@ -133,8 +133,14 @@ public class ImgUtil {
      * @param uri  传入图片的Uri
      * @return byte[]
      */
-    public static byte[] getImgByteFromUri(Activity activity, Uri uri) throws IOException {
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), uri);
+    public static byte[] getImgByteFromUri(Activity activity, Uri uri){
+
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);//100表示不压缩，直接放到out里面
         int options = 90;//压缩比例

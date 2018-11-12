@@ -1,9 +1,17 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
+
 import android.support.annotation.NonNull;
+
+import com.socks.library.KLog;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
-import com.yxld.yxchuangxin.ui.activity.ywh.contract.TuiJianListContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.TuiJianListActivity;
+import com.yxld.yxchuangxin.ui.activity.ywh.contract.TuiJianListContract;
+
+import java.util.Map;
+
 import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -39,6 +47,48 @@ public class TuiJianListPresenter implements TuiJianListContract.TuiJianListCont
         if (!mCompositeDisposable.isDisposed()) {
              mCompositeDisposable.dispose();
         }
+    }
+
+    @Override
+    public void getTjcbz(Map map) {
+        Disposable subscribe = httpAPIWrapper.getTjcbzList(map).subscribe(new Consumer<BaseEntity>() {
+            @Override
+            public void accept(BaseEntity baseEntity) throws Exception {
+                mView.getTjcbzSuccess(baseEntity);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                KLog.i("onError");
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                KLog.i("onComplete");
+            }
+        });
+        mCompositeDisposable.add(subscribe);
+    }
+
+    @Override
+    public void comitLy(Map map) {
+        Disposable subscribe = httpAPIWrapper.getTjcbz(map).subscribe(new Consumer<BaseEntity>() {
+            @Override
+            public void accept(BaseEntity baseEntity) throws Exception {
+                mView.commitLySuccess(baseEntity);
+            }
+        }, new Consumer<Throwable>() {
+            @Override
+            public void accept(Throwable throwable) throws Exception {
+                KLog.i("onError");
+            }
+        }, new Action() {
+            @Override
+            public void run() throws Exception {
+                KLog.i("onComplete");
+            }
+        });
+        mCompositeDisposable.add(subscribe);
     }
 
 //    @Override

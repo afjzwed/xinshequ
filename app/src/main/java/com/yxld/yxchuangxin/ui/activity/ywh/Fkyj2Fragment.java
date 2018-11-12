@@ -14,6 +14,7 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
@@ -25,8 +26,10 @@ import com.yxld.yxchuangxin.ui.adapter.ywh.FkyjListAdapter;
 import com.yxld.yxchuangxin.view.CustomLoadMoreView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -71,10 +74,14 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
     }
 
     private void initData() {
-        page = 1;
-        swipRefresh.setRefreshing(true);//显示加载进度条.要在主线程中执行
-        fkyjListAdapter.setEnableLoadMore(false);//这里的作用是防止下拉刷新的时候还可以上拉加载，设置为true就是自动加载更多
-        getData(true);
+        // TODO: 2018/11/12 判断掉哪个接口
+//        page = 1;
+//        swipRefresh.setRefreshing(true);//显示加载进度条.要在主线程中执行
+//        fkyjListAdapter.setEnableLoadMore(false);//这里的作用是防止下拉刷新的时候还可以上拉加载，设置为true就是自动加载更多
+//        getData(true);
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        mPresenter.getData2(map);
     }
 
     private void initRv() {
@@ -140,6 +147,11 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
 //        fkyjListAdapter.setEmptyView(notDataView);
         fkyjListAdapter.setNewData(new ArrayList<YwhFkyj.DataBean>());
         ToastUtil.show(getActivity(), "加载失败");
+    }
+
+    @Override
+    public void setData2(YwhFkyj baseEntity) {
+
     }
 
     @Override

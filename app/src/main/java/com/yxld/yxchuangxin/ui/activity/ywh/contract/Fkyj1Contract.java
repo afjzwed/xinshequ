@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
@@ -27,9 +28,12 @@ public interface Fkyj1Contract {
         void setData();
 
         void setError();
+        void commitFkyjSuccess(BaseEntity baseEntity);
     }
 
     interface Fkyj1ContractPresenter extends BasePresenter {
         void conmitFkyjInfo1(Map map);
+
+        void commitFkyj2(Map map);
     }
 }

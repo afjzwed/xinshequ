@@ -78,4 +78,30 @@ public class Fkyj1Presenter implements Fkyj1Contract.Fkyj1ContractPresenter{
                 });
         mCompositeDisposable.add(disposable);
     }
+
+    @Override
+    public void commitFkyj2(Map map) {
+        Disposable disposable = httpAPIWrapper.getTjyj(map)
+                .subscribe(new Consumer<BaseEntity>() {
+                    @Override
+                    public void accept(BaseEntity order) throws Exception {
+                        //这里接收数据项
+                        KLog.i("成功的回调" + order.toString());
+                        mView.commitFkyjSuccess(order);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //这里接收onError
+                        KLog.i("onError的回调");
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //这里接收onComplete。
+                        KLog.i("run的回调");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
 }
