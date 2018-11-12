@@ -4,6 +4,7 @@ import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -24,10 +25,12 @@ public interface YwhMemberShowContract {
          */
         void closeProgressDialog();
 
-        void setData(BaseEntity baseEntity);
+        void setData(boolean isRefresh,BaseEntity baseEntity);
+
+        void setError();
     }
 
     interface YwhMemberShowContractPresenter extends BasePresenter {
-        void getData(Map map);
+        void getData(LinkedHashMap<String, String> map, boolean isRefresh);
     }
 }

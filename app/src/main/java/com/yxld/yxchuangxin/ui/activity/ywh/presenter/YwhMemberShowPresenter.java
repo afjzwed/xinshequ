@@ -7,6 +7,7 @@ import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.YwhMemberShowActivity;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -47,16 +48,17 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
     }
 
     @Override
-    public void getData(Map map) {
-        httpAPIWrapper.getDoorList(map).subscribe(new Consumer<BaseEntity>() {
+    public void getData(LinkedHashMap<String, String> map, boolean isRefresh) {
+        httpAPIWrapper.getMemberShowList(map).subscribe(new Consumer<BaseEntity>() {
             @Override
             public void accept(BaseEntity baseEntity) throws Exception {
-                mView.setData(baseEntity);
+//                mView.setData(baseEntity);
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
+                mView.setError();
             }
         }, new Action() {
             @Override

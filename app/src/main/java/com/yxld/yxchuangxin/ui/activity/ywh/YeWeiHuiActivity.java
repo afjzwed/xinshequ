@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,16 +20,11 @@ import com.shizhefei.view.indicator.slidebar.ColorBar;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
-
-import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYeWeiHuiComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YeWeiHuiContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YeWeiHuiModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.YeWeiHuiPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -187,7 +181,9 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ywh_help:
-                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
+//                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
+//                startActivity(FkyjActivity.class);
+                startActivity(YwhMemberShowActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();

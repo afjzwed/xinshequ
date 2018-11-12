@@ -7,11 +7,21 @@
     android:background="@color/color_f5f5f5"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swip_refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_f5f5f5"
-        android:fadingEdge="none"/>
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_f5f5f5"
+            android:fadingEdge="none"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <!--业主大会 投票不是通知，后台会返回对应的状态和数据-->
+    <!--候选人有两种通知类型-->
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -39,6 +39,7 @@
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <TextView
+        android:id="@+id/tv_commit"
         android:layout_width="match_parent"
         android:layout_height="130px"
         android:layout_marginLeft="40px"

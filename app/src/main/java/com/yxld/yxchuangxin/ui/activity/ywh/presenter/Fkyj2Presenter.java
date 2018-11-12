@@ -1,8 +1,16 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 import android.support.annotation.NonNull;
+
+import com.socks.library.KLog;
+import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.SJOrder;
+import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.Fkyj2Contract;
 import com.yxld.yxchuangxin.ui.activity.ywh.Fkyj2Fragment;
+
+import java.util.LinkedHashMap;
+
 import javax.inject.Inject;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -41,34 +49,38 @@ public class Fkyj2Presenter implements Fkyj2Contract.Fkyj2ContractPresenter{
         }
     }
 
-//    @Override
-//    public void getUser(HashMap map) {
-//        //mView.showProgressDialog();
-//        Disposable disposable = httpAPIWrapper.getUser(map)
-//                .subscribe(new Consumer<User>() {
-//                    @Override
-//                    public void accept(User user) throws Exception {
-//                        //isSuccesse
-//                        KLog.i("onSuccesse");
-//                        mView.setText(user);
-//                      //mView.closeProgressDialog();
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        //onError
-//                        KLog.i("onError");
-//                        throwable.printStackTrace();
-//                      //mView.closeProgressDialog();
-//                      //ToastUtil.show(mFragment.getActivity(), mFragment.getString(R.string.loading_failed_1));
-//                    }
-//                }, new Action() {
-//                    @Override
-//                    public void run() throws Exception {
-//                        //onComplete
-//                        KLog.i("onComplete");
-//                    }
-//                });
-//        mCompositeDisposable.add(disposable);
-//    }
+    @Override
+    public void getData1(LinkedHashMap<String, String> map, boolean isRefresh) {
+        Disposable disposable = httpAPIWrapper.getFkyjList(map)
+                .subscribe(new Consumer<YwhFkyj>() {
+                    @Override
+                    public void accept(YwhFkyj order) throws Exception {
+                        //这里接收数据项
+                        KLog.i("成功的回调" + order.toString());
+                        if (order.isSuccess()) {
+                            if (isRefresh) {
+                                mView.setData(true, order);
+                            } else {
+                                mView.setData(false, order);
+                            }
+                        } else {
+                            mView.setError();
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //这里接收onError
+                        KLog.i("onError的回调");
+                        mView.setError();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //这里接收onComplete。
+                        KLog.i("run的回调");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
 }

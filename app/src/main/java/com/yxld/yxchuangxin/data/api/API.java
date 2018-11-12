@@ -18,12 +18,12 @@ public interface API {
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
 //    String IP_PRODUCT = "http://wy.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
-    //    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
     String IP_PRODUCT = "http://192.168.8.222:8080";
     String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+//    String IP_PRODUCT = "http://192.168.8.128:8888";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.128:8888/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     /**
@@ -811,6 +811,13 @@ public interface API {
 
     //**********************业委会***********************//
     String URL_YWH_CURRENTFLOW = "http://192.168.8.223:8080/supervise/app/conference/currentflow";
+
+    String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";
+
+    String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";
+
+    String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/yadd";
+
     //**********************业委会***********************//
 
 

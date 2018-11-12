@@ -70,6 +70,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
             }
         });
 
+        // TODO: 2018/11/12 整个页面内容都从上级页面取
+
     }
 
     @Override

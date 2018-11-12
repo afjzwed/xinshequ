@@ -16,6 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -24,6 +25,7 @@
             android:textSize="43px"/>
 
         <TextView
+            android:id="@+id/tv_reply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="未回复"
@@ -35,6 +37,7 @@
     <View style="@style/line"/>
 
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="34px"
@@ -44,6 +47,7 @@
         android:textSize="43px"/>
 
     <TextView
+        android:id="@+id/tv_reply_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fafafa"
