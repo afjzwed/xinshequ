@@ -81,6 +81,8 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
 //        getData(true);
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
+        map.put("page", "1");
+        map.put("rows", "5");
         mPresenter.getData2(map);
     }
 
