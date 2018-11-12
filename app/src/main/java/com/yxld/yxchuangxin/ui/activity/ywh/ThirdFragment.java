@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -141,7 +142,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
             tvStep.setText("请及时领取票权");
-            tvDetails.setText("请在2018-9-12之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。");
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitTime() + "</font>" +
+                    "之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。"));
             tvTjcy.setText("立即领取票权");
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,7 +152,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 }
             });
             tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText("暂未提交资料");
+            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi()!=null) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
@@ -159,10 +161,10 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
             tvStep.setText("请及时领取票权");
-            tvDetails.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
+            tvDetails.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitOpinion());
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText("审核失败");
+            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -171,12 +173,14 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             });
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("关于业主大会筹备文件公示的通知");
-            tvDetails1.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
+            tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
             tvTjcy1.setText("查看业主大会筹备文件");
             llTjcy1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(CheckNoticeActivity.class);
+                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
+                    intent.putExtra("ywh_position", 2);
+                    startActivity(intent);
                 }
             });
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
@@ -187,7 +191,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             tvStatus.setText("筹备组工作阶段-已完成");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
             tvStep.setText("筹备工作已开始，请及时领取票权");
-            tvDetails.setText("恭喜您成功领取票权");
+            tvDetails.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitOpinion());
             tvTjcy.setText("查看");
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
@@ -199,7 +203,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             });
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
-            tvDetails1.setText("审核失败的审核失败的审核失败的审核失败的审核失败的");
+            tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
             tvTjcy1.setText("业主大会及业主委员会相关筹备文件公示");
             llTjcy1.setOnClickListener(new View.OnClickListener() {
                 @Override
