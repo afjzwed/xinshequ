@@ -17,6 +17,8 @@
             android:layout_marginRight="43px"
             android:background="@color/white"
             android:gravity="center_vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             >
 
             <ImageView
@@ -30,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25px"
                 android:layout_weight="1"
+                android:id="@+id/et_search"
                 android:background="@null"
                 android:hint="输入姓名搜索"
                 android:singleLine="true"

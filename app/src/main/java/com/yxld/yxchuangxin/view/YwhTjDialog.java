@@ -4,6 +4,7 @@ package com.yxld.yxchuangxin.view;
 import android.content.Context;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
@@ -15,6 +16,7 @@ public class YwhTjDialog extends BaseDialog {
 	private Button bt_dialog_cancel;
 	private Button bt_dialog_confirm;
 	private OnConfirmListener onConfirmListener;
+	private EditText editText;
 
 
 
@@ -37,7 +39,15 @@ public class YwhTjDialog extends BaseDialog {
 		setContentView(R.layout.dialog_tuijian_ly);
 		bt_dialog_cancel = (Button) findViewById(R.id.bt_dialog_cancel);
 		bt_dialog_confirm = (Button) findViewById(R.id.bt_dialog_confirm);
+		editText = (EditText) findViewById(R.id.et_content);
+	}
 
+	public EditText getEditText() {
+		return editText;
+	}
+
+	public void setEditText(EditText editText) {
+		this.editText = editText;
 	}
 
 	@Override

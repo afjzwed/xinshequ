@@ -235,6 +235,7 @@
         <activity
             android:name=".ui.activity.ywh.TuiJianListActivity"
             android:label="筹备组人员推荐"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:screenOrientation="portrait">
         </activity>
         <activity
