@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.ui.activity.ywh.TuiJianListActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.TuiJianListContract;
 
@@ -51,9 +52,9 @@ public class TuiJianListPresenter implements TuiJianListContract.TuiJianListCont
 
     @Override
     public void getTjcbz(Map map) {
-        Disposable subscribe = httpAPIWrapper.getTjcbzList(map).subscribe(new Consumer<BaseEntity>() {
+        Disposable subscribe = httpAPIWrapper.getTjcbzList(map).subscribe(new Consumer<YwhTj>() {
             @Override
-            public void accept(BaseEntity baseEntity) throws Exception {
+            public void accept(YwhTj baseEntity) throws Exception {
                 mView.getTjcbzSuccess(baseEntity);
             }
         }, new Consumer<Throwable>() {

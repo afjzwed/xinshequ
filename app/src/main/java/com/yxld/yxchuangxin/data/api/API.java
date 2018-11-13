@@ -28,6 +28,8 @@ public interface API {
     String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
+    String daozai= "http://dz.hnchxwl.com";//道闸
+//    String daozai= "http://192.168.8.124:8080";//道闸
     /**
      * 两个协议用https的链接
      * 派安缴费协议
@@ -37,7 +39,7 @@ public interface API {
     String HTTPS = "https://wy.iot.xin/";
     String URL_XIEYI = HTTPS + "paianjiaofeixieyi.html";
     String PINGTAI_XIEYI = HTTPS + "userxieyi.jsp";
-    String PAY_CAR_XIEYI = "http://dz.hnchxwl.com/cxwy_daozha/protocol.html";
+    String PAY_CAR_XIEYI = daozai+"/cxwy_daozha/protocol.html";
     String URL_SATISFICING = HTTPS + "manyidu.jsp?";
 
 
@@ -664,30 +666,30 @@ public interface API {
      * yezhuId  xmId
      * 120.25.78.92
      */
-    String URL_CAR_LIST = "http://dz.hnchxwl.com/cxwy_daozha/config/fmcars";
+    String URL_CAR_LIST = daozai+"/cxwy_daozha/config/fmcars";
     /**
      * 车辆解锁
      * method   post
      * lpid  serialNo  parkNo  mediaNo isLock
      */
-    String URL_CAR_JIESUO = "http://dz.hnchxwl.com/cxwy_daozha/config/jsche";
+    String URL_CAR_JIESUO = daozai+"/cxwy_daozha/config/jsche";
     /**
      * 车辆充值
      * method   post
      * lpid  parkNo  mediaNo  month  cardTimr  money  isnew（值为1） rechargeType  rechargeSerialNum  rechargeResult
      */
-    String URL_CAR_RECHARGE = "http://dz.hnchxwl.com/cxwy_daozha/config/recharge";
+    String URL_CAR_RECHARGE = daozai+"/cxwy_daozha/config/recharge";
 
     /**
      * 车辆充值
      */
-    String URL_PRE_CHELAINGJIAOFEI = "http://dz.hnchxwl.com/cxwy_daozha/config/reccw";
+    String URL_PRE_CHELAINGJIAOFEI = daozai+"/cxwy_daozha/config/reccw";
     /**
      * 车辆缴费记录
      * method   post
      * rows  page  mediaNo  isnew（值为1）
      */
-    String URL_CAR_RELIST = "http://dz.hnchxwl.com/cxwy_daozha/config/relist";
+    String URL_CAR_RELIST = daozai+"/cxwy_daozha/config/relist";
 
     /**
      * 授权放行列表（业主）

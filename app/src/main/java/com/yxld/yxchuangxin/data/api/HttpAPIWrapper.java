@@ -83,6 +83,7 @@ import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
+import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
 import com.yxld.yxchuangxin.entity.goods.BaseEntityAll;
@@ -826,7 +827,7 @@ public class HttpAPIWrapper {
     public Observable<BaseEntity> getTjcbz(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcbz(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
-    public Observable<BaseEntity> getTjcbzList(Map<String, String> params) {
+    public Observable<YwhTj> getTjcbzList(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcbzList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     public Observable<YwhMember> getMemberShowList(Map<String, String> params) {

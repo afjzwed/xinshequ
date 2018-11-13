@@ -20,7 +20,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="小明发"
+            android:id="@+id/tv_name"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -30,7 +30,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="3期"
+            android:id="@+id/tv_qu"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -40,7 +40,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="32"
+            android:id="@+id/tv_ld"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="1"
+            android:id="@+id/tv_dy"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -60,7 +60,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="1002"
+            android:id="@+id/tv_fh"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -78,6 +78,7 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="推荐"
+                android:id="@+id/tv_tj"
                 android:textColor="@color/white"
                 android:textSize="43px"/>
         </com.zhy.autolayout.AutoLinearLayout>

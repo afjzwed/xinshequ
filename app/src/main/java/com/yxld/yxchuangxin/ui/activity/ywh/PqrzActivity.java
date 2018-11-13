@@ -1,6 +1,8 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,13 +22,13 @@ import com.yxld.yxchuangxin.Utils.ImgUtil;
 import com.yxld.yxchuangxin.Utils.QiniuUploadUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
+import com.yxld.yxchuangxin.ui.activity.index.util.FileUtils;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerPqrzComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.PqrzModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.PqrzPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.PqrzAdapter;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -50,7 +52,9 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
     @BindView(R.id.rv) RecyclerView rv;
     private PqrzAdapter adapter;
     private List<byte[]> imgDataList = new ArrayList<>();
-
+    private String zmPath;
+    private String fmPath;
+    private int type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,25 +126,26 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
         super.onActivityResult(requestCode, resultCode, data);
         //正确返回
         if (resultCode == RESULT_OK) {
+            Bitmap bitmap = null;
             switch (requestCode) {
                 case ImgUtil.TAKE_PHOTO://相机返回
-                    Log.e("返回相机", ImgUtil.imageUri.toString()+new File(ImgUtil.imageUri.toString()).length());
+                    Log.e("返回相机", "相机图片地址："+ImgUtil.outputImage.getAbsolutePath() + "------");
+                    bitmap = ImgUtil.decodeFileCreateBitmap(ImgUtil.outputImage.getAbsolutePath(),1280,1280);
                     Glide.with(this)
-                            .load(ImgUtil.getImgByteFromUri(this, ImgUtil.imageUri))
-                            .skipMemoryCache(true)
-                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .load(ImgUtil.Bitmap2Bytes(bitmap))
                             .into(imgz);
-                    imgDataList.add(ImgUtil.getImgByteFromUri(this, ImgUtil.imageUri));
+//                    imgDataList.add(ImgUtil.getImgByteFromUri(this, ImgUtil.imageUri));
                     break;
                 case ImgUtil.CHOOSE_PHOTO://相册返回
                     try {
                         if (data != null) {
                             //相册返回
                             Uri uri = data.getData();
+                            String realPathFromUriAboveApi19 = ImgUtil.getRealPathFromUriAboveApi19(this, uri);
+                            Log.e("返回相机", "相册图片地址："+realPathFromUriAboveApi19 + "------");
+                            bitmap = ImgUtil.decodeFileCreateBitmap(realPathFromUriAboveApi19,1280,1280);
                             Glide.with(this)
-                                    .load(uri)
-                                    .skipMemoryCache(true)
-                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .load(ImgUtil.Bitmap2Bytes(bitmap))
                                     .into(imgf);
                             imgDataList.add(ImgUtil.getImgByteFromUri(this, uri));
                         }

@@ -6,11 +6,18 @@ import com.qiniu.android.http.ResponseInfo;
 import com.qiniu.android.storage.Configuration;
 import com.qiniu.android.storage.UpCompletionHandler;
 import com.qiniu.android.storage.UploadManager;
+import com.qiniu.android.utils.UrlSafeBase64;
+import com.qiniu.util.Auth;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 
 import static com.qiniu.android.common.Zone.zone2;
 
@@ -42,7 +49,7 @@ public class QiniuUploadUtil {
         final String curUrl = "android_zjw/" + System.currentTimeMillis();
         //put第二个参数设置文件名
         Logger.i("开始上传单张图--------" + curUrl);
-        uploadManager.put(path, curUrl, _uploadToken, new UpCompletionHandler() {
+        uploadManager.put(path, curUrl, getQiniuToken(), new UpCompletionHandler() {
             @Override
             public void complete(String key, ResponseInfo info, JSONObject response) {
                 if (info.isOK()) {
@@ -68,12 +75,12 @@ public class QiniuUploadUtil {
         curUploadImgIndex = 0;
         final List<String> urlList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            final String curUrl = "android_zjw/" + System.currentTimeMillis();
+            final String curUrl = "android_ywh/" + System.currentTimeMillis();
             //put第二个参数设置文件名
             urlList.add(curUrl);
             Logger.i("开始传第" + i + "张图--------" + curUrl);
             final int finalI = i;
-            uploadManager.put(list.get(i), curUrl, _uploadToken, new UpCompletionHandler() {
+            uploadManager.put(list.get(i), curUrl, getQiniuToken(), new UpCompletionHandler() {
                 @Override
                 public void complete(String key, ResponseInfo info, JSONObject response) {
                     curUploadImgIndex++;
@@ -102,12 +109,12 @@ public class QiniuUploadUtil {
         curUploadImgIndex = 0;
         final List<String> urlList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            final String curUrl = "android_zjw/" + System.currentTimeMillis();
+            final String curUrl = "android_ywh/" + System.currentTimeMillis();
             //put第二个参数设置文件名
             urlList.add(curUrl);
             Logger.i("开始传第" + i + "张图--------" + curUrl);
             final int finalI = i;
-            uploadManager.put(list.get(i), curUrl, _uploadToken, new UpCompletionHandler() {
+            uploadManager.put(list.get(i), curUrl, getQiniuToken(), new UpCompletionHandler() {
                 @Override
                 public void complete(String key, ResponseInfo info, JSONObject response) {
                     curUploadImgIndex++;
@@ -131,7 +138,17 @@ public class QiniuUploadUtil {
 
         }
     }
-   public interface UploadCallback {
+    public static String getQiniuToken() {
+        String qiniuak = "qf_oVTYRDM-06tTN7r2nAL8j0dE5JYSxyb4KWRW7";
+        String qiniusk = "OxZU9VOb7wWK1-HkPXvEexuwCJ0rVpK33M-UkfmV";
+        String qiniubcname = "shequwenjian";
+        Auth auth = Auth.create(qiniuak, qiniusk);
+        String s = auth.uploadToken(qiniubcname);
+        return s;
+    }
+
+
+    public interface UploadCallback {
         /**
          * 单图上传返回上传照片路劲
          *

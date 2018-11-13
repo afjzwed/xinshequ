@@ -5,21 +5,27 @@ package com.yxld.yxchuangxin.Utils;
  */
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
+import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +42,7 @@ public class ImgUtil {
     public static final int REQUEST_CODE_CAMERA = 3;//相机权限请求
     public static final int REQUEST_CODE_ALBUM = 4;//相册权限请求
     public static Uri imageUri;//相机拍照图片保存地址
+    public static File outputImage;//相机拍照图片保存地址
 
     /**
      * 选择图片，从图库、相机
@@ -87,7 +94,7 @@ public class ImgUtil {
      */
     public static void openCamera(Activity activity) {
         // 创建File对象，用于存储拍照后的图片
-        File outputImage = new File(activity.getExternalCacheDir(), "output_image.jpg");
+        outputImage = new File(activity.getExternalCacheDir(), "output_image.jpg");
         try {
             if (outputImage.exists()) {
                 outputImage.delete();
@@ -152,6 +159,143 @@ public class ImgUtil {
         byte[] bs = out.toByteArray();
 
         return bs;
+    }
+
+    /**
+     * 质量压缩方法
+     *
+     * @param image
+     * @return
+     */
+    public static Bitmap compressImage(Bitmap image) {
+        if (image != null) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+            int options = 100;
+            while (baos.toByteArray().length / 1024 > 100) { //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+                baos.reset();//重置baos即清空baos
+                options -= 10;//每次都减少10
+                image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            }
+            ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+            Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+            return bitmap;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 4.4及以上系统处理图片的方法
+     */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public static String getRealPathFromUriAboveApi19(Context context, Uri uri) {
+        String filePath = null;
+        Log.d("uri=intent.getData :", "" + uri);
+        if (DocumentsContract.isDocumentUri(context, uri)) {
+            String documentId = DocumentsContract.getDocumentId(uri);//数据表里指定的行
+            if (isMediaDocument(uri)) {
+                // MediaProvider // 使用':'分割
+                String id = documentId.split(":")[1];
+                String selection = MediaStore.Images.Media._ID + "=?";
+                String[] selectionArgs = {id};
+                filePath = getDataColumn(context, MediaStore.Images.Media.EXTERNAL_CONTENT_URI, selection, selectionArgs);
+            } else if (isDownloadsDocument(uri)) {
+//                  DownloadsProvider
+                Uri contentUri = ContentUris.withAppendedId(Uri.parse("content://downloads/public_downloads"), Long.valueOf(documentId));
+                filePath = getDataColumn(context, contentUri, null, null);
+            }
+        } else if ("content".equalsIgnoreCase(uri.getScheme())) { // 如果是 content 类型的
+            filePath = getDataColumn(context, uri, null, null);
+        } else if ("file".equals(uri.getScheme())) { // 如果是 file 类型的 Uri,直接获取图片对应的路径 filePath = uri.getPath(); } return filePath;
+            filePath = uri.getPath();
+        }
+        return filePath;
+    }
+
+    /**
+     * 通过uri和selection来获取真实的图片路径,从相册获取图片时要用
+     */
+
+    private static String getDataColumn(Context context, Uri uri, String selection, String[] selectionArgs) {
+        String path = null;
+        String[] projection = new String[]{MediaStore.Images.Media.DATA};
+        Cursor cursor = null;
+        try {
+            cursor = context.getContentResolver().query(uri, projection, selection, selectionArgs, null);
+            if (cursor != null && cursor.moveToFirst()) {
+                int columnIndex = cursor.getColumnIndexOrThrow(projection[0]);
+                path = cursor.getString(columnIndex);
+            }
+        } catch (Exception e) {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return path;
+    }
+
+
+    /**
+     * 把Bitmap转Byte
+     */
+    public static byte[] Bitmap2Bytes(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return baos.toByteArray();
+    }
+
+    public synchronized static Bitmap decodeFileCreateBitmap(String path, int targetWith,
+                                                             int targerHeight) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeFile(path, options);
+            options.inSampleSize = calculateScaleSize(options, targetWith, targerHeight);
+            options.inJustDecodeBounds = false;
+            Bitmap bitmap = BitmapFactory.decodeFile(path, options);
+            return bitmap;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * 采用向上取整的方式，计算压缩尺寸
+     *
+     * @param options
+     * @param targetWith
+     * @param targerHeight
+     * @return
+     */
+    private static int calculateScaleSize(BitmapFactory.Options options, int targetWith,
+                                          int targerHeight) {
+        int simpleSize;
+        if (targetWith > 0 && targerHeight > 0) {
+            int scaleWith = (int) Math.ceil((options.outWidth * 1.0f) / targetWith);
+            int scaleHeight = (int) Math.ceil((options.outHeight * 1.0f) / targerHeight);
+            simpleSize = Math.max(scaleWith, scaleHeight);
+        } else {
+            simpleSize = 1;
+        }
+        return simpleSize;
+    }
+
+    /**
+     * @param uri the Uri to check
+     * @return Whether the Uri authority is MediaProvider
+     */
+    private static boolean isMediaDocument(Uri uri) {
+        return "com.android.providers.media.documents".equals(uri.getAuthority());
+    }
+
+    /**
+     * @param uri the Uri to check
+     * @return Whether the Uri authority is DownloadsProvider
+     */
+    private static boolean isDownloadsDocument(Uri uri) {
+        return "com.android.providers.downloads.documents".equals(uri.getAuthority());
     }
 
 }

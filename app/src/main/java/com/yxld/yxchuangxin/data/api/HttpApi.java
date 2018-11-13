@@ -81,6 +81,7 @@ import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
+import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
 import com.yxld.yxchuangxin.entity.goods.BaseEntityAll;
@@ -735,7 +736,7 @@ public interface HttpApi {
 
     @FormUrlEncoded
     @POST(url_ywh_tjcbz_list)
-    Observable<BaseEntity> getTjcbzList(@FieldMap Map<String, RequestBody> params);
+    Observable<YwhTj> getTjcbzList(@FieldMap Map<String, RequestBody> params);
     @GET(url_ywh_gsmd)
     Observable<BaseEntity> getGsmd(@QueryMap Map<String, RequestBody> params);
     @FormUrlEncoded
