@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="wrap_content"
+                                     android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1065px"
+        android:background="@mipmap/ic_pqrz_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="260px"
+            android:layout_height="260px"
+            android:layout_marginTop="220px"
+            android:src="@mipmap/ic_pqrz_fail"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43px"
+            android:gravity="center"
+
+            android:text="抱歉，您的申请未通过"
+            android:textColor="@color/white"
+            android:textSize="52px"/>
+
+        <TextView
+            android:layout_width="331px"
+            android:layout_height="115px"
+            android:layout_marginTop="43px"
+            android:background="#ff9e04"
+            android:gravity="center"
+            android:text="重新申请"
+            android:id="@+id/tv_cimmit"
+            android:textColor="@color/white"
+            android:textSize="43px"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+    <TextView
+        android:layout_width="279px"
+        android:layout_height="117px"
+        android:layout_marginLeft="110px"
+        android:background="@mipmap/ic_pqrz_mine"
+        android:gravity="center"
+        android:paddingBottom="15px"
+        android:textColor="@color/white"
+        android:textSize="43px"
+        android:text="您的信息"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

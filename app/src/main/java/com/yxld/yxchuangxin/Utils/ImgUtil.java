@@ -18,6 +18,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -28,6 +29,7 @@ import android.util.Log;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -41,8 +43,11 @@ public class ImgUtil {
     public static final int CHOOSE_PHOTO = 2;//选择相册
     public static final int REQUEST_CODE_CAMERA = 3;//相机权限请求
     public static final int REQUEST_CODE_ALBUM = 4;//相册权限请求
+    public static final int PHOTO_CROP = 5;//裁剪
     public static Uri imageUri;//相机拍照图片保存地址
     public static File outputImage;//相机拍照图片保存地址
+    public static Uri imageCropUri ;
+    public static File outputCropImage;//相机裁剪保存地址
 
     /**
      * 选择图片，从图库、相机
@@ -94,7 +99,7 @@ public class ImgUtil {
      */
     public static void openCamera(Activity activity) {
         // 创建File对象，用于存储拍照后的图片
-        outputImage = new File(activity.getExternalCacheDir(), "output_image.jpg");
+        outputImage = new File(Environment.getExternalStorageDirectory(), "output_image.jpg");
         try {
             if (outputImage.exists()) {
                 outputImage.delete();
@@ -132,6 +137,41 @@ public class ImgUtil {
         //activity.startActivityForResult(intent, CHOOSE_PHOTO); // 打开相册
     }
 
+    /**
+     * 文件裁剪
+     */
+    public static void CropPhoto(Activity activity, Uri uri) {
+        // 创建File对象，用于存储拍照后的图片
+        //裁剪后的图片以某种诡异不明的方式，无法保存到Cache里面
+        outputCropImage = new File(Environment.getExternalStorageDirectory(), "output_crop_image.jpg");
+        try {
+            if (outputCropImage.exists()) {
+                outputCropImage.delete();
+            }
+            outputCropImage.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+//        if (Build.VERSION.SDK_INT < 24) {
+//            imageCropUri = Uri.fromFile(outputCropImage);
+//        } else {
+//            //Android 7.0系统开始 使用本地真实的Uri路径不安全,使用FileProvider封装共享Uri
+//            //参数二:fileprovider绝对路径 com.dyb.testcamerademo：项目包名
+//            imageCropUri = FileProvider.getUriForFile(activity,activity.getPackageName()+ ".fileprovider", outputCropImage);
+//        }
+        imageCropUri = Uri.fromFile(outputCropImage);
+        Intent intent = new Intent("com.android.camera.action.CROP");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        }
+        intent.setDataAndType(uri, "image/*");
+        intent.putExtra("crop", true);
+        intent.putExtra("return-data", false);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageCropUri);  //imageurl 文件输出的位置
+        intent.putExtra("noFaceDetection", true);
+        activity.startActivityForResult(intent, PHOTO_CROP);
+    }
     /**
      * 得到byte[]
      * 这里对传入的图片Uri压缩到1M以内，并转换为byte[]后返回
@@ -260,7 +300,23 @@ public class ImgUtil {
         }
         return null;
     }
-
+    //以bitmap返回格式解析uri
+    public static Bitmap decodeUriAsBitmap(Activity activity,Uri uri) {
+        Bitmap bitmap = null;
+        try {
+            //解决oom 内存溢出
+            BitmapFactory.Options options=new BitmapFactory.Options();
+            options.inSampleSize=8;
+            options.inPreferredConfig=Bitmap.Config.RGB_565;
+            options.inPurgeable=true;
+            options.inInputShareable=true;
+            bitmap = BitmapFactory.decodeStream(activity.getContentResolver().openInputStream(uri),null,options);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
+    }
     /**
      * 采用向上取整的方式，计算压缩尺寸
      *

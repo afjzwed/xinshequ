@@ -1,7 +1,5 @@
 package com.yxld.yxchuangxin.data.api;
 
-import com.yxld.yxchuangxin.contain.Contains;
-
 /**
  * Created by hu on 2017/5/16.
  */
@@ -828,11 +826,15 @@ public interface API {
 
     //**********************业委会***********************//
 
-
+    String ywh_pic = "http://http://p9zwbgynz.bkt.clouddn.com";//lt七牛访问地址
     String url_ywh_lcxx = "http://192.168.8.106:8083/supervise/app/conference/flowlist";
     String url_ywh_tjcbz = "http://192.168.8.223:8080/supervise/app/prepare/recommend";//推荐筹备组成员理由
     String url_ywh_tjcbz_list = "http://192.168.8.223:8080/supervise/app/prepare/cblist";//推荐筹备组成员列表
     String url_ywh_gsmd = "http://192.168.8.223:8080/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表//暂时不需要
     String url_ywh_tjyj = "http://192.168.8.223:8080/supervise/app/prepare/padd";//提交反馈信息
     String url_ywh_lhlb = "http://192.168.8.223:8080/supervise/app/prepare/pdetail";//查看提交的反馈意见
+    String url_ywh_house = "http://192.168.8.106:8083//supervise/app/preparework/ohList";//业主房屋列表
+    String url_ywh_smrz = "http://192.168.8.106:8083/supervise/app/preparework/pradd";//个人实名认证添加
+    String url_ywh_smrz_detail = "http://192.168.8.106:8083/supervise/app/preparework/preal";//个人实名认证详情
+    String url_ywh_smrz_change = "http://192.168.8.106:8083/supervise/app/preparework/prupdate";//个人实名认证修改
 }

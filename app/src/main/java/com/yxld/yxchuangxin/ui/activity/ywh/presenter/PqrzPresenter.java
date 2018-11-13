@@ -1,16 +1,21 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
+
 import android.support.annotation.NonNull;
 
 import com.socks.library.KLog;
+import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.QiniuToken;
-import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
+import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.ui.activity.ywh.PqrzActivity;
+import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -65,6 +70,69 @@ public class PqrzPresenter implements PqrzContract.PqrzContractPresenter{
                         }
                         mView.uploadimg(qinniuToken.getUptoken());
 
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //onError
+                        KLog.i("onError");
+                        throwable.printStackTrace();
+                        mView.closeProgressDialog();
+//                        ToastUtil.show(mActivity, mActivity.getString(R.string.loading_failed_1));
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //onComplete
+                        KLog.i("onComplete");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void getHouse() {
+        mView.showProgressDialog();
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        Disposable disposable = httpAPIWrapper.getHouseList(map)
+                .subscribe(new Consumer<YwhHouse>() {
+                    @Override
+                    public void accept(YwhHouse baseEntity) throws Exception {
+                        //isSuccesse
+                        KLog.i("onSuccesse");
+                        mView.closeProgressDialog();
+                        mView.getHoustSuccess(baseEntity);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //onError
+                        KLog.i("onError");
+                        throwable.printStackTrace();
+                        mView.closeProgressDialog();
+//                        ToastUtil.show(mActivity, mActivity.getString(R.string.loading_failed_1));
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //onComplete
+                        KLog.i("onComplete");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void commit(Map map) {
+        Disposable disposable = httpAPIWrapper.getSmrz(map)
+                .subscribe(new Consumer<BaseEntity>() {
+                    @Override
+                    public void accept(BaseEntity baseEntity) throws Exception {
+                        //isSuccesse
+                        KLog.i("onSuccesse");
+                        mView.closeProgressDialog();
+                        mView.commitSuccess(baseEntity);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

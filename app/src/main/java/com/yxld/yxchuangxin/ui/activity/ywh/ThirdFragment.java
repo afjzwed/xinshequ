@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.contain.Contains;
@@ -22,6 +23,10 @@ import com.yxld.yxchuangxin.ui.activity.ywh.module.ThirdModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.ThirdPresenter;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +34,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * @author xlei
@@ -39,7 +43,7 @@ import butterknife.OnClick;
  */
 
 public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View {
-
+    public static final String EVEBUS_MSG = "ThirdFragment";
     @Inject
     ThirdPresenter mPresenter;
     @BindView(R.id.tv_status)
@@ -73,8 +77,10 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
         Bundle mBundle = getArguments();
         initIncludeView(view);
         Log.e("wh", "ThirdFragment");
+        EventBus.getDefault().register(this);
         return view;
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -148,7 +154,11 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(PqrzActivity.class);
+                    if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext().equals("暂未提交资料")) {
+                        startActivity(PqrzActivity.class);
+                    } else {
+                        startActivity(PqrzResultActivity.class);
+                    }
                 }
             });
             tvShzt.setVisibility(View.VISIBLE);
@@ -233,7 +243,19 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
         mPresenter = (ThirdPresenter) presenter;
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onRefresh(String s) {
+        Logger.e("ThirdFrament evebusmsg 刷新状态");
+        if (s.equals(EVEBUS_MSG)) {
+            initData();
+        }
+    }
 
     @Override
     public void showProgressDialog() {

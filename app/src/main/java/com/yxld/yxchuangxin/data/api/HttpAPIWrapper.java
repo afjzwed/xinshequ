@@ -81,6 +81,7 @@ import com.yxld.yxchuangxin.entity.XuFeiOrder;
 import com.yxld.yxchuangxin.entity.YezhuDainZhiQuan;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
+import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.entity.YwhTj;
@@ -844,6 +845,18 @@ public class HttpAPIWrapper {
     }
     public Observable<OpinionSurveyEntity> getSurveyList(Map<String, String> params) {
         return wrapper(mHttpAPI.getSurveyList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<YwhHouse> getHouseList(Map<String, String> params) {
+        return wrapper(mHttpAPI.getHouseList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> getSmrz(Map<String, String> params) {
+        return wrapper(mHttpAPI.getSmrz(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<BaseEntity> getSmrzCChange(Map<String, String> params) {
+        return wrapper(mHttpAPI.getSmrzCChange(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+    public Observable<YwhHouse> getSmrzDetail(Map<String, String> params) {
+        return wrapper(mHttpAPI.getSmrzDetail(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     /**
      * 给任何Http的Observable加上通用的线程调度器

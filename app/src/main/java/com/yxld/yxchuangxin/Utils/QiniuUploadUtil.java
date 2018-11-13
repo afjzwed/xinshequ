@@ -43,7 +43,7 @@ public class QiniuUploadUtil {
         return new UploadManager(config);
     }
 
-    public static void uploadPic(final String path, String _uploadToken, final UploadCallback callBack) {
+    public static void uploadPic(final String path, final UploadCallback callBack) {
 
         UploadManager uploadManager = initQiniu();
         final String curUrl = "android_zjw/" + System.currentTimeMillis();
@@ -70,7 +70,7 @@ public class QiniuUploadUtil {
 
     }
 
-    public static void uploadPics(final List<String> list, String _uploadToken, final UploadCallback callBack) {
+    public static void uploadPics(final List<String> list,  final UploadCallback callBack) {
         UploadManager uploadManager = initQiniu();
         curUploadImgIndex = 0;
         final List<String> urlList = new ArrayList<>();
@@ -104,7 +104,7 @@ public class QiniuUploadUtil {
 
         }
     }
-    public static void uploadPics1(final List<byte[]> list, String _uploadToken, final UploadCallback callBack) {
+    public static void uploadPics1(final List<byte[]> list,  final UploadCallback callBack) {
         UploadManager uploadManager = initQiniu();
         curUploadImgIndex = 0;
         final List<String> urlList = new ArrayList<>();
