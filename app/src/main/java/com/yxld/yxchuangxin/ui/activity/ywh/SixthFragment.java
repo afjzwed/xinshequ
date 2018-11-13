@@ -17,9 +17,8 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseEntity;
-import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerSixthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
@@ -28,7 +27,6 @@ import com.yxld.yxchuangxin.ui.activity.ywh.presenter.SixthPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 import com.zhy.autolayout.AutoLinearLayout;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -122,22 +120,18 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
         map.put("uuid", Contains.uuid);
         map.put("type", "6");
         mPresenter.getSixthData(map);
-
-//        List<String> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add("1");
-//        }
-//        ywhAccessoryAdapter.setNewData(list);
     }
 
     @Override
     public void setSixthData(YwhInfo baseEntity) {
         if (baseEntity.isSuccess()) {
             ywhInfo = baseEntity;
-            status=  ywhInfo.getData().getFlow().getPhaseState();
+            status = ywhInfo.getData().getFlow().getPhaseState();
             initStatusView();
         } else {
             onError(baseEntity.msg);
+            status = -1;
+            initStatusView();
         }
     }
 
@@ -168,8 +162,18 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
                 autollData0.setVisibility(View.VISIBLE);
                 autollData1.setVisibility(View.VISIBLE);
                 autollData2.setVisibility(View.VISIBLE);
+                tvContentHead.setText("备案名称：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
+                tvContentFoot.setText("备案时间：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
                 tvStatus.setText("备案阶段-已完成");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
+
+                List<YwhCurrentflow.DataBean.FlowBean.FilesBean> list = (List<YwhCurrentflow.DataBean.FlowBean
+                        .FilesBean>) ywhInfo.getData().getFlow().getFiles();
+                if (list != null && list.size() > 0) {
+                    ywhAccessoryAdapter.setNewData(list);
+                } else {
+                    autollData2.setVisibility(View.GONE);
+                }
                 break;
         }
     }
@@ -208,14 +212,14 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
-                if (status == 0) {
-                    status = 1;
-                } else if (status == 1) {
-                    status = 2;
-                } else {
-                    status = 0;
-                }
-                setSixthData(null);
+//                if (status == 0) {
+//                    status = 1;
+//                } else if (status == 1) {
+//                    status = 2;
+//                } else {
+//                    status = 0;
+//                }
+//                setSixthData(null);
                 break;
             case R.id.tv_click_name1:
 //                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();

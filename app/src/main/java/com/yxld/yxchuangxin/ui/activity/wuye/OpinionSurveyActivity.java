@@ -27,6 +27,8 @@ import com.yxld.yxchuangxin.ui.adapter.wuye.OpinionSurveyAdapter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.YwhMemberShowAdapter;
 import com.yxld.yxchuangxin.view.CustomLoadMoreView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -91,12 +93,30 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
                 Bundle bundle = new Bundle();
                 bundle.putString("name", "投票");
                 String url = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
-                        "&uuid=" + Contains.uuid + "&expect=" +stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                        .getXiangmuLoupan())  + "&building=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                        .getFwLoudong()) + "&unit=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan())
-                        + "&room_number=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao());
-                bundle.putString("address", url);
-                Log.e("wh", url);
+                        "&uuid=" + Contains.uuid + "&expect=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
+                        .curFangwu)
+                        .getXiangmuLoupan()) + "&building=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
+                        .curFangwu)
+                        .getFwLoudong()) + "&unit=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
+                        .curFangwu).getFwDanyuan())
+                        + "&room_number=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                        .getFwFanghao());
+
+                try {
+                    String url1 = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
+                            "&uuid=" + Contains.uuid + "&expect=" + URLEncoder.encode(Contains.appYezhuFangwus.get
+                            (Contains.curFangwu)
+                            .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains.appYezhuFangwus
+                            .get(Contains.curFangwu)
+                            .getFwLoudong(), "UTF-8") + "&unit=" + URLEncoder.encode(Contains.appYezhuFangwus.get
+                            (Contains.curFangwu).getFwDanyuan(), "UTF-8")
+                            + "&room_number=" + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                            .getFwFanghao(), "UTF-8");
+                    bundle.putString("address", url1);
+                    Log.e("wh", url1);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
 
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -197,6 +217,7 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
 
     /**
      * 将utf-8的汉字转换成unicode格式汉字码
+     *
      * @param string
      * @return
      */
@@ -209,4 +230,6 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
         String str = unicode.toString();
         return str.replaceAll("\\\\", "0x");
     }
+
+
 }

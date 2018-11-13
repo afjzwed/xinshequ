@@ -19,8 +19,11 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.main.WebviewActivity;
+import com.yxld.yxchuangxin.ui.activity.rim.WebViewActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.OpinionSurveyActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFivethComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FivethContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.FivethModule;
@@ -102,8 +105,19 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
         ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-//                ywhAccessoryAdapter.getData().get(position);
-                Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
+                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
+
+                Intent intent = new Intent(getActivity(), WebviewActivity.class);
+//                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                // TODO: 2018/11/13 pdf在线预览
+//                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", "附件");
+                bundle.putString("address", filesBean.getUrl());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+                Toast.makeText(getActivity(), "点击" + position+" "+filesBean.getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
@@ -130,11 +144,6 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
     }
 
     private void initData() {
-//        YeWeiHuiActivity activity = (YeWeiHuiActivity) getActivity();
-//        int currentPosition = activity.getCurrentPosition();
-//        Log.e("wh", "FivethFragment" + currentPosition);
-
-
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
         map.put("type", "5");
@@ -149,6 +158,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             initStatusView();
         } else {
             onError(baseEntity.msg);
+            status = -1;
+            initStatusView();
         }
     }
 
@@ -165,8 +176,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
                 break;
             case 1:
-                if (ywhInfo.getData().getFlow().getVoteVo() != null && ywhInfo.getData().getFlow().getGongshi
-                        () == null) {//公示为null voteVo不为null
+                if (ywhInfo.getData().getFlow().getGongshi() == null && ywhInfo.getData().getFlow().getVoteVo() !=
+                        null) {//公示为null voteVo不为null
                     //根据voteVo类来判断投票方式
                     if (ywhInfo.getData().getFlow().getVoteVo().getVoteType() == 1) {//线上
                         ivNoData.setVisibility(View.GONE);
@@ -179,7 +190,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         ivImg.setImageResource(R.mipmap.ic_ywh_vote);
                         tvTitle.setText("线上投票");
                         tvTime1.setVisibility(View.VISIBLE);
-                        tvTime1.setText(ywhInfo.getData().getFlow().getVoteVo().getStartTime()+"至"+ywhInfo.getData().getFlow().getVoteVo().getEndTime());
+                        tvTime1.setText(ywhInfo.getData().getFlow().getVoteVo().getStartTime() + "至" + ywhInfo
+                                .getData().getFlow().getVoteVo().getEndTime());
                         tvContent.setVisibility(View.VISIBLE);
                         tvContent.setText(ywhInfo.getData().getFlow().getVoteVo().getContent());
                         line.setVisibility(View.GONE);
@@ -194,11 +206,11 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         tvClickName2.setVisibility(View.VISIBLE);
                         tvClickName2.setTextColor(getResources().getColor(R.color.color_ea3006));
                         ivArrow.setImageResource(R.mipmap.ic_jt_red);
-                    } else if (ywhInfo.getData().getFlow().getVoteVo().getVoteType() == 2){//线下
+                    } else if (ywhInfo.getData().getFlow().getVoteVo().getVoteType() == 2) {//线下
                         ivNoData.setVisibility(View.GONE);
                         autollData0.setVisibility(View.VISIBLE);
                         autollData1.setVisibility(View.GONE);
-                        autoClick.setVisibility(View.VISIBLE);
+                        autoClick.setVisibility(View.GONE);
                         autollData2.setVisibility(View.GONE);
                         tvStatus.setText("业主大会阶段-进行中");
                         tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
@@ -207,7 +219,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         tvTime1.setVisibility(View.VISIBLE);
                         tvTime1.setText("至");
                         tvContent.setVisibility(View.VISIBLE);
-                        tvContent.setText("卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首卷首");
+                        tvContent.setText("");
                         line.setVisibility(View.GONE);
                         autoClick.setBackgroundColor(getResources().getColor(R.color.color_ffefea));
                         tvClickName1.setText("进入投票");
@@ -217,9 +229,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         tvClickName2.setTextColor(getResources().getColor(R.color.color_ea3006));
                         ivArrow.setImageResource(R.mipmap.ic_jt_red);
                     }
-                } else if (ywhInfo.getData().getFlow().getVoteVo() == null && ywhInfo.getData().getFlow().getGongshi
-                        () != null && ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 4) {//公示不为null
-                    // voteVo为null
+                } else if (ywhInfo.getData().getFlow().getGongshi() != null && ywhInfo.getData().getFlow().getGongshi
+                        ().getGongshiType() == 4) {//公示不为null
                     ivNoData.setVisibility(View.GONE);
                     autollData0.setVisibility(View.GONE);
                     autollData1.setVisibility(View.VISIBLE);
@@ -229,9 +240,9 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                     tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                     ivImg.setImageResource(R.mipmap.ic_ywh_material);
                     tvTitle.setText("业主大会结果公示");
-                    tvTime1.setText(ywhInfo.getData().getFlow().getGongshi().getStarttime()+"");//starttime
+                    tvTime1.setText(ywhInfo.getData().getFlow().getGongshi().getStarttime() + "");//starttime
                     tvContent.setVisibility(View.VISIBLE);
-                    tvContent.setText(ywhInfo.getData().getFlow().getGongshi().getTitle()+"");
+                    tvContent.setText(ywhInfo.getData().getFlow().getGongshi().getTitle() + "");
                     autoClick.setBackgroundColor(getResources().getColor(R.color.white));
                     tvClickName1.setText("查看业主大会结果公示");
                     tvClickName1.setTextColor(getResources().getColor(R.color.color_2d97ff));
@@ -252,15 +263,12 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 tvTitle.setText("业主委员会成员已确定");
                 tvContent.setVisibility(View.GONE);
                 tvClickName1.setText("查看业主委员会成员信息");
-                List<String> list = (List<String>) ywhInfo.getData().getFlow().getFiles();
+                List<YwhCurrentflow.DataBean.FlowBean.FilesBean> list = (List<YwhCurrentflow.DataBean.FlowBean
+                        .FilesBean>) ywhInfo.getData().getFlow().getFiles();
                 if (list != null && list.size() > 0) {
                     ywhAccessoryAdapter.setNewData(list);
                 } else {
-                    List<String> list1 = new ArrayList<>();
-                    for (int i = 0; i < 10; i++) {
-                        list.add("1");
-                    }
-                    ywhAccessoryAdapter.setNewData(list1);
+                    autollData2.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -301,16 +309,16 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_status:
-                if (status == 0) {
-                    status = 1;
-                } else if (status == 1) {
-                    status = 2;
-                } else if (status == 2) {
-                    status = 3;
-                } else {
-                    status = 0;
-                }
-                setFivethData(null);
+//                if (status == 0) {
+//                    status = 1;
+//                } else if (status == 1) {
+//                    status = 2;
+//                } else if (status == 2) {
+//                    status = 3;
+//                } else {
+//                    status = 0;
+//                }
+//                setFivethData(null);
                 break;
             case R.id.auto_click:
                 Intent intent;
@@ -318,7 +326,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                     case 1:
                         if (tvClickName2.getText().toString().equals("已投票")) {
                             Toast.makeText(getActivity(), "已投票", Toast.LENGTH_SHORT).show();
-                        } else if (tvClickName2.getText().toString().equals("未投票")){
+                        } else if (tvClickName2.getText().toString().equals("未投票")) {
                             intent = new Intent(getActivity(), WebviewActivity.class);
                             Bundle bundle = new Bundle();
                             bundle.putString("name", "投票");
@@ -339,12 +347,6 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         break;
                 }
                 break;
-//            case R.id.tv_download1:
-//                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.tv_download2:
-//                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
-//                break;
         }
     }
 }

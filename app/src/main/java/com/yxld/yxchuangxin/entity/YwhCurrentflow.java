@@ -184,12 +184,12 @@ public class YwhCurrentflow extends BaseEntity {
             private String phaseName;
             private int isChengli;
             private GongshiBean gongshi;
-            private List<ConfirmPeopleBean> confirmPeople;
+            private List<ConfirmPeopleBean> confirmPeople;//业委会人员
             private ProprietorAduitVoBean proprietorAduitVo;
             private VoteVoBean voteVo;//投票方式
-            private Object files;//附件集合
+            private List<FilesBean> files;//附件集合
             private Object beianPeoples;//备案人员列表集合 YwhBeianPeople类：备案人员
-            private Object beianInfo;//YwhBeian类 备案基本信息
+            private BeianInfoBean beianInfo;//YwhBeian类 备案基本信息
 
             public int getPhaseState() {
                 return phaseState;
@@ -247,11 +247,11 @@ public class YwhCurrentflow extends BaseEntity {
                 this.voteVo = voteVo;
             }
 
-            public Object getFiles() {
+            public List<FilesBean> getFiles() {
                 return files;
             }
 
-            public void setFiles(Object files) {
+            public void setFiles(List<FilesBean> files) {
                 this.files = files;
             }
 
@@ -263,11 +263,11 @@ public class YwhCurrentflow extends BaseEntity {
                 this.beianPeoples = beianPeoples;
             }
 
-            public Object getBeianInfo() {
+            public BeianInfoBean getBeianInfo() {
                 return beianInfo;
             }
 
-            public void setBeianInfo(Object beianInfo) {
+            public void setBeianInfo(BeianInfoBean beianInfo) {
                 this.beianInfo = beianInfo;
             }
 
@@ -361,7 +361,7 @@ public class YwhCurrentflow extends BaseEntity {
                 private String driscipt;
                 private int isdelel;
                 private String addtime;
-                private int type;
+                private int type;//类型1:筹备组人员 2:业委会候选人 3:业委会人员4:业委会主任
                 private int projectid;
                 private String workUnit;
                 private Object otherWorks;
@@ -751,6 +751,189 @@ public class YwhCurrentflow extends BaseEntity {
                 private int isVote;/*-1否 1是*/
 
 
+            }
+
+            public static class BeianInfoBean {
+
+                /**
+                 * id : 6
+                 * isSuccess : 1
+                 * beianTime : 2018-11-12 19:41:47.0
+                 * projectId : 346
+                 * operatorId : 2
+                 * operatorName : 大大
+                 * bieanstate : 1
+                 * beianmingc : 抠脚大汉
+                 * pici : 1
+                 */
+
+                private int id;
+                private int isSuccess;
+                private String beianTime;
+                private int projectId;
+                private int operatorId;
+                private String operatorName;
+                private int bieanstate;
+                private String beianmingc;
+                private int pici;
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public int getIsSuccess() {
+                    return isSuccess;
+                }
+
+                public void setIsSuccess(int isSuccess) {
+                    this.isSuccess = isSuccess;
+                }
+
+                public String getBeianTime() {
+                    return beianTime;
+                }
+
+                public void setBeianTime(String beianTime) {
+                    this.beianTime = beianTime;
+                }
+
+                public int getProjectId() {
+                    return projectId;
+                }
+
+                public void setProjectId(int projectId) {
+                    this.projectId = projectId;
+                }
+
+                public int getOperatorId() {
+                    return operatorId;
+                }
+
+                public void setOperatorId(int operatorId) {
+                    this.operatorId = operatorId;
+                }
+
+                public String getOperatorName() {
+                    return operatorName;
+                }
+
+                public void setOperatorName(String operatorName) {
+                    this.operatorName = operatorName;
+                }
+
+                public int getBieanstate() {
+                    return bieanstate;
+                }
+
+                public void setBieanstate(int bieanstate) {
+                    this.bieanstate = bieanstate;
+                }
+
+                public String getBeianmingc() {
+                    return beianmingc;
+                }
+
+                public void setBeianmingc(String beianmingc) {
+                    this.beianmingc = beianmingc;
+                }
+
+                public int getPici() {
+                    return pici;
+                }
+
+                public void setPici(int pici) {
+                    this.pici = pici;
+                }
+            }
+
+            public static class FilesBean {
+                /**
+                 * id : 24
+                 * filename : 1000.jpg
+                 * uploadtime : 2018-11-13 16:15:34.0
+                 * filestate : 1
+                 * url : gj/upload/file/1542096826013
+                 * ywhType : 6
+                 * projectId : 346
+                 * pici : 1
+                 */
+
+                private int id;
+                private String filename;
+                private String uploadtime;
+                private int filestate;
+                private String url;
+                private int ywhType;
+                private int projectId;
+                private int pici;
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getFilename() {
+                    return filename;
+                }
+
+                public void setFilename(String filename) {
+                    this.filename = filename;
+                }
+
+                public String getUploadtime() {
+                    return uploadtime;
+                }
+
+                public void setUploadtime(String uploadtime) {
+                    this.uploadtime = uploadtime;
+                }
+
+                public int getFilestate() {
+                    return filestate;
+                }
+
+                public void setFilestate(int filestate) {
+                    this.filestate = filestate;
+                }
+
+                public String getUrl() {
+                    return url;
+                }
+
+                public void setUrl(String url) {
+                    this.url = url;
+                }
+
+                public int getYwhType() {
+                    return ywhType;
+                }
+
+                public void setYwhType(int ywhType) {
+                    this.ywhType = ywhType;
+                }
+
+                public int getProjectId() {
+                    return projectId;
+                }
+
+                public void setProjectId(int projectId) {
+                    this.projectId = projectId;
+                }
+
+                public int getPici() {
+                    return pici;
+                }
+
+                public void setPici(int pici) {
+                    this.pici = pici;
+                }
             }
         }
 

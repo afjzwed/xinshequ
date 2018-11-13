@@ -109,7 +109,6 @@ public abstract class BaseFragment extends Fragment {
 
 		sp = this.getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 		setupFragmentComponent();
-
 	}
 
 	public Activity getContainerActivity() {

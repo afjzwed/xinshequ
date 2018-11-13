@@ -101,11 +101,11 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 //        map.put("uuid", Contains.uuid);
 //        mPresenter.getData(map);
 
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("1");
-        }
-        ywhAccessoryAdapter.setNewData(list);
+//        List<String> list = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            list.add("1");
+//        }
+//        ywhAccessoryAdapter.setNewData(list);
         recyclerView.setVisibility(View.VISIBLE);
 
         recyclerView.setFocusable(false);

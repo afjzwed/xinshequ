@@ -110,6 +110,8 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
             initStatusView();
         } else {
             onError(baseEntity.msg);
+            status = -1;
+            initStatusView();
         }
     }
 
