@@ -1,8 +1,12 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
+
+import java.util.Map;
+
 /**
  * @author William
  * @Package The contract for FivethFragment
@@ -21,10 +25,10 @@ public interface FivethContract {
          */
         void closeProgressDialog();
 
-        void setFivethData(BaseEntity baseEntity);
+        void setFivethData(YwhInfo baseEntity);
     }
 
     interface FivethContractPresenter extends BasePresenter {
-     void getFivethData();
+     void getFivethData(Map map);
     }
 }

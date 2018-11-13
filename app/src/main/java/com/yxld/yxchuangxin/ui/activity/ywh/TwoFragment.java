@@ -189,6 +189,7 @@ public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
                 } else if (type == 3) {
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
+                    bundle.putInt("isYjfk",1);
                     startActivity(CymdActivity.class,bundle);//成员名单公示
                 }
                 break;

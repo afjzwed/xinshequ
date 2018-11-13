@@ -58,7 +58,6 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
 
-
         return view;
     }
 
@@ -77,7 +76,6 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
                     imm.hideSoftInputFromWindow(etContent.getApplicationWindowToken(), 0);
                 }
             }
-
         }
     }
 
@@ -141,7 +139,7 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
         }
         FkyjActivity fkyjActivity = (FkyjActivity) getActivity();
         //判断调哪个接口
-        switch (fkyjActivity.getPosition()) {
+        /*switch (fkyjActivity.getPosition()) {
             case 1: {//成立筹备组
                 Map<String, String> map1 = new HashMap<>();
                 map1.put("uuid", Contains.uuid);
@@ -173,6 +171,17 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
                 mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
                 break;
             }
-        }
+        }*/
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("gongshiId", 1 + "");//公示ID
+        map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
+        map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
+        map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
+        map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
+        map.put("resultdesc", etContent.getText().toString().trim());
+        map.put("resultType", fkyjActivity.getPosition() + "");
+        mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口
+
     }
 }

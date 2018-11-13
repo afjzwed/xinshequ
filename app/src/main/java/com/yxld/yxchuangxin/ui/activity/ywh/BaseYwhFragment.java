@@ -25,25 +25,14 @@ public abstract class BaseYwhFragment extends BaseFragment {
         } else {
             isUIVisible = false;
         }
-
     }
-
-
-
-
-
-
 
     private void lazyLoad() {
         if (isViewCreated && isUIVisible) {
             initDataFromLocal();
             isViewCreated = false;
             isUIVisible = false;
-
             Logger.i("可见,加载数据");
         }
-
     }
-
-
 }

@@ -5,6 +5,7 @@ import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.SixthFragment;
 
@@ -50,55 +51,33 @@ public class SixthPresenter implements SixthContract.SixthContractPresenter{
     }
 
     @Override
-    public void getSixthData() {
-        Map<String, String> map = new HashMap<>();
-        map.put("uuid", Contains.uuid);
-        httpAPIWrapper.getDoorList(map).subscribe(new Consumer<BaseEntity>() {
-            @Override
-            public void accept(BaseEntity baseEntity) throws Exception {
-                mView.setSixthData(baseEntity);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
-                KLog.i("onError");
-            }
-        }, new Action() {
-            @Override
-            public void run() throws Exception {
-                KLog.i("onComplete");
-            }
-        });
+    public void getSixthData(Map map) {
+        mView.showProgressDialog();
+        Disposable disposable = httpAPIWrapper.getLcxx(map)
+                .subscribe(new Consumer<YwhInfo>() {
+                    @Override
+                    public void accept(YwhInfo message) throws Exception {
+                        //isSuccesse
+                        KLog.i("onSuccesse");
+                        mView.setSixthData(message);
+                        mView.closeProgressDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        //onError
+                        KLog.i("onError");
+                        throwable.printStackTrace();
+                        mView.closeProgressDialog();
+                        //ToastUtil.show(mActivity, mActivity.getString(R.string.loading_failed_1));
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        //onComplete
+                        KLog.i("onComplete");
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
-
-//    @Override
-//    public void getUser(HashMap map) {
-//        //mView.showProgressDialog();
-//        Disposable disposable = httpAPIWrapper.getUser(map)
-//                .subscribe(new Consumer<User>() {
-//                    @Override
-//                    public void accept(User user) throws Exception {
-//                        //isSuccesse
-//                        KLog.i("onSuccesse");
-//                        mView.setText(user);
-//                      //mView.closeProgressDialog();
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        //onError
-//                        KLog.i("onError");
-//                        throwable.printStackTrace();
-//                      //mView.closeProgressDialog();
-//                      //ToastUtil.show(mFragment.getActivity(), mFragment.getString(R.string.loading_failed_1));
-//                    }
-//                }, new Action() {
-//                    @Override
-//                    public void run() throws Exception {
-//                        //onComplete
-//                        KLog.i("onComplete");
-//                    }
-//                });
-//        mCompositeDisposable.add(disposable);
-//    }
 }

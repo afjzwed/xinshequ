@@ -38,6 +38,7 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
     @BindView(R.id.rv) RecyclerView rv;
     private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> data;
     private CymdAdapter adapter;
+    private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,11 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         data = getIntent().getParcelableArrayListExtra("data");
+        isYjfk = getIntent().getIntExtra("isYjfk", 0);
         toolbar.setTitle("成员名单公示");
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
-        // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏
-        if (true) {
+        //人员名单确认以后意见反馈隐藏
+        if (isYjfk == 0) {
             tvMenu.setVisibility(View.VISIBLE);
         } else {
             tvMenu.setVisibility(View.GONE);
@@ -62,8 +64,6 @@ public class CymdActivity extends BaseActivity implements CymdContract.View {
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent();
-//                intent.putExtra("position",value);
                 startActivity(FkyjActivity.class);
             }
         });

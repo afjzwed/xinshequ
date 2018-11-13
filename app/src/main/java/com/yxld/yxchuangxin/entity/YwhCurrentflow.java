@@ -168,7 +168,10 @@ public class YwhCurrentflow extends BaseEntity {
              * phaseState : 1
              * phaseName : 成立筹备组
              * isChengli : null
-             * gongshi : {"id":2,"title":"发起成立业委会申请","content":"发起成立业委会申请","fileurl":"http://p9zwbgynz.bkt.clouddn.com/QQ%E5%9B%BE%E7%89%8720181112195210.gif","starttime":"2018-11-08 15:23:06","endtime":"2018-11-12 15:00:00","startmanid":1,"startman":"杜坤","gongshiType":7,"manNumber":null,"projectId":346,"piCi":1,"faPiao":"2018-11-12 19:53:19"}
+             * gongshi : {"id":2,"title":"发起成立业委会申请","content":"发起成立业委会申请","fileurl":"http://p9zwbgynz.bkt.clouddn
+             * .com/QQ%E5%9B%BE%E7%89%8720181112195210.gif","starttime":"2018-11-08 15:23:06","endtime":"2018-11-12
+             * 15:00:00","startmanid":1,"startman":"杜坤","gongshiType":7,"manNumber":null,"projectId":346,"piCi":1,
+             * "faPiao":"2018-11-12 19:53:19"}
              * confirmPeople : null
              * proprietorAduitVo : null
              * voteVo : null
@@ -183,10 +186,10 @@ public class YwhCurrentflow extends BaseEntity {
             private GongshiBean gongshi;
             private List<ConfirmPeopleBean> confirmPeople;
             private ProprietorAduitVoBean proprietorAduitVo;
-            private Object voteVo;
-            private Object files;
-            private Object beianPeoples;
-            private Object beianInfo;
+            private VoteVoBean voteVo;//投票方式
+            private Object files;//附件集合
+            private Object beianPeoples;//备案人员列表集合 YwhBeianPeople类：备案人员
+            private Object beianInfo;//YwhBeian类 备案基本信息
 
             public int getPhaseState() {
                 return phaseState;
@@ -236,11 +239,11 @@ public class YwhCurrentflow extends BaseEntity {
                 this.proprietorAduitVo = proprietorAduitVo;
             }
 
-            public Object getVoteVo() {
+            public VoteVoBean getVoteVo() {
                 return voteVo;
             }
 
-            public void setVoteVo(Object voteVo) {
+            public void setVoteVo(VoteVoBean voteVo) {
                 this.voteVo = voteVo;
             }
 
@@ -268,7 +271,7 @@ public class YwhCurrentflow extends BaseEntity {
                 this.beianInfo = beianInfo;
             }
 
-            public static class ProprietorAduitVoBean  {
+            public static class ProprietorAduitVoBean {
 
                 /**
                  * aduitname : 筹备工作开始,请及时领取票权
@@ -324,6 +327,7 @@ public class YwhCurrentflow extends BaseEntity {
                     this.aduitOpinion = aduitOpinion;
                 }
             }
+
             public static class ConfirmPeopleBean implements Parcelable {
 
                 /**
@@ -556,6 +560,7 @@ public class YwhCurrentflow extends BaseEntity {
                     dest.writeInt(pici);
                 }
             }
+
             public static class GongshiBean {
                 /**
                  * id : 2
@@ -578,10 +583,11 @@ public class YwhCurrentflow extends BaseEntity {
                 private String content;
                 private String fileurl;
                 private String starttime;
-                private String endtime;
+                private String endtime;//候选人阶段结束时间
                 private int startmanid;
                 private String startman;
-                private int gongshiType;
+                private int gongshiType;//公示类型 1:筹备组成员公示 2:关于业主大会筹备文件公示的通知 3:候选人名单公示 4:业主大会结果公示 5成立业主委员会的通知,
+                // 6启动候选人推荐7.已正式发起业委会成立阶段/已启动推荐组成员推荐程序 8.业主大会线上投票(app无用)
                 private Object manNumber;
                 private int projectId;
                 private int piCi;
@@ -690,6 +696,61 @@ public class YwhCurrentflow extends BaseEntity {
                 public void setFaPiao(String faPiao) {
                     this.faPiao = faPiao;
                 }
+            }
+
+            public static class VoteVoBean {
+
+                private int voteType;/*1:线上 2 线下*/
+
+                private String content;
+
+                private String startTime;
+
+                private String endTime;
+
+                public int getVoteType() {
+                    return voteType;
+                }
+
+                public void setVoteType(int voteType) {
+                    this.voteType = voteType;
+                }
+
+                public String getContent() {
+                    return content;
+                }
+
+                public void setContent(String content) {
+                    this.content = content;
+                }
+
+                public String getStartTime() {
+                    return startTime;
+                }
+
+                public void setStartTime(String startTime) {
+                    this.startTime = startTime;
+                }
+
+                public String getEndTime() {
+                    return endTime;
+                }
+
+                public void setEndTime(String endTime) {
+                    this.endTime = endTime;
+                }
+
+                public int getIsVote() {
+                    return isVote;
+                }
+
+                public void setIsVote(int isVote) {
+                    this.isVote = isVote;
+                }
+
+                private int isVote;/*-1否 1是*/
+
+
             }
         }
 

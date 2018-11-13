@@ -2,6 +2,8 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.util.Log;
@@ -17,11 +19,17 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFourthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FourthContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.FourthModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.FourthPresenter;
 import com.zhy.autolayout.AutoLinearLayout;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,7 +44,7 @@ import butterknife.OnClick;
  * @date 2018/11/08 11:20:19
  */
 
-public class FourthFragment extends BaseFragment implements FourthContract.View {
+public class FourthFragment extends BaseYwhFragment implements FourthContract.View {
 
     @Inject
     FourthPresenter mPresenter;
@@ -55,7 +63,8 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
     @BindView(R.id.autoll_data)
     AutoLinearLayout autollData;
 
-    private int status = 0;
+    private int status = 0;//当前状态
+    private YwhInfo ywhInfo;//业委会信息
 
     @Nullable
     @Override
@@ -64,57 +73,78 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
         View view = inflater.inflate(R.layout.fragment_ywh_fourth, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
-
-        initLoacView();
-        initData();
+        Log.e("wh", "FourthFragment");
         return view;
     }
 
-    private void initData() {
-
-        Log.e("wh", "FourthFragment");
-        status = 2;
-//        mPresenter.getFourthData();
-        setFourthData(null);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        initDataFromLocal();
     }
 
-    private void initLoacView() {
+    private boolean isload;
 
+    @Override
+    protected void initDataFromLocal() {
+        if (!isViewCreated || !isUIVisible || isload) {
+            return;
+        }
+        isload = true;
+        initData();
+    }
+
+    private void initData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("type", "4");
+        mPresenter.getFourthData(map);
     }
 
     @Override
-    public void setFourthData(BaseEntity baseEntity) {
+    public void setFourthData(YwhInfo baseEntity) {
+        if (baseEntity.isSuccess()) {
+            ywhInfo = baseEntity;
+            status=  ywhInfo.getData().getFlow().getPhaseState();
+            initStatusView();
+        } else {
+            onError(baseEntity.msg);
+        }
+    }
 
-        Log.e("wh", "FourthFragment" + status);
+    private void initStatusView() {
         //获取数据
         switch (status) {
-            case 0:
+            case -1:
                 autollData.setVisibility(View.GONE);
                 ivNoData.setVisibility(View.VISIBLE);
                 tvStatus.setText("候选人确定阶段-未开始");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
                 break;
             case 1:
-                autollData.setVisibility(View.VISIBLE);
-                ivNoData.setVisibility(View.GONE);
-                tvStatus.setText("候选人确定阶段-进行中");
-                tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
-                tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + "2018-9-12" + "</font>" +
-                        "之前完成推荐程序"));
-                tvContentHead.setVisibility(View.VISIBLE);
-                tvName.setText("推荐候选人成员");
-                ivImg.setImageResource(R.mipmap.ic_ywh_start);
+                if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
+                    autollData.setVisibility(View.VISIBLE);
+                    ivNoData.setVisibility(View.GONE);
+                    tvStatus.setText("候选人确定阶段-进行中");
+                    tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
+                    tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
+                            "之前完成推荐程序"));
+                    tvContentHead.setVisibility(View.VISIBLE);
+                    tvName.setText("推荐候选人成员");
+                    ivImg.setImageResource(R.mipmap.ic_ywh_start);
+                } else if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 3){
+                    //tvContentHead内容为YwhCurrentflow.DataBean.FlowBean.GongshiBeantitle
+                    autollData.setVisibility(View.VISIBLE);
+                    ivNoData.setVisibility(View.GONE);
+                    ivImg.setImageResource(R.mipmap.ic_ywh_vote);
+                    tvTitle.setText("候选人名单已公示");
+                    tvContentHead.setText(ywhInfo.getData().getFlow().getGongshi().getTitle()+"");
+                    tvContentHead.setVisibility(View.VISIBLE);
+                    tvName.setText("查看候选人名单公示");
+                }
                 break;
             case 2:
-                autollData.setVisibility(View.VISIBLE);
-                ivNoData.setVisibility(View.GONE);
-                ivImg.setImageResource(R.mipmap.ic_ywh_vote);
-                tvTitle.setText("候选人名单已公示");
-                tvContentHead.setText("通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容通知内容");
-                tvContentHead.setVisibility(View.VISIBLE);
-                tvName.setText("查看候选人名单公示");
-                break;
-            case 3:
                 autollData.setVisibility(View.VISIBLE);
                 ivNoData.setVisibility(View.GONE);
                 tvStatus.setText("候选人确定阶段-已完成");
@@ -126,7 +156,6 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
                 break;
         }
     }
-
 
     @Override
     protected void setupFragmentComponent() {
@@ -141,11 +170,6 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
     @Override
     public void setPresenter(FourthContract.FourthContractPresenter presenter) {
         mPresenter = (FourthPresenter) presenter;
-    }
-
-    @Override
-    protected void initDataFromLocal() {
-
     }
 
     @Override
@@ -168,22 +192,27 @@ public class FourthFragment extends BaseFragment implements FourthContract.View 
         switch (view.getId()) {
             case R.id.tv_name:
                 Toast.makeText(getActivity(), "点击", Toast.LENGTH_SHORT).show();
-                Intent intent ;
+                Intent intent;
                 switch (status) {
                     case 1:
-                        intent = new Intent(getActivity(), RecommendMemberActivity.class);
+                        //公示类型 6启动候选人推荐
+                        intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
+                        // .FlowBean.GongshiBean
                         startActivity(intent);
                         break;
                     case 2:
-//                        intent = new Intent(getActivity(), CheckNoticeActivity.class);
-//                        startActivity(intent);
-                         intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
+                        //公示类型 3:候选人名单公示
+                        intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知 //传YwhCurrentflow
+                        // .DataBean.FlowBean.GongshiBean 和 confirmPeople集合
                         intent.putExtra("ywh_position", 3);
                         startActivity(intent);
                         break;
                     case 3:
-                        intent = new Intent(getActivity(), CymdActivity.class);
-                        startActivity(intent);
+//                        intent = new Intent(getActivity(), CymdActivity.class);//传 confirmPeople集合
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
+                        bundle.putInt("isYjfk",1);
+                        startActivity(CymdActivity.class,bundle);//成员名单公示
                         break;
                 }
                 break;

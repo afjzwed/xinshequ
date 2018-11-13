@@ -2,8 +2,12 @@ package com.yxld.yxchuangxin.ui.activity.ywh.contract;
 
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.entity.DoorInfo;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.base.BasePresenter;
 import com.yxld.yxchuangxin.ui.activity.base.BaseView;
+
+import java.util.Map;
+
 /**
  * @author William
  * @Package The contract for FourthFragment
@@ -22,10 +26,10 @@ public interface FourthContract {
          */
         void closeProgressDialog();
 
-        void setFourthData(BaseEntity baseEntity);
+        void setFourthData(YwhInfo baseEntity);
     }
 
     interface FourthContractPresenter extends BasePresenter {
-        void getFourthData();
+        void getFourthData(Map map);
     }
 }

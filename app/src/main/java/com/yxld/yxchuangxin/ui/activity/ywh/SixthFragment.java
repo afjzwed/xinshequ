@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,8 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
+import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerSixthComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.SixthContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.SixthModule;
@@ -26,7 +29,9 @@ import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -41,7 +46,7 @@ import butterknife.OnClick;
  * @date 2018/11/08 15:56:44
  */
 
-public class SixthFragment extends BaseFragment implements SixthContract.View {
+public class SixthFragment extends BaseYwhFragment implements SixthContract.View {
 
     @Inject
     SixthPresenter mPresenter;
@@ -66,8 +71,9 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     @BindView(R.id.rv)
     RecyclerView recyclerView;
 
-    private int status = 0;
     private YwhAccessoryAdapter ywhAccessoryAdapter;
+    private int status = 0;//当前状态
+    private YwhInfo ywhInfo;//业委会信息
 
     @Nullable
     @Override
@@ -89,28 +95,55 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
         recyclerView.setFocusable(false);
-
-        initData();
+        Log.e("wh", "SixthFragment");
         return view;
     }
 
-    private void initData() {
-        Log.e("wh", "SixthFragment");
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        isViewCreated = true;
+        initDataFromLocal();
+    }
 
-//        mPresenter.getSixthData();
-        setSixthData(null);
+    private boolean isload;
 
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            list.add("1");
+    @Override
+    protected void initDataFromLocal() {
+        if (!isViewCreated || !isUIVisible || isload) {
+            return;
         }
-        ywhAccessoryAdapter.setNewData(list);
+        isload = true;
+        initData();
+    }
+
+    private void initData() {
+        Map<String, String> map = new HashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("type", "6");
+        mPresenter.getSixthData(map);
+
+//        List<String> list = new ArrayList<>();
+//        for (int i = 0; i < 10; i++) {
+//            list.add("1");
+//        }
+//        ywhAccessoryAdapter.setNewData(list);
     }
 
     @Override
-    public void setSixthData(BaseEntity baseEntity) {
+    public void setSixthData(YwhInfo baseEntity) {
+        if (baseEntity.isSuccess()) {
+            ywhInfo = baseEntity;
+            status=  ywhInfo.getData().getFlow().getPhaseState();
+            initStatusView();
+        } else {
+            onError(baseEntity.msg);
+        }
+    }
+
+    private void initStatusView() {
         switch (status) {
-            case 0:
+            case -1:
                 ivNoData.setVisibility(View.VISIBLE);
                 llNoData.setVisibility(View.GONE);
                 autollData0.setVisibility(View.GONE);
@@ -129,6 +162,7 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
                 tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                 break;
             case 2:
+                //从beianInfo和files和beianPeoples里取
                 ivNoData.setVisibility(View.GONE);
                 llNoData.setVisibility(View.GONE);
                 autollData0.setVisibility(View.VISIBLE);
@@ -139,7 +173,6 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
                 break;
         }
     }
-
 
     @Override
     protected void setupFragmentComponent() {
@@ -154,11 +187,6 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
     @Override
     public void setPresenter(SixthContract.SixthContractPresenter presenter) {
         mPresenter = (SixthPresenter) presenter;
-    }
-
-    @Override
-    protected void initDataFromLocal() {
-
     }
 
     @Override
@@ -190,16 +218,11 @@ public class SixthFragment extends BaseFragment implements SixthContract.View {
                 setSixthData(null);
                 break;
             case R.id.tv_click_name1:
-                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), YwhMemberShowActivity.class);
+//                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), YwhMemberShowActivity.class);//这里传备案人员名单列表beianPeoples
+                intent.putExtra("isYjfk", 1);
                 startActivity(intent);
                 break;
-//            case R.id.tv_click_name2:
-//                Toast.makeText(getActivity(), "点击2", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.tv_click_name3:
-//                Toast.makeText(getActivity(), "点击3", Toast.LENGTH_SHORT).show();
-//                break;
         }
     }
 }

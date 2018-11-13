@@ -51,6 +51,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     RecyclerView recyclerView;
 
     private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
+    private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +64,17 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // TODO: 2018/11/12 整个页面内容都从上级页面取
+        position = getIntent().getIntExtra("ywh_position",0);
+        isYjfk = getIntent().getIntExtra("isYjfk", 0);
+
         recyclerView.setVisibility(View.GONE);
 
+        if (isYjfk == 0) {
+            tvMenu.setVisibility(View.VISIBLE);
+        } else {
+            tvMenu.setVisibility(View.GONE);
+        }
         tvMenu.setVisibility(View.VISIBLE);
         tvMenu.setText("意见反馈");
         tvMenu.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +86,6 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //                startActivity(FkyjActivity.class);
             }
         });
-
-        // TODO: 2018/11/12 整个页面内容都从上级页面取
-        position = getIntent().getIntExtra("ywh_position",0);
-
     }
 
     @Override
@@ -130,6 +136,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     @OnClick(R.id.tv_click_name1)
     public void onViewClicked() {
         Intent intent = new Intent(this, CymdActivity.class);
+        intent.putExtra("isYjfk", 1);
         startActivity(intent);
     }
 }

@@ -52,6 +52,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     private List<YwhMember.DataBean> memberList = new ArrayList<>();
     private int page;//分页数
     private int rows = 6;//每页加载数
+    private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,8 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         setContentView(R.layout.activity_ywh_membershow);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        isYjfk = getIntent().getIntExtra("isYjfk", 0);
 
         UIUtils.configSwipeRefreshLayoutColors(swipRefresh);
         swipRefresh.setOnRefreshListener(this);
@@ -78,7 +81,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         recyclerView.setAdapter(ywhMemberShowAdapter);//绑定适配器
 
         // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏 根据上级页面阶段是否已完成来判断
-        if (true) {
+        if (isYjfk == 0) {
             tvMenu.setVisibility(View.VISIBLE);
         } else {
             tvMenu.setVisibility(View.GONE);

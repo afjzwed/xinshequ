@@ -211,6 +211,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
 //                    startActivity(CheckNoticeActivity.class);
                     Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
                     intent.putExtra("ywh_position", 2);
+                    intent.putExtra("isYjfk", 1);
                     startActivity(intent);
                 }
             });

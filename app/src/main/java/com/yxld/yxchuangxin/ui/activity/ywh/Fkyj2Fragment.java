@@ -102,7 +102,7 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
 
     private void getData(boolean isRefresh) {
         FkyjActivity fkyjActivity = (FkyjActivity) getActivity();
-        switch (fkyjActivity.getPosition()) {
+       /* switch (fkyjActivity.getPosition()) {
             case 1: {//成立筹备组
                 Log.e("wh", "11");
                 Map<String, String> map = new HashMap<>();
@@ -135,7 +135,13 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
                 mPresenter.getData1(map, isRefresh);//业主大会的意见列表接口
                 break;
             }
-        }
+        }*/
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        map.put("uuid", Contains.uuid);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
+        map.put("resultType", fkyjActivity.getPosition()+"");//反馈类型 （1:成立筹备组阶段 2:筹备组工作阶段 3:候选人确认阶段 4:业主大会阶段 5:备案阶段）
+        mPresenter.getData1(map, isRefresh);//业主大会的意见列表接口
     }
 
     @Override
