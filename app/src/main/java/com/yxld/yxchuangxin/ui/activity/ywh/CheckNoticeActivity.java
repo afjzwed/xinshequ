@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCheckNoticeComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
@@ -52,6 +54,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
     private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
     private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
+    private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;//公示
+    private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> listdata;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +69,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // TODO: 2018/11/12 整个页面内容都从上级页面取
+        data = getIntent().getParcelableExtra("ywh_gongshi");
+        listdata = getIntent().getParcelableArrayListExtra("data");
         position = getIntent().getIntExtra("ywh_position",0);
         isYjfk = getIntent().getIntExtra("isYjfk", 0);
 
@@ -86,6 +92,10 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //                startActivity(FkyjActivity.class);
             }
         });
+
+        titleRecommendMember.setText(""+data.getTitle());
+        tvSendTime.setText("发布时间："+data.getStarttime());
+        tvNotice.setText(""+data.getContent());
     }
 
     @Override
@@ -135,8 +145,12 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
     @OnClick(R.id.tv_click_name1)
     public void onViewClicked() {
-        Intent intent = new Intent(this, CymdActivity.class);
-        intent.putExtra("isYjfk", 1);
-        startActivity(intent);
+//        Intent intent = new Intent(this, CymdActivity.class);
+//        intent.putExtra("isYjfk", 1);
+//        startActivity(intent);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) listdata);
+        bundle.putInt("isYjfk", 1);
+        startActivity(CymdActivity.class, bundle);//成员名单公示
     }
 }

@@ -24,7 +24,7 @@
                 android:id="@+id/title_recommend_member"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="圣诞节了疯狂家里的事"
+                android:text=""
                 android:textColor="@color/color_333333"
                 android:textSize="50px"
                 android:textStyle="bold"/>
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43px"
                 android:lineSpacingExtra="28px"
-                android:text="杀戮空间发了圣诞节福利速度快解放路口圣诞节福利点就开始了房价快速熟练度附近代理商科技发生了的杀戮空间发了圣诞节福利速度快解放路口圣诞节福利点就开始了房价快速熟练度附近代理商科技发生了的家乐福开机了杀戮空间发了圣诞节福利速度快解放路口圣诞节福利点就开始了房价快速熟练度附近代理商科技发生了的家乐福开机了杀戮空间发了圣诞节福利速度快解放路口圣诞节福利点就开始了房价快速熟练度附近代理商科技发生了的家乐福开机了家乐福开机了"
+                android:text=""
                 android:textColor="@color/umeng_socialize_text_share_content"
                 android:textSize="42px"/>
 

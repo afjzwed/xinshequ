@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -88,6 +89,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
 
     private YwhAccessoryAdapter ywhAccessoryAdapter;
     private int status = 0;//当前状态
+    private int skip = 0;//控制页面跳转
     private YwhInfo ywhInfo;//业委会信息
 
 
@@ -107,17 +109,17 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
 
-                Intent intent = new Intent(getActivity(), WebviewActivity.class);
+//                Intent intent = new Intent(getActivity(), WebviewActivity.class);
 //                Intent intent = new Intent(getActivity(), WebViewActivity.class);
                 // TODO: 2018/11/13 pdf在线预览
-//                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("name", "附件");
                 bundle.putString("address", filesBean.getUrl());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
-                Toast.makeText(getActivity(), "点击" + position+" "+filesBean.getUrl(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
@@ -174,6 +176,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 autollData2.setVisibility(View.GONE);
                 tvStatus.setText("业主大会阶段-未开始");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
+                skip = 0;
                 break;
             case 1:
                 if (ywhInfo.getData().getFlow().getGongshi() == null && ywhInfo.getData().getFlow().getVoteVo() !=
@@ -229,6 +232,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         tvClickName2.setTextColor(getResources().getColor(R.color.color_ea3006));
                         ivArrow.setImageResource(R.mipmap.ic_jt_red);
                     }
+                    skip = 1;
                 } else if (ywhInfo.getData().getFlow().getGongshi() != null && ywhInfo.getData().getFlow().getGongshi
                         ().getGongshiType() == 4) {//公示不为null
                     ivNoData.setVisibility(View.GONE);
@@ -249,6 +253,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                     tvClickName2.setVisibility(View.GONE);
                     line.setVisibility(View.VISIBLE);
                     ivArrow.setImageResource(R.mipmap.ic_jt_blue);
+                    skip = 2;
                 }
                 break;
             case 2:
@@ -270,6 +275,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 } else {
                     autollData2.setVisibility(View.GONE);
                 }
+                skip = 3;
                 break;
         }
     }
@@ -337,8 +343,13 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         }
                         break;
                     case 2:
-                        intent = new Intent(getActivity(), ResultShowActivity.class);//传公示 和 附件fileurl
-                        startActivity(intent);
+//                        intent = new Intent(getActivity(), ResultShowActivity.class);//传公示 和 附件fileurl
+//                        startActivity(intent);
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                .getFlow().getFiles());
+                        startActivity(ResultShowActivity.class, bundle);//成员名单公示
                         break;
                     case 3:
                         intent = new Intent(getActivity(), YwhMemberShowActivity.class);

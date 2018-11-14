@@ -80,7 +80,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         }, recyclerView);
         recyclerView.setAdapter(ywhMemberShowAdapter);//绑定适配器
 
-        // TODO: 2018/11/10 人员名单确认以后意见反馈隐藏 根据上级页面阶段是否已完成来判断
+        //人员名单确认以后意见反馈隐藏 根据上级页面阶段是否已完成来判断
         if (isYjfk == 0) {
             tvMenu.setVisibility(View.VISIBLE);
         } else {

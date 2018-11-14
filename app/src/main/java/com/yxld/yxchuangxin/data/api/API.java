@@ -812,17 +812,21 @@ public interface API {
     String URL_WEIXIU_LIUCHENG = "baoxiu_/find.mvc";
 
     //**********************业委会***********************//
-    String URL_YWH_CURRENTFLOW = "http://192.168.8.106:8083/supervise/app/conference/currentflow";
+    String URL_YWH_CURRENTFLOW = "http://192.168.8.106:8083/supervise/app/conference/currentflow";//业委会当前阶段
 
-    String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";
+    String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";//意见反馈列表
 
-    String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";
+    String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";//意见反馈提交
 
     String URL_YWH_COMMITFKYJ2 = "http://192.168.8.128:8888/app/obtain/feedback/submit";
 
-    String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";
+    String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";//业主大会人员列表
 
-    String URL_YWH_GETSURVEYLIST = "http://192.168.8.223:8080/supervise/app/research/slist";
+    String URL_YWH_GETSURVEYLIST = "192.168.8.223:8080/api/app/research/slist";//民意调查列表
+
+    String URL_YWH_GETRECOMMEND = "http://192.168.8.106:8083/app/obtain/list";//候选人推荐列表
+
+    String URL_YWH_CONMITCOMMEND  = "http://192.168.8.106:8083/app/obtain/sett";//候选人推荐提交
 
     //**********************业委会***********************//
 

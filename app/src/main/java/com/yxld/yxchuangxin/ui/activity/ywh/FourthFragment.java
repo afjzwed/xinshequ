@@ -64,6 +64,7 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
     AutoLinearLayout autollData;
 
     private int status = 0;//当前状态
+    private int skip = 0;//控制页面跳转
     private YwhInfo ywhInfo;//业委会信息
 
     @Nullable
@@ -106,7 +107,7 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
     public void setFourthData(YwhInfo baseEntity) {
         if (baseEntity.isSuccess()) {
             ywhInfo = baseEntity;
-            status=  ywhInfo.getData().getFlow().getPhaseState();
+            status = ywhInfo.getData().getFlow().getPhaseState();
             initStatusView();
         } else {
             onError(baseEntity.msg);
@@ -123,6 +124,7 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                 ivNoData.setVisibility(View.VISIBLE);
                 tvStatus.setText("候选人确定阶段-未开始");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
+                skip =0;
                 break;
             case 1:
                 if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
@@ -130,20 +132,23 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                     ivNoData.setVisibility(View.GONE);
                     tvStatus.setText("候选人确定阶段-进行中");
                     tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
-                    tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
+                    tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow
+                            ().getGongshi().getEndtime() + "</font>" +
                             "之前完成推荐程序"));
                     tvContentHead.setVisibility(View.VISIBLE);
                     tvName.setText("推荐候选人成员");
                     ivImg.setImageResource(R.mipmap.ic_ywh_start);
-                } else if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 3){
+                    skip = 1;
+                } else if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 3) {
                     //tvContentHead内容为YwhCurrentflow.DataBean.FlowBean.GongshiBeantitle
                     autollData.setVisibility(View.VISIBLE);
                     ivNoData.setVisibility(View.GONE);
                     ivImg.setImageResource(R.mipmap.ic_ywh_vote);
                     tvTitle.setText("候选人名单已公示");
-                    tvContentHead.setText(ywhInfo.getData().getFlow().getGongshi().getTitle()+"");
+                    tvContentHead.setText(ywhInfo.getData().getFlow().getGongshi().getTitle() + "");
                     tvContentHead.setVisibility(View.VISIBLE);
                     tvName.setText("查看候选人名单公示");
+                    skip = 2;
                 }
                 break;
             case 2:
@@ -155,6 +160,7 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                 tvName.setText("查看候选人名单");
                 ivImg.setImageResource(R.mipmap.ic_ywh_start3);
                 tvContentHead.setVisibility(View.GONE);
+                skip = 3;
                 break;
         }
     }
@@ -195,40 +201,49 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
             case R.id.tv_name:
                 Toast.makeText(getActivity(), "点击", Toast.LENGTH_SHORT).show();
                 Intent intent;
-                switch (status) {
+                switch (skip) {
                     case 1:
                         //公示类型 6启动候选人推荐
                         intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
                         // .FlowBean.GongshiBean
+                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
                         startActivity(intent);
                         break;
                     case 2:
                         //公示类型 3:候选人名单公示
-                        intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知 //传YwhCurrentflow
+//                        intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知 //传YwhCurrentflow
                         // .DataBean.FlowBean.GongshiBean 和 confirmPeople集合
-                        intent.putExtra("ywh_position", 3);
-                        startActivity(intent);
+//                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
+//                        intent.putExtra("ywh_position", 3);
+//                        startActivity(intent);
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                .getFlow().getConfirmPeople());//人员列表
+                        bundle1.putInt("ywh_position", 3);
+                        bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                        startActivity(CheckNoticeActivity.class, bundle1);//成员名单公示
                         break;
                     case 3:
 //                        intent = new Intent(getActivity(), CymdActivity.class);//传 confirmPeople集合
                         Bundle bundle = new Bundle();
-                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
-                        bundle.putInt("isYjfk",1);
-                        startActivity(CymdActivity.class,bundle);//成员名单公示
+                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                .getFlow().getConfirmPeople());
+                        bundle.putInt("isYjfk", 1);
+                        startActivity(CymdActivity.class, bundle);//成员名单公示
                         break;
                 }
                 break;
             case R.id.tv_status:
-                if (status == 0) {
-                    status = 1;
-                } else if (status == 1) {
-                    status = 2;
-                } else if (status == 2) {
-                    status = 3;
-                } else {
-                    status = 0;
-                }
-                setFourthData(null);
+//                if (status == 0) {
+//                    status = 1;
+//                } else if (status == 1) {
+//                    status = 2;
+//                } else if (status == 2) {
+//                    status = 3;
+//                } else {
+//                    status = 0;
+//                }
+//                setFourthData(null);
                 break;
         }
     }

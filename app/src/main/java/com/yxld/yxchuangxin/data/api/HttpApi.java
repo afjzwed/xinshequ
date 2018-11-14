@@ -38,6 +38,7 @@ import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.entity.FangquEntity;
 import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
+import com.yxld.yxchuangxin.entity.HouxuanRenBean;
 import com.yxld.yxchuangxin.entity.IsNight;
 import com.yxld.yxchuangxin.entity.JiaofeiMingxi;
 import com.yxld.yxchuangxin.entity.LiuCheng;
@@ -310,6 +311,7 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_POST_MENJIN_SHAREMEMBER)
     Observable<MenJinShareMemberBean> getDoorShareMember(@FieldMap Map<String, RequestBody> params);
+
     @FormUrlEncoded
     @POST(URL_POST_MENJIN_SAVE)
     Observable<BaseEntity> saveDoorShareMember(@FieldMap Map<String, RequestBody> params);
@@ -725,24 +727,39 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_DONGSHENG_AD)
     Observable<LocalAd> getLocalAd(@FieldMap Map<String, RequestBody> params);
+
     @GET(URL_WEIXIU_LIUCHENG)
     Observable<LiuCheng> getWeiXiuLiucheng(@QueryMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(url_ywh_lcxx)
     Observable<YwhInfo> getLcxx(@FieldMap Map<String, RequestBody> params);
+
     @FormUrlEncoded
     @POST(url_ywh_tjcbz)
     Observable<BaseEntity> getTjcbz(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
+    @POST(URL_YWH_CONMITCOMMEND)
+    Observable<BaseEntity> getTjcb1(@FieldMap Map<String, RequestBody> params);
+
+    @FormUrlEncoded
     @POST(url_ywh_tjcbz_list)
     Observable<YwhTj> getTjcbzList(@FieldMap Map<String, RequestBody> params);
+
+    //    @GET(URL_YWH_GETRECOMMEND + "{uuid}")
+    //    Observable<BaseEntity> getTjcbzList1(@Path("uuid") String uuid,@FieldMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(URL_YWH_GETRECOMMEND)
+    Observable<HouxuanRenBean> getTjcbzList1(@FieldMap Map<String, RequestBody> params);
+
     @GET(url_ywh_gsmd)
     Observable<BaseEntity> getGsmd(@QueryMap Map<String, RequestBody> params);
+
     @FormUrlEncoded
     @POST(url_ywh_tjyj)
     Observable<BaseEntity> getTjyj(@FieldMap Map<String, RequestBody> params);
+
     @FormUrlEncoded
     @POST(url_ywh_lhlb)
     Observable<YwhFkyj> getLhlb(@FieldMap Map<String, RequestBody> params);
@@ -761,6 +778,7 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(url_ywh_house)
     Observable<YwhHouse> getHouseList(@FieldMap Map<String, RequestBody> params);
+
     /****************************业委会********************************/
 
     @FormUrlEncoded
@@ -775,9 +793,10 @@ public interface HttpApi {
     @POST(URL_YWH_COMMITFKYJ)
     Observable<BaseEntity> commitFkyj(@FieldMap Map<String, RequestBody> params);
 
-    @FormUrlEncoded
-    @POST(URL_YWH_COMMITFKYJ2+"/"+"{fwbh}"+"/"+"{uuid}")
-    Observable<BaseEntity> commitFkyj2(@Path("fwbh") String fwid,@Path("uuid") String uuid, @FieldMap Map<String, RequestBody> params);
+//    @FormUrlEncoded
+//    @POST(URL_YWH_COMMITFKYJ2 + "/" + "{fwbh}" + "/" + "{uuid}")
+//    Observable<BaseEntity> commitFkyj2(@Path("fwbh") String fwid, @Path("uuid") String uuid, @FieldMap Map<String,
+//            RequestBody> params);
 
     @GET(URL_YWH_GETMEMBERSHOWLIST)
     Observable<BaseEntity> getMemberShowList(@QueryMap Map<String, RequestBody> params);

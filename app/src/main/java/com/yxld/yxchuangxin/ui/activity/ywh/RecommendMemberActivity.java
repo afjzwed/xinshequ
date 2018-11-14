@@ -10,6 +10,8 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
+import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerRecommendMemberComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.RecommendMemberContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.RecommendMemberModule;
@@ -24,7 +26,7 @@ import butterknife.OnClick;
 /**
  * @author William
  * @Package com.yxld.yxchuangxin.ui.activity.wuye
- * @Description: 推荐筹备组成员
+ * @Description: 推荐候选人成员
  * @date 2018/11/07 19:36:36
  */
 
@@ -41,6 +43,8 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     @BindView(R.id.bt_recommend_member)
     Button btRecommendMember;
 
+    private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +56,13 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        data = getIntent().getParcelableExtra("ywh_gongshi");
+
         // TODO: 2018/11/10 根据上级跳转页面显示推荐筹备组成员或候选人成员
 
+        titleRecommendMember.setText("" + data.getTitle());
+        tvSendTime.setText("发布时间：" + data.getStarttime());
+        tvNotice.setText("" + data.getContent());
     }
 
     @Override
@@ -64,9 +73,7 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
 
     @Override
     public void setData(BaseEntity baseEntity) {
-        titleRecommendMember.setText("标题");
-        tvSendTime.setText("发布时间："+"时间");
-        tvNotice.setText("内容");
+
     }
 
     @Override
@@ -95,7 +102,6 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     }
 
 
-
     @Override
     protected void onDestroy() {
         mPresenter.unsubscribe();
@@ -105,7 +111,7 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     @OnClick(R.id.bt_recommend_member)
     public void onViewClicked() {
         Toast.makeText(this, "推荐筹备组成员", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, TuiJianListActivity.class);
+        Intent intent = new Intent(this, HouxuanListActivity.class);
         startActivity(intent);
     }
 }

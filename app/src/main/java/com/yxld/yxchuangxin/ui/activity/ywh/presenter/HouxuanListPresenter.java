@@ -7,10 +7,11 @@ import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
-import com.yxld.yxchuangxin.entity.YwhTj;
-import com.yxld.yxchuangxin.ui.activity.ywh.TuiJianListActivity;
-import com.yxld.yxchuangxin.ui.activity.ywh.contract.TuiJianListContract;
+import com.yxld.yxchuangxin.entity.HouxuanRenBean;
+import com.yxld.yxchuangxin.ui.activity.ywh.contract.HouxuanListContract;
+import com.yxld.yxchuangxin.ui.activity.ywh.HouxuanListActivity;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -21,25 +22,27 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 /**
- * @author xlei
+ * @author William
  * @Package com.yxld.yxchuangxin.ui.activity.ywh
- * @Description: presenter of TuiJianListActivity
- * @date 2018/11/08 10:54:14
+ * @Description: presenter of HouxuanListActivity
+ * @date 2018/11/14 09:53:34
  */
-public class TuiJianListPresenter implements TuiJianListContract.TuiJianListContractPresenter{
+public class HouxuanListPresenter implements HouxuanListContract.HouxuanListContractPresenter {
 
     HttpAPIWrapper httpAPIWrapper;
-    private final TuiJianListContract.View mView;
+    private final HouxuanListContract.View mView;
     private CompositeDisposable mCompositeDisposable;
-    private TuiJianListActivity mActivity;
+    private HouxuanListActivity mActivity;
 
     @Inject
-    public TuiJianListPresenter(@NonNull HttpAPIWrapper httpAPIWrapper, @NonNull TuiJianListContract.View view, TuiJianListActivity activity) {
+    public HouxuanListPresenter(@NonNull HttpAPIWrapper httpAPIWrapper, @NonNull HouxuanListContract.View view,
+                                HouxuanListActivity activity) {
         mView = view;
         this.httpAPIWrapper = httpAPIWrapper;
         mCompositeDisposable = new CompositeDisposable();
         this.mActivity = activity;
     }
+
     @Override
     public void subscribe() {
 
@@ -48,15 +51,17 @@ public class TuiJianListPresenter implements TuiJianListContract.TuiJianListCont
     @Override
     public void unsubscribe() {
         if (!mCompositeDisposable.isDisposed()) {
-             mCompositeDisposable.dispose();
+            mCompositeDisposable.dispose();
         }
     }
 
     @Override
     public void getTjcbz(Map map) {
-        Disposable subscribe = httpAPIWrapper.getTjcbzList(map).subscribe(new Consumer<YwhTj>() {
+        Log.e("wh", "Contains.uuid " + Contains.uuid);
+        Disposable subscribe = httpAPIWrapper.getTjcbzList1(map).subscribe(new Consumer<HouxuanRenBean>() {
             @Override
-            public void accept(YwhTj baseEntity) throws Exception {
+            public void accept(HouxuanRenBean baseEntity) throws Exception {
+                Log.e("wh", "baseEntity" + baseEntity);
                 mView.getTjcbzSuccess(baseEntity);
             }
         }, new Consumer<Throwable>() {
@@ -75,7 +80,7 @@ public class TuiJianListPresenter implements TuiJianListContract.TuiJianListCont
 
     @Override
     public void comitLy(Map map) {
-        Disposable subscribe = httpAPIWrapper.getTjcbz(map).subscribe(new Consumer<BaseEntity>() {
+        Disposable subscribe = httpAPIWrapper.getTjcb1(map).subscribe(new Consumer<BaseEntity>() {
             @Override
             public void accept(BaseEntity baseEntity) throws Exception {
                 mView.commitLySuccess(baseEntity);

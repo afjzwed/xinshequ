@@ -40,6 +40,7 @@ import com.yxld.yxchuangxin.entity.DoorInfo;
 import com.yxld.yxchuangxin.entity.FangquEntity;
 import com.yxld.yxchuangxin.entity.GoodsKind;
 import com.yxld.yxchuangxin.entity.HostEntiti;
+import com.yxld.yxchuangxin.entity.HouxuanRenBean;
 import com.yxld.yxchuangxin.entity.IsNight;
 import com.yxld.yxchuangxin.entity.JiaofeiMingxi;
 import com.yxld.yxchuangxin.entity.LiuCheng;
@@ -818,9 +819,9 @@ public class HttpAPIWrapper {
         return wrapper(mHttpAPI.commitFkyj(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
 
-    public Observable<BaseEntity> commitFkyj2(String fwid,String uuid,Map<String, String> params) {
-        return wrapper(mHttpAPI.commitFkyj2(fwid,uuid,addParams(params))).compose(SCHEDULERS_TRANSFORMER);
-    }
+//    public Observable<BaseEntity> commitFkyj2(String fwid,String uuid,Map<String, String> params) {
+//        return wrapper(mHttpAPI.commitFkyj2(fwid,uuid,addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+//    }
 
     public Observable<YwhInfo> getLcxx(Map<String, String> params) {
         return wrapper(mHttpAPI.getLcxx(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
@@ -829,8 +830,16 @@ public class HttpAPIWrapper {
     public Observable<BaseEntity> getTjcbz(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcbz(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
+
+    public Observable<BaseEntity> getTjcb1(Map<String, String> params) {
+        return wrapper(mHttpAPI.getTjcb1(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
     public Observable<YwhTj> getTjcbzList(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcbzList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
+    public Observable<HouxuanRenBean> getTjcbzList1(Map<String, String> params) {
+        return wrapper(mHttpAPI.getTjcbzList1(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     public Observable<YwhMember> getMemberShowList(Map<String, String> params) {
         return wrapper(mHttpAPI.getMemberShowList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);

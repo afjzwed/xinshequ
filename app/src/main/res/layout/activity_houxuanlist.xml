@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="145px"
+        android:background="@color/color_2d97ff">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="102px"
+            android:layout_marginLeft="43px"
+            android:layout_marginRight="43px"
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+
+            <ImageView
+                android:layout_width="42px"
+                android:layout_height="42px"
+                android:layout_marginLeft="25px"
+                android:src="@mipmap/ic_search1"/>
+
+            <EditText
+                android:imeOptions="actionSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25px"
+                android:layout_weight="1"
+                android:id="@+id/et_search"
+                android:background="@null"
+                android:hint="输入姓名搜索"
+                android:singleLine="true"
+                android:textColor="#999999"
+                android:textSize="43px"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25px"
+                android:text="取消"
+                android:id="@+id/tv_cancle"
+                android:textColor="@color/color_333333"
+                android:textSize="43px"/>
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="136px"
+        android:background="#f7f7f7"
+        android:paddingLeft="46px"
+        android:paddingRight="46px"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="姓名"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="区/期"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="楼栋"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="单元"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="房号"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="操作"
+            android:textColor="@color/color_0061c0"
+            android:textSize="43px"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rv"
+        android:layout_height="match_parent"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

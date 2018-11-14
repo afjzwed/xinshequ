@@ -24,6 +24,7 @@
         android:src="@mipmap/ic_no_data"/>
 
     <ScrollView
+        android:layout_below="@id/tv_status"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"

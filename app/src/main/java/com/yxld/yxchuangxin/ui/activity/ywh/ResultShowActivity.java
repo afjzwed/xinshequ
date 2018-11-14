@@ -14,6 +14,7 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerResultShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.ResultShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.ResultShowModule;
@@ -54,6 +55,8 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
     ScrollView mScrollView;
 
     private YwhAccessoryAdapter ywhAccessoryAdapter;
+    private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;//公示
+    private List<YwhCurrentflow.DataBean.FlowBean.FilesBean> listdata;//附件列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +77,13 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
                 Intent intent = new Intent(ResultShowActivity.this,FkyjActivity.class);
                 intent.putExtra("ywh_position", 4);
                 startActivity(intent);
-//                startActivity(FkyjActivity.class);
             }
         });
 
         // TODO: 2018/11/12 整个页面内容都从上级页面取
 
+        data = getIntent().getParcelableExtra("ywh_gongshi");
+        listdata = getIntent().getParcelableArrayListExtra("ywh_member_list");
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
         ywhAccessoryAdapter = new YwhAccessoryAdapter();
@@ -107,8 +111,10 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 //        }
 //        ywhAccessoryAdapter.setNewData(list);
         recyclerView.setVisibility(View.VISIBLE);
-
         recyclerView.setFocusable(false);
+        if (listdata != null && listdata.size() > 0) {
+            ywhAccessoryAdapter.setNewData(listdata);
+        }
     }
 
 
@@ -153,6 +159,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         switch (view.getId()) {
             case R.id.tv_click_name1:
                 Intent intent = new Intent(this, YwhMemberShowActivity.class);
+                intent.putExtra("isYjfk", 0);
                 startActivity(intent);
                 break;
         }

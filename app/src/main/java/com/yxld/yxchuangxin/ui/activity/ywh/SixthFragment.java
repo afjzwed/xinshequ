@@ -71,6 +71,7 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
 
     private YwhAccessoryAdapter ywhAccessoryAdapter;
     private int status = 0;//当前状态
+    private int skip = 0;//控制页面跳转
     private YwhInfo ywhInfo;//业委会信息
 
     @Nullable

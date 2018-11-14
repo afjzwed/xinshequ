@@ -561,7 +561,7 @@ public class YwhCurrentflow extends BaseEntity {
                 }
             }
 
-            public static class GongshiBean {
+            public static class GongshiBean  implements Parcelable {
                 /**
                  * id : 2
                  * title : 发起成立业委会申请
@@ -592,6 +592,33 @@ public class YwhCurrentflow extends BaseEntity {
                 private int projectId;
                 private int piCi;
                 private String faPiao;
+
+                protected GongshiBean(Parcel in) {
+                    id = in.readInt();
+                    title = in.readString();
+                    content = in.readString();
+                    fileurl = in.readString();
+                    starttime = in.readString();
+                    endtime = in.readString();
+                    startmanid = in.readInt();
+                    startman = in.readString();
+                    gongshiType = in.readInt();
+                    projectId = in.readInt();
+                    piCi = in.readInt();
+                    faPiao = in.readString();
+                }
+
+                public static final Creator<GongshiBean> CREATOR = new Creator<GongshiBean>() {
+                    @Override
+                    public GongshiBean createFromParcel(Parcel in) {
+                        return new GongshiBean(in);
+                    }
+
+                    @Override
+                    public GongshiBean[] newArray(int size) {
+                        return new GongshiBean[size];
+                    }
+                };
 
                 public int getId() {
                     return id;
@@ -695,6 +722,27 @@ public class YwhCurrentflow extends BaseEntity {
 
                 public void setFaPiao(String faPiao) {
                     this.faPiao = faPiao;
+                }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(id);
+                    dest.writeString(title);
+                    dest.writeString(content);
+                    dest.writeString(fileurl);
+                    dest.writeString(starttime);
+                    dest.writeString(endtime);
+                    dest.writeInt(startmanid);
+                    dest.writeString(startman);
+                    dest.writeInt(gongshiType);
+                    dest.writeInt(projectId);
+                    dest.writeInt(piCi);
+                    dest.writeString(faPiao);
                 }
             }
 
@@ -850,7 +898,7 @@ public class YwhCurrentflow extends BaseEntity {
                 }
             }
 
-            public static class FilesBean {
+            public static class FilesBean  implements Parcelable {
                 /**
                  * id : 24
                  * filename : 1000.jpg
@@ -870,6 +918,29 @@ public class YwhCurrentflow extends BaseEntity {
                 private int ywhType;
                 private int projectId;
                 private int pici;
+
+                protected FilesBean(Parcel in) {
+                    id = in.readInt();
+                    filename = in.readString();
+                    uploadtime = in.readString();
+                    filestate = in.readInt();
+                    url = in.readString();
+                    ywhType = in.readInt();
+                    projectId = in.readInt();
+                    pici = in.readInt();
+                }
+
+                public static final Creator<FilesBean> CREATOR = new Creator<FilesBean>() {
+                    @Override
+                    public FilesBean createFromParcel(Parcel in) {
+                        return new FilesBean(in);
+                    }
+
+                    @Override
+                    public FilesBean[] newArray(int size) {
+                        return new FilesBean[size];
+                    }
+                };
 
                 public int getId() {
                     return id;
@@ -933,6 +1004,23 @@ public class YwhCurrentflow extends BaseEntity {
 
                 public void setPici(int pici) {
                     this.pici = pici;
+                }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(id);
+                    dest.writeString(filename);
+                    dest.writeString(uploadtime);
+                    dest.writeInt(filestate);
+                    dest.writeString(url);
+                    dest.writeInt(ywhType);
+                    dest.writeInt(projectId);
+                    dest.writeInt(pici);
                 }
             }
         }
