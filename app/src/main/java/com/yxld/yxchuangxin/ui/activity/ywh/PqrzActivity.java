@@ -75,7 +75,7 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         initRv();
-        showAlerView(1);
+
     }
 
     private void initRv() {
@@ -89,11 +89,11 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
                 switch (view.getId()) {
                     case R.id.img_fcz:
                         type = 3;
-                        ImgUtil.openCamera(PqrzActivity.this);
+                        showAlerView();
                         break;
                     case R.id.img_tx:
                         type = 4;
-                        ImgUtil.openAlbum(PqrzActivity.this);
+                        showAlerView();
 
                         break;
                 }
@@ -130,14 +130,14 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
                 @Override
                 public void onClick(View v) {
                     type = 1;
-                    ImgUtil.openCamera(PqrzActivity.this);
+                    showAlerView();
                 }
             });
             imgf.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     type = 2;
-                    ImgUtil.openAlbum(PqrzActivity.this);
+                    showAlerView();
                 }
             });
         }
@@ -317,11 +317,27 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
     /**
      * 选择拍照或图片
      */
-    private void showAlerView(int lx) {
-        new AlertView("上传头像", null, "取消", null, new String[]{"拍照", "从相册中选择"}, this, AlertView.Style.ActionSheet, new OnItemClickListener() {
+    private void showAlerView() {
+        String title = "";
+        if (type == 1) {
+            title = "上传身份证头像页";
+        } else if (type == 2) {
+            title = "上传身份证国徽页";
+        } else if (type == 3) {
+            title = "上传房产证信息页照片";
+        } else if (type == 4) {
+            title = "上传手持证件照";
+        }else {
+            title = "上传照片";
+        }
+        new AlertView(title, null, "取消", null, new String[]{"拍照", "从相册中选择"}, this, AlertView.Style.ActionSheet, new OnItemClickListener() {
             @Override
             public void onItemClick(Object o, int position) {
-                Logger.e("点击了第" + position + "个");
+                if (position == 0) {
+                    ImgUtil.openCamera(PqrzActivity.this);
+                } else if (position == 1) {
+                    ImgUtil.openAlbum(PqrzActivity.this);
+                }
             }
         }).show();
 

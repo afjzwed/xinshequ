@@ -12,13 +12,12 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
-import com.yxld.yxchuangxin.entity.YwhHouse;
+import com.yxld.yxchuangxin.entity.YwhSmrzResult;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerPqrzResultComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzResultContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.PqrzResultModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.PqrzResultPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.ImgAdapter;
-import com.yxld.yxchuangxin.view.GridLayoutSpace;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -61,7 +60,7 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
 
     private void initRv() {
         rv.setLayoutManager(new GridLayoutManager(this, 2));
-        rv.addItemDecoration(new GridLayoutSpace(2,20,true));
+//        rv.addItemDecoration(new GridLayoutSpace(2,20,true));
         dataList = new ArrayList<>();
         adapter = new ImgAdapter(dataList);
         rv.setAdapter(adapter);
@@ -70,6 +69,7 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
     @Override
     protected void initData() {
         mPresenter.getDetail();
+
     }
 
     @Override
@@ -98,13 +98,21 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
     }
 
     @Override
-    public void getDetailSuccess(YwhHouse baseEntity) {
+    public void getDetailSuccess(YwhSmrzResult baseEntity) {
         if (baseEntity.getCode() == 200) {
             dataList.clear();
-            for (int i = 0; i < baseEntity.getData().size(); i++) {
-//                dataList.add(baseEntity.getData().get(i).ge)
+            dataList.add(baseEntity.getData().getCardFront());
+            dataList.add(baseEntity.getData().getCardReverse());
+            if (baseEntity.getData().getDeedFront() != null && baseEntity.getData().getPaperwork() != null
+                    && baseEntity.getData().getDeedFront().size() == baseEntity.getData().getPaperwork().size()) {
+                for (int i = 0; i < baseEntity.getData().getDeedFront().size(); i++) {
+                    dataList.add(baseEntity.getData().getDeedFront().get(i));
+                    dataList.add(baseEntity.getData().getPaperwork().get(i));
 
+                }
             }
+            adapter.setHeaderView(getHeadView(baseEntity.getData().getStatusX()));
+            adapter.setNewData(dataList);
         } else {
             onError(baseEntity.msg);
         }
@@ -122,9 +130,9 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
 
     private View getHeadView(int type) {
         View view;
-        if (type == 1) {
+        if (type == 2) {
             view = LayoutInflater.from(this).inflate(R.layout.head_ywh_smrz_sussess, (ViewGroup) rv.getParent(), false);
-        } else if (type == 2) {
+        } else if (type == -1) {
             view = LayoutInflater.from(this).inflate(R.layout.head_ywh_smrz_fail, (ViewGroup) rv.getParent(), false);
             TextView tvCommit = view.findViewById(R.id.tv_cimmit);
             tvCommit.setOnClickListener(new View.OnClickListener() {

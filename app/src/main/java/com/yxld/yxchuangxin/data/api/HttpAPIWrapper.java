@@ -84,6 +84,7 @@ import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.entity.YwhMember;
+import com.yxld.yxchuangxin.entity.YwhSmrzResult;
 import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
@@ -855,7 +856,7 @@ public class HttpAPIWrapper {
     public Observable<BaseEntity> getSmrzCChange(Map<String, String> params) {
         return wrapper(mHttpAPI.getSmrzCChange(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
-    public Observable<YwhHouse> getSmrzDetail(Map<String, String> params) {
+    public Observable<YwhSmrzResult> getSmrzDetail(Map<String, String> params) {
         return wrapper(mHttpAPI.getSmrzDetail(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
     /**

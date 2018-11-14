@@ -7,6 +7,7 @@ import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.YwhHouse;
+import com.yxld.yxchuangxin.entity.YwhSmrzResult;
 import com.yxld.yxchuangxin.ui.activity.ywh.PqrzResultActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzResultContract;
 
@@ -58,9 +59,9 @@ public class PqrzResultPresenter implements PqrzResultContract.PqrzResultContrac
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
         Disposable disposable = httpAPIWrapper.getSmrzDetail(map)
-                .subscribe(new Consumer<YwhHouse>() {
+                .subscribe(new Consumer<YwhSmrzResult>() {
                     @Override
-                    public void accept(YwhHouse baseEntity) throws Exception {
+                    public void accept(YwhSmrzResult baseEntity) throws Exception {
                         //isSuccesse
                         KLog.i("onSuccesse");
                         mView.closeProgressDialog();

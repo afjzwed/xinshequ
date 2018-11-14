@@ -81,6 +81,7 @@ import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.entity.YwhInfo;
+import com.yxld.yxchuangxin.entity.YwhSmrzResult;
 import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
 import com.yxld.yxchuangxin.entity.camera.Shared;
@@ -755,7 +756,7 @@ public interface HttpApi {
     Observable<BaseEntity> getSmrzCChange(@FieldMap Map<String, RequestBody> params);
 
     @GET(url_ywh_smrz_detail)
-    Observable<YwhHouse> getSmrzDetail(@QueryMap Map<String, RequestBody> params);
+    Observable<YwhSmrzResult> getSmrzDetail(@QueryMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(url_ywh_house)

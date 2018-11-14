@@ -306,7 +306,7 @@ public class ImgUtil {
         try {
             //解决oom 内存溢出
             BitmapFactory.Options options=new BitmapFactory.Options();
-            options.inSampleSize=8;
+            options.inSampleSize=2;
             options.inPreferredConfig=Bitmap.Config.RGB_565;
             options.inPurgeable=true;
             options.inInputShareable=true;

@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43px"
                 android:gravity="center"
-                android:text="上传房手持证件照\n(房产证+头像页身份证)"
+                android:text="上传手持证件照\n(房产证+头像页身份证)"
                 android:textColor="@color/color_333333"
                 android:textSize="43px"/>
 

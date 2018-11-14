@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:layout_marginBottom="30px"
     android:gravity="center">
 
     <ImageView
         android:layout_width="510px"
         android:layout_height="300px"
+        android:id="@+id/img"
         android:scaleType="fitXY"
-        android:src="@mipmap/ic_banner1"/>
+        />
 </com.zhy.autolayout.AutoRelativeLayout>

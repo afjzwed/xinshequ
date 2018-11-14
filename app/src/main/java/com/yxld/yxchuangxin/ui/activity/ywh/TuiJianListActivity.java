@@ -4,7 +4,9 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -103,7 +105,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
             public void onConfirm() {
 
                 if (TextUtils.isEmpty(ywhTjDialog.getEditText().getText().toString().trim())) {
-                    ToastUtil.displayShortToast("请填写推荐理由");
+                    ToastUtil.showShort("请填写推荐理由");
                     return;
                 }
                 ywhTjDialog.dismiss();
@@ -122,6 +124,26 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                 if (focused) { //dialog弹出软键盘
                     ywhTjDialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM);
                 }
+            }
+        });
+        ywhTjDialog.getEditText().addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() <= 200) {
+                    ywhTjDialog.getTvCount().setText(s.length() + "/200");
+                } else {
+                    ToastUtil.showShort("限制输入200字符");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }

@@ -17,8 +17,15 @@ public class YwhTjDialog extends BaseDialog {
 	private Button bt_dialog_confirm;
 	private OnConfirmListener onConfirmListener;
 	private EditText editText;
+	private TextView tvCount;
 
+	public TextView getTvCount() {
+		return tvCount;
+	}
 
+	public void setTvCount(TextView tvCount) {
+		this.tvCount = tvCount;
+	}
 
 	public YwhTjDialog(Context context) {
 		super(context);
@@ -40,6 +47,7 @@ public class YwhTjDialog extends BaseDialog {
 		bt_dialog_cancel = (Button) findViewById(R.id.bt_dialog_cancel);
 		bt_dialog_confirm = (Button) findViewById(R.id.bt_dialog_confirm);
 		editText = (EditText) findViewById(R.id.et_content);
+		tvCount = (TextView) findViewById(R.id.tv_count);
 	}
 
 	public EditText getEditText() {
@@ -79,8 +87,8 @@ public class YwhTjDialog extends BaseDialog {
 			break;
 			
 		}
-		//对话框消失
-		dismiss();
+//		//对话框消失
+//		dismiss();
 	}
 	
 	public void setConfirmListener(OnConfirmListener confirmListener) {

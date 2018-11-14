@@ -43,15 +43,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
+            android:maxLength="200"
             android:id="@+id/et_content"
             android:gravity="top|left"
-            android:minHeight="400px"
-            android:text=""/>
+            android:minHeight="400px"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:id="@+id/tv_count"
+
             android:layout_marginRight="30px"
             android:text="0/200"/>
     </com.zhy.autolayout.AutoLinearLayout>
