@@ -196,12 +196,20 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             llTjcy1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
-                    intent.putExtra("ywh_position", 2);
-                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
-                            .getFlow().getConfirmPeople());//人员列表
-                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
+//                    intent.putExtra("ywh_position", 2);
+//                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+//                            .getFlow().getConfirmPeople());//人员列表
+//                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+//                    intent.putExtra("isYjfk",0);
+//                    startActivity(intent);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());//人员列表
+                    bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表
+                    bundle.putInt("isYjfk",0);
+                    bundle.putInt("ywh_position",2);
+                    bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                    startActivity(CheckNoticeActivity.class,bundle);//成员名单公示
                 }
             });
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {

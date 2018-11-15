@@ -40,12 +40,15 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
 
     @Inject
     FkyjPresenter mPresenter;
-    @BindView(R.id.moretab_indicator) ScrollIndicatorView moretabIndicator;
-    @BindView(R.id.moretab_viewPager) ViewPager moretabViewPager;
+    @BindView(R.id.moretab_indicator)
+    ScrollIndicatorView moretabIndicator;
+    @BindView(R.id.moretab_viewPager)
+    ViewPager moretabViewPager;
     private String[] title = new String[]{"提交反馈意见", "查看反馈意见"};
     private IndicatorViewPager indicatorViewPager;
 
     private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
+    private int gongshiId = 0;//公示ID
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
         toolbar.setTitle("意见反馈");
-        moretabIndicator.setScrollBar(new DrawableBar(this, R.drawable.bg_btn_22_white, ScrollBar.Gravity.CENTENT_BACKGROUND) {
+        moretabIndicator.setScrollBar(new DrawableBar(this, R.drawable.bg_btn_22_white, ScrollBar.Gravity
+                .CENTENT_BACKGROUND) {
             @Override
             public int getHeight(int tabHeight) {
                 return tabHeight;
@@ -71,16 +75,19 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
             }
         });
 
+        position = getIntent().getIntExtra("ywh_position", 0);
+        gongshiId = getIntent().getIntExtra("ywh_gongshiId", 0);
+
         // 设置滚动监听
 //        moretabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.RED, Color.WHITE));
         // 设置滚动监听
-//        moretabIndicator.setScrollBar(new DrawableBar(this,R.drawable.bg_btn_22_white, ScrollBar.Gravity.CENTENT_BACKGROUND));
-        moretabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#1e8afe"), Color.parseColor("#ffffff")));
+//        moretabIndicator.setScrollBar(new DrawableBar(this,R.drawable.bg_btn_22_white, ScrollBar.Gravity
+// .CENTENT_BACKGROUND));
+        moretabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#1e8afe"),
+                Color.parseColor("#ffffff")));
         moretabViewPager.setOffscreenPageLimit(2);
         indicatorViewPager = new IndicatorViewPager(moretabIndicator, moretabViewPager);
         indicatorViewPager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
-
-        position = getIntent().getIntExtra("ywh_position",0);
     }
 
     @Override
@@ -90,6 +97,9 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
 
     public int getPosition() {
         return position;
+    }
+    public int getGongshiId() {
+        return gongshiId;
     }
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {

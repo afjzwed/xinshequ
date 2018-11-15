@@ -76,7 +76,6 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         isYjfk = getIntent().getIntExtra("isYjfk", 0);
         file_listdata = getIntent().getParcelableArrayListExtra("ywh_member_list");
 
-
         if (isYjfk == 0) {
             tvMenu.setVisibility(View.VISIBLE);
         } else {
@@ -88,6 +87,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CheckNoticeActivity.this, FkyjActivity.class);
+                intent.putExtra("ywh_gongshiId", "" + data.getId());
                 intent.putExtra("ywh_position", position);
                 startActivity(intent);
 //                startActivity(FkyjActivity.class);
@@ -112,7 +112,6 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
                 bundle.putString("address", filesBean.getUrl());
                 intent.putExtras(bundle);
                 startActivity(intent);
-
 //                Toast.makeText(ResultShowActivity.this, "点击" + position, Toast.LENGTH_SHORT).show();
             }
         });
@@ -126,16 +125,15 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //        map.put("uuid", Contains.uuid);
 //        mPresenter.getData(map);
 
-        if (listdata != null && listdata.size() > 0) {
+        if (file_listdata != null && file_listdata.size() > 0) {
             recyclerView.setVisibility(View.VISIBLE);
         } else {
             recyclerView.setVisibility(View.GONE);
         }
         recyclerView.setFocusable(false);
-        if (listdata != null && listdata.size() > 0) {
+        if (file_listdata != null && file_listdata.size() > 0) {
             ywhAccessoryAdapter.setNewData(file_listdata);
         }
-
     }
 
     @Override

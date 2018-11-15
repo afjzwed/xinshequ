@@ -57,6 +57,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
     private YwhAccessoryAdapter ywhAccessoryAdapter;
     private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;//公示
     private List<YwhCurrentflow.DataBean.FlowBean.FilesBean> listdata;//附件列表
+    private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ResultShowActivity.this,FkyjActivity.class);
+                intent.putExtra("ywh_gongshiId", "" + data.getId());
                 intent.putExtra("ywh_position", 4);
                 startActivity(intent);
             }
@@ -167,6 +169,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
             case R.id.tv_click_name1:
                 Intent intent = new Intent(this, YwhMemberShowActivity.class);
                 intent.putExtra("isYjfk", 0);
+                intent.putExtra("ywh_gongshiId", data.getId());
                 startActivity(intent);
                 break;
         }

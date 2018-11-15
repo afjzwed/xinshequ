@@ -221,6 +221,8 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                                 .getFlow().getConfirmPeople());//人员列表
                         bundle1.putInt("ywh_position", 3);
                         bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+//                        bundle1.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表不传
+                        bundle1.putInt("isYjfk",0);
                         startActivity(CheckNoticeActivity.class, bundle1);//成员名单公示
                         break;
                     case 3:

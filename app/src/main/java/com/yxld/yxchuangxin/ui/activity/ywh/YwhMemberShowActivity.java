@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYwhMemberShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
@@ -54,6 +56,8 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     private int rows = 6;//每页加载数
     private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
+    private int gongshiId = 0;//公示ID
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +70,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         isYjfk = getIntent().getIntExtra("isYjfk", 0);
+        gongshiId = getIntent().getIntExtra("ywh_gongshiId", 0);
 
         UIUtils.configSwipeRefreshLayoutColors(swipRefresh);
         swipRefresh.setOnRefreshListener(this);
@@ -90,7 +95,11 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(FkyjActivity.class);
+//                startActivity(FkyjActivity.class);
+                Intent intent = new Intent(YwhMemberShowActivity.this, FkyjActivity.class);
+                intent.putExtra("isYjfk", 0);
+                intent.putExtra("ywh_gongshiId", gongshiId);
+                startActivity(intent);
             }
         });
     }

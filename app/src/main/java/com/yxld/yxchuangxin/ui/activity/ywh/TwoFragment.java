@@ -182,10 +182,18 @@ public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
                 if (type == 1) {
                     startActivity(TuiJianListActivity.class);//推荐成员
                 } else if (type == 2) {
-                    Intent intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
-                    intent.putExtra("ywh_position", 1);
-                    startActivity(intent);
+//                    Intent intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
+//                    intent.putExtra("ywh_position", 1);
+//                    intent.putExtra("isYjfk", 0);
+//                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+//                    startActivity(intent);
 //                    startActivity(CheckNoticeActivity.class);//查看通知
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
+                    bundle1.putInt("isYjfk",1);
+                    bundle1.putInt("ywh_position",1);
+                    bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                    startActivity(CheckNoticeActivity.class,bundle1);//成员名单公示
                 } else if (type == 3) {
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());

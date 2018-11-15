@@ -30,14 +30,13 @@ import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.LiveMemberActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MenJinActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.OpinionSurveyActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WebSatisficingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
-import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
+import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.YwhWebViewActivity;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;
 
@@ -263,8 +262,8 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             mContext.startActivity(new Intent(mContext, YeWeiHuiActivity.class));
                             break;
                         case 1:
-                            mContext.startActivity(new Intent(mContext, OpinionSurveyActivity.class));
-//                            mContext.startActivity(new Intent(mContext, YwhWebViewActivity.class));
+//                            mContext.startActivity(new Intent(mContext, OpinionSurveyActivity.class));
+                            mContext.startActivity(new Intent(mContext, YwhWebViewActivity.class));
                             break;
                     }
                 }

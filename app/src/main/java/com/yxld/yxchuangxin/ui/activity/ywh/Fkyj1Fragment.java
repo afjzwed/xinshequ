@@ -174,11 +174,11 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
         }*/
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("uuid", Contains.uuid);
-        map.put("gongshiId", 1 + "");//公示ID
+        map.put("gongshiId", fkyjActivity.getGongshiId() + "");//公示ID
         map.put("expect", Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//如果没有就传项目名
         map.put("building", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
         map.put("unit", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
-        map.put("room_number", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
+        map.put("roomNumber", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwFanghao().toString());//房号
         map.put("resultdesc", etContent.getText().toString().trim());
         map.put("resultType", fkyjActivity.getPosition() + "");
         mPresenter.conmitFkyjInfo1(map);//业主大会的意见反馈接口

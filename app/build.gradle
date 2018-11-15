@@ -297,6 +297,5 @@ dependencies {
     //顶部tab
     compile 'com.shizhefei:ViewPagerIndicator:1.1.7'
 
-    compile 'com.github.barteksc:android-pdf-viewer:2.8.2'
-
+//    compile 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

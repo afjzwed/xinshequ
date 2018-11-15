@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -43,8 +44,8 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
     YwhWebViewPresenter mPresenter;
     @BindView(R.id.webview)
     WebView webview;
-    @BindView(R.id.pdfView)
-    PDFView pdfView;
+//    @BindView(R.id.pdfView)
+//    PDFView pdfView;
 
     private String address;
     private String url;
@@ -86,7 +87,7 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
         webview.setDownloadListener(new MyWebViewDownLoadListener());
         webview.loadUrl(address);
 
-//        Uri uri = Uri.parse(url);
+//        Uri uri = Uri.parse(address);
 //        pdfView.fromUri(uri).load();
 
 //        thread =  new Thread(){
@@ -119,15 +120,15 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
 
     private void loadPdf(InputStream inputStream) {
 
-        pdfView.fromStream(inputStream)
-                .defaultPage(0)
-                .swipeHorizontal(false)
-                .enableSwipe(true)
-                .enableAnnotationRendering(false)
-                .password(null)
-                .scrollHandle(null)
-                .enableAntialiasing(true)
-                .load();
+//        pdfView.fromStream(inputStream)
+//                .defaultPage(0)
+//                .swipeHorizontal(false)
+//                .enableSwipe(true)
+//                .enableAnnotationRendering(false)
+//                .password(null)
+//                .scrollHandle(null)
+//                .enableAntialiasing(true)
+//                .load();
 
     }
 
@@ -135,6 +136,7 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
         @Override
         public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long
                 contentLength) {
+            Log.e("wh", "点击");
             Uri uri = Uri.parse(address);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             startActivity(intent);
@@ -175,12 +177,12 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
     protected void onDestroy() {
         mPresenter.unsubscribe();
         super.onDestroy();
-        try {
-            is.close();
-            thread.interrupt();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        pdfView.recycle();
+//        try {
+//            is.close();
+//            thread.interrupt();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        pdfView.recycle();
     }
 }
