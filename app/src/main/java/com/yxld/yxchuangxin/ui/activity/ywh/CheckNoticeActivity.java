@@ -3,13 +3,10 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
@@ -19,7 +16,6 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCheckNoticeComponent
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CheckNoticePresenter;
-import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,10 +88,11 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //                startActivity(FkyjActivity.class);
             }
         });
-
+        if (data != null) {
         titleRecommendMember.setText(""+data.getTitle());
         tvSendTime.setText("发布时间："+data.getStarttime());
-        tvNotice.setText(""+data.getContent());
+            tvNotice.setText("" + data.getContent());
+        }
     }
 
     @Override

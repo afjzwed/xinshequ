@@ -111,7 +111,7 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
 
                 }
             }
-            adapter.setHeaderView(getHeadView(baseEntity.getData().getStatusX()));
+            adapter.setHeaderView(getHeadView(baseEntity.getData().getStatusX(),baseEntity));
             adapter.setNewData(dataList);
         } else {
             onError(baseEntity.msg);
@@ -128,10 +128,12 @@ public class PqrzResultActivity extends BaseActivity implements PqrzResultContra
         }
     }
 
-    private View getHeadView(int type) {
+    private View getHeadView(int type,YwhSmrzResult data) {
         View view;
         if (type == 2) {
             view = LayoutInflater.from(this).inflate(R.layout.head_ywh_smrz_sussess, (ViewGroup) rv.getParent(), false);
+            TextView tvMj = view.findViewById(R.id.tv_mj);
+            tvMj.setText("恭喜您 用于一张票权：\n您的专属物业面积为"+data.getData().getArea()+"㎡");
         } else if (type == -1) {
             view = LayoutInflater.from(this).inflate(R.layout.head_ywh_smrz_fail, (ViewGroup) rv.getParent(), false);
             TextView tvCommit = view.findViewById(R.id.tv_cimmit);

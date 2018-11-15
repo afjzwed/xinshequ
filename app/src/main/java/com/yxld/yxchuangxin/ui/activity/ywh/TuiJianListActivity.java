@@ -98,6 +98,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
         ywhTjDialog.setConfirmListener(new YwhTjDialog.OnConfirmListener() {
             @Override
             public void onCancel() {
+                hintKeyBoard();
                 ywhTjDialog.dismiss();
             }
 
@@ -108,6 +109,8 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                     ToastUtil.showShort("请填写推荐理由");
                     return;
                 }
+                hintKeyBoard();
+
                 ywhTjDialog.dismiss();
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("uuid", Contains.uuid);
@@ -147,6 +150,16 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
             }
         });
     }
+
+    public void hintKeyBoard() { //拿到InputMethodManager
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE); //如果window上view获取焦点 && view不为空
+        if (imm.isActive() && getCurrentFocus() != null) { //拿到view的token 不为空
+            if (getCurrentFocus().getWindowToken() != null) { //表示软键盘窗口总是隐藏，除非开始时以SHOW_FORCED显示。
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
 
     private void initRv() {
         rv.setLayoutManager(new LinearLayoutManager(this));

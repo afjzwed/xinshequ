@@ -26,6 +26,7 @@
             android:gravity="center"
             android:lineSpacingExtra="36px"
             android:text="恭喜您 用于一张票权：\n您的专属物业面积为78㎡"
+            android:id="@+id/tv_mj"
             android:textColor="@color/white"
             android:textSize="52px"/>
 

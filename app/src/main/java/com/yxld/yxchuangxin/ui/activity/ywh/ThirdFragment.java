@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -27,6 +28,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -190,6 +192,9 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
                     intent.putExtra("ywh_position", 2);
+                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                            .getFlow().getConfirmPeople());//人员列表
+                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
                     startActivity(intent);
                 }
             });
@@ -220,6 +225,9 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 public void onClick(View v) {
 //                    startActivity(CheckNoticeActivity.class);
                     Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
+                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                            .getFlow().getConfirmPeople());//人员列表
+                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
                     intent.putExtra("ywh_position", 2);
                     intent.putExtra("isYjfk", 1);
                     startActivity(intent);
