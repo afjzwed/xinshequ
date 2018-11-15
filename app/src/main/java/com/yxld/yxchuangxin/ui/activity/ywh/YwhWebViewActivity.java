@@ -8,7 +8,7 @@ import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-import com.github.barteksc.pdfviewer.PDFView;
+
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;

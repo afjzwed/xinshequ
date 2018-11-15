@@ -3,6 +3,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -101,6 +102,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 
 
         recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ywhAccessoryAdapter = new YwhAccessoryAdapter();
         ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override

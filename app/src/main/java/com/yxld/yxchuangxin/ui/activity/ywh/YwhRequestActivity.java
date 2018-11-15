@@ -37,6 +37,8 @@ public class YwhRequestActivity extends BaseActivity implements YwhRequestContra
         setContentView(R.layout.activity_ywh_request);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
+
     }
 
     @Override

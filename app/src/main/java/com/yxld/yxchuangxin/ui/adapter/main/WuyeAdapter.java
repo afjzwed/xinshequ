@@ -76,7 +76,7 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
        // recycerView.addItemDecoration(new GridDividerItemDecoration(10));
         WuyeAdapter1 wuyeAdapter1 = new WuyeAdapter1(item.getList());
         //缩放动画
-        wuyeAdapter1.openLoadAnimation(BaseQuickAdapter.SCALEIN);
+//        wuyeAdapter1.openLoadAnimation(BaseQuickAdapter.SCALEIN);
         if (item.getName().equals("我的物业")) {
             wuyeAdapter1.setOnItemClickListener(new OnItemClickListener() {
                 @Override
