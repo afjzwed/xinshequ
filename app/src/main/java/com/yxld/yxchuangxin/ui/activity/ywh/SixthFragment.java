@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ import com.yxld.yxchuangxin.ui.activity.ywh.presenter.SixthPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -171,7 +173,7 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
                 autollData1.setVisibility(View.VISIBLE);
                 autollData2.setVisibility(View.VISIBLE);
                 tvContentHead.setText("备案名称：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
-                tvContentFoot.setText("备案时间：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
+                tvContentFoot.setText("备案时间：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianTime());
                 tvStatus.setText("备案阶段-已完成");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
 
@@ -231,9 +233,17 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
                 break;
             case R.id.tv_click_name1:
 //                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getActivity(), YwhMemberShowActivity.class);//这里传备案人员名单列表beianPeoples
-                intent.putExtra("isYjfk", 1);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(), YwhBeianMemberActivity.class);//这里传备案人员名单列表beianPeoples
+//                intent.putExtra("isYjfk", 1);
+//                startActivity(intent);
+                if (ywhInfo.getData().getFlow().getBeianPeoples() != null && ywhInfo.getData().getFlow()
+                        .getBeianPeoples().size() > 0) {
+                    Log.e("wh", "这里");
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList("ywh_beian_list", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                            .getFlow().getBeianPeoples());
+                    startActivity(YwhBeianMemberActivity.class, bundle);//成员名单公示
+                }
                 break;
         }
     }

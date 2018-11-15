@@ -73,7 +73,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
+            savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, null);
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
@@ -92,9 +93,10 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
     }
 
     private boolean isload;
+
     @Override
     protected void initDataFromLocal() {
-        if (!isViewCreated || !isUIVisible||isload ) {
+        if (!isViewCreated || !isUIVisible || isload) {
             return;
         }
         isload = true;
@@ -117,6 +119,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             onError(baseEntity.msg);
         }
     }
+
     private void initIncludeView(View view) {
         ll_ywh = view.findViewById(R.id.ll_ywh);
         llTjcy = ll_ywh.findViewById(R.id.ll_tjcy);
@@ -142,7 +145,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             llStatus3.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("筹备组工作阶段-未开始");
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi()==null) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi() ==
+                null) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             llStatus3.setVisibility(View.GONE);
@@ -150,7 +154,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
             tvStep.setText("请及时领取票权");
-            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitTime() + "</font>" +
+            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                    .getProprietorAduitVo().getAduitTime() + "</font>" +
                     "之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。"));
             tvTjcy.setText("立即领取票权");
             llTjcy.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +170,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             });
             tvShzt.setVisibility(View.VISIBLE);
             tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi()!=null) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi() !=
+                null) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             llStatus3.setVisibility(View.VISIBLE);
@@ -228,6 +234,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                     intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
                             .getFlow().getConfirmPeople());//人员列表
                     intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                    intent.putParcelableArrayListExtra("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+                            .getData().getFlow().getFiles());
                     intent.putExtra("ywh_position", 2);
                     intent.putExtra("isYjfk", 1);
                     startActivity(intent);

@@ -188,7 +188,7 @@ public class YwhCurrentflow extends BaseEntity {
             private ProprietorAduitVoBean proprietorAduitVo;
             private VoteVoBean voteVo;//投票方式
             private List<FilesBean> files;//附件集合
-            private Object beianPeoples;//备案人员列表集合 YwhBeianPeople类：备案人员
+            private List<BeianPeoplesBean> beianPeoples;//备案人员列表集合 YwhBeianPeople类：备案人员
             private BeianInfoBean beianInfo;//YwhBeian类 备案基本信息
 
             public int getPhaseState() {
@@ -255,11 +255,11 @@ public class YwhCurrentflow extends BaseEntity {
                 this.files = files;
             }
 
-            public Object getBeianPeoples() {
+            public List<BeianPeoplesBean> getBeianPeoples() {
                 return beianPeoples;
             }
 
-            public void setBeianPeoples(Object beianPeoples) {
+            public void setBeianPeoples(List<BeianPeoplesBean> beianPeoples) {
                 this.beianPeoples = beianPeoples;
             }
 
@@ -561,7 +561,7 @@ public class YwhCurrentflow extends BaseEntity {
                 }
             }
 
-            public static class GongshiBean  implements Parcelable {
+            public static class GongshiBean implements Parcelable {
                 /**
                  * id : 2
                  * title : 发起成立业委会申请
@@ -898,7 +898,7 @@ public class YwhCurrentflow extends BaseEntity {
                 }
             }
 
-            public static class FilesBean  implements Parcelable {
+            public static class FilesBean implements Parcelable {
                 /**
                  * id : 24
                  * filename : 1000.jpg
@@ -1021,6 +1021,241 @@ public class YwhCurrentflow extends BaseEntity {
                     dest.writeInt(ywhType);
                     dest.writeInt(projectId);
                     dest.writeInt(pici);
+                }
+            }
+
+            public static class BeianPeoplesBean implements Parcelable {
+
+                /**
+                 * id : 2
+                 * cfname : 空间看了
+                 * idcard : 235
+                 * phone : 322
+                 * expect : 323
+                 * building : 3栋
+                 * unit : 6单元
+                 * roomNumber : 205
+                 * discript : 按时
+                 * isdelete : -1
+                 * addTime : 2018-11-12 21:49:52.0
+                 * type : 2
+                 * ywhBeianId : 10
+                 * pici : 1
+                 * gzdw : null
+                 * zhize : null
+                 * qtzhize : null
+                 */
+
+                private int id;
+                private String cfname;
+                private String idcard;
+                private String phone;
+                private String expect;
+                private String building;
+                private String unit;
+                private String roomNumber;
+                private String discript;
+                private int isdelete;
+                private String addTime;
+                private int type;//类型1:筹备组人员 2:业委会候选人 3:业委会人员4:业委会主任5:业委会副主任
+                private int ywhBeianId;
+                private int pici;
+                private String gzdw;//工作单位
+                private String zhize;//工作职责
+                private String qtzhize;//其他工作职责
+
+                protected BeianPeoplesBean(Parcel in) {
+                    id = in.readInt();
+                    cfname = in.readString();
+                    idcard = in.readString();
+                    phone = in.readString();
+                    expect = in.readString();
+                    building = in.readString();
+                    unit = in.readString();
+                    roomNumber = in.readString();
+                    discript = in.readString();
+                    isdelete = in.readInt();
+                    addTime = in.readString();
+                    type = in.readInt();
+                    ywhBeianId = in.readInt();
+                    pici = in.readInt();
+                    gzdw = in.readString();
+                    zhize = in.readString();
+                    qtzhize = in.readString();
+                }
+
+                public static final Creator<BeianPeoplesBean> CREATOR = new Creator<BeianPeoplesBean>() {
+                    @Override
+                    public BeianPeoplesBean createFromParcel(Parcel in) {
+                        return new BeianPeoplesBean(in);
+                    }
+
+                    @Override
+                    public BeianPeoplesBean[] newArray(int size) {
+                        return new BeianPeoplesBean[size];
+                    }
+                };
+
+                public int getId() {
+                    return id;
+                }
+
+                public void setId(int id) {
+                    this.id = id;
+                }
+
+                public String getCfname() {
+                    return cfname;
+                }
+
+                public void setCfname(String cfname) {
+                    this.cfname = cfname;
+                }
+
+                public String getIdcard() {
+                    return idcard;
+                }
+
+                public void setIdcard(String idcard) {
+                    this.idcard = idcard;
+                }
+
+                public String getPhone() {
+                    return phone;
+                }
+
+                public void setPhone(String phone) {
+                    this.phone = phone;
+                }
+
+                public String getExpect() {
+                    return expect;
+                }
+
+                public void setExpect(String expect) {
+                    this.expect = expect;
+                }
+
+                public String getBuilding() {
+                    return building;
+                }
+
+                public void setBuilding(String building) {
+                    this.building = building;
+                }
+
+                public String getUnit() {
+                    return unit;
+                }
+
+                public void setUnit(String unit) {
+                    this.unit = unit;
+                }
+
+                public String getRoomNumber() {
+                    return roomNumber;
+                }
+
+                public void setRoomNumber(String roomNumber) {
+                    this.roomNumber = roomNumber;
+                }
+
+                public String getDiscript() {
+                    return discript;
+                }
+
+                public void setDiscript(String discript) {
+                    this.discript = discript;
+                }
+
+                public int getIsdelete() {
+                    return isdelete;
+                }
+
+                public void setIsdelete(int isdelete) {
+                    this.isdelete = isdelete;
+                }
+
+                public String getAddTime() {
+                    return addTime;
+                }
+
+                public void setAddTime(String addTime) {
+                    this.addTime = addTime;
+                }
+
+                public int getType() {
+                    return type;
+                }
+
+                public void setType(int type) {
+                    this.type = type;
+                }
+
+                public int getYwhBeianId() {
+                    return ywhBeianId;
+                }
+
+                public void setYwhBeianId(int ywhBeianId) {
+                    this.ywhBeianId = ywhBeianId;
+                }
+
+                public int getPici() {
+                    return pici;
+                }
+
+                public void setPici(int pici) {
+                    this.pici = pici;
+                }
+
+                public String getGzdw() {
+                    return gzdw == null ? "" : gzdw;
+                }
+
+                public void setGzdw(String gzdw) {
+                    this.gzdw = gzdw;
+                }
+
+                public String getZhize() {
+                    return zhize == null ? "" : zhize;
+                }
+
+                public void setZhize(String zhize) {
+                    this.zhize = zhize;
+                }
+
+                public String getQtzhize() {
+                    return qtzhize == null ? "" : qtzhize;
+                }
+
+                public void setQtzhize(String qtzhize) {
+                    this.qtzhize = qtzhize;
+                }
+
+                @Override
+                public int describeContents() {
+                    return 0;
+                }
+
+                @Override
+                public void writeToParcel(Parcel dest, int flags) {
+                    dest.writeInt(id);
+                    dest.writeString(cfname);
+                    dest.writeString(idcard);
+                    dest.writeString(phone);
+                    dest.writeString(expect);
+                    dest.writeString(building);
+                    dest.writeString(unit);
+                    dest.writeString(roomNumber);
+                    dest.writeString(discript);
+                    dest.writeInt(isdelete);
+                    dest.writeString(addTime);
+                    dest.writeInt(type);//类型1:筹备组人员 2:业委会候选人 3:业委会人员4:业委会主任5:业委会副主任
+                    dest.writeInt(ywhBeianId);
+                    dest.writeInt(pici);
+                    dest.writeString(gzdw);
+                    dest.writeString(zhize);
+                    dest.writeString(qtzhize);
                 }
             }
         }

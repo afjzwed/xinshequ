@@ -280,6 +280,11 @@
             android:label="附件"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.activity.ywh.YwhBeianMemberActivity"
+            android:label="业主大会人员公示"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- 业委会相关 -->
         <activity
             android:name=".ui.activity.wuye.OpinionSurveyActivity"

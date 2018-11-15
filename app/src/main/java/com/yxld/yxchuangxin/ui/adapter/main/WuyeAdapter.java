@@ -38,6 +38,7 @@ import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
 import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
+import com.yxld.yxchuangxin.ui.activity.ywh.YwhWebViewActivity;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;
 
 import java.util.List;
@@ -263,6 +264,7 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             break;
                         case 1:
                             mContext.startActivity(new Intent(mContext, OpinionSurveyActivity.class));
+//                            mContext.startActivity(new Intent(mContext, YwhWebViewActivity.class));
                             break;
                     }
                 }

@@ -326,7 +326,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 break;
             case R.id.auto_click:
                 Intent intent;
-                switch (status) {
+                switch (skip) {
                     case 1:
                         if (tvClickName2.getText().toString().equals("已投票")) {
                             Toast.makeText(getActivity(), "已投票", Toast.LENGTH_SHORT).show();

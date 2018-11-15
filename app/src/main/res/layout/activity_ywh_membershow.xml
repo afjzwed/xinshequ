@@ -20,8 +20,4 @@
             android:fadingEdge="none"/>
 
     </android.support.v4.widget.SwipeRefreshLayout>
-
-    <!--业主大会 投票不是通知，后台会返回对应的状态和数据-->
-    <!--候选人有两种通知类型-->
-
 </com.zhy.autolayout.AutoLinearLayout>

@@ -1,10 +1,13 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
@@ -12,6 +15,15 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerYwhWebViewComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhWebViewContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YwhWebViewModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.YwhWebViewPresenter;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.inject.Inject;
 
@@ -31,8 +43,15 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
     YwhWebViewPresenter mPresenter;
     @BindView(R.id.webview)
     WebView webview;
+    @BindView(R.id.pdfView)
+    PDFView pdfView;
 
     private String address;
+    private String url;
+
+    private InputStream is;
+
+    private Thread thread ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +70,8 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
         address = bundle.getString("address");
 
 
-        String url = "http://p9zwbgynz.bkt.clouddn.com/2018_PDF.pdf";
+//        address = "http://p9zwbgynz.bkt.clouddn.com/2018_PDF.pdf";
+//        url = "http://www.cals.uidaho.edu/edComm/curricula/CustRel_curriculum/content/sample.pdf";
 
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -59,11 +79,66 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
 
+//        webview.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + address);
+//        webview.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + url);
+//        webview.loadUrl(url);
 
+        webview.setDownloadListener(new MyWebViewDownLoadListener());
+        webview.loadUrl(address);
 
-        webview.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + address);
+//        Uri uri = Uri.parse(url);
+//        pdfView.fromUri(uri).load();
 
+//        thread =  new Thread(){
+//            @Override
+//            public void run() {
+//                super.run();
+//                HttpClient httpClient = new DefaultHttpClient();
+//                HttpGet get = new HttpGet(address);
+//                HttpResponse response;
+//                try {
+//                    response = httpClient.execute(get);
+//                    HttpEntity entity = response.getEntity();
+//                    long length = entity.getContentLength();
+////                    InputStream is = entity.getContent();
+//                     is = entity.getContent();
+//
+//                    if (is != null) {
+//                        loadPdf(is);
+//                    }
+//
+////                    mDialogFragment.dismissAllowingStateLoss();
+//                } catch (IOException e) {
+////                    mDialogFragment.dismissAllowingStateLoss();
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+//        thread.start();
+    }
 
+    private void loadPdf(InputStream inputStream) {
+
+        pdfView.fromStream(inputStream)
+                .defaultPage(0)
+                .swipeHorizontal(false)
+                .enableSwipe(true)
+                .enableAnnotationRendering(false)
+                .password(null)
+                .scrollHandle(null)
+                .enableAntialiasing(true)
+                .load();
+
+    }
+
+    private class MyWebViewDownLoadListener implements DownloadListener {
+        @Override
+        public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long
+                contentLength) {
+            Uri uri = Uri.parse(address);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -100,5 +175,12 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
     protected void onDestroy() {
         mPresenter.unsubscribe();
         super.onDestroy();
+        try {
+            is.close();
+            thread.interrupt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        pdfView.recycle();
     }
 }

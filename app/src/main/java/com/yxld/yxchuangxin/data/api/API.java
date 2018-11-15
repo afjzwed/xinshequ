@@ -16,14 +16,14 @@ public interface API {
     //
 //    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
-//    String IP_PRODUCT = "http://wy.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    String IP_PRODUCT = "http://wy.iot.xin";
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
     //    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
-    String IP_PRODUCT = "http://192.168.8.222:8080";
-    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+//    String IP_PRODUCT = "http://192.168.8.222:8080";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     String daozai= "http://dz.hnchxwl.com";//道闸
@@ -822,7 +822,7 @@ public interface API {
 
     String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";//业主大会人员列表
 
-    String URL_YWH_GETSURVEYLIST = "192.168.8.223:8080/api/app/supervise/app/research/slist";//民意调查列表
+    String URL_YWH_GETSURVEYLIST = "http://192.168.8.223:8080/api/app/supervise/app/research/slist";//民意调查列表
 
     String URL_YWH_GETRECOMMEND = "http://192.168.8.106:8083/app/obtain/list";//候选人推荐列表
 

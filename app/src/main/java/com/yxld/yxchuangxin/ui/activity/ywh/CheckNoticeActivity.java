@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.basic.G;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
@@ -16,6 +18,7 @@ import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerCheckNoticeComponent
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CheckNoticePresenter;
+import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +55,8 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
     private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;//公示
     private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> listdata;
+    private List<YwhCurrentflow.DataBean.FlowBean.FilesBean> file_listdata;//附件列表
+    private YwhAccessoryAdapter ywhAccessoryAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +72,10 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         // TODO: 2018/11/12 整个页面内容都从上级页面取
         data = getIntent().getParcelableExtra("ywh_gongshi");
         listdata = getIntent().getParcelableArrayListExtra("data");
-        position = getIntent().getIntExtra("ywh_position",0);
+        position = getIntent().getIntExtra("ywh_position", 0);
         isYjfk = getIntent().getIntExtra("isYjfk", 0);
+        file_listdata = getIntent().getParcelableArrayListExtra("ywh_member_list");
 
-        recyclerView.setVisibility(View.GONE);
 
         if (isYjfk == 0) {
             tvMenu.setVisibility(View.VISIBLE);
@@ -82,17 +87,36 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CheckNoticeActivity.this,FkyjActivity.class);
+                Intent intent = new Intent(CheckNoticeActivity.this, FkyjActivity.class);
                 intent.putExtra("ywh_position", position);
                 startActivity(intent);
 //                startActivity(FkyjActivity.class);
             }
         });
         if (data != null) {
-        titleRecommendMember.setText(""+data.getTitle());
-        tvSendTime.setText("发布时间："+data.getStarttime());
+            titleRecommendMember.setText("" + data.getTitle());
+            tvSendTime.setText("发布时间：" + data.getStarttime());
             tvNotice.setText("" + data.getContent());
         }
+
+
+        recyclerView.setNestedScrollingEnabled(false);
+        ywhAccessoryAdapter = new YwhAccessoryAdapter();
+        ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+//                ywhAccessoryAdapter.getData().get(position);
+                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
+                Intent intent = new Intent(CheckNoticeActivity.this, YwhWebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("address", filesBean.getUrl());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+//                Toast.makeText(ResultShowActivity.this, "点击" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
     }
 
     @Override
@@ -101,6 +125,16 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
 //        Map<String, String> map = new HashMap<>();
 //        map.put("uuid", Contains.uuid);
 //        mPresenter.getData(map);
+
+        if (listdata != null && listdata.size() > 0) {
+            recyclerView.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.GONE);
+        }
+        recyclerView.setFocusable(false);
+        if (listdata != null && listdata.size() > 0) {
+            ywhAccessoryAdapter.setNewData(file_listdata);
+        }
 
     }
 
