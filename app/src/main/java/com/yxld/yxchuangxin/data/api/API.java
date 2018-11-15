@@ -822,7 +822,7 @@ public interface API {
 
     String URL_YWH_GETMEMBERSHOWLIST = "http://192.168.8.128:8888/supervise/app/conference/plist";//业主大会人员列表
 
-    String URL_YWH_GETSURVEYLIST = "192.168.8.223:8080/api/app/research/slist";//民意调查列表
+    String URL_YWH_GETSURVEYLIST = "192.168.8.223:8080/api/app/supervise/app/research/slist";//民意调查列表
 
     String URL_YWH_GETRECOMMEND = "http://192.168.8.106:8083/app/obtain/list";//候选人推荐列表
 

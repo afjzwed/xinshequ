@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -111,8 +112,10 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
                 ywhTjDialog.dismiss();
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("uuid", Contains.uuid);
-                map.put("fwbh", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
-                map.put("tjid", resultsBean.getId() + "");
+                map.put("tjfwbh", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
+                map.put("btjid", resultsBean.getId() + "");
+                map.put("btjfwbh", resultsBean.getFwId() + "");
+                Log.e("wh", "reason " + ywhTjDialog.getEditText().getText().toString().trim());
                 map.put("reason", ywhTjDialog.getEditText().getText().toString().trim());
                 mPresenter.comitLy(map);
             }
@@ -147,8 +150,7 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
     protected void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
-//        map.put("name", etSearch.getText().toString().trim());
-        map.put("name", "");
+        map.put("name", etSearch.getText().toString().trim());
         mPresenter.getTjcbz(map);
     }
 
@@ -179,7 +181,7 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
 
     @Override
     public void getTjcbzSuccess(HouxuanRenBean baseEntity) {
-        if (baseEntity.getCode() == 200 && baseEntity.getData() != null && baseEntity.getData().size() > 0) {
+        if (baseEntity.getCode() == 200) {
             ywhHouxuanAdapter.setNewData(baseEntity.getData());
         } else {
             onError(baseEntity.msg);
@@ -196,7 +198,4 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
         //取消按钮
         etSearch.setText("");
     }
-///app/obtain/list/{uuid} 获取推荐人列表（未推荐）
-    ///app/obtain/notic/pub/{uuid}
-
 }

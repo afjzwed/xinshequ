@@ -111,10 +111,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
 
 //                Intent intent = new Intent(getActivity(), WebviewActivity.class);
 //                Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                // TODO: 2018/11/13 pdf在线预览
                 Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("name", "附件");
                 bundle.putString("address", filesBean.getUrl());
                 intent.putExtras(bundle);
                 startActivity(intent);

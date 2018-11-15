@@ -89,6 +89,13 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
 //                ywhAccessoryAdapter.getData().get(position);
+                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
+                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("address", filesBean.getUrl());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
                 Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
             }
         });

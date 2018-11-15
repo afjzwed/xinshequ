@@ -1,6 +1,9 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
@@ -12,10 +15,8 @@ import com.yxld.yxchuangxin.ui.activity.ywh.presenter.YwhWebViewPresenter;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import es.voghdev.pdfviewpager.library.RemotePDFViewPager;
-import es.voghdev.pdfviewpager.library.adapter.PDFPagerAdapter;
-import es.voghdev.pdfviewpager.library.remote.DownloadFile;
 
 /**
  * @author William
@@ -24,15 +25,14 @@ import es.voghdev.pdfviewpager.library.remote.DownloadFile;
  * @date 2018/11/14 14:14:11
  */
 
-public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContract.View, DownloadFile.Listener {
+public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContract.View {
 
     @Inject
     YwhWebViewPresenter mPresenter;
-//    @BindView(R.id.pdfViewPager)
-//    PDFViewPager pdfViewPager;
+    @BindView(R.id.webview)
+    WebView webview;
 
-    private PDFPagerAdapter adapter;
-    private  RemotePDFViewPager remotePDFViewPager;
+    private String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +41,28 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
 
     @Override
     protected void initView() {
+//        needFront = true;
         setContentView(R.layout.activity_ywh_webview);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String url = "http://www.cals.uidaho.edu/edComm/curricula/CustRel_curriculum/content/sample.pdf";
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        address = bundle.getString("address");
 
-        remotePDFViewPager = new RemotePDFViewPager(this, url, this);
-        remotePDFViewPager.setId(R.id.pdfViewPager);
+
+        String url = "http://p9zwbgynz.bkt.clouddn.com/2018_PDF.pdf";
+
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
+
+
+
+        webview.loadUrl("http://mozilla.github.io/pdf.js/web/viewer.html?file=" + address);
+
 
     }
 
@@ -86,24 +100,5 @@ public class YwhWebViewActivity extends BaseActivity implements YwhWebViewContra
     protected void onDestroy() {
         mPresenter.unsubscribe();
         super.onDestroy();
-
-        ((PDFPagerAdapter) remotePDFViewPager.getAdapter()).close();
-    }
-
-    @Override
-    public void onSuccess(String url, String destinationPath) {
-        adapter = new PDFPagerAdapter(this, System.currentTimeMillis() + "AdobeXMLFormsSamples.pdf");
-        remotePDFViewPager.setAdapter(adapter);
-//        setContentView(pdfViewPager);
-    }
-
-    @Override
-    public void onFailure(Exception e) {
-
-    }
-
-    @Override
-    public void onProgressUpdate(int progress, int total) {
-
     }
 }

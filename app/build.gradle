@@ -297,5 +297,4 @@ dependencies {
     //顶部tab
     compile 'com.shizhefei:ViewPagerIndicator:1.1.7'
 
-    compile 'es.voghdev.pdfviewpager:library:1.0.5'
 }

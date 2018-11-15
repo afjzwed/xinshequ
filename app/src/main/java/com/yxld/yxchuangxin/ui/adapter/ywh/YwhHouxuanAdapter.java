@@ -16,8 +16,8 @@ public class YwhHouxuanAdapter extends BaseQuickAdapter<HouxuanRenBean.DataBean,
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, HouxuanRenBean.DataBean dataBean) {
-//        baseViewHolder.setText(R.id.tv_name, dataBean.getOwnerName()).setText(R.id.tv_qu, dataBean.getExpect())
-//                .setText(R.id.tv_ld, dataBean.getBuilding()).setText(R.id.tv_dy, dataBean.getUnit()).setText(R.id.tv_fh, dataBean.getRoomNumber())
-//                .addOnClickListener(R.id.tv_tj);
+        baseViewHolder.setText(R.id.tv_name, dataBean.getName()).setText(R.id.tv_qu, dataBean.getArea())
+                .setText(R.id.tv_ld, dataBean.getBuilding()).setText(R.id.tv_dy, dataBean.getUnit()).setText(R.id.tv_fh, dataBean.getRoomNumber())
+                .addOnClickListener(R.id.tv_tj);
     }
 }

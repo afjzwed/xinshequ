@@ -178,9 +178,8 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.ywh_help:
-//                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
-//                startActivity(HouxuanListActivity.class);//业委会信息指导
-                startActivity(YwhWebViewActivity.class);//业委会信息指导
+                startActivity(YwhMessageGuideActivity.class);//业委会信息指导
+//                startActivity(YwhWebViewActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();

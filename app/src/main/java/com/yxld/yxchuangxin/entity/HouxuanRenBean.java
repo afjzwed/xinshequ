@@ -1,6 +1,5 @@
 package com.yxld.yxchuangxin.entity;
 
-import com.google.gson.annotations.SerializedName;
 import com.yxld.yxchuangxin.base.BaseEntity;
 
 import java.util.List;
@@ -15,14 +14,16 @@ public class HouxuanRenBean extends BaseEntity {
      * success : true
      * code : 200
      * error : null
-     * data : [{"id":1149,"ownerName":"李涛","cardNumber":"430521199510165236","phone":"","cardFront":"",
-     * "cardReverse":"","deedFront":"","paperwork":"","status":2,"aduitId":null,"aduitName":null,"aduitTime":null,
-     * "reportDate":"2018-11-09 18:05:40.0","isElect":1,"projectId":346,"yezhuType":0,"yezhuGzdw":"","descs":"",
-     * "isUse":0,"pwd":"e10adc3949ba59abbe56e057f20f883e","chuangxinhao":null,"projectbianhao":"","aduitOpnion":null}]
-     * rows : [{"id":1149,"ownerName":"李涛","cardNumber":"430521199510165236","phone":"","cardFront":"",
-     * "cardReverse":"","deedFront":"","paperwork":"","status":2,"aduitId":null,"aduitName":null,"aduitTime":null,
-     * "reportDate":"2018-11-09 18:05:40.0","isElect":1,"projectId":346,"yezhuType":0,"yezhuGzdw":"","descs":"",
-     * "isUse":0,"pwd":"e10adc3949ba59abbe56e057f20f883e","chuangxinhao":null,"projectbianhao":"","aduitOpnion":null}]
+     * data : [{"id":1149,"name":"李涛","unit":"1","building":"1","roomNumber":"2317","area":"1","yezhuId":null,
+     * "fwId":1099},{"id":3406,"name":"李涛","unit":"2","building":"29","roomNumber":"307","area":"1","yezhuId":null,
+     * "fwId":2670},{"id":3401,"name":"向磊","unit":"888","building":"888","roomNumber":"888","area":"1",
+     * "yezhuId":null,"fwId":3557},{"id":3401,"name":"向磊","unit":"1","building":"1","roomNumber":"1901","area":"1",
+     * "yezhuId":null,"fwId":1033}]
+     * rows : [{"id":1149,"name":"李涛","unit":"1","building":"1","roomNumber":"2317","area":"1","yezhuId":null,
+     * "fwId":1099},{"id":3406,"name":"李涛","unit":"2","building":"29","roomNumber":"307","area":"1","yezhuId":null,
+     * "fwId":2670},{"id":3401,"name":"向磊","unit":"888","building":"888","roomNumber":"888","area":"1",
+     * "yezhuId":null,"fwId":3557},{"id":3401,"name":"向磊","unit":"1","building":"1","roomNumber":"1901","area":"1",
+     * "yezhuId":null,"fwId":1033}]
      * total : null
      * token : null
      */
@@ -94,54 +95,23 @@ public class HouxuanRenBean extends BaseEntity {
     public static class DataBean {
         /**
          * id : 1149
-         * ownerName : 李涛
-         * cardNumber : 430521199510165236
-         * phone :
-         * cardFront :
-         * cardReverse :
-         * deedFront :
-         * paperwork :
-         * status : 2
-         * aduitId : null
-         * aduitName : null
-         * aduitTime : null
-         * reportDate : 2018-11-09 18:05:40.0
-         * isElect : 1
-         * projectId : 346
-         * yezhuType : 0
-         * yezhuGzdw :
-         * descs :
-         * isUse : 0
-         * pwd : e10adc3949ba59abbe56e057f20f883e
-         * chuangxinhao : null
-         * projectbianhao :
-         * aduitOpnion : null
+         * name : 李涛
+         * unit : 1
+         * building : 1
+         * roomNumber : 2317
+         * area : 1
+         * yezhuId : null
+         * fwId : 1099
          */
 
-        private int id;
-        private String ownerName;
-        private String cardNumber;
-        private String phone;
-        private String cardFront;
-        private String cardReverse;
-        private String deedFront;
-        private String paperwork;
-        @SerializedName("status")
-        private int statusX;
-        private Object aduitId;
-        private Object aduitName;
-        private Object aduitTime;
-        private String reportDate;
-        private int isElect;
-        private int projectId;
-        private int yezhuType;
-        private String yezhuGzdw;
-        private String descs;
-        private int isUse;
-        private String pwd;
-        private Object chuangxinhao;
-        private String projectbianhao;
-        private Object aduitOpnion;
+        private int id;//业主ID
+        private String name;//人名
+        private String unit;//单元
+        private String building;//楼栋
+        private String roomNumber;//房号
+        private String area;//区/期
+        private int yezhuId;
+        private int fwId;//被推荐人 的房屋id
 
         public int getId() {
             return id;
@@ -151,234 +121,83 @@ public class HouxuanRenBean extends BaseEntity {
             this.id = id;
         }
 
-        public String getOwnerName() {
-            return ownerName;
+        public String getName() {
+            return name;
         }
 
-        public void setOwnerName(String ownerName) {
-            this.ownerName = ownerName;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getCardNumber() {
-            return cardNumber;
+        public String getUnit() {
+            return unit;
         }
 
-        public void setCardNumber(String cardNumber) {
-            this.cardNumber = cardNumber;
+        public void setUnit(String unit) {
+            this.unit = unit;
         }
 
-        public String getPhone() {
-            return phone;
+        public String getBuilding() {
+            return building;
         }
 
-        public void setPhone(String phone) {
-            this.phone = phone;
+        public void setBuilding(String building) {
+            this.building = building;
         }
 
-        public String getCardFront() {
-            return cardFront;
+        public String getRoomNumber() {
+            return roomNumber;
         }
 
-        public void setCardFront(String cardFront) {
-            this.cardFront = cardFront;
+        public void setRoomNumber(String roomNumber) {
+            this.roomNumber = roomNumber;
         }
 
-        public String getCardReverse() {
-            return cardReverse;
+        public String getArea() {
+            return area;
         }
 
-        public void setCardReverse(String cardReverse) {
-            this.cardReverse = cardReverse;
+        public void setArea(String area) {
+            this.area = area;
         }
 
-        public String getDeedFront() {
-            return deedFront;
+        public int getYezhuId() {
+            return yezhuId;
         }
 
-        public void setDeedFront(String deedFront) {
-            this.deedFront = deedFront;
+        public void setYezhuId(int yezhuId) {
+            this.yezhuId = yezhuId;
         }
 
-        public String getPaperwork() {
-            return paperwork;
+        public int getFwId() {
+            return fwId;
         }
 
-        public void setPaperwork(String paperwork) {
-            this.paperwork = paperwork;
-        }
-
-        public int getStatusX() {
-            return statusX;
-        }
-
-        public void setStatusX(int statusX) {
-            this.statusX = statusX;
-        }
-
-        public Object getAduitId() {
-            return aduitId;
-        }
-
-        public void setAduitId(Object aduitId) {
-            this.aduitId = aduitId;
-        }
-
-        public Object getAduitName() {
-            return aduitName;
-        }
-
-        public void setAduitName(Object aduitName) {
-            this.aduitName = aduitName;
-        }
-
-        public Object getAduitTime() {
-            return aduitTime;
-        }
-
-        public void setAduitTime(Object aduitTime) {
-            this.aduitTime = aduitTime;
-        }
-
-        public String getReportDate() {
-            return reportDate;
-        }
-
-        public void setReportDate(String reportDate) {
-            this.reportDate = reportDate;
-        }
-
-        public int getIsElect() {
-            return isElect;
-        }
-
-        public void setIsElect(int isElect) {
-            this.isElect = isElect;
-        }
-
-        public int getProjectId() {
-            return projectId;
-        }
-
-        public void setProjectId(int projectId) {
-            this.projectId = projectId;
-        }
-
-        public int getYezhuType() {
-            return yezhuType;
-        }
-
-        public void setYezhuType(int yezhuType) {
-            this.yezhuType = yezhuType;
-        }
-
-        public String getYezhuGzdw() {
-            return yezhuGzdw;
-        }
-
-        public void setYezhuGzdw(String yezhuGzdw) {
-            this.yezhuGzdw = yezhuGzdw;
-        }
-
-        public String getDescs() {
-            return descs;
-        }
-
-        public void setDescs(String descs) {
-            this.descs = descs;
-        }
-
-        public int getIsUse() {
-            return isUse;
-        }
-
-        public void setIsUse(int isUse) {
-            this.isUse = isUse;
-        }
-
-        public String getPwd() {
-            return pwd;
-        }
-
-        public void setPwd(String pwd) {
-            this.pwd = pwd;
-        }
-
-        public Object getChuangxinhao() {
-            return chuangxinhao;
-        }
-
-        public void setChuangxinhao(Object chuangxinhao) {
-            this.chuangxinhao = chuangxinhao;
-        }
-
-        public String getProjectbianhao() {
-            return projectbianhao;
-        }
-
-        public void setProjectbianhao(String projectbianhao) {
-            this.projectbianhao = projectbianhao;
-        }
-
-        public Object getAduitOpnion() {
-            return aduitOpnion;
-        }
-
-        public void setAduitOpnion(Object aduitOpnion) {
-            this.aduitOpnion = aduitOpnion;
+        public void setFwId(int fwId) {
+            this.fwId = fwId;
         }
     }
 
     public static class RowsBean {
         /**
          * id : 1149
-         * ownerName : 李涛
-         * cardNumber : 430521199510165236
-         * phone :
-         * cardFront :
-         * cardReverse :
-         * deedFront :
-         * paperwork :
-         * status : 2
-         * aduitId : null
-         * aduitName : null
-         * aduitTime : null
-         * reportDate : 2018-11-09 18:05:40.0
-         * isElect : 1
-         * projectId : 346
-         * yezhuType : 0
-         * yezhuGzdw :
-         * descs :
-         * isUse : 0
-         * pwd : e10adc3949ba59abbe56e057f20f883e
-         * chuangxinhao : null
-         * projectbianhao :
-         * aduitOpnion : null
+         * name : 李涛
+         * unit : 1
+         * building : 1
+         * roomNumber : 2317
+         * area : 1
+         * yezhuId : null
+         * fwId : 1099
          */
 
         private int id;
-        private String ownerName;
-        private String cardNumber;
-        private String phone;
-        private String cardFront;
-        private String cardReverse;
-        private String deedFront;
-        private String paperwork;
-        @SerializedName("status")
-        private int statusX;
-        private Object aduitId;
-        private Object aduitName;
-        private Object aduitTime;
-        private String reportDate;
-        private int isElect;
-        private int projectId;
-        private int yezhuType;
-        private String yezhuGzdw;
-        private String descs;
-        private int isUse;
-        private String pwd;
-        private Object chuangxinhao;
-        private String projectbianhao;
-        private Object aduitOpnion;
+        private String name;
+        private String unit;
+        private String building;
+        private String roomNumber;
+        private String area;
+        private Object yezhuId;
+        private int fwId;
 
         public int getId() {
             return id;
@@ -388,180 +207,60 @@ public class HouxuanRenBean extends BaseEntity {
             this.id = id;
         }
 
-        public String getOwnerName() {
-            return ownerName;
+        public String getName() {
+            return name;
         }
 
-        public void setOwnerName(String ownerName) {
-            this.ownerName = ownerName;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getCardNumber() {
-            return cardNumber;
+        public String getUnit() {
+            return unit;
         }
 
-        public void setCardNumber(String cardNumber) {
-            this.cardNumber = cardNumber;
+        public void setUnit(String unit) {
+            this.unit = unit;
         }
 
-        public String getPhone() {
-            return phone;
+        public String getBuilding() {
+            return building;
         }
 
-        public void setPhone(String phone) {
-            this.phone = phone;
+        public void setBuilding(String building) {
+            this.building = building;
         }
 
-        public String getCardFront() {
-            return cardFront;
+        public String getRoomNumber() {
+            return roomNumber;
         }
 
-        public void setCardFront(String cardFront) {
-            this.cardFront = cardFront;
+        public void setRoomNumber(String roomNumber) {
+            this.roomNumber = roomNumber;
         }
 
-        public String getCardReverse() {
-            return cardReverse;
+        public String getArea() {
+            return area;
         }
 
-        public void setCardReverse(String cardReverse) {
-            this.cardReverse = cardReverse;
+        public void setArea(String area) {
+            this.area = area;
         }
 
-        public String getDeedFront() {
-            return deedFront;
+        public Object getYezhuId() {
+            return yezhuId;
         }
 
-        public void setDeedFront(String deedFront) {
-            this.deedFront = deedFront;
+        public void setYezhuId(Object yezhuId) {
+            this.yezhuId = yezhuId;
         }
 
-        public String getPaperwork() {
-            return paperwork;
+        public int getFwId() {
+            return fwId;
         }
 
-        public void setPaperwork(String paperwork) {
-            this.paperwork = paperwork;
-        }
-
-        public int getStatusX() {
-            return statusX;
-        }
-
-        public void setStatusX(int statusX) {
-            this.statusX = statusX;
-        }
-
-        public Object getAduitId() {
-            return aduitId;
-        }
-
-        public void setAduitId(Object aduitId) {
-            this.aduitId = aduitId;
-        }
-
-        public Object getAduitName() {
-            return aduitName;
-        }
-
-        public void setAduitName(Object aduitName) {
-            this.aduitName = aduitName;
-        }
-
-        public Object getAduitTime() {
-            return aduitTime;
-        }
-
-        public void setAduitTime(Object aduitTime) {
-            this.aduitTime = aduitTime;
-        }
-
-        public String getReportDate() {
-            return reportDate;
-        }
-
-        public void setReportDate(String reportDate) {
-            this.reportDate = reportDate;
-        }
-
-        public int getIsElect() {
-            return isElect;
-        }
-
-        public void setIsElect(int isElect) {
-            this.isElect = isElect;
-        }
-
-        public int getProjectId() {
-            return projectId;
-        }
-
-        public void setProjectId(int projectId) {
-            this.projectId = projectId;
-        }
-
-        public int getYezhuType() {
-            return yezhuType;
-        }
-
-        public void setYezhuType(int yezhuType) {
-            this.yezhuType = yezhuType;
-        }
-
-        public String getYezhuGzdw() {
-            return yezhuGzdw;
-        }
-
-        public void setYezhuGzdw(String yezhuGzdw) {
-            this.yezhuGzdw = yezhuGzdw;
-        }
-
-        public String getDescs() {
-            return descs;
-        }
-
-        public void setDescs(String descs) {
-            this.descs = descs;
-        }
-
-        public int getIsUse() {
-            return isUse;
-        }
-
-        public void setIsUse(int isUse) {
-            this.isUse = isUse;
-        }
-
-        public String getPwd() {
-            return pwd;
-        }
-
-        public void setPwd(String pwd) {
-            this.pwd = pwd;
-        }
-
-        public Object getChuangxinhao() {
-            return chuangxinhao;
-        }
-
-        public void setChuangxinhao(Object chuangxinhao) {
-            this.chuangxinhao = chuangxinhao;
-        }
-
-        public String getProjectbianhao() {
-            return projectbianhao;
-        }
-
-        public void setProjectbianhao(String projectbianhao) {
-            this.projectbianhao = projectbianhao;
-        }
-
-        public Object getAduitOpnion() {
-            return aduitOpnion;
-        }
-
-        public void setAduitOpnion(Object aduitOpnion) {
-            this.aduitOpnion = aduitOpnion;
+        public void setFwId(int fwId) {
+            this.fwId = fwId;
         }
     }
 }

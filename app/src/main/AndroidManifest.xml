@@ -275,6 +275,11 @@
             android:label="候选人推荐"
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name=".ui.activity.ywh.YwhWebViewActivity"
+            android:label="附件"
+            android:screenOrientation="portrait">
+        </activity>
         <!-- 业委会相关 -->
         <activity
             android:name=".ui.activity.wuye.OpinionSurveyActivity"

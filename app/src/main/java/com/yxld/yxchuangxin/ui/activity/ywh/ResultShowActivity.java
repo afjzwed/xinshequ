@@ -91,7 +91,14 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
 //                ywhAccessoryAdapter.getData().get(position);
-                Toast.makeText(ResultShowActivity.this, "点击" + position, Toast.LENGTH_SHORT).show();
+                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
+                Intent intent = new Intent(ResultShowActivity.this, YwhWebViewActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("address", filesBean.getUrl());
+                intent.putExtras(bundle);
+                startActivity(intent);
+
+//                Toast.makeText(ResultShowActivity.this, "点击" + position, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
