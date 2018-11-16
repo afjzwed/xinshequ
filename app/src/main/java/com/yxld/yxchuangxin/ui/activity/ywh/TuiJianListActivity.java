@@ -248,6 +248,8 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                 }
             }
         } else {
+            ywhTuiJianAdapter.setEnableLoadMore(false);//自动加载更多
+            swipeLayouts.setRefreshing(false);//加载完成,不显示进度条
             onError(baseEntity.msg);
         }
     }

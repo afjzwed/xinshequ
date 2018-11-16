@@ -243,7 +243,8 @@ public class HomeActivity extends BaseActivity {
         //初始化fTabHost, 第三个参数为内容容器
         tabhost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         /*初始化数据源*/
-        TabDataBean tabHome = new TabDataBean(R.string.main_main, R.drawable.tab_main_selector, MainFragment.class);
+//        TabDataBean tabHome = new TabDataBean(R.string.main_main, R.drawable.tab_main_selector, MainFragment.class);
+        TabDataBean tabHome = new TabDataBean(R.string.main_main, R.drawable.tab_main_selector, MainNewFragment.class);
         TabDataBean tabHot = new TabDataBean(R.string.main_wuye, R.drawable.tab_wuye_selector, WuyeFragment.class);
         TabDataBean tabCategory = new TabDataBean(R.string.main_zhoubian, R.drawable.tab_rim_selector, RimFragment
                 .class);

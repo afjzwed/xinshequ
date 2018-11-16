@@ -1,14 +1,10 @@
 package com.yxld.yxchuangxin.view;
 
 import android.content.Context;
-import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.socks.library.KLog;
 import com.youth.banner.loader.ImageLoader;
-import com.yxld.yxchuangxin.data.api.API;
 
 /**
  * @author xlei
@@ -28,7 +24,12 @@ public class GlideImagerBannerLoader extends ImageLoader {
 
 
         //Glide 加载图片简单用法
-        Glide.with(context).load(path).into(imageView);
+        if (path instanceof Integer) {
+
+            imageView.setImageResource((Integer) path);
+        } else {
+            Glide.with(context).load(path).into(imageView);
+        }
 
 //        //Picasso 加载图片简单用法
 //        Picasso.with(context).load(path).into(imageView);

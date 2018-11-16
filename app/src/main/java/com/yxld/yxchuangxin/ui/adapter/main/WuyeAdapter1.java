@@ -38,9 +38,10 @@ public class WuyeAdapter1 extends BaseQuickAdapter<Wuye.DataBean.ListBean, BaseV
             textView.clearAnimation();
             textView.setVisibility(View.GONE);
         }
-        Glide.with(mContext)
-                .load(mContext.getResources().getIdentifier(item.getIcon(), "mipmap", mContext.getPackageName()))
-                .into(imageView);
+        imageView.setImageResource(mContext.getResources().getIdentifier(item.getIcon(), "mipmap", mContext.getPackageName()));
+//        Glide.with(mContext)
+//                .load(mContext.getResources().getIdentifier(item.getIcon(), "mipmap", mContext.getPackageName()))
+//                .into(imageView);
     }
     private void setAnimation(TextView textView) {
         /** 设置缩放动画 */

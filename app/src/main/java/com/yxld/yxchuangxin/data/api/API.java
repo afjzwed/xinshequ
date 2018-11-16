@@ -16,14 +16,14 @@ public interface API {
     //
 //    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
-//    String IP_PRODUCT = "http://wy.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    String IP_PRODUCT = "http://wy.iot.xin";
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
     //    String IP_PRODUCT = "http://192.168.8.113:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
-    String IP_PRODUCT = "http://192.168.8.222:8080";
-    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+//    String IP_PRODUCT = "http://192.168.8.222:8080";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     String daozai= "http://dz.hnchxwl.com";//道闸

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <View
+        style="@style/layout_bg"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/miaosha_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="136px"
+            android:background="@mipmap/main_miaosha_bg">
+
+            <ImageView
+                android:id="@+id/iv_miaosha"
+                android:layout_width="158px"
+                android:layout_height="58px"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="8px"
+                android:src="@mipmap/main_miaosha"
+                />
+            <View
+                style="@style/line"
+                android:layout_alignParentBottom="true"
+                />
+        </com.zhy.autolayout.AutoRelativeLayout>
+        <!--android:layout_height="462px"-->
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_ms"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="24px"
+            android:paddingTop="14px"
+            >
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            style="@style/layout_bg"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_market"
+        android:layout_width="match_parent"
+        android:layout_height="464px"
+        android:scaleType="fitXY"
+        android:src="@mipmap/main_banner"/>
+</com.zhy.autolayout.AutoLinearLayout>
