@@ -8,15 +8,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_2d97ff"
-        android:paddingBottom="30px"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="30px">
 
+        <!--<com.shizhefei.view.indicator.ScrollIndicatorView-->
+        <!--android:id="@+id/moretab_indicator"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="95px"-->
+        <!--android:layout_marginLeft="195px"-->
+        <!--android:layout_marginRight="195px"-->
+        <!--android:background="@drawable/bg_btn_22_blue"-->
+        <!--android:fillViewport="false"/>-->
         <com.shizhefei.view.indicator.ScrollIndicatorView
             android:id="@+id/moretab_indicator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="95px"
-            android:layout_marginLeft="195px"
-            android:layout_marginRight="195px"
+            android:layout_gravity="center"
             android:background="@drawable/bg_btn_22_blue"
             android:fillViewport="false"/>
     </com.zhy.autolayout.AutoLinearLayout>

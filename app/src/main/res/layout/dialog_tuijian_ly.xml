@@ -4,7 +4,7 @@
     android:layout_width="900px"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/white"
+    android:background="@drawable/bg_btn_22_white"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -40,19 +40,19 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:maxLength="200"
-            android:id="@+id/et_content"
             android:gravity="top|left"
+            android:maxLength="200"
             android:minHeight="400px"/>
 
         <TextView
+            android:id="@+id/tv_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:id="@+id/tv_count"
 
             android:layout_marginRight="30px"
             android:text="0/200"/>
@@ -65,7 +65,6 @@
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="144px"
-        android:background="@color/white"
         android:orientation="horizontal"
         >
 

@@ -3,7 +3,9 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +60,24 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
         ButterKnife.bind(this, view);
         Bundle mBundle = getArguments();
 
+
+        etContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String string = etContent.getText().toString();
+                tvCount.setText(string.length() + "/200");
+            }
+        });
         return view;
     }
 

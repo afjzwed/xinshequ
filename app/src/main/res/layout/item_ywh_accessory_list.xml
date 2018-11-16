@@ -20,6 +20,7 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="0dp"
+        android:layout_marginLeft="5px"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="居民健康素养自查表格"

@@ -19,6 +19,7 @@
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/ll_no_data"
         android:layout_width="wrap_content"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:orientation="vertical">
@@ -64,7 +65,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
@@ -131,7 +132,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
@@ -194,7 +195,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"

@@ -218,19 +218,9 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.tv_click_name1})
+    @OnClick({R.id.tv_click_name1})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_status:
-//                if (status == 0) {
-//                    status = 1;
-//                } else if (status == 1) {
-//                    status = 2;
-//                } else {
-//                    status = 0;
-//                }
-//                setSixthData(null);
-                break;
             case R.id.tv_click_name1:
 //                Toast.makeText(getActivity(), "点击1", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getActivity(), YwhBeianMemberActivity.class);//这里传备案人员名单列表beianPeoples
@@ -238,11 +228,12 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
 //                startActivity(intent);
                 if (ywhInfo.getData().getFlow().getBeianPeoples() != null && ywhInfo.getData().getFlow()
                         .getBeianPeoples().size() > 0) {
-                    Log.e("wh", "这里");
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("ywh_beian_list", (ArrayList<? extends Parcelable>) ywhInfo.getData()
                             .getFlow().getBeianPeoples());
                     startActivity(YwhBeianMemberActivity.class, bundle);//成员名单公示
+                } else {
+                    Toast.makeText(getActivity(), "没有成员名单", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

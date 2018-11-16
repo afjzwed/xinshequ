@@ -83,8 +83,8 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
         // 设置滚动监听
 //        moretabIndicator.setScrollBar(new DrawableBar(this,R.drawable.bg_btn_22_white, ScrollBar.Gravity
 // .CENTENT_BACKGROUND));
-        moretabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#1e8afe"),
-                Color.parseColor("#ffffff")));
+//        moretabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#1e8afe"),
+//                Color.parseColor("#ffffff")));
         moretabViewPager.setOffscreenPageLimit(2);
         indicatorViewPager = new IndicatorViewPager(moretabIndicator, moretabViewPager);
         indicatorViewPager.setAdapter(new MyAdapter(this, getSupportFragmentManager()));
@@ -133,8 +133,6 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
                 return new Fkyj2Fragment();
             }
         }
-
-
     }
 
     @Override

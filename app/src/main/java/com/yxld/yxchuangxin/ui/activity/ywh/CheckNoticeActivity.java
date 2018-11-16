@@ -6,9 +6,9 @@ import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-import com.basic.G;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
@@ -20,6 +20,7 @@ import com.yxld.yxchuangxin.ui.activity.ywh.contract.CheckNoticeContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.CheckNoticeModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.CheckNoticePresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +52,15 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
     TextView tvClickName1;
     @BindView(R.id.rv)
     RecyclerView recyclerView;
+    @BindView(R.id.autoll)
+    AutoLinearLayout autoll;
+    @BindView(R.id.sv)
+    ScrollView sv;
 
     private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
     private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
     private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;//公示
-    private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> listdata;
+    private List<YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean> listdata;//人员列表
     private List<YwhCurrentflow.DataBean.FlowBean.FilesBean> file_listdata;//附件列表
     private YwhAccessoryAdapter ywhAccessoryAdapter;
 
@@ -100,6 +105,11 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
             tvNotice.setText("" + data.getContent());
         }
 
+        if (listdata != null && listdata.size() > 0) {
+            autoll.setVisibility(View.VISIBLE);
+        } else {
+            autoll.setVisibility(View.GONE);
+        }
 
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

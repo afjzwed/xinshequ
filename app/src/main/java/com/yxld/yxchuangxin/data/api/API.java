@@ -814,9 +814,9 @@ public interface API {
     //**********************业委会***********************//
     String URL_YWH_CURRENTFLOW = "http://192.168.8.106:8083/supervise/app/conference/currentflow";//业委会当前阶段
 
-    String URL_YWH_GETFKYJLIST = "http://192.168.8.128:8888/supervise/app/conference/ylist";//意见反馈列表
+    String URL_YWH_GETFKYJLIST = "http://192.168.8.223:8080/api/app/supervise/app/conference/ylist";//意见反馈列表
 
-    String URL_YWH_COMMITFKYJ = "http://192.168.8.128:8888/supervise/app/conference/yadd";//意见反馈提交
+    String URL_YWH_COMMITFKYJ = "http://192.168.8.223:8080/api/app/supervise/app/conference/yadd";//意见反馈提交
 
     String URL_YWH_COMMITFKYJ2 = "http://192.168.8.128:8888/app/obtain/feedback/submit";
 

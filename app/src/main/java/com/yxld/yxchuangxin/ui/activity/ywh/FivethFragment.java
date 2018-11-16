@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,13 +17,10 @@ import android.widget.Toast;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.main.WebviewActivity;
-import com.yxld.yxchuangxin.ui.activity.rim.WebViewActivity;
-import com.yxld.yxchuangxin.ui.activity.wuye.OpinionSurveyActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerFivethComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.FivethContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.FivethModule;
@@ -109,15 +105,13 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
 
-//                Intent intent = new Intent(getActivity(), WebviewActivity.class);
-//                Intent intent = new Intent(getActivity(), WebViewActivity.class);
                 Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("address", filesBean.getUrl());
                 intent.putExtras(bundle);
                 startActivity(intent);
 
-                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
@@ -266,6 +260,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                 tvTitle.setText("业主委员会成员已确定");
                 tvContent.setVisibility(View.GONE);
                 tvClickName1.setText("查看业主委员会成员信息");
+                tvClickName1.setVisibility(View.VISIBLE);
+                tvClickName2.setVisibility(View.GONE);
                 List<YwhCurrentflow.DataBean.FlowBean.FilesBean> list = (List<YwhCurrentflow.DataBean.FlowBean
                         .FilesBean>) ywhInfo.getData().getFlow().getFiles();
                 if (list != null && list.size() > 0) {
@@ -309,21 +305,9 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.auto_click})
+    @OnClick({R.id.auto_click})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.tv_status:
-//                if (status == 0) {
-//                    status = 1;
-//                } else if (status == 1) {
-//                    status = 2;
-//                } else if (status == 2) {
-//                    status = 3;
-//                } else {
-//                    status = 0;
-//                }
-//                setFivethData(null);
-                break;
             case R.id.auto_click:
                 Intent intent;
                 switch (skip) {
@@ -345,7 +329,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
 //                        startActivity(intent);
                         Bundle bundle = new Bundle();
                         bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+                                .getData()
                                 .getFlow().getFiles());
                         startActivity(ResultShowActivity.class, bundle);//成员名单公示
                         break;

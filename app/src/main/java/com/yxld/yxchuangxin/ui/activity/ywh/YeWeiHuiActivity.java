@@ -66,7 +66,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
 //                toolbar.setTitle("改变标题");
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
 
@@ -179,7 +178,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         switch (item.getItemId()) {
             case R.id.ywh_help:
                 startActivity(YwhMessageGuideActivity.class);//业委会信息指导
-//                startActivity(YwhWebViewActivity.class);//业委会信息指导
                 break;
             case android.R.id.home:
                 finish();

@@ -45,7 +45,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
@@ -159,7 +159,7 @@
                 android:layout_below="@id/autoll_data1"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/tv_click_name1"
@@ -197,7 +197,7 @@
                 android:paddingLeft="46px"
                 android:paddingRight="72px"
                 android:paddingTop="46px"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"

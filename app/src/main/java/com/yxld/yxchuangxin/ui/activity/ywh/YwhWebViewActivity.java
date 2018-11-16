@@ -17,13 +17,6 @@ import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhWebViewContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.YwhWebViewModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.YwhWebViewPresenter;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import java.io.IOException;
 import java.io.InputStream;
 
 import javax.inject.Inject;

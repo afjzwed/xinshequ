@@ -195,11 +195,11 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
         super.onDestroyView();
     }
 
-    @OnClick({R.id.tv_status, R.id.tv_name})
+    @OnClick({R.id.tv_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tv_name:
-                Toast.makeText(getActivity(), "点击", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "点击", Toast.LENGTH_SHORT).show();
                 Intent intent;
                 switch (skip) {
                     case 1:
@@ -234,18 +234,6 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                         startActivity(CymdActivity.class, bundle);//成员名单公示
                         break;
                 }
-                break;
-            case R.id.tv_status:
-//                if (status == 0) {
-//                    status = 1;
-//                } else if (status == 1) {
-//                    status = 2;
-//                } else if (status == 2) {
-//                    status = 3;
-//                } else {
-//                    status = 0;
-//                }
-//                setFourthData(null);
                 break;
         }
     }
