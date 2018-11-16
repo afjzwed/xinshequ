@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
+import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
@@ -50,10 +52,12 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
 
     @Inject
     TuiJianListPresenter mPresenter;
-    @BindView(R.id.rv) RecyclerView rv;
+    @BindView(R.id.recyclerView) RecyclerView rv;
     @BindView(R.id.et_search) EditText etSearch;
+    @BindView(R.id.swipeLayouts) SwipeRefreshLayout swipeLayouts;
     private YwhTuiJianAdapter ywhTuiJianAdapter;
-
+    private int page = 1;
+    private int rows = 5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +72,6 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
         initListener();
         initRv();
-//        testDialog();
     }
 
     /**
@@ -165,6 +168,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
         rv.setLayoutManager(new LinearLayoutManager(this));
         ywhTuiJianAdapter = new YwhTuiJianAdapter();
         rv.setAdapter(ywhTuiJianAdapter);
+
         ywhTuiJianAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
@@ -174,12 +178,31 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                 }
             }
         });
+        ywhTuiJianAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                page++;
+                initData();
+            }
+        }, rv);
+        UIUtils.configSwipeRefreshLayoutColors(swipeLayouts);
+        swipeLayouts.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeLayouts.setRefreshing(false);
+                ywhTuiJianAdapter.setEnableLoadMore(false);
+                page = 1;
+                initData();
+            }
+        });
     }
 
     @Override
     protected void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
+        map.put("page", page + "");
+        map.put("rows", rows + "");
         map.put("yezhuName", etSearch.getText().toString().trim());
         mPresenter.getTjcbz(map);
     }
@@ -207,13 +230,24 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
     @Override
     public void closeProgressDialog() {
         progressDialog.hide();
+        ywhTuiJianAdapter.setEnableLoadMore(false);//自动加载更多
+        swipeLayouts.setRefreshing(false);//加载完成,不显示进度条
     }
 
     @Override
     public void getTjcbzSuccess(YwhTj baseEntity) {
-        if (baseEntity.getCode()==200){
-            ywhTuiJianAdapter.setNewData(baseEntity.getData().getResults());
-        }else {
+        if (baseEntity.getCode() == 200) {
+            if (page == 1) {
+                ywhTuiJianAdapter.setNewData(baseEntity.getData().getResults());
+            } else {
+                if (baseEntity.getData().getResults() != null && baseEntity.getData().getResults().size() > 0) {
+                    ywhTuiJianAdapter.addData(baseEntity.getData().getResults());
+                    ywhTuiJianAdapter.loadMoreComplete();
+                } else {
+                    ywhTuiJianAdapter.loadMoreEnd();
+                }
+            }
+        } else {
             onError(baseEntity.msg);
         }
     }

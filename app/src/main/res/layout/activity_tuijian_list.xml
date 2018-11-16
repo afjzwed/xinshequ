@@ -116,9 +116,6 @@
             android:textSize="43px"/>
     </com.zhy.autolayout.AutoLinearLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:id="@+id/rv"
-        android:layout_height="match_parent"
-        />
+    <include layout="@layout/recyceler_layout"/>
+
 </com.zhy.autolayout.AutoLinearLayout>

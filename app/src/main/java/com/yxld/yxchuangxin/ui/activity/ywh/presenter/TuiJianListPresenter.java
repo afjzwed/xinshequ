@@ -63,6 +63,7 @@ public class TuiJianListPresenter implements TuiJianListContract.TuiJianListCont
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
+                mView.closeProgressDialog();
             }
         }, new Action() {
             @Override
