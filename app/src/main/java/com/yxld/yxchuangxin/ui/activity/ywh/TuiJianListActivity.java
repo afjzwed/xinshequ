@@ -57,7 +57,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
     @BindView(R.id.swipeLayouts) SwipeRefreshLayout swipeLayouts;
     private YwhTuiJianAdapter ywhTuiJianAdapter;
     private int page = 1;
-    private int rows = 5;
+    private int rows = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +93,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
         });
     }
 
-    private void testDialog(YwhTj.DataBean.ResultsBean resultsBean) {
+    private void testDialog(YwhTj.ResultsBean resultsBean) {
         InputMethodManager imm = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
         YwhTjDialog ywhTjDialog = new YwhTjDialog(this);
@@ -172,7 +172,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
         ywhTuiJianAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int i) {
-                YwhTj.DataBean.ResultsBean resultsBean = (YwhTj.DataBean.ResultsBean) baseQuickAdapter.getData().get(i);
+                YwhTj.ResultsBean resultsBean = (YwhTj.ResultsBean) baseQuickAdapter.getData().get(i);
                 if (view.getId() == R.id.tv_tj) {
                     testDialog(resultsBean);
                 }
@@ -238,10 +238,10 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
     public void getTjcbzSuccess(YwhTj baseEntity) {
         if (baseEntity.getCode() == 200) {
             if (page == 1) {
-                ywhTuiJianAdapter.setNewData(baseEntity.getData().getResults());
+                ywhTuiJianAdapter.setNewData(baseEntity.getData());
             } else {
-                if (baseEntity.getData().getResults() != null && baseEntity.getData().getResults().size() > 0) {
-                    ywhTuiJianAdapter.addData(baseEntity.getData().getResults());
+                if (baseEntity.getData() != null && baseEntity.getData().size() > 0) {
+                    ywhTuiJianAdapter.addData(baseEntity.getData());
                     ywhTuiJianAdapter.loadMoreComplete();
                 } else {
                     ywhTuiJianAdapter.loadMoreEnd();

@@ -10,57 +10,57 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingRight="46px"
         android:paddingLeft="46px"
-       >
+        android:paddingRight="46px"
+        >
 
         <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:singleLine="true"
             android:id="@+id/tv_name"
-            android:textColor="@color/color_333333"
-            android:textSize="43px"/>
-
-        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+        <TextView
             android:id="@+id/tv_qu"
-            android:textColor="@color/color_333333"
-            android:textSize="43px"/>
-
-        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+        <TextView
             android:id="@+id/tv_ld"
-            android:textColor="@color/color_333333"
-            android:textSize="43px"/>
-
-        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+        <TextView
             android:id="@+id/tv_dy"
-            android:textColor="@color/color_333333"
-            android:textSize="43px"/>
-
-        <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
+            android:textColor="@color/color_333333"
+            android:textSize="43px"/>
+
+        <TextView
             android:id="@+id/tv_fh"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
             android:textColor="@color/color_333333"
             android:textSize="43px"/>
 
@@ -72,13 +72,13 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_tj"
                 android:layout_width="173px"
                 android:layout_height="86px"
                 android:background="@drawable/bg_btn_ywh10"
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="推荐"
-                android:id="@+id/tv_tj"
                 android:textColor="@color/white"
                 android:textSize="43px"/>
         </com.zhy.autolayout.AutoLinearLayout>

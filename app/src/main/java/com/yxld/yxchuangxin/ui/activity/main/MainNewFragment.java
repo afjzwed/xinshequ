@@ -529,8 +529,9 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
             initData();
             toolbar.setTitle(Contains.curSelectXiaoQuName);
             KLog.i("toolbar重新设置标题" + Contains.curSelectXiaoQuName);
-            recyclerView.smoothScrollToPosition(0);
             instans = 0;
+            recyclerView.smoothScrollToPosition(0);
+
         }
     }
 

@@ -14,8 +14,17 @@ public class YwhTj extends BaseEntity {
      * data : {"page":1,"rows":10,"total":6,"results":[{"id":1,"cfname":"张三","idcard":"43062119951223275x","phone":"15173009326","expect":"2","building":"3","unit":"四单元","roomNumber":"209","driscipt":"非常和善的一个人","isdelel":1,"addtime":"2018-09-05 09:13:10.0","type":1,"projectid":346,"workUnit":"长沙工商银行分行","otherWorks":null,"workPosition":"大堂经理","pici":1}]}
      */
 
-    private DataBean data;
+    private List<ResultsBean> data;
     private int code;
+
+
+    public List<ResultsBean> getData() {
+        return data;
+    }
+
+    public void setData(List<ResultsBean> data) {
+        this.data = data;
+    }
 
     public int getCode() {
         return code;
@@ -25,60 +34,7 @@ public class YwhTj extends BaseEntity {
         this.code = code;
     }
 
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
-    }
-
-    public static class DataBean {
-        /**
-         * page : 1
-         * rows : 10
-         * total : 6
-         * results : [{"id":1,"cfname":"张三","idcard":"43062119951223275x","phone":"15173009326","expect":"2","building":"3","unit":"四单元","roomNumber":"209","driscipt":"非常和善的一个人","isdelel":1,"addtime":"2018-09-05 09:13:10.0","type":1,"projectid":346,"workUnit":"长沙工商银行分行","otherWorks":null,"workPosition":"大堂经理","pici":1}]
-         */
-
-        private int page;
-        private int rows;
-        private int total;
-        private List<ResultsBean> results;
-
-        public int getPage() {
-            return page;
-        }
-
-        public void setPage(int page) {
-            this.page = page;
-        }
-
-        public int getRows() {
-            return rows;
-        }
-
-        public void setRows(int rows) {
-            this.rows = rows;
-        }
-
-        public int getTotal() {
-            return total;
-        }
-
-        public void setTotal(int total) {
-            this.total = total;
-        }
-
-        public List<ResultsBean> getResults() {
-            return results;
-        }
-
-        public void setResults(List<ResultsBean> results) {
-            this.results = results;
-        }
-
-        public static class ResultsBean {
+    public static class ResultsBean {
             /**
              * id : 1
              * cfname : 张三
@@ -253,5 +209,5 @@ public class YwhTj extends BaseEntity {
                 this.pici = pici;
             }
         }
-    }
+
 }
