@@ -12,12 +12,13 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="46px"
-        android:text="候选人确定阶段-进行中"
+        android:text=""
         android:textColor="@color/color_2d97ff"
         android:textSize="43px"/>
 
     <ImageView
         android:id="@+id/iv_no_data"
+        android:visibility="gone"
         android:layout_width="531px"
         android:layout_height="531px"
         android:layout_centerInParent="true"

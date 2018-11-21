@@ -70,6 +70,10 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
         initListener();
         initRv();
+
+        //隐藏输入法
+//        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        inputMethodManager.hideSoftInputFromInputMethod(etSearch.getWindowToken(),0);
     }
 
     /**

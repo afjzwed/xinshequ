@@ -12,7 +12,7 @@
         android:background="@color/white"
         android:gravity="center_vertical"
         android:paddingLeft="46px"
-        android:text="备案阶段-进行中"
+        android:text=""
         android:textColor="@color/color_2d97ff"
         android:textSize="43px"/>
 
@@ -44,6 +44,7 @@
         android:id="@+id/iv_no_data"
         android:layout_width="531px"
         android:layout_height="531px"
+        android:visibility="gone"
         android:layout_centerInParent="true"
         android:src="@mipmap/ic_no_data"/>
 

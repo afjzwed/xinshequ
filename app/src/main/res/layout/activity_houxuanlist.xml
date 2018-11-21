@@ -16,9 +16,9 @@
             android:layout_marginLeft="43px"
             android:layout_marginRight="43px"
             android:background="@color/white"
-            android:gravity="center_vertical"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
             >
 
             <ImageView
@@ -28,25 +28,25 @@
                 android:src="@mipmap/ic_search1"/>
 
             <EditText
-                android:imeOptions="actionSearch"
+                android:id="@+id/et_search"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25px"
                 android:layout_weight="1"
-                android:id="@+id/et_search"
                 android:background="@null"
                 android:hint="输入姓名搜索"
+                android:imeOptions="actionSearch"
                 android:singleLine="true"
                 android:textColor="#999999"
                 android:textSize="43px"
                 />
 
             <TextView
+                android:id="@+id/tv_cancle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="25px"
                 android:text="取消"
-                android:id="@+id/tv_cancle"
                 android:textColor="@color/color_333333"
                 android:textSize="43px"/>
         </com.zhy.autolayout.AutoLinearLayout>
@@ -57,9 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="136px"
         android:background="#f7f7f7"
+        android:orientation="horizontal"
         android:paddingLeft="46px"
-        android:paddingRight="46px"
-        android:orientation="horizontal">
+        android:paddingRight="46px">
 
         <TextView
             android:layout_width="0dp"
@@ -117,8 +117,8 @@
     </com.zhy.autolayout.AutoLinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
         android:id="@+id/rv"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
 </com.zhy.autolayout.AutoLinearLayout>

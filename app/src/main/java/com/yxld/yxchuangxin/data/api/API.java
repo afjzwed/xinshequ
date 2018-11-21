@@ -26,7 +26,7 @@ public interface API {
     String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
-    String daozai= "http://dz.hnchxwl.com";//道闸
+    String daozai = "http://dz.hnchxwl.com";//道闸
 //    String daozai= "http://192.168.8.124:8080";//道闸
     /**
      * 两个协议用https的链接
@@ -37,7 +37,7 @@ public interface API {
     String HTTPS = "https://wy.iot.xin/";
     String URL_XIEYI = HTTPS + "paianjiaofeixieyi.html";
     String PINGTAI_XIEYI = HTTPS + "userxieyi.jsp";
-    String PAY_CAR_XIEYI = daozai+"/cxwy_daozha/protocol.html";
+    String PAY_CAR_XIEYI = daozai + "/cxwy_daozha/protocol.html";
     String URL_SATISFICING = HTTPS + "manyidu.jsp?";
 
 
@@ -664,30 +664,30 @@ public interface API {
      * yezhuId  xmId
      * 120.25.78.92
      */
-    String URL_CAR_LIST = daozai+"/cxwy_daozha/config/fmcars";
+    String URL_CAR_LIST = daozai + "/cxwy_daozha/config/fmcars";
     /**
      * 车辆解锁
      * method   post
      * lpid  serialNo  parkNo  mediaNo isLock
      */
-    String URL_CAR_JIESUO = daozai+"/cxwy_daozha/config/jsche";
+    String URL_CAR_JIESUO = daozai + "/cxwy_daozha/config/jsche";
     /**
      * 车辆充值
      * method   post
      * lpid  parkNo  mediaNo  month  cardTimr  money  isnew（值为1） rechargeType  rechargeSerialNum  rechargeResult
      */
-    String URL_CAR_RECHARGE = daozai+"/cxwy_daozha/config/recharge";
+    String URL_CAR_RECHARGE = daozai + "/cxwy_daozha/config/recharge";
 
     /**
      * 车辆充值
      */
-    String URL_PRE_CHELAINGJIAOFEI = daozai+"/cxwy_daozha/config/reccw";
+    String URL_PRE_CHELAINGJIAOFEI = daozai + "/cxwy_daozha/config/reccw";
     /**
      * 车辆缴费记录
      * method   post
      * rows  page  mediaNo  isnew（值为1）
      */
-    String URL_CAR_RELIST = daozai+"/cxwy_daozha/config/relist";
+    String URL_CAR_RELIST = daozai + "/cxwy_daozha/config/relist";
 
     /**
      * 授权放行列表（业主）
@@ -813,33 +813,31 @@ public interface API {
 
     //**********************业委会***********************//
     String URL_YEYWEIHUI = "http://192.168.8.223:8080";
-    String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI+"/supervise/app/conference/currentflow";//业委会当前阶段
+    String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
-    String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI+"/api/app/supervise/app/conference/ylist";//意见反馈列表
+    String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/api/app/supervise/app/conference/ylist";//意见反馈列表
 
-    String URL_YWH_COMMITFKYJ = URL_YEYWEIHUI+"/api/app/supervise/app/conference/yadd";//意见反馈提交
+    String URL_YWH_COMMITFKYJ = URL_YEYWEIHUI + "/api/app/supervise/app/conference/yadd";//意见反馈提交
 
-    String URL_YWH_COMMITFKYJ2 = URL_YEYWEIHUI+"/app/obtain/feedback/submit";
+    String URL_YWH_GETMEMBERSHOWLIST = URL_YEYWEIHUI + "/supervise/app/conference/plist";//业主大会人员列表
 
-    String URL_YWH_GETMEMBERSHOWLIST = URL_YEYWEIHUI+"/supervise/app/conference/plist";//业主大会人员列表
+    String URL_YWH_GETSURVEYLIST = URL_YEYWEIHUI + "/api/app/supervise/app/research/slist";//民意调查列表
 
-    String URL_YWH_GETSURVEYLIST = URL_YEYWEIHUI+"/api/app/supervise/app/research/slist";//民意调查列表
+    String URL_YWH_GETRECOMMEND = URL_YEYWEIHUI + "/app/obtain/list";//候选人推荐列表
 
-    String URL_YWH_GETRECOMMEND = URL_YEYWEIHUI+"/app/obtain/list";//候选人推荐列表
-
-    String URL_YWH_CONMITCOMMEND  = URL_YEYWEIHUI+"/app/obtain/sett";//候选人推荐提交
+    String URL_YWH_CONMITCOMMEND = URL_YEYWEIHUI + "/app/obtain/sett";//候选人推荐提交
 
     //**********************业委会***********************//
 
     String ywh_pic = "http://p9zwbgynz.bkt.clouddn.com/";//lt七牛访问地址
-    String url_ywh_lcxx = URL_YEYWEIHUI+"/supervise/app/conference/flowlist";
-    String url_ywh_tjcbz = URL_YEYWEIHUI+"/supervise/app/prepare/recommend";//推荐筹备组成员理由
-    String url_ywh_tjcbz_list = URL_YEYWEIHUI+"/supervise/app/prepare/cblist";//推荐筹备组成员列表
-    String url_ywh_gsmd = URL_YEYWEIHUI+"/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表//暂时不需要
-    String url_ywh_tjyj = URL_YEYWEIHUI+"/supervise/app/prepare/padd";//提交反馈信息
-    String url_ywh_lhlb = URL_YEYWEIHUI+"/supervise/app/prepare/pdetail";//查看提交的反馈意见
-    String url_ywh_house = URL_YEYWEIHUI+"/supervise/app/preparework/ohList";//业主房屋列表
-    String url_ywh_smrz = URL_YEYWEIHUI+"/supervise/app/preparework/pradd";//个人实名认证添加
-    String url_ywh_smrz_detail = URL_YEYWEIHUI+"/supervise/app/preparework/preal";//个人实名认证详情
-    String url_ywh_smrz_change = URL_YEYWEIHUI+"/supervise/app/preparework/prupdate";//个人实名认证修改
+    String url_ywh_lcxx = URL_YEYWEIHUI + "/supervise/app/conference/flowlist";
+    String url_ywh_tjcbz = URL_YEYWEIHUI + "/supervise/app/prepare/recommend";//推荐筹备组成员理由
+    String url_ywh_tjcbz_list = URL_YEYWEIHUI + "/supervise/app/prepare/cblist";//推荐筹备组成员列表
+    String url_ywh_gsmd = URL_YEYWEIHUI + "/supervise/app/prepare/recommend/notice";//筹备组成员公示名单列表//暂时不需要
+    String url_ywh_tjyj = URL_YEYWEIHUI + "/supervise/app/prepare/padd";//提交反馈信息
+    String url_ywh_lhlb = URL_YEYWEIHUI + "/supervise/app/prepare/pdetail";//查看提交的反馈意见
+    String url_ywh_house = URL_YEYWEIHUI + "/supervise/app/preparework/ohList";//业主房屋列表
+    String url_ywh_smrz = URL_YEYWEIHUI + "/supervise/app/preparework/pradd";//个人实名认证添加
+    String url_ywh_smrz_detail = URL_YEYWEIHUI + "/supervise/app/preparework/preal";//个人实名认证详情
+    String url_ywh_smrz_change = URL_YEYWEIHUI + "/supervise/app/preparework/prupdate";//个人实名认证修改
 }
