@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseFragment;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerOneComponent;
@@ -46,6 +45,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
     @BindView(R.id.ll_status2) AutoLinearLayout llStatus2;
     @BindView(R.id.tv_tjcy_content) TextView tvTjcyContent;
     @BindView(R.id.tv_details) TextView tvDetails;
+    @BindView(R.id.tv_tijian) TextView tvTijian;
 
 
     @Nullable
@@ -57,22 +57,26 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
         Log.e("wh", "OneFragment");
         return view;
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewCreated = true;
         initDataFromLocal();
     }
+
     private boolean isload;
+
     @Override
     protected void initDataFromLocal() {
-        if (!isViewCreated || !isUIVisible||isload ) {
+        if (!isViewCreated || !isUIVisible || isload) {
             return;
         }
         isload = true;
 //        Log.e("wh", "OneFragment 加载数据");
         initData();
     }
+
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("uuid", Contains.uuid);
@@ -94,6 +98,12 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("开始成立阶段-未开始");
             tvTjcyContent.setText("当前小区已具备成立业委会条件\n您可以向街道申请成立业委会");
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1) {
+            llStatus1.setVisibility(View.VISIBLE);
+            tvTijian.setVisibility(View.GONE);
+            tvTjcyContent.setVisibility(View.GONE);
+            tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
+            tvStatus.setText("开始成立阶段-进行中");
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
