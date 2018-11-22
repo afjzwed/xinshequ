@@ -18,7 +18,7 @@ public class YwhTuiJianAdapter extends BaseQuickAdapter<YwhTj.ResultsBean,BaseVi
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, YwhTj.ResultsBean s) {
-        baseViewHolder.setText(R.id.tv_name, s.getCfname()).setText(R.id.tv_qu, s.getExpect())
+        baseViewHolder.setText(R.id.tv_name, s.getName()).setText(R.id.tv_qu, s.getArea())
                 .setText(R.id.tv_ld, s.getBuilding()).setText(R.id.tv_dy, s.getUnit()).setText(R.id.tv_fh, s.getRoomNumber())
                 .addOnClickListener(R.id.tv_tj);
     }
