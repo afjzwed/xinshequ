@@ -1,4 +1,5 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
+
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -6,6 +7,7 @@ import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.YwhMember;
+import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.YwhMemberShowContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.YwhMemberShowActivity;
 
@@ -13,7 +15,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.inject.Inject;
+
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
@@ -23,7 +27,7 @@ import io.reactivex.functions.Consumer;
  * @Description: presenter of YwhMemberShowActivity
  * @date 2018/11/07 20:37:02
  */
-public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberShowContractPresenter{
+public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberShowContractPresenter {
 
     HttpAPIWrapper httpAPIWrapper;
     private final YwhMemberShowContract.View mView;
@@ -31,12 +35,14 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
     private YwhMemberShowActivity mActivity;
 
     @Inject
-    public YwhMemberShowPresenter(@NonNull HttpAPIWrapper httpAPIWrapper, @NonNull YwhMemberShowContract.View view, YwhMemberShowActivity activity) {
+    public YwhMemberShowPresenter(@NonNull HttpAPIWrapper httpAPIWrapper, @NonNull YwhMemberShowContract.View view,
+                                  YwhMemberShowActivity activity) {
         mView = view;
         this.httpAPIWrapper = httpAPIWrapper;
         mCompositeDisposable = new CompositeDisposable();
         this.mActivity = activity;
     }
+
     @Override
     public void subscribe() {
 
@@ -45,13 +51,13 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
     @Override
     public void unsubscribe() {
         if (!mCompositeDisposable.isDisposed()) {
-             mCompositeDisposable.dispose();
+            mCompositeDisposable.dispose();
         }
     }
 
     @Override
     public void getData(LinkedHashMap<String, String> map, boolean isRefresh) {
-        httpAPIWrapper.getMemberShowList(map).subscribe(new Consumer<YwhMember>() {
+        Disposable subscribe = httpAPIWrapper.getMemberShowList(map).subscribe(new Consumer<YwhMember>() {
             @Override
             public void accept(YwhMember baseEntity) throws Exception {
                 if (baseEntity.isSuccess()) {
@@ -61,7 +67,6 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
                         mView.setData(false, baseEntity);
                     }
                 } else {
-//                    Log.e("wh", "sfsdf");
                     mView.setError();
                 }
             }
@@ -69,8 +74,7 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
-//                Log.e("wh", "sfsdf1");
-//                mView.setError();
+                mView.setError();
             }
         }, new Action() {
             @Override
@@ -78,5 +82,6 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
                 KLog.i("onComplete");
             }
         });
+        mCompositeDisposable.add(subscribe);
     }
 }

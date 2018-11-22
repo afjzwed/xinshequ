@@ -159,7 +159,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         swipRefresh.setRefreshing(false);//加载完成,不显示进度条
 //        fkyjListAdapter.setEmptyView(notDataView);
         ywhMemberShowAdapter.setNewData(new ArrayList<>());
-        ToastUtil.show(this, "加载失败");
+//        ToastUtil.show(this, "加载失败");
     }
 
     @Override

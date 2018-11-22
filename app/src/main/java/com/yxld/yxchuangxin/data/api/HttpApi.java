@@ -82,6 +82,7 @@ import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhFkyj;
 import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.entity.YwhInfo;
+import com.yxld.yxchuangxin.entity.YwhMember;
 import com.yxld.yxchuangxin.entity.YwhSmrzResult;
 import com.yxld.yxchuangxin.entity.YwhTj;
 import com.yxld.yxchuangxin.entity.camera.ShareFamily;
@@ -795,7 +796,7 @@ public interface HttpApi {
 
     @FormUrlEncoded
     @POST(URL_YWH_GETMEMBERSHOWLIST)
-    Observable<BaseEntity> getMemberShowList(@FieldMap Map<String, RequestBody> params);
+    Observable<YwhMember> getMemberShowList(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_YWH_GETSURVEYLIST)
