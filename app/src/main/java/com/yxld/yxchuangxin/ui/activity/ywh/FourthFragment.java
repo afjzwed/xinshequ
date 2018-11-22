@@ -124,7 +124,7 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                 ivNoData.setVisibility(View.VISIBLE);
                 tvStatus.setText("候选人确定阶段-未开始");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
-                skip =0;
+                skip = 0;
                 break;
             case 1:
                 if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
@@ -204,10 +204,15 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                 switch (skip) {
                     case 1:
                         //公示类型 6启动候选人推荐
-                        intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
-                        // .FlowBean.GongshiBean
-                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
-                        startActivity(intent);
+                        if (null != ywhInfo.getData().getFlow().getGongshi()) {
+                            intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
+                            // .FlowBean.GongshiBean
+                            intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getActivity(), "没有公示", Toast.LENGTH_SHORT).show();
+                        }
+
                         break;
                     case 2:
                         //公示类型 3:候选人名单公示
@@ -216,22 +221,33 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
 //                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
 //                        intent.putExtra("ywh_position", 3);
 //                        startActivity(intent);
-                        Bundle bundle1 = new Bundle();
-                        bundle1.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
-                                .getFlow().getConfirmPeople());//人员列表
-                        bundle1.putInt("ywh_position", 3);
-                        bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-//                        bundle1.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表不传
-                        bundle1.putInt("isYjfk",0);
-                        startActivity(CheckNoticeActivity.class, bundle1);//成员名单公示
+                        if (null != ywhInfo.getData().getFlow().getConfirmPeople() && ywhInfo.getData().getFlow()
+                                .getConfirmPeople().size() > 0) {
+                            Bundle bundle1 = new Bundle();
+                            bundle1.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                    .getFlow().getConfirmPeople());//人员列表
+                            bundle1.putInt("ywh_position", 3);
+                            bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+//                        bundle1.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+// .getData().getFlow().getFiles());//附件列表不传
+                            bundle1.putInt("isYjfk", 0);
+                            startActivity(CheckNoticeActivity.class, bundle1);//成员名单公示
+                        } else {
+                            Toast.makeText(getActivity(), "没有人员列表", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 3:
 //                        intent = new Intent(getActivity(), CymdActivity.class);//传 confirmPeople集合
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
-                                .getFlow().getConfirmPeople());
-                        bundle.putInt("isYjfk", 1);
-                        startActivity(CymdActivity.class, bundle);//成员名单公示
+                        if (ywhInfo.getData().getFlow().getConfirmPeople() != null && ywhInfo.getData()
+                                .getFlow().getConfirmPeople().size() > 0) {
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                    .getFlow().getConfirmPeople());
+                            bundle.putInt("isYjfk", 1);
+                            startActivity(CymdActivity.class, bundle);//成员名单公示
+                        } else {
+                            Toast.makeText(getActivity(), "没有成员列表", Toast.LENGTH_SHORT).show();
+                        }
                         break;
                 }
                 break;

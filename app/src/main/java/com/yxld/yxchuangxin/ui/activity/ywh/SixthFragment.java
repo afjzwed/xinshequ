@@ -92,13 +92,14 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
 //                ywhAccessoryAdapter.getData().get(position);
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
-                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("address", filesBean.getUrl());
-                intent.putExtras(bundle);
-                startActivity(intent);
-
-                Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
+                if (filesBean != null) {
+                    Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("address", filesBean.getUrl());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
+//                Toast.makeText(getActivity(), "点击" + position, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
@@ -172,8 +173,10 @@ public class SixthFragment extends BaseYwhFragment implements SixthContract.View
                 autollData0.setVisibility(View.VISIBLE);
                 autollData1.setVisibility(View.VISIBLE);
                 autollData2.setVisibility(View.VISIBLE);
-                tvContentHead.setText("备案名称：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
-                tvContentFoot.setText("备案时间：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianTime());
+                if (null!=ywhInfo.getData().getFlow().getBeianInfo()) {
+                    tvContentHead.setText("备案名称：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianmingc());
+                    tvContentFoot.setText("备案时间：" + ywhInfo.getData().getFlow().getBeianInfo().getBeianTime());
+                }
                 tvStatus.setText("备案阶段-已完成");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
 

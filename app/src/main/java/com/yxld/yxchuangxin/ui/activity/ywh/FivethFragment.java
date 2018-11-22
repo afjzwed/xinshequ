@@ -104,13 +104,13 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
-
-                Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("address", filesBean.getUrl());
-                intent.putExtras(bundle);
-                startActivity(intent);
-
+                if (null != filesBean) {
+                    Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("address", filesBean.getUrl());
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
 //                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -327,11 +327,15 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                     case 2:
 //                        intent = new Intent(getActivity(), ResultShowActivity.class);//传公示 和 附件fileurl
 //                        startActivity(intent);
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
-                                .getData().getFlow().getFiles());
-                        startActivity(ResultShowActivity.class, bundle);//成员名单公示
+                        if (null != ywhInfo.getData().getFlow().getGongshi()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                            bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+                                    .getData().getFlow().getFiles());
+                            startActivity(ResultShowActivity.class, bundle);//成员名单公示
+                        } else {
+                            Toast.makeText(getActivity(),"没有公示",Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 3:
                         intent = new Intent(getActivity(), YwhMemberShowActivity.class);
