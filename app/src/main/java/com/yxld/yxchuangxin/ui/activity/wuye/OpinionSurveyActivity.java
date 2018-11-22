@@ -139,6 +139,10 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
         map.put("uuid", Contains.uuid);
         map.put("page", page + "");
         map.put("rows", rows + "");
+        map.put("projectId", "" + Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoupanId());//项目ID
+        map.put("period", "" + Contains.appYezhuFangwus.get(Contains.curFangwu).getXiangmuLoupan());//期/区（没有传项目名）
+        map.put("building", "" + Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong());//楼栋
+        map.put("unit", "" + Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan());//单元
         map.put("subjectType", "1");
 
         mPresenter.getData(map, isRefresh);

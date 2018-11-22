@@ -330,8 +330,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         Bundle bundle = new Bundle();
                         bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
                         bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
-                                .getData()
-                                .getFlow().getFiles());
+                                .getData().getFlow().getFiles());
                         startActivity(ResultShowActivity.class, bundle);//成员名单公示
                         break;
                     case 3:

@@ -793,13 +793,9 @@ public interface HttpApi {
     @POST(URL_YWH_COMMITFKYJ)
     Observable<BaseEntity> commitFkyj(@FieldMap Map<String, RequestBody> params);
 
-//    @FormUrlEncoded
-//    @POST(URL_YWH_COMMITFKYJ2 + "/" + "{fwbh}" + "/" + "{uuid}")
-//    Observable<BaseEntity> commitFkyj2(@Path("fwbh") String fwid, @Path("uuid") String uuid, @FieldMap Map<String,
-//            RequestBody> params);
-
-    @GET(URL_YWH_GETMEMBERSHOWLIST)
-    Observable<BaseEntity> getMemberShowList(@QueryMap Map<String, RequestBody> params);
+    @FormUrlEncoded
+    @POST(URL_YWH_GETMEMBERSHOWLIST)
+    Observable<BaseEntity> getMemberShowList(@FieldMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(URL_YWH_GETSURVEYLIST)

@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
@@ -60,6 +61,7 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
                         mView.setData(false, baseEntity);
                     }
                 } else {
+//                    Log.e("wh", "sfsdf");
                     mView.setError();
                 }
             }
@@ -67,7 +69,8 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
-                mView.setError();
+//                Log.e("wh", "sfsdf1");
+//                mView.setError();
             }
         }, new Action() {
             @Override

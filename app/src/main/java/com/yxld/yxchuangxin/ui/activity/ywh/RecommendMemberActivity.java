@@ -110,7 +110,7 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
 
     @OnClick(R.id.bt_recommend_member)
     public void onViewClicked() {
-        Toast.makeText(this, "推荐筹备组成员", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "推荐筹备组成员", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, HouxuanListActivity.class);
         startActivity(intent);
     }
