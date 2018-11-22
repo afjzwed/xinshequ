@@ -815,13 +815,13 @@ public interface API {
     String URL_YEYWEIHUI = "http://192.168.8.223:8080";
     String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
-    String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/api/app/supervise/app/conference/ylist";//意见反馈列表
+    String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/supervise/app/conference/ylist";//意见反馈列表
 
-    String URL_YWH_COMMITFKYJ = URL_YEYWEIHUI + "/api/app/supervise/app/conference/yadd";//意见反馈提交
+    String URL_YWH_COMMITFKYJ = URL_YEYWEIHUI + "/supervise/app/conference/yadd";//意见反馈提交
 
     String URL_YWH_GETMEMBERSHOWLIST = URL_YEYWEIHUI + "/supervise/app/conference/plist";//业主大会人员列表
 
-    String URL_YWH_GETSURVEYLIST = URL_YEYWEIHUI + "/api/app/supervise/app/research/slist";//民意调查列表
+    String URL_YWH_GETSURVEYLIST = URL_YEYWEIHUI + "/supervise/app/research/slist";//民意调查列表
 
     String URL_YWH_GETRECOMMEND = URL_YEYWEIHUI + "/app/obtain/list";//候选人推荐列表
 
