@@ -99,7 +99,7 @@ public class UIUtils {
     public static int widthDesignPx2RealPx(Activity context, float designPx) {
         int realWidth = getDisplayWidth(context);
 
-        return (int) (realWidth / 1080 * designPx);
+        return (int) (realWidth / 1080f * designPx);
     }
 
 

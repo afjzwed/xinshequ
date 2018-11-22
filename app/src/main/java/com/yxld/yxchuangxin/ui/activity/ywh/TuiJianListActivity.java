@@ -84,7 +84,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) { // 当按了搜索之后关闭软键盘
                     ((InputMethodManager) etSearch.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
                             .hideSoftInputFromWindow(TuiJianListActivity.this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
-
+                    page = 1;
                     initData();
                 }
                 return false;
@@ -152,6 +152,11 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
 
             }
         });
+
+        WindowManager.LayoutParams lp = ywhTjDialog.getWindow().getAttributes();
+        lp.width = (UIUtils.getDisplayWidth(this)-UIUtils.widthDesignPx2RealPx(this,180f)); //设置宽度
+        ywhTjDialog.getWindow().setAttributes(lp);
+
     }
 
     public void hintKeyBoard() { //拿到InputMethodManager

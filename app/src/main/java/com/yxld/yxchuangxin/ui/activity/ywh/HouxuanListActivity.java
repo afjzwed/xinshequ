@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
+import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
@@ -133,6 +134,9 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
                 }
             }
         });
+        WindowManager.LayoutParams lp = ywhTjDialog.getWindow().getAttributes();
+        lp.width = (UIUtils.getDisplayWidth(this)-UIUtils.widthDesignPx2RealPx(this,180f)); //设置宽度
+        ywhTjDialog.getWindow().setAttributes(lp);
     }
 
     private void initRv() {
