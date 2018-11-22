@@ -196,13 +196,6 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             llTjcy1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
-//                    intent.putExtra("ywh_position", 2);
-//                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
-//                            .getFlow().getConfirmPeople());//人员列表
-//                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-//                    intent.putExtra("isYjfk",0);
-//                    startActivity(intent);
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());//人员列表
                     bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表
@@ -215,7 +208,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
-            llStatus3.setVisibility(View.VISIBLE);
+
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("筹备组工作阶段-已完成");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
@@ -230,6 +223,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                     startActivity(PqrzResultActivity.class);
                 }
             });
+            if (ywhInfo.getData().getFlow().getGongshi() != null) {
+                llStatus3.setVisibility(View.VISIBLE);
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
             tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
@@ -249,6 +244,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                     startActivity(intent);
                 }
             });
+            }
         }
     }
 
