@@ -137,7 +137,7 @@ public class MyALYReceiver extends MessageReceiver {
             intent.setClass(context, YeWeiHuiActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
-        } else if (customs != null && "wj".contains(customs)) {
+        } else if (customs != null && "wj".equals(customs)) {
             intent.setClass(context, OpinionSurveyActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);

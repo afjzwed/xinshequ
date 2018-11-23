@@ -145,85 +145,125 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             llStatus3.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_ff9e04));
             tvStatus.setText("筹备组工作阶段-未开始");
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi() ==
-                null) {
+        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
-            llStatus3.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
             tvStatus.setText("筹备组工作阶段-进行中");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
-            tvStep.setText("请及时领取票权");
-            tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
-                    .getProprietorAduitVo().getAduitTime() + "</font>" +
-                    "之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。"));
-            tvTjcy.setText("立即领取票权");
+            tvStep.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitname());
+            if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == -1) {
+                //审核失败
+                tvTjcy.setText("查看");
+                tvDetails.setText(Html.fromHtml("<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitTime() + "</font>" +
+                        "之前重新申请！否则将无法参与业主大会投票。"));
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3) {
+                //审核中
+                tvTjcy.setText("查看");
+                tvDetails.setText("您的认证信息审核中！");
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 2) {
+                //审核成功
+                tvTjcy.setText("查看");
+                tvDetails.setText("恭喜您已成功领取票权！");
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 4) {
+                //未提交资料
+                tvTjcy.setText("立即领取票权");
+                tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitTime() + "</font>" +
+                        "之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。"));
+                tvShzt.setVisibility(View.GONE);
+            }
+            //点击跳转实名票权认证或票权认证状态页
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext().equals("暂未提交资料")) {
+                    if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 4) {
                         startActivity(PqrzActivity.class);
                     } else {
                         startActivity(PqrzResultActivity.class);
                     }
                 }
             });
-            tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
-        } else if (ywhInfo.getData().getFlow().getPhaseState() == 1 && ywhInfo.getData().getFlow().getGongshi() !=
-                null) {
-            llStatus1.setVisibility(View.GONE);
-            llStatus2.setVisibility(View.VISIBLE);
-            llStatus3.setVisibility(View.VISIBLE);
-            tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
-            tvStatus.setText("筹备组工作阶段-进行中");
-            imgStep.setImageResource(R.mipmap.ic_ywh_start4);
-            tvStep.setText("请及时领取票权");
-            tvDetails.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitOpinion());
-            tvTjcy.setText("查看");
-            tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
-            llTjcy.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(PqrzResultActivity.class);
-                }
-            });
-            imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
-            tvStep1.setText("关于业主大会筹备文件公示的通知");
-            tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
-            tvTjcy1.setText("查看业主大会筹备文件");
-            llTjcy1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());//人员列表
-                    bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表
-                    bundle.putInt("isYjfk",0);
-                    bundle.putInt("ywh_position",2);
-                    bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-                    startActivity(CheckNoticeActivity.class,bundle);//成员名单公示
-                }
-            });
+
+            if (ywhInfo.getData().getFlow().getGongshi() == null) {
+                llStatus2.setVisibility(View.GONE);
+            } else {
+                llStatus3.setVisibility(View.VISIBLE);
+                imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
+                tvStep1.setText("关于业主大会筹备文件公示的通知");
+                tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
+                tvTjcy1.setText("查看业主大会筹备文件");
+                llTjcy1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());//人员列表
+                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表
+                        bundle.putInt("isYjfk", 0);
+                        bundle.putInt("ywh_position", 2);
+                        bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                        startActivity(CheckNoticeActivity.class, bundle);//成员名单公示
+                    }
+                });
+            }
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
-
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("筹备组工作阶段-已完成");
             imgStep.setImageResource(R.mipmap.ic_ywh_start4);
-            tvStep.setText("筹备工作已开始，请及时领取票权");
-            tvDetails.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitOpinion());
-            tvTjcy.setText("查看");
-            tvShzt.setVisibility(View.VISIBLE);
-            tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            tvStep.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitname());
+            if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == -1) {
+                //审核失败
+                tvTjcy.setText("查看");
+                tvDetails.setText(Html.fromHtml("<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitTime() + "</font>" +
+                        "之前重新申请！否则将无法参与业主大会投票。"));
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3) {
+                //审核中
+                tvTjcy.setText("查看");
+                tvDetails.setText("您的认证信息审核中！");
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 2) {
+                //审核成功
+                tvTjcy.setText("查看");
+                tvDetails.setText("恭喜您已成功领取票权！");
+                tvShzt.setVisibility(View.VISIBLE);
+                tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 4) {
+                //未提交资料
+                tvTjcy.setText("立即领取票权");
+                tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitTime() + "</font>" +
+                        "之前完成实名认证以领取票权！每个业主仅能领取一张票权，未领取票权的业主将无法参与业主大会投票。"));
+                tvShzt.setVisibility(View.GONE);
+            }
+            //点击跳转实名票权认证或票权认证状态页
             llTjcy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(PqrzResultActivity.class);
+                    if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 4) {
+                        startActivity(PqrzActivity.class);
+                    } else {
+                        startActivity(PqrzResultActivity.class);
+                    }
                 }
             });
-            if (ywhInfo.getData().getFlow().getGongshi() != null) {
+            if (ywhInfo.getData().getFlow().getGongshi() == null) {
+                llStatus3.setVisibility(View.GONE);
+            } else {
                 llStatus3.setVisibility(View.VISIBLE);
             imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
             tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
