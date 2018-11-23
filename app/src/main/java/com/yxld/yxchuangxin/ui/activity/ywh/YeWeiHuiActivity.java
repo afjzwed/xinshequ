@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,14 +45,9 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     ScrollIndicatorView tabIndicator;
     @BindView(R.id.tab_viewPager)
     ViewPager tabViewPager;
-
     private IndicatorViewPager indicatorViewPager;
     private MyAdapter myAdapter;
-
     private int currrentPosition = 0;//当前阶段
-    private int currentPhaseStatus = -1;//当前阶段状态(-1:未开始,1:进行中,2已完成)
-
-    private int[] status = new int[6];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,25 +59,13 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         setContentView(R.layout.activity_yeweihui);
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-//                toolbar.setTitle("改变标题");
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
-
         //设置指示器线的颜色
         tabIndicator.setScrollBar(new ColorBar(this, Color.parseColor("#ffffff"), 6));
-        //设置指示器文字的颜色
-//        tabIndicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.RED, Color.GRAY));
         //懒加载界面和防止重新创建界面
-//        tabViewPager.setOffscreenPageLimit(4);
-
         indicatorViewPager = new IndicatorViewPager(tabIndicator, tabViewPager);
-
-        // 禁止viewpager的滑动事件
-//        indicatorViewPager.setPageCanScroll(false);
-        //设置viewpager保留界面不重新加载的页面数量
         tabViewPager.setOffscreenPageLimit(6);
         tabIndicator.setSplitAuto(true);
-
     }
 
     @Override
@@ -93,7 +75,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     @Override
     public void setData(YwhCurrentflow ywhCurrentflow) {
-//        Log.e("whlog", baseEntity.toString());"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"
         if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
             YwhCurrentflow.DataBean.FlowBean currentFlow = ywhCurrentflow.getData().getFlow();
             if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getPhaseName())) {
@@ -117,13 +98,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                         currrentPosition = 5;
                         break;
                 }
-                status[0] = ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
-                status[1] = ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
-                status[2] = ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
-                status[3] = ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
-                status[4] = ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
-                status[5] = ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
-                currentPhaseStatus = currentFlow.getPhaseState();
                 myAdapter = new MyAdapter(getSupportFragmentManager(), ywhCurrentflow);
                 indicatorViewPager.setAdapter(myAdapter);
                 indicatorViewPager.setCurrentItem(currrentPosition, false);
@@ -131,13 +105,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         }
     }
 
-    public int getCurrentPosition() {
-        return currrentPosition;
-    }
 
-    public int getCurrentPhaseStatus(int currentFlow) {
-        return status[currentFlow];
-    }
 
     @Override
     protected void setupActivityComponent() {
@@ -192,12 +160,10 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     private class MyAdapter extends IndicatorViewPager.IndicatorFragmentPagerAdapter {
         private String[] tabNames = {"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"};
-        private LayoutInflater inflater;
         private YwhCurrentflow currentflow;
 
         public MyAdapter(FragmentManager fragmentManager, YwhCurrentflow ywhCurrentflow) {
             super(fragmentManager);
-            inflater = LayoutInflater.from(getApplicationContext());
             currentflow = ywhCurrentflow;
         }
 
@@ -208,30 +174,13 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
         @Override
         public View getViewForTab(int position, View convertView, ViewGroup container) {
-            // TODO: 2018/11/6 这里定制
-//            if (convertView == null) {
-//                convertView = inflater.inflate(R.layout.yeh_tab, container, false);
-//            }
-//            convertView = inflater.inflate(R.layout.yeh_tab, container, false);
+
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
             TextView textView = (TextView) view.findViewById(R.id.tv_selector);
-//            if (position < currrentPosition) {
-//                imageView.setImageResource(R.drawable.ywtab_1_selector);
-//            } else if (position == currrentPosition) {
-//                if (status[position] == 2) {//-1:未开始,1:进行中,2已完成
-//                    imageView.setImageResource(R.drawable.ywtab_1_selector);
-//                } else if (status[position] == 1) {
-//                    imageView.setImageResource(R.drawable.ywtab_3_selector);
-//                } else {
-//                    imageView.setImageResource(R.drawable.ywtab_2_selector);
-//                }
-//            } else if (position > currrentPosition) {
-//                imageView.setImageResource(R.drawable.ywtab_2_selector);
-//            }
-
             for (int i = 0; i < currentflow.getData().getFlows().size(); i++) {
                 if (position == i) {
+                    //1进行中-1未开始2已完成
                     if (currentflow.getData().getFlows().get(i).getPhaseState() == 1) {
                         imageView.setImageResource(R.drawable.ywtab_3_selector);
                     } else if (currentflow.getData().getFlows().get(i).getPhaseState() == 2) {
@@ -247,7 +196,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
         @Override
         public Fragment getFragmentForPage(int position) {
-            //测试
             if (position == 0) {
                 return new OneFragment();
             } else if (position == 1) {
