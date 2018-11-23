@@ -92,18 +92,8 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
                 Intent intent = new Intent(OpinionSurveyActivity.this, WebviewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("name", "投票");
-                String url = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
-                        "&uuid=" + Contains.uuid + "&expect=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
-                        .curFangwu)
-                        .getXiangmuLoupan()) + "&building=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
-                        .curFangwu)
-                        .getFwLoudong()) + "&unit=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains
-                        .curFangwu).getFwDanyuan())
-                        + "&room_number=" + stringToUnicode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                        .getFwFanghao());
-
                 try {
-                    String url1 = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
+                    String url = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
                             "&uuid=" + Contains.uuid + "&expect=" + URLEncoder.encode(Contains.appYezhuFangwus.get
                             (Contains.curFangwu)
                             .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains.appYezhuFangwus
@@ -112,12 +102,11 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
                             (Contains.curFangwu).getFwDanyuan(), "UTF-8")
                             + "&room_number=" + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
                             .getFwFanghao(), "UTF-8");
-                    bundle.putString("address", url1);
-                    Log.e("wh", url1);
+                    bundle.putString("address", url);
+                    Log.e("wh", url);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 }
-
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -234,6 +223,4 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
         String str = unicode.toString();
         return str.replaceAll("\\\\", "0x");
     }
-
-
 }

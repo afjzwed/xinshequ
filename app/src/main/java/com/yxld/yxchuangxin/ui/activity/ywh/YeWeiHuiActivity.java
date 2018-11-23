@@ -93,43 +93,40 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
     @Override
     public void setData(YwhCurrentflow ywhCurrentflow) {
-
 //        Log.e("whlog", baseEntity.toString());"开始成立", "成立筹备组", "筹备组工作", "候选人确认", "业主大会", "备案阶段"
         if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
             YwhCurrentflow.DataBean.FlowBean currentFlow = ywhCurrentflow.getData().getFlow();
             if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getPhaseName())) {
-
                 switch (currentFlow.getPhaseName()) {
                     case "开始成立":
                         currrentPosition = 0;
-                        status[0] = ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
                         break;
                     case "成立筹备组":
                         currrentPosition = 1;
-                        status[1] = ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
                         break;
                     case "筹备组工作":
                         currrentPosition = 2;
-                        status[2] = ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
                         break;
                     case "候选人确认":
                         currrentPosition = 3;
-                        status[3] = ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
                         break;
                     case "业主大会":
                         currrentPosition = 4;
-                        status[4] = ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
                         break;
                     case "备案阶段":
                         currrentPosition = 5;
-                        status[5] = ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
                         break;
                 }
+                status[0] = ywhCurrentflow.getData().getFlows().get(0).getPhaseState();
+                status[1] = ywhCurrentflow.getData().getFlows().get(1).getPhaseState();
+                status[2] = ywhCurrentflow.getData().getFlows().get(2).getPhaseState();
+                status[3] = ywhCurrentflow.getData().getFlows().get(3).getPhaseState();
+                status[4] = ywhCurrentflow.getData().getFlows().get(4).getPhaseState();
+                status[5] = ywhCurrentflow.getData().getFlows().get(5).getPhaseState();
                 currentPhaseStatus = currentFlow.getPhaseState();
                 myAdapter = new MyAdapter(getSupportFragmentManager(), ywhCurrentflow);
                 indicatorViewPager.setAdapter(myAdapter);
                 indicatorViewPager.setCurrentItem(currrentPosition, false);
-
             }
         }
     }
@@ -219,17 +216,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
             TextView textView = (TextView) view.findViewById(R.id.tv_selector);
-            for (int i = 0; i < currentflow.getData().getFlows().size(); i++) {
-                if (position == i) {
-                    if (currentflow.getData().getFlows().get(i).getPhaseState() == 1) {
-                    imageView.setImageResource(R.drawable.ywtab_3_selector);
-                    } else if (currentflow.getData().getFlows().get(i).getPhaseState() == 2) {
-                        imageView.setImageResource(R.drawable.ywtab_1_selector);
-                } else {
-                    imageView.setImageResource(R.drawable.ywtab_2_selector);
-                    }
-                }
-            }
 //            if (position < currrentPosition) {
 //                imageView.setImageResource(R.drawable.ywtab_1_selector);
 //            } else if (position == currrentPosition) {
@@ -243,6 +229,18 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 //            } else if (position > currrentPosition) {
 //                imageView.setImageResource(R.drawable.ywtab_2_selector);
 //            }
+
+            for (int i = 0; i < currentflow.getData().getFlows().size(); i++) {
+                if (position == i) {
+                    if (currentflow.getData().getFlows().get(i).getPhaseState() == 1) {
+                        imageView.setImageResource(R.drawable.ywtab_3_selector);
+                    } else if (currentflow.getData().getFlows().get(i).getPhaseState() == 2) {
+                        imageView.setImageResource(R.drawable.ywtab_1_selector);
+                    } else {
+                        imageView.setImageResource(R.drawable.ywtab_2_selector);
+                    }
+                }
+            }
             textView.setText(tabNames[position]);
             return view;
         }

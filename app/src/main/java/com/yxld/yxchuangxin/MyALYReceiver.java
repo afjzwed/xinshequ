@@ -14,6 +14,7 @@ import com.yxld.yxchuangxin.ui.activity.goods.OrderListActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.ComplainListActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FixListActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.MessageActivityActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.OpinionSurveyActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -134,6 +135,10 @@ public class MyALYReceiver extends MessageReceiver {
             context.startActivity(intent);
         } else if (customs != null && customs.contains("ywh")) {
             intent.setClass(context, YeWeiHuiActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } else if (customs != null && "wj".contains(customs)) {
+            intent.setClass(context, OpinionSurveyActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         }
