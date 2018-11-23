@@ -756,6 +756,18 @@ public class YwhCurrentflow extends BaseEntity {
 
                 private String endTime;
 
+                private int isVote;/*-1否 1是*/
+
+                private int subjectId;
+
+                public int getSubjectId() {
+                    return subjectId;
+                }
+
+                public void setSubjectId(int subjectId) {
+                    this.subjectId = subjectId;
+                }
+
                 public int getVoteType() {
                     return voteType;
                 }
@@ -795,8 +807,6 @@ public class YwhCurrentflow extends BaseEntity {
                 public void setIsVote(int isVote) {
                     this.isVote = isVote;
                 }
-
-                private int isVote;/*-1否 1是*/
 
 
             }

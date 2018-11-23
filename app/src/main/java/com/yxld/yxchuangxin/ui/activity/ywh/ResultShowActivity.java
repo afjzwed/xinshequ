@@ -78,7 +78,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ResultShowActivity.this,FkyjActivity.class);
-                intent.putExtra("ywh_gongshiId", "" + data.getId());
+                intent.putExtra("ywh_gongshiId", data.getId());
                 intent.putExtra("ywh_position", 4);
                 startActivity(intent);
             }

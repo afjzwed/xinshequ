@@ -30,6 +30,8 @@ import com.yxld.yxchuangxin.ui.activity.ywh.presenter.FivethPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.YwhAccessoryAdapter;
 import com.zhy.autolayout.AutoLinearLayout;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -320,13 +322,32 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         if (tvClickName2.getText().toString().equals("已投票")) {
                             Toast.makeText(getActivity(), "已投票", Toast.LENGTH_SHORT).show();
                         } else if (tvClickName2.getText().toString().equals("未投票")) {
-                            intent = new Intent(getActivity(), WebviewActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putString("name", "投票");
-                            bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" + Contains
-                                    .uuid);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
+//                            intent = new Intent(getActivity(), WebviewActivity.class);
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("name", "投票");
+//                            bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" +
+// Contains
+//                                    .uuid);
+//                            intent.putExtras(bundle);
+//                            startActivity(intent);
+                            try {
+                                String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo.getData()
+                                        .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid + "&expect="
+                                        + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                        .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains
+                                        .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(), "UTF-8") + "&unit="
+                                        + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                        .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
+                                        .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
+                                intent = new Intent(getActivity(), WebviewActivity.class);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("name", "投票");
+                                bundle.putString("address", url);
+                                intent.putExtras(bundle);
+                                startActivity(intent);
+                            } catch (UnsupportedEncodingException e) {
+                                e.printStackTrace();
+                            }
                         }
                         break;
                     case 2:
@@ -339,7 +360,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                                     .getData().getFlow().getFiles());
                             startActivity(ResultShowActivity.class, bundle);//成员名单公示
                         } else {
-                            Toast.makeText(getActivity(),"没有公示",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "没有公示", Toast.LENGTH_SHORT).show();
                         }
                         break;
                     case 3:

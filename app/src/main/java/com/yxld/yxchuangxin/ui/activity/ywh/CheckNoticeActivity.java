@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -89,16 +90,14 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         } else {
             tvMenu.setVisibility(View.GONE);
         }
-        tvMenu.setVisibility(View.VISIBLE);
         tvMenu.setText("意见反馈");
         tvMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CheckNoticeActivity.this, FkyjActivity.class);
-                intent.putExtra("ywh_gongshiId", "" + data.getId());
+                intent.putExtra("ywh_gongshiId", data.getId());
                 intent.putExtra("ywh_position", position);
                 startActivity(intent);
-//                startActivity(FkyjActivity.class);
             }
         });
         if (data != null) {
