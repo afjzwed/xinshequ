@@ -55,7 +55,7 @@
                 android:layout_marginTop="60px"
                 android:background="@drawable/bg_btn_ywh15"
                 android:gravity="center"
-                android:text="推荐筹备组成员"
+                android:text="推荐候选人成员"
                 android:textColor="@color/white"
                 android:textSize="52px"/>
         </com.zhy.autolayout.AutoLinearLayout>

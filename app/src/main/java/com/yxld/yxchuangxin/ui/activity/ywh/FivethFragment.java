@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -18,6 +19,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.main.WebviewActivity;
@@ -105,10 +107,13 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
                 if (null != filesBean) {
-                    Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("address", filesBean.getUrl());
-                    intent.putExtras(bundle);
+//                    Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("address", filesBean.getUrl());
+//                    intent.putExtras(bundle);
+//                    startActivity(intent);
+                    Uri uri = Uri.parse(API.ywh_pic + filesBean.getUrl());
+                    Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
 //                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();

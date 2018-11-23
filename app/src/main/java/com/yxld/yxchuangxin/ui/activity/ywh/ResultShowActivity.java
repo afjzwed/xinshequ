@@ -1,6 +1,7 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
+import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerResultShowComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.ResultShowContract;
@@ -92,15 +94,16 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-//                ywhAccessoryAdapter.getData().get(position);
+//                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
+//                Intent intent = new Intent(ResultShowActivity.this, YwhWebViewActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("address", filesBean.getUrl());
+//                intent.putExtras(bundle);
+//                startActivity(intent);
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
-                Intent intent = new Intent(ResultShowActivity.this, YwhWebViewActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("address", filesBean.getUrl());
-                intent.putExtras(bundle);
+                Uri uri = Uri.parse(API.ywh_pic + filesBean.getUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);
-
-//                Toast.makeText(ResultShowActivity.this, "点击" + position, Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
