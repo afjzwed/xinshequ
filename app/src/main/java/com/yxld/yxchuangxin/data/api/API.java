@@ -830,7 +830,7 @@ public interface API {
 
     //**********************业委会***********************//
 
-    String ywh_pic = "http://p9zwbgynz.bkt.clouddn.com/";//lt七牛访问地址
+    String ywh_pic = "http://pijfgvtlr.bkt.clouddn.com/";//lt七牛访问地址
     String url_ywh_lcxx = URL_YEYWEIHUI + "/supervise/app/conference/flowlist";
     String url_ywh_tjcbz = URL_YEYWEIHUI + "/supervise/app/prepare/recommend";//推荐筹备组成员理由
     String url_ywh_tjcbz_list = URL_YEYWEIHUI + "/supervise/app/prepare/cblist";//推荐筹备组成员列表

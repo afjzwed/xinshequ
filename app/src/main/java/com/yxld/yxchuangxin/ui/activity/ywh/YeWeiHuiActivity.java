@@ -219,19 +219,30 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
             TextView textView = (TextView) view.findViewById(R.id.tv_selector);
-            if (position < currrentPosition) {
-                imageView.setImageResource(R.drawable.ywtab_1_selector);
-            } else if (position == currrentPosition) {
-                if (status[position] == 2) {//-1:未开始,1:进行中,2已完成
-                    imageView.setImageResource(R.drawable.ywtab_1_selector);
-                } else if (status[position] == 1) {
+            for (int i = 0; i < currentflow.getData().getFlows().size(); i++) {
+                if (position == i) {
+                    if (currentflow.getData().getFlows().get(i).getPhaseState() == 1) {
                     imageView.setImageResource(R.drawable.ywtab_3_selector);
+                    } else if (currentflow.getData().getFlows().get(i).getPhaseState() == 2) {
+                        imageView.setImageResource(R.drawable.ywtab_1_selector);
                 } else {
                     imageView.setImageResource(R.drawable.ywtab_2_selector);
+                    }
                 }
-            } else if (position > currrentPosition) {
-                imageView.setImageResource(R.drawable.ywtab_2_selector);
             }
+//            if (position < currrentPosition) {
+//                imageView.setImageResource(R.drawable.ywtab_1_selector);
+//            } else if (position == currrentPosition) {
+//                if (status[position] == 2) {//-1:未开始,1:进行中,2已完成
+//                    imageView.setImageResource(R.drawable.ywtab_1_selector);
+//                } else if (status[position] == 1) {
+//                    imageView.setImageResource(R.drawable.ywtab_3_selector);
+//                } else {
+//                    imageView.setImageResource(R.drawable.ywtab_2_selector);
+//                }
+//            } else if (position > currrentPosition) {
+//                imageView.setImageResource(R.drawable.ywtab_2_selector);
+//            }
             textView.setText(tabNames[position]);
             return view;
         }
