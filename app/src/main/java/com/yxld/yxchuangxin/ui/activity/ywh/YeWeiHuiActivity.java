@@ -17,6 +17,7 @@ import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.ScrollIndicatorView;
 import com.shizhefei.view.indicator.slidebar.ColorBar;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
@@ -77,6 +78,10 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     public void setData(YwhCurrentflow ywhCurrentflow) {
         if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
             YwhCurrentflow.DataBean.FlowBean currentFlow = ywhCurrentflow.getData().getFlow();
+            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getYwhFlaseMsg())){
+                //流程失效提示
+                ToastUtil.showLong(currentFlow.getYwhFlaseMsg());
+            }
             if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getPhaseName())) {
                 switch (currentFlow.getPhaseName()) {
                     case "开始成立":

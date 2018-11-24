@@ -194,7 +194,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
             });
 
             if (ywhInfo.getData().getFlow().getGongshi() == null) {
-                llStatus2.setVisibility(View.GONE);
+                llStatus3.setVisibility(View.GONE);
             } else {
                 llStatus3.setVisibility(View.VISIBLE);
                 imgStep1.setImageResource(R.mipmap.ic_ywh_start5);

@@ -190,6 +190,15 @@ public class YwhCurrentflow extends BaseEntity {
             private List<FilesBean> files;//附件集合
             private List<BeianPeoplesBean> beianPeoples;//备案人员列表集合 YwhBeianPeople类：备案人员
             private BeianInfoBean beianInfo;//YwhBeian类 备案基本信息
+            private String ywhFlaseMsg;//流程是否失效
+
+            public String getYwhFlaseMsg() {
+                return ywhFlaseMsg;
+            }
+
+            public void setYwhFlaseMsg(String ywhFlaseMsg) {
+                this.ywhFlaseMsg = ywhFlaseMsg;
+            }
 
             public int getPhaseState() {
                 return phaseState;

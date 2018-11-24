@@ -61,7 +61,7 @@ public class FkyjActivity extends BaseActivity implements FkyjContract.View {
         ButterKnife.bind(this);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setBackgroundColor(getResources().getColor(R.color.color_2d97ff));
-        toolbar.setTitle("意见反馈");
+        toolbar.setTitle("反馈意见");
         moretabIndicator.setScrollBar(new DrawableBar(this, R.drawable.bg_btn_22_white, ScrollBar.Gravity
                 .CENTENT_BACKGROUND) {
             @Override
