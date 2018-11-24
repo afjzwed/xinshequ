@@ -88,8 +88,12 @@ public class Fkyj2Fragment extends BaseFragment implements Fkyj2Contract.View, S
         UIUtils.configSwipeRefreshLayoutColors(swipRefresh);
         swipRefresh.setOnRefreshListener(this);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fkyjListAdapter = new FkyjListAdapter(new ArrayList<>());
-
+        if (((FkyjActivity) getActivity()).getPosition()==1){
+            //筹备成立组阶段不需要回复
+            fkyjListAdapter = new FkyjListAdapter(new ArrayList<>(),false);
+        }else {
+            fkyjListAdapter = new FkyjListAdapter(new ArrayList<>(),true);
+        }
         fkyjListAdapter.setLoadMoreView(new CustomLoadMoreView());
         fkyjListAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override

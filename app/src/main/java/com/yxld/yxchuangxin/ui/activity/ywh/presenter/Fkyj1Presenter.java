@@ -59,7 +59,7 @@ public class Fkyj1Presenter implements Fkyj1Contract.Fkyj1ContractPresenter{
                         if (order.msg.equals("操作成功")) {
                             mView.setData();
                         } else {
-                            mView.setError();
+                            mView.setError(order.getMsg());
                         }
                     }
                 }, new Consumer<Throwable>() {
@@ -67,7 +67,7 @@ public class Fkyj1Presenter implements Fkyj1Contract.Fkyj1ContractPresenter{
                     public void accept(Throwable throwable) throws Exception {
                         //这里接收onError
                         KLog.i("onError的回调");
-                        mView.setError();
+//                        mView.setError();
                     }
                 }, new Action() {
                     @Override

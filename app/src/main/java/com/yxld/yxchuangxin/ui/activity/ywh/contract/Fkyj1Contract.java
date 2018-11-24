@@ -27,7 +27,7 @@ public interface Fkyj1Contract {
 
         void setData();
 
-        void setError();
+        void setError(String s);
         void commitFkyjSuccess(BaseEntity baseEntity);
     }
 

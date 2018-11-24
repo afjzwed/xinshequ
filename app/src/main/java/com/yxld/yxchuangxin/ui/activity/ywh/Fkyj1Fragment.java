@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.base.BaseFragment;
@@ -137,8 +138,8 @@ public class Fkyj1Fragment extends BaseFragment implements Fkyj1Contract.View {
     }
 
     @Override
-    public void setError() {
-        Toast.makeText(getActivity(), "提交失败", Toast.LENGTH_SHORT).show();
+    public void setError(String s) {
+        ToastUtil.showShort(s);
     }
 
     @Override

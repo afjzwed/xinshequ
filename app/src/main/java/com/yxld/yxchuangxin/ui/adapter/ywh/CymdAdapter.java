@@ -21,7 +21,7 @@ public class CymdAdapter extends BaseQuickAdapter<YwhCurrentflow.DataBean.FlowBe
     @Override
     protected void convert(BaseViewHolder baseViewHolder, YwhCurrentflow.DataBean.FlowBean.ConfirmPeopleBean s) {
         baseViewHolder.setText(R.id.tv_name, s.getCfname()).setText(R.id.tv_ld,  s
-                .getExpect()+"期-"+s.getBuilding()+"栋-" + s.getUnit() +"单元-" + s.getRoomNumber())
+                .getExpect()+"-"+s.getBuilding()+"栋-" + s.getUnit() +"单元-" + s.getRoomNumber())
                 .setText(R.id.tv_content, "简介：" + s.getDriscipt());
     }
 }

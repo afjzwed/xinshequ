@@ -117,7 +117,7 @@ public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
             tvStep.setText("筹备组成员公示");
             tvDetails.setVisibility(View.VISIBLE);
             tvDetails.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
-            tvTjcy.setText("查看筹备组成员公示信息");
+            tvTjcy.setText("查看筹备组成员公示内容");
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             type = 3;
             llStatus1.setVisibility(View.GONE);
@@ -190,7 +190,7 @@ public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
 //                    startActivity(CheckNoticeActivity.class);//查看通知
                     Bundle bundle1 = new Bundle();
                     bundle1.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());
-                    bundle1.putInt("isYjfk",1);
+                    bundle1.putInt("isYjfk",0);
                     bundle1.putInt("ywh_position",1);
                     bundle1.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
                     startActivity(CheckNoticeActivity.class,bundle1);//成员名单公示

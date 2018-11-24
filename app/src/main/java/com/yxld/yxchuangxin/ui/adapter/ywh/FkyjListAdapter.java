@@ -21,16 +21,22 @@ public class FkyjListAdapter extends BaseQuickAdapter<YwhFkyj.DataBean, BaseView
 
     private TextView tv_reply;
     private TextView tv_reply_content;
+    private boolean isShowHf;//是否显示回复
 
-    public FkyjListAdapter(List<YwhFkyj.DataBean> data) {
+    public FkyjListAdapter(List<YwhFkyj.DataBean> data,boolean isShowHf) {
         super(R.layout.item_fkyj_list, data);
+        this.isShowHf = isShowHf;
     }
 
     @Override
     protected void convert(BaseViewHolder baseViewHolder, YwhFkyj.DataBean dataBean) {
         tv_reply = baseViewHolder.getView(R.id.tv_reply);
         tv_reply_content = baseViewHolder.getView(R.id.tv_reply_content);
-
+        if(isShowHf){
+            tv_reply.setVisibility(View.VISIBLE);
+        }else {
+            tv_reply.setVisibility(View.INVISIBLE);
+        }
 
         baseViewHolder.setText(R.id.tv_time, dataBean.getSubtime()).setText(R.id.tv_content,dataBean.getResultdesc());
         if (TextUtils.isEmpty(dataBean.getResultcontent())) {
