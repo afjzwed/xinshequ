@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.Html;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -103,7 +103,7 @@ public class CheckNoticeActivity extends BaseActivity implements CheckNoticeCont
         if (data != null) {
             titleRecommendMember.setText("" + data.getTitle());
             tvSendTime.setText("发布时间：" + data.getStarttime());
-            tvNotice.setText("" + data.getContent());
+            tvNotice.setText(Html.fromHtml(data.getContent()));
         }
 
         if (listdata != null && listdata.size() > 0) {
