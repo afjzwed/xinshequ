@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -718,6 +719,36 @@ public class StringUitl {
         String dateString = formatter.format(currentTime);
         return dateString;
     }
+
+    /**
+     * 日期转换成字符串
+     *
+     * @param date
+     * @return str
+     */
+    public static String DateToStr(Date date) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String str = format.format(date);
+        return str;
+    }
+
+    /**
+     * 字符串转换成日期
+     *
+     * @param str
+     * @return date
+     */
+    public static Date StrToDate(String str) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = format.parse(str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+
 
     public static boolean hasEmptyItem(String... strings) {
         if (strings == null || strings.length == 0) {

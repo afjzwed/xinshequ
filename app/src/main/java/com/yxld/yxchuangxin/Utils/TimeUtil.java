@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.Utils;
 
 import com.socks.library.KLog;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -250,5 +251,17 @@ public class TimeUtil {
         }
         lastClickTime = curClickTime;
         return flag;
+    }
+
+    public static boolean isEarly(String string){
+        boolean before = false;
+        Date date=new Date();
+        DateFormat df=DateFormat.getDateTimeInstance();
+        try {
+            before  = date.before(df.parse(string));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return before;
     }
 }

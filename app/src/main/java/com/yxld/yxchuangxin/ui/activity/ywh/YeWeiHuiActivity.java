@@ -78,7 +78,7 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     public void setData(YwhCurrentflow ywhCurrentflow) {
         if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 200) {
             YwhCurrentflow.DataBean.FlowBean currentFlow = ywhCurrentflow.getData().getFlow();
-            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getYwhFlaseMsg())){
+            if (null != currentFlow && !TextUtils.isEmpty(currentFlow.getYwhFlaseMsg())) {
                 //流程失效提示
                 ToastUtil.showLong(currentFlow.getYwhFlaseMsg());
             }
@@ -109,7 +109,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             }
         }
     }
-
 
 
     @Override

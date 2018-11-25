@@ -17,6 +17,8 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.TimeUtil;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.API;
@@ -192,8 +194,15 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         ivImg.setImageResource(R.mipmap.ic_ywh_vote);
                         tvTitle.setText("线上投票");
                         tvTime1.setVisibility(View.VISIBLE);
-                        tvTime1.setText(ywhInfo.getData().getFlow().getVoteVo().getStartTime() + "至" + ywhInfo
-                                .getData().getFlow().getVoteVo().getEndTime());
+//                        tvTime1.setText(ywhInfo.getData().getFlow().getVoteVo().getStartTime() + "至" + ywhInfo
+//                                .getData().getFlow().getVoteVo().getEndTime());
+                        String startTime = ywhInfo.getData().getFlow().getVoteVo().getStartTime();
+                        String endTime = ywhInfo.getData().getFlow().getVoteVo().getEndTime();
+//                        startTime = startTime.substring(startTime.indexOf(" "));
+//                        endTime = endTime.substring(endTime.indexOf(" "));
+                        startTime = startTime.substring(0, startTime.indexOf(" "));
+                        endTime = endTime.substring(0, endTime.indexOf(" "));
+                        tvTime1.setText(startTime + "至" + endTime);
                         tvContent.setVisibility(View.VISIBLE);
                         tvContent.setText(ywhInfo.getData().getFlow().getVoteVo().getContent());
                         line.setVisibility(View.GONE);
@@ -322,34 +331,39 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         if (tvClickName2.getText().toString().equals("已投票")) {
                             Toast.makeText(getActivity(), "已投票", Toast.LENGTH_SHORT).show();
                         } else if (tvClickName2.getText().toString().equals("未投票")) {
-//                            intent = new Intent(getActivity(), WebviewActivity.class);
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("name", "投票");
-//                            bundle.putString("address", "http://192.168.8.130:8020/research/index.html?uid=" +
-// Contains
-//                                    .uuid);
-//                            intent.putExtras(bundle);
-//                            startActivity(intent);
                             if (ywhInfo.getData().getFlow().getVoteVo().getSubjectId() == -999) {
                                 Toast.makeText(getActivity(), "此投票不存在", Toast.LENGTH_SHORT).show();
                             } else {
-                                try {
-                                    String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo.getData()
-                                            .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid + "&expect="
-                                            + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                            .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains
-                                            .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(), "UTF-8") + "&unit="
-                                            + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                            .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
-                                            .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
-                                    intent = new Intent(getActivity(), WebviewActivity.class);
-                                    Bundle bundle = new Bundle();
-                                    bundle.putString("name", "投票");
-                                    bundle.putString("address", url);
-                                    intent.putExtras(bundle);
-                                    startActivity(intent);
-                                } catch (UnsupportedEncodingException e) {
-                                    e.printStackTrace();
+                                long endTime = TimeUtil.timeStamp(ywhInfo.getData().getFlow().getVoteVo().getEndTime());
+                                long currentTimeMillis = System.currentTimeMillis();
+
+                                if (currentTimeMillis > endTime) {
+//                                    ToastUtil.showShort("可以投票");
+                                    try {
+                                        String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo
+                                                .getData()
+                                                .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid +
+                                                "&expect="
+                                                + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                                .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode
+                                                (Contains
+                                                        .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(),
+                                                        "UTF-8") +
+                                                "&unit="
+                                                + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                                .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
+                                                .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
+                                        intent = new Intent(getActivity(), WebviewActivity.class);
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("name", "投票");
+                                        bundle.putString("address", url);
+                                        intent.putExtras(bundle);
+                                        startActivity(intent);
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+                                    ToastUtil.showShort("投票已结束");
                                 }
                             }
                         }
