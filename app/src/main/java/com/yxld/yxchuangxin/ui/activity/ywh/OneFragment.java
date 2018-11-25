@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.ywh;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,7 +47,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
     @BindView(R.id.tv_tjcy_content) TextView tvTjcyContent;
     @BindView(R.id.tv_details) TextView tvDetails;
     @BindView(R.id.tv_tijian) TextView tvTijian;
-
+    private YwhInfo ywhInfo;
 
     @Nullable
     @Override
@@ -85,7 +86,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
     }
 
     private void initStatusView(YwhInfo ywhInfo) {
-
+        this.ywhInfo = ywhInfo;
         if (ywhInfo.getData().getFlow().getPhaseState() == -1 && ywhInfo.getData().getFlow().getIsChengli() == -1) {
             llStatus1.setVisibility(View.VISIBLE);
             llStatus2.setVisibility(View.GONE);
@@ -163,7 +164,14 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
                 startActivity(YwhRequestActivity.class);
                 break;
             case R.id.ll_tjcy:
-                startActivity(TuiJianListActivity.class);
+//                startActivity(TuiJianListActivity.class);
+                if (ywhInfo != null) {
+                    Intent intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
+                    // .FlowBean.GongshiBean
+                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
+                    intent.putExtra("position", 1);
+                    startActivity(intent);
+                }
                 break;
             case R.id.tv_status:
                 break;

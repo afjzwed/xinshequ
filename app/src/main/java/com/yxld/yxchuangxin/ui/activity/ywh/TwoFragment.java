@@ -180,7 +180,14 @@ public class TwoFragment extends BaseYwhFragment implements TwoContract.View {
                 break;
             case R.id.ll_tjcy:
                 if (type == 1) {
-                    startActivity(TuiJianListActivity.class);//推荐成员
+//                    startActivity(TuiJianListActivity.class);//推荐成员
+                    if (ywhInfo != null) {
+                        Intent intent = new Intent(getActivity(), RecommendMemberActivity.class);//传YwhCurrentflow.DataBean
+                        // .FlowBean.GongshiBean
+                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());
+                        intent.putExtra("position", 1);
+                        startActivity(intent);
+                    }
                 } else if (type == 2) {
 //                    Intent intent = new Intent(getActivity(),CheckNoticeActivity.class);//查看通知
 //                    intent.putExtra("ywh_position", 1);

@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.text.Html;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.entity.YwhCurrentflow;
-import com.yxld.yxchuangxin.entity.YwhInfo;
 import com.yxld.yxchuangxin.ui.activity.ywh.component.DaggerRecommendMemberComponent;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.RecommendMemberContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.RecommendMemberModule;
@@ -45,6 +43,7 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     Button btRecommendMember;
 
     private YwhCurrentflow.DataBean.FlowBean.GongshiBean data;
+    private int positon; //1推荐成员  0推荐候选人
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +57,13 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         data = getIntent().getParcelableExtra("ywh_gongshi");
+        positon = getIntent().getIntExtra("position", 0);
 
         // TODO: 2018/11/10 根据上级跳转页面显示推荐筹备组成员或候选人成员
-
+        if (positon == 1) {
+            toolbar.setTitle("推荐筹备组成员");
+            btRecommendMember.setText("推荐筹备组成员");
+        }
         if (null != data) {
             titleRecommendMember.setText("" + data.getTitle());
             tvSendTime.setText("发布时间：" + data.getStarttime());
@@ -114,7 +117,11 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
     @OnClick(R.id.bt_recommend_member)
     public void onViewClicked() {
 //        Toast.makeText(this, "推荐筹备组成员", Toast.LENGTH_SHORT).show();
+        if (positon == 1) {
+            startActivity(TuiJianListActivity.class);
+        } else {
         Intent intent = new Intent(this, HouxuanListActivity.class);
-        startActivity(intent);
+            startActivity(intent);
+        }
     }
 }
