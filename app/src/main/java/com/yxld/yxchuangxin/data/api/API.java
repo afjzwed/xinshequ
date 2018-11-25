@@ -22,8 +22,10 @@ public interface API {
 //    String BASE_URL_DEVOLOP = "http://192.168.8.113:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
-    String IP_PRODUCT = "http://192.168.8.222:8080";
-    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+//    String IP_PRODUCT = "http://192.168.8.222:8080";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+    String IP_PRODUCT = "http://129.204.29.74:8081";
+    String BASE_URL_DEVOLOP = "http://129.204.29.74:8081/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     String daozai = "http://dz.hnchxwl.com";//道闸
@@ -812,7 +814,9 @@ public interface API {
     String URL_WEIXIU_LIUCHENG = "baoxiu_/find.mvc";
 
     //**********************业委会***********************//
-    String URL_YEYWEIHUI = "http://192.168.8.223:8080";
+//    String URL_YEYWEIHUI = "http://192.168.8.223:8080";
+    String URL_YEYWEIHUI = "http://129.204.29.74:8080";
+    String URL_YWH_WEB = "http://129.204.5.12:8081";
     String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
     String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/supervise/app/conference/ylist";//意见反馈列表

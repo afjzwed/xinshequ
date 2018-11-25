@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.yxld.yxchuangxin.data.api.API.URL_YWH_WEB;
 
 /**
  * @author William
@@ -329,7 +332,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
 
                                 if (currentTimeMillis > endTime) {
                                     try {
-                                        String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo
+//                                        String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo
+                                        String url = URL_YWH_WEB + "/research/index.html?id=" + ywhInfo
                                                 .getData().getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains
                                                 .uuid + "&expect=" + URLEncoder.encode(Contains.appYezhuFangwus.get
                                                 (Contains.curFangwu).getXiangmuLoupan(), "UTF-8") + "&building=" +
@@ -338,6 +342,7 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                                                 (Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan(),
                                                         "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
                                                 .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
+                                        Log.e("wh", "url " + url);
                                         intent = new Intent(getActivity(), WebviewActivity.class);
                                         Bundle bundle = new Bundle();
                                         bundle.putString("name", "投票");

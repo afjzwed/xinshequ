@@ -38,6 +38,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.yxld.yxchuangxin.data.api.API.URL_YWH_WEB;
+
 /**
  * @author William
  * @Package com.yxld.yxchuangxin.ui.activity.wuye
@@ -93,7 +95,8 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
                 Bundle bundle = new Bundle();
                 bundle.putString("name", "投票");
                 try {
-                    String url = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
+//                    String url = "http://192.168.8.130:8020/research/index.html?id=" + dataBean.getId() +
+                    String url = URL_YWH_WEB + "/research/index.html?id=" + dataBean.getId() +
                             "&uuid=" + Contains.uuid + "&expect=" + URLEncoder.encode(Contains.appYezhuFangwus.get
                             (Contains.curFangwu)
                             .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains.appYezhuFangwus
