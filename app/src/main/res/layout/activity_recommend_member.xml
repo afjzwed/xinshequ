@@ -23,7 +23,7 @@
                 android:id="@+id/title_recommend_member"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="水电费水电费骷髅精灵"
+                android:text=""
                 android:textColor="@color/color_333333"
                 android:textSize="50px"
                 android:textStyle="bold"/>
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="43px"
                 android:lineSpacingExtra="28px"
-                android:text="塑料袋客服交流数据了库是否极乐世界反垄断法开始的减肥塑料袋福建省了的房价的律师费见识到了分解落实到分解落实到福建省来得快是分解落实到路口附近的酸辣粉教室里的分解落实到发了速度快解放了圣诞节福利的设计费塑料袋客服交流数据了库是否极乐世界反垄断法开始的减肥塑料袋福建省了的房价的律师费见识到了分解落实到分解落实到福建省来得快是分解落实到路口附近的酸辣粉教室里的分解落实到发了速度快解放了圣诞节福利的设计费大连市解放路的设计费里的世界疯了圣诞节发大连市解放路的设计费里的世界疯了圣诞节发"
+                android:text=""
                 android:textColor="@color/umeng_socialize_text_share_content"
                 android:textSize="42px"/>
 

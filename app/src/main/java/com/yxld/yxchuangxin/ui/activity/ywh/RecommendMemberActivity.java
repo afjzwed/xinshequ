@@ -2,6 +2,7 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,9 +61,11 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
 
         // TODO: 2018/11/10 根据上级跳转页面显示推荐筹备组成员或候选人成员
 
-        titleRecommendMember.setText("" + data.getTitle());
-        tvSendTime.setText("发布时间：" + data.getStarttime());
-        tvNotice.setText("" + data.getContent());
+        if (null != data) {
+            titleRecommendMember.setText("" + data.getTitle());
+            tvSendTime.setText("发布时间：" + data.getStarttime());
+            tvNotice.setText(Html.fromHtml(data.getContent()));
+        }
     }
 
     @Override

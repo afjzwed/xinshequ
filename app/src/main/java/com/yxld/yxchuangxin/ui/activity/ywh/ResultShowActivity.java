@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -111,7 +112,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         if (null != data) {
             titleRecommendMember.setText(""+data.getTitle());
             tvSendTime.setText("发布时间："+data.getStarttime());
-            tvNotice.setText("" + data.getContent());
+            tvNotice.setText(Html.fromHtml(data.getContent()));
         }
     }
 
