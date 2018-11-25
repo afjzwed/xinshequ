@@ -79,7 +79,7 @@
                     android:layout_marginTop="43px"
                     android:gravity="center_vertical"
                     android:maxLines="2"
-                    android:text="具体投票方式和时间请查阅备案组工作阶段所公示的内容"
+                    android:text="具体投票方式及时间请留意筹备组公示的相关文件内容，并请留意相关通知公告"
                     android:textColor="@color/color_999999"
                     android:textSize="43px"/>
 

@@ -111,16 +111,10 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
                 if (null != filesBean) {
-//                    Intent intent = new Intent(getActivity(), YwhWebViewActivity.class);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("address", filesBean.getUrl());
-//                    intent.putExtras(bundle);
-//                    startActivity(intent);
                     Uri uri = Uri.parse(API.ywh_pic + filesBean.getUrl());
                     Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                     startActivity(intent);
                 }
-//                Toast.makeText(getActivity(), "点击" + position + " " + filesBean.getUrl(), Toast.LENGTH_SHORT).show();
             }
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
@@ -194,12 +188,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         ivImg.setImageResource(R.mipmap.ic_ywh_vote);
                         tvTitle.setText("线上投票");
                         tvTime1.setVisibility(View.VISIBLE);
-//                        tvTime1.setText(ywhInfo.getData().getFlow().getVoteVo().getStartTime() + "至" + ywhInfo
-//                                .getData().getFlow().getVoteVo().getEndTime());
                         String startTime = ywhInfo.getData().getFlow().getVoteVo().getStartTime();
                         String endTime = ywhInfo.getData().getFlow().getVoteVo().getEndTime();
-//                        startTime = startTime.substring(startTime.indexOf(" "));
-//                        endTime = endTime.substring(endTime.indexOf(" "));
                         startTime = startTime.substring(0, startTime.indexOf(" "));
                         endTime = endTime.substring(0, endTime.indexOf(" "));
                         tvTime1.setText(startTime + "至" + endTime);
@@ -338,20 +328,15 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                                 long currentTimeMillis = System.currentTimeMillis();
 
                                 if (currentTimeMillis > endTime) {
-//                                    ToastUtil.showShort("可以投票");
                                     try {
                                         String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo
-                                                .getData()
-                                                .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid +
-                                                "&expect="
-                                                + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                                .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode
-                                                (Contains
-                                                        .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(),
-                                                        "UTF-8") +
-                                                "&unit="
-                                                + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                                .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
+                                                .getData().getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains
+                                                .uuid + "&expect=" + URLEncoder.encode(Contains.appYezhuFangwus.get
+                                                (Contains.curFangwu).getXiangmuLoupan(), "UTF-8") + "&building=" +
+                                                URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                                        .getFwLoudong(), "UTF-8") + "&unit=" + URLEncoder.encode
+                                                (Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan(),
+                                                        "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
                                                 .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
                                         intent = new Intent(getActivity(), WebviewActivity.class);
                                         Bundle bundle = new Bundle();

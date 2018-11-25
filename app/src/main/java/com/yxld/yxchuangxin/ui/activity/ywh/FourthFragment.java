@@ -127,11 +127,11 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
                 skip = 0;
                 break;
             case 1:
+                tvStatus.setText("候选人确定阶段-进行中");
+                tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                 if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
                     autollData.setVisibility(View.VISIBLE);
                     ivNoData.setVisibility(View.GONE);
-                    tvStatus.setText("候选人确定阶段-进行中");
-                    tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
                     tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow
                             ().getGongshi().getEndtime() + "</font>" +
                             "之前完成推荐程序"));

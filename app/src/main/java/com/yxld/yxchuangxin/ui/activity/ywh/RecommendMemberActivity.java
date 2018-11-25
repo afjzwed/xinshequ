@@ -120,7 +120,7 @@ public class RecommendMemberActivity extends BaseActivity implements RecommendMe
         if (positon == 1) {
             startActivity(TuiJianListActivity.class);
         } else {
-        Intent intent = new Intent(this, HouxuanListActivity.class);
+            Intent intent = new Intent(this, HouxuanListActivity.class);
             startActivity(intent);
         }
     }
