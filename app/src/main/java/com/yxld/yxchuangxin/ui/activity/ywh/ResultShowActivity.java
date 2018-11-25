@@ -108,6 +108,11 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         });
         recyclerView.setAdapter(ywhAccessoryAdapter);//绑定适配器
 
+        if (null != data) {
+            titleRecommendMember.setText(""+data.getTitle());
+            tvSendTime.setText("发布时间："+data.getStarttime());
+            tvNotice.setText("" + data.getContent());
+        }
     }
 
     @Override

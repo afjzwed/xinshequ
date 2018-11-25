@@ -330,23 +330,27 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
 //                                    .uuid);
 //                            intent.putExtras(bundle);
 //                            startActivity(intent);
-                            try {
-                                String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo.getData()
-                                        .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid + "&expect="
-                                        + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                        .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains
-                                        .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(), "UTF-8") + "&unit="
-                                        + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
-                                        .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
-                                        .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
-                                intent = new Intent(getActivity(), WebviewActivity.class);
-                                Bundle bundle = new Bundle();
-                                bundle.putString("name", "投票");
-                                bundle.putString("address", url);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
+                            if (ywhInfo.getData().getFlow().getVoteVo().getSubjectId() == -999) {
+                                Toast.makeText(getActivity(), "此投票不存在", Toast.LENGTH_SHORT).show();
+                            } else {
+                                try {
+                                    String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo.getData()
+                                            .getFlow().getVoteVo().getSubjectId() + "&uuid=" + Contains.uuid + "&expect="
+                                            + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                            .getXiangmuLoupan(), "UTF-8") + "&building=" + URLEncoder.encode(Contains
+                                            .appYezhuFangwus.get(Contains.curFangwu).getFwLoudong(), "UTF-8") + "&unit="
+                                            + URLEncoder.encode(Contains.appYezhuFangwus.get(Contains.curFangwu)
+                                            .getFwDanyuan(), "UTF-8") + "&room_number=" + URLEncoder.encode(Contains
+                                            .appYezhuFangwus.get(Contains.curFangwu).getFwFanghao(), "UTF-8");
+                                    intent = new Intent(getActivity(), WebviewActivity.class);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("name", "投票");
+                                    bundle.putString("address", url);
+                                    intent.putExtras(bundle);
+                                    startActivity(intent);
+                                } catch (UnsupportedEncodingException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                         break;
