@@ -47,6 +47,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
     @BindView(R.id.tv_tjcy_content) TextView tvTjcyContent;
     @BindView(R.id.tv_details) TextView tvDetails;
     @BindView(R.id.tv_tijian) TextView tvTijian;
+    @BindView(R.id.tv_tjcy) TextView tvTjcy;
     private YwhInfo ywhInfo;
 
     @Nullable
@@ -100,16 +101,24 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
             tvStatus.setText("开始成立阶段-未开始");
             tvTjcyContent.setText("当前小区已具备成立业委会条件\n您可以向街道申请成立业委会");
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 1) {
-            llStatus1.setVisibility(View.VISIBLE);
-            tvTijian.setVisibility(View.GONE);
-            tvTjcyContent.setVisibility(View.GONE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
             tvStatus.setText("开始成立阶段-进行中");
+            if (ywhInfo.getData().getFlow().getGongshi() != null) {
+                llStatus2.setVisibility(View.VISIBLE);
+                tvTjcy.setText("推荐筹备组成员进行中");
+                tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
+                        "之前完成筹备组成员推荐程序"));
+            } else {
+                llStatus1.setVisibility(View.VISIBLE);
+                tvTijian.setVisibility(View.GONE);
+                tvTjcyContent.setVisibility(View.GONE);
+            }
         } else if (ywhInfo.getData().getFlow().getPhaseState() == 2) {
             llStatus1.setVisibility(View.GONE);
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("开始成立阶段-已完成");
+            tvTjcy.setText("推荐筹备组成员已完成");
             tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
                     "之前完成筹备组成员推荐程序"));
         }
