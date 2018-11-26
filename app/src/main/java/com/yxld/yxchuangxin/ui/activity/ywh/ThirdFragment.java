@@ -161,7 +161,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                         "之前重新申请！否则将无法参与业主大会投票。"));
                 tvShzt.setVisibility(View.VISIBLE);
                 tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
-            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3) {
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3||ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 1) {
                 //审核中
                 tvTjcy.setText("查看");
                 tvDetails.setText("您的认证信息审核中！");
@@ -230,7 +230,7 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                         "之前重新申请！否则将无法参与业主大会投票。"));
                 tvShzt.setVisibility(View.VISIBLE);
                 tvShzt.setText(ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitStateContext());
-            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3) {
+            } else if (ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 3||ywhInfo.getData().getFlow().getProprietorAduitVo().getAduitstate() == 1) {
                 //审核中
                 tvTjcy.setText("查看");
                 tvDetails.setText("您的认证信息审核中！");

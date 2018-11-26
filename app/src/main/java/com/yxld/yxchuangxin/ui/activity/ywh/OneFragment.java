@@ -105,7 +105,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
             tvStatus.setText("开始成立阶段-进行中");
             if (ywhInfo.getData().getFlow().getGongshi() != null) {
                 llStatus2.setVisibility(View.VISIBLE);
-                tvTjcy.setText("推荐筹备组成员进行中");
+                tvTjcy.setText("推荐筹备组成员");
                 tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
                         "之前完成筹备组成员推荐程序"));
             } else {
@@ -118,7 +118,7 @@ public class OneFragment extends BaseYwhFragment implements OneContract.View {
             llStatus2.setVisibility(View.VISIBLE);
             tvStatus.setTextColor(getResources().getColor(R.color.color_00b404));
             tvStatus.setText("开始成立阶段-已完成");
-            tvTjcy.setText("推荐筹备组成员已完成");
+            tvTjcy.setText("推荐筹备组成员");
             tvDetails.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow().getGongshi().getEndtime() + "</font>" +
                     "之前完成筹备组成员推荐程序"));
         }
