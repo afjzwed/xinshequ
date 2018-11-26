@@ -47,6 +47,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static com.yxld.yxchuangxin.data.api.API.URL_YWH_WEB;
+import static com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity.REQUEST_CODE;
 
 /**
  * @author William
@@ -329,8 +330,9 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                             } else {
                                 long endTime = TimeUtil.timeStamp(ywhInfo.getData().getFlow().getVoteVo().getEndTime());
                                 long currentTimeMillis = System.currentTimeMillis();
-
-                                if (currentTimeMillis > endTime) {
+//                                Log.e("wh", "time " + ywhInfo.getData().getFlow().getVoteVo().getEndTime());
+//                                Log.e("wh", "currentTimeMillis " + currentTimeMillis + " endTime " + endTime);
+                                if (currentTimeMillis < endTime) {
                                     try {
 //                                        String url = "http://192.168.8.130:8020/research/index.html?id=" + ywhInfo
                                         String url = URL_YWH_WEB + "/research/index.html?id=" + ywhInfo
@@ -348,7 +350,8 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                                         bundle.putString("name", "投票");
                                         bundle.putString("address", url);
                                         intent.putExtras(bundle);
-                                        startActivity(intent);
+//                                        startActivity(intent);
+                                        startActivityForResult(intent, REQUEST_CODE);
                                     } catch (UnsupportedEncodingException e) {
                                         e.printStackTrace();
                                     }
@@ -377,6 +380,16 @@ public class FivethFragment extends BaseYwhFragment implements FivethContract.Vi
                         startActivity(intent);
                         break;
                 }
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE:
+                initData();
                 break;
         }
     }

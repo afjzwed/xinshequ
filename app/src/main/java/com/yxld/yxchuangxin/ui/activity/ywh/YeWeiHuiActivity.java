@@ -50,6 +50,8 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
     private MyAdapter myAdapter;
     private int currrentPosition = 0;//当前阶段
 
+    public static final int REQUEST_CODE = 5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -215,5 +217,4 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
             }
         }
     }
-
 }

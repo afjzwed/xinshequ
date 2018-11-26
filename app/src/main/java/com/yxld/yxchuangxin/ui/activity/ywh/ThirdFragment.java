@@ -156,7 +156,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 //审核失败
                 tvTjcy.setText("查看");
                 tvDetails.setText(Html.fromHtml("<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
-                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font " +
+                        "color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
                         .getProprietorAduitVo().getAduitTime() + "</font>" +
                         "之前重新申请！否则将无法参与业主大会投票。"));
                 tvShzt.setVisibility(View.VISIBLE);
@@ -205,8 +206,10 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                     @Override
                     public void onClick(View v) {
                         Bundle bundle = new Bundle();
-                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getConfirmPeople());//人员列表
-                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo.getData().getFlow().getFiles());//附件列表
+                        bundle.putParcelableArrayList("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                .getFlow().getConfirmPeople());//人员列表
+                        bundle.putParcelableArrayList("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+                                .getData().getFlow().getFiles());//附件列表
                         bundle.putInt("isYjfk", 0);
                         bundle.putInt("ywh_position", 2);
                         bundle.putParcelable("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
@@ -225,7 +228,8 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 //审核失败
                 tvTjcy.setText("查看");
                 tvDetails.setText(Html.fromHtml("<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
-                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
+                        .getProprietorAduitVo().getAduitStateContext() + "可在" + "</font>" + "<font " +
+                        "color=\"#ff9e04\">" + ywhInfo.getData().getFlow()
                         .getProprietorAduitVo().getAduitTime() + "</font>" +
                         "之前重新申请！否则将无法参与业主大会投票。"));
                 tvShzt.setVisibility(View.VISIBLE);
@@ -265,25 +269,25 @@ public class ThirdFragment extends BaseYwhFragment implements ThirdContract.View
                 llStatus3.setVisibility(View.GONE);
             } else {
                 llStatus3.setVisibility(View.VISIBLE);
-            imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
-            tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
-            tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
-            tvTjcy1.setText("业主大会及业主委员会相关筹备文件公示");
-            llTjcy1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                imgStep1.setImageResource(R.mipmap.ic_ywh_start5);
+                tvStep1.setText("业主大会及业主委员会相关筹备文件公示通知");
+                tvDetails1.setText(ywhInfo.getData().getFlow().getGongshi().getTitle());
+                tvTjcy1.setText("业主大会及业主委员会相关筹备文件公示");
+                llTjcy1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 //                    startActivity(CheckNoticeActivity.class);
-                    Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
-                    intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
-                            .getFlow().getConfirmPeople());//人员列表
-                    intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
-                    intent.putParcelableArrayListExtra("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
-                            .getData().getFlow().getFiles());
-                    intent.putExtra("ywh_position", 2);
-                    intent.putExtra("isYjfk", 1);
-                    startActivity(intent);
-                }
-            });
+                        Intent intent = new Intent(getActivity(), CheckNoticeActivity.class);//查看通知
+                        intent.putParcelableArrayListExtra("data", (ArrayList<? extends Parcelable>) ywhInfo.getData()
+                                .getFlow().getConfirmPeople());//人员列表
+                        intent.putExtra("ywh_gongshi", ywhInfo.getData().getFlow().getGongshi());//公示
+                        intent.putParcelableArrayListExtra("ywh_member_list", (ArrayList<? extends Parcelable>) ywhInfo
+                                .getData().getFlow().getFiles());
+                        intent.putExtra("ywh_position", 2);
+                        intent.putExtra("isYjfk", 1);
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }

@@ -129,26 +129,27 @@ public class FourthFragment extends BaseYwhFragment implements FourthContract.Vi
             case 1:
                 tvStatus.setText("候选人确定阶段-进行中");
                 tvStatus.setTextColor(getResources().getColor(R.color.color_2d97ff));
-                if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
-                    autollData.setVisibility(View.VISIBLE);
-                    ivNoData.setVisibility(View.GONE);
-                    tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData().getFlow
-                            ().getGongshi().getEndtime() + "</font>" +
-                            "之前完成推荐程序"));
-                    tvContentHead.setVisibility(View.VISIBLE);
-                    tvName.setText("推荐候选人成员");
-                    ivImg.setImageResource(R.mipmap.ic_ywh_start);
-                    skip = 1;
-                } else if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 3) {
-                    //tvContentHead内容为YwhCurrentflow.DataBean.FlowBean.GongshiBeantitle
-                    autollData.setVisibility(View.VISIBLE);
-                    ivNoData.setVisibility(View.GONE);
-                    ivImg.setImageResource(R.mipmap.ic_ywh_vote);
-                    tvTitle.setText("候选人名单已公示");
-                    tvContentHead.setText(ywhInfo.getData().getFlow().getGongshi().getTitle() + "");
-                    tvContentHead.setVisibility(View.VISIBLE);
-                    tvName.setText("查看候选人名单公示");
-                    skip = 2;
+                if (ywhInfo.getData().getFlow().getGongshi() != null) {
+                    if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 6) {
+                        autollData.setVisibility(View.VISIBLE);
+                        ivNoData.setVisibility(View.GONE);
+                        tvContentHead.setText(Html.fromHtml("请在" + "<font color=\"#ff9e04\">" + ywhInfo.getData()
+                                .getFlow().getGongshi().getEndtime() + "</font>" + "之前完成推荐程序"));
+                        tvContentHead.setVisibility(View.VISIBLE);
+                        tvName.setText("推荐候选人成员");
+                        ivImg.setImageResource(R.mipmap.ic_ywh_start);
+                        skip = 1;
+                    } else if (ywhInfo.getData().getFlow().getGongshi().getGongshiType() == 3) {
+                        //tvContentHead内容为YwhCurrentflow.DataBean.FlowBean.GongshiBeantitle
+                        autollData.setVisibility(View.VISIBLE);
+                        ivNoData.setVisibility(View.GONE);
+                        ivImg.setImageResource(R.mipmap.ic_ywh_vote);
+                        tvTitle.setText("候选人名单已公示");
+                        tvContentHead.setText(ywhInfo.getData().getFlow().getGongshi().getTitle() + "");
+                        tvContentHead.setVisibility(View.VISIBLE);
+                        tvName.setText("查看候选人名单公示");
+                        skip = 2;
+                    }
                 }
                 break;
             case 2:
