@@ -112,7 +112,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
         }
     }
 
-
     @Override
     protected void setupActivityComponent() {
         DaggerYeWeiHuiComponent
@@ -180,7 +179,6 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
 
         @Override
         public View getViewForTab(int position, View convertView, ViewGroup container) {
-
             View view = View.inflate(getApplicationContext(), R.layout.yeh_tab, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.iv_selector);
             TextView textView = (TextView) view.findViewById(R.id.tv_selector);

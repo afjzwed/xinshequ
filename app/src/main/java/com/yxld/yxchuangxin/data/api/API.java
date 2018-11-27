@@ -816,7 +816,7 @@ public interface API {
     //**********************业委会***********************//
 //    String URL_YEYWEIHUI = "http://192.168.8.223:8080";
     String URL_YEYWEIHUI = "http://129.204.29.74:8080/api/app";
-    String URL_YWH_WEB = "http://129.204.5.12:8081";
+    String URL_YWH_WEB = "http://129.204.5.12:80";
     String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
     String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/supervise/app/conference/ylist";//意见反馈列表

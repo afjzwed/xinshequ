@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -100,7 +101,7 @@ public class WebviewActivity extends BaseActivity implements WebviewContract.Vie
 
         // WebView加载web资源
         WwebView.loadUrl(address);
-//        WwebView.addJavascriptInterface(new PayJavaScriptInterface(), "js");
+//        WwebView.addJavascriptInterface(new ButtonClick(), "android");
         WwebView.loadUrl("javascript:callFromJava('1')");
         // 覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
         WwebView.setWebViewClient(new WebViewClient() {
@@ -157,4 +158,10 @@ public class WebviewActivity extends BaseActivity implements WebviewContract.Vie
         return super.onKeyDown(keyCode, event);
     }
 
+//    class ButtonClick {
+//        @JavascriptInterface
+//        public void close(){
+//            WebviewActivity.this.finish();
+//        }
+//    }
 }
