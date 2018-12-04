@@ -150,7 +150,8 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
     // Bus
     compile 'org.greenrobot:eventbus:3.0.0'
-    compile 'com.zhy:autolayout:1.4.5'
+//    compile 'com.zhy:autolayout:1.4.5'
+    compile project(':autolayout')
     //    compile 'com.orhanobut:logger:1.15'
 
     // -------------------- 以下三个库是必须依赖的 ----------------------------
@@ -275,8 +276,8 @@ dependencies {
     compile 'com.aliyun.ams:alicloud-android-push:3.0.11@aar'
     compile 'com.aliyun.ams:alicloud-android-utdid:1.1.5.3'
     compile 'com.aliyun.ams:alicloud-android-ut:5.1.0'
-    compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    compile 'com.tencent.bugly:crashreport:2.6.6'
+    compile 'com.tencent.bugly:nativecrashreport:3.3.1'
     compile 'org.greenrobot:greendao:3.2.2'
     compile 'org.greenrobot:greendao-generator:3.2.2'
     compile 'com.facebook.rebound:rebound:0.3.8'
