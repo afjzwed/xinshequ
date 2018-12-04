@@ -51,5 +51,8 @@ public interface MainNewContract {
 
         //获取分类数据
         void getFenlei();
+
+        //检测版本更新
+        void getLastVersion();
     }
 }

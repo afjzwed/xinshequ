@@ -122,6 +122,7 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
             initMs();
             initFl();
             initData();
+            mPresenter.getLastVersion();
         }
         return view;
     }

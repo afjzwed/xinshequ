@@ -137,9 +137,9 @@ public class UpdateManager {
             builder.setNegativeButton("以后再说", new OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    if (onYiHouOnClickListener != null) {
-                        onYiHouOnClickListener.onYihouClick();
-                    }
+//                    if (onYiHouOnClickListener != null) {
+//                        onYiHouOnClickListener.onYihouClick();
+//                    }
                     dialog.dismiss();
                     if (mhander != null) {
                         mhander.sendEmptyMessage(SplashActivity.LOCATION_FINISH);

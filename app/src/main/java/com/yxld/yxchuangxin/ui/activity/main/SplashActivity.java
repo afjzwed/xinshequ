@@ -123,7 +123,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
             countDownTimer.start();
             mPresenter.queryShipperInfo();
             mPresenter.getPermission();
-            mPresenter.getLastVersion();
+            // TODO: 2018/12/4 检查更新逻辑迁移至首页面
+//            mPresenter.getLastVersion();
         }
     }
 
@@ -250,7 +251,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
                 countDownTimer.start();
                 mPresenter.queryShipperInfo();
                 mPresenter.getPermission();
-                mPresenter.getLastVersion();
+                // TODO: 2018/12/4 检查更新逻辑迁移至首页面
+//                mPresenter.getLastVersion();
             }
         });
         builder.setCancelable(false);

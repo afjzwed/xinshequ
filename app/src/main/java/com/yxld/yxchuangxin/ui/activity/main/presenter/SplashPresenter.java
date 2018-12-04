@@ -28,18 +28,13 @@ import com.yxld.yxchuangxin.ui.activity.main.contract.SplashContract;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 
 import static com.yxld.yxchuangxin.ui.activity.wuye.presenter.FixPresenter.PHOTOTAKE;
 import static com.yxld.yxchuangxin.ui.activity.wuye.presenter.UpdatePresenter.REQUEST_CODE_ASK_WRITE_EXTERNAL_STORAGE;
@@ -529,8 +524,6 @@ public class SplashPresenter implements SplashContract.SplashContractPresenter {
                 }
             }
         }
-
         return false;
     }
-
 }
