@@ -275,13 +275,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         startActivity(localIntent);
     }
 
-
-//    public void onResume() {
-//        super.onResume();
-//        MobclickAgent.onResume(this);
-//    }
-
-
     @Override
     protected void onPause() {
         super.onPause();
