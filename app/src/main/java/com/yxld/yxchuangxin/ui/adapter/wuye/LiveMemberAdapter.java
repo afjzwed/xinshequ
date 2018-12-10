@@ -27,15 +27,18 @@ public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseView
         helper.setText(R.id.tv_phone, phone);
         String id = "";
 //        try {
-//            id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item.getFwFanghao().length());
+//            id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item
+// .getFwFanghao().length());
 //        } catch (Exception e) {
 //            id = "******************";
 //        }
         helper.setText(R.id.tv_Identity, item.getFwFanghao());
         helper.addOnClickListener(R.id.iv_delet);
-        if (item.getFwId() ==2 ) {
-            id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item.getFwFanghao().length());
-            helper.setText(R.id.tv_Identity,id);
+        helper.addOnClickListener(R.id.iv_avater);
+        if (item.getFwId() == 2) {
+            id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item
+                    .getFwFanghao().length());
+            helper.setText(R.id.tv_Identity, id);
         }
         //如果不是业主，就隐藏删除按钮
         if (Contains.appYezhuFangwus.get(Contains.curFangwu).getFwyzType() > 1) {
@@ -43,27 +46,27 @@ public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseView
         } else {
             helper.setVisible(R.id.iv_delet, true);
         }
-            if (item.getFwId() == 0) {
-                helper.setText(R.id.tv_live_Identity, "产权人");
-                helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-                helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
-            } else if (item.getFwId() == 1) {
-                helper.setText(R.id.tv_live_Identity, "家属");
-                helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-                helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
-            } else if (item.getFwId() == 2) {
-                helper.setText(R.id.tv_live_Identity, "租客");
-                helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.color_8ecc5c));
-                helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_zk));
-            } else if (item.getFwId() == 3) {
-                helper.setText(R.id.tv_live_Identity, "其他");
-                helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-                helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
-            } else {
-                helper.setText(R.id.tv_live_Identity, "历史产权人");
-                helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-                helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
-            }
+        if (item.getFwId() == 0) {
+            helper.setText(R.id.tv_live_Identity, "产权人");
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
+            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+        } else if (item.getFwId() == 1) {
+            helper.setText(R.id.tv_live_Identity, "家属");
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
+            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+        } else if (item.getFwId() == 2) {
+            helper.setText(R.id.tv_live_Identity, "租客");
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.color_8ecc5c));
+            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_zk));
+        } else if (item.getFwId() == 3) {
+            helper.setText(R.id.tv_live_Identity, "其他");
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
+            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+        } else {
+            helper.setText(R.id.tv_live_Identity, "历史产权人");
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
+            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+        }
         helper.setText(R.id.tv_sex, item.getSex() == 0 ? "男" : "女");
     }
 }

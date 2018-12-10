@@ -7,6 +7,7 @@ import android.widget.ImageView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.contain.Contains;
@@ -104,17 +105,21 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
         liveMemberAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                ConfirmDialog.showDialog(LiveMemberActivity.this, "提示", "成员删除之后将无法恢复", new ConfirmDialog.OnConfirmListener() {
-                    @Override
-                    public void onCancel() {
+                if (view.getId()==R.id.iv_delet) {
+                    ConfirmDialog.showDialog(LiveMemberActivity.this, "提示", "成员删除之后将无法恢复", new ConfirmDialog.OnConfirmListener() {
+                        @Override
+                        public void onCancel() {
 
-                    }
+                        }
 
-                    @Override
-                    public void onConfirm() {
-                        mPresenter.deletLiveMember(position);
-                    }
-                });
+                        @Override
+                        public void onConfirm() {
+                            mPresenter.deletLiveMember(position);
+                        }
+                    });
+                } else if (view.getId()==R.id.iv_avater) {
+                    ToastUtil.showShort("添加人脸");
+                }
             }
         });
     }

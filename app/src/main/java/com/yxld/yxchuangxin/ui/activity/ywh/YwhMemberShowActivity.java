@@ -57,6 +57,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     private int isYjfk = 0;//意见反馈是否显示的标志 0显示 1不显示
 
     private int gongshiId = 0;//公示ID
+    private int position = 0;//根据这个值判断意见反馈的上级页面从而判断使用哪个接口
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
 
         isYjfk = getIntent().getIntExtra("isYjfk", 0);
         gongshiId = getIntent().getIntExtra("ywh_gongshiId", 0);
+        position = getIntent().getIntExtra("ywh_position", 0);
 
         UIUtils.configSwipeRefreshLayoutColors(swipRefresh);
         swipRefresh.setOnRefreshListener(this);
@@ -99,6 +101,7 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
                 Intent intent = new Intent(YwhMemberShowActivity.this, FkyjActivity.class);
                 intent.putExtra("isYjfk", 0);
                 intent.putExtra("ywh_gongshiId", gongshiId);
+                intent.putExtra("ywh_position", position);
                 startActivity(intent);
             }
         });

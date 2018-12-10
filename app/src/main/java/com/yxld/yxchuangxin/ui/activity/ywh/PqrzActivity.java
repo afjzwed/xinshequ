@@ -2,12 +2,14 @@ package com.yxld.yxchuangxin.ui.activity.ywh;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -33,6 +35,7 @@ import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
 import com.yxld.yxchuangxin.ui.activity.ywh.module.PqrzModule;
 import com.yxld.yxchuangxin.ui.activity.ywh.presenter.PqrzPresenter;
 import com.yxld.yxchuangxin.ui.adapter.ywh.PqrzAdapter;
+import com.yxld.yxchuangxin.view.ShiliDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -57,13 +60,15 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
 
     @Inject
     PqrzPresenter mPresenter;
-    @BindView(R.id.rv) RecyclerView rv;
+    @BindView(R.id.rv)
+    RecyclerView rv;
     private PqrzAdapter adapter;
     private List<byte[]> imgDataList = new ArrayList<>();
     private String zmPath;
     private String fmPath;
     private int type; //1身份证正面拍照2身份证反面面拍照3房产证4手持房产证
     private int positon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,18 +99,39 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
                     case R.id.img_tx:
                         type = 4;
                         showAlerView();
-
+                        break;
+                    case R.id.tv_shili1:
+//                        Toast.makeText(PqrzActivity.this, "示例1", Toast.LENGTH_SHORT).show();
+                        showShiliDialog(R.mipmap.shili1);
+                        break;
+                    case R.id.tv_shili2:
+//                        Toast.makeText(PqrzActivity.this, "示例2", Toast.LENGTH_SHORT).show();
+                        showShiliDialog(R.mipmap.shili2);
                         break;
                 }
             }
         });
     }
 
+    /**
+     * 示例弹框
+     *
+     * @param shili
+     */
+    private void showShiliDialog(int shili) {
+        ShiliDialog dialog = new ShiliDialog(this, shili);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//代码中取消标题栏
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+        dialog.setCancelable(false);
+    }
+
     View viewFoot;
+
     private View footLayout() {
-        if (viewFoot==null){
-            viewFoot= getLayoutInflater().inflate(R.layout.layout_foot_pqrz, (ViewGroup) rv.getParent(), false);
-            TextView textView=viewFoot.findViewById(R.id.tv_commit);
+        if (viewFoot == null) {
+            viewFoot = getLayoutInflater().inflate(R.layout.layout_foot_pqrz, (ViewGroup) rv.getParent(), false);
+            TextView textView = viewFoot.findViewById(R.id.tv_commit);
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -192,14 +218,16 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
                         case 3:
                             //房产证
                             YwhHouse.DataBean dataBean = adapter.getData().get(positon);
-                            dataBean.setDeedImage(FileUtils.saveBitmap(bitmap, String.valueOf(System.currentTimeMillis())));
+                            dataBean.setDeedImage(FileUtils.saveBitmap(bitmap, String.valueOf(System
+                                    .currentTimeMillis())));
                             adapter.notifyDataSetChanged();
 
                             break;
                         case 4:
                             //手持房产证和人头像
                             YwhHouse.DataBean dataBean1 = adapter.getData().get(positon);
-                            dataBean1.setPaperWork(FileUtils.saveBitmap(bitmap, String.valueOf(System.currentTimeMillis())));
+                            dataBean1.setPaperWork(FileUtils.saveBitmap(bitmap, String.valueOf(System
+                                    .currentTimeMillis())));
                             adapter.notifyDataSetChanged();
                             break;
                     }
@@ -270,7 +298,8 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
             return;
         }
         for (int i = 0; i < adapter.getData().size(); i++) {
-            if (TextUtils.isEmpty(adapter.getData().get(i).getDeedImage()) || TextUtils.isEmpty(adapter.getData().get(i).getDeedImage())) {
+            if (TextUtils.isEmpty(adapter.getData().get(i).getDeedImage()) || TextUtils.isEmpty(adapter.getData().get
+                    (i).getDeedImage())) {
                 ToastUtil.showShort("照片信息不完整");
                 return;
             }
@@ -327,19 +356,20 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
             title = "上传房产证信息页照片";
         } else if (type == 4) {
             title = "上传手持证件照";
-        }else {
+        } else {
             title = "上传照片";
         }
-        new AlertView(title, null, "取消", null, new String[]{"拍照", "从相册中选择"}, this, AlertView.Style.ActionSheet, new OnItemClickListener() {
-            @Override
-            public void onItemClick(Object o, int position) {
-                if (position == 0) {
-                    ImgUtil.openCamera(PqrzActivity.this);
-                } else if (position == 1) {
-                    ImgUtil.openAlbum(PqrzActivity.this);
-                }
-            }
-        }).show();
+        new AlertView(title, null, "取消", null, new String[]{"拍照", "从相册中选择"}, this, AlertView.Style.ActionSheet, new
+                OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Object o, int position) {
+                        if (position == 0) {
+                            ImgUtil.openCamera(PqrzActivity.this);
+                        } else if (position == 1) {
+                            ImgUtil.openAlbum(PqrzActivity.this);
+                        }
+                    }
+                }).show();
 
     }
 }

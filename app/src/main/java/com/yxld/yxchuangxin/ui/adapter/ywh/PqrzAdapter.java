@@ -41,5 +41,8 @@ public class PqrzAdapter extends BaseQuickAdapter<YwhHouse.DataBean, BaseViewHol
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(view1);
         }
+
+        baseViewHolder.addOnClickListener(R.id.tv_shili1);
+        baseViewHolder.addOnClickListener(R.id.tv_shili2);
     }
 }

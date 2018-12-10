@@ -205,5 +205,6 @@ public class HouxuanListActivity extends BaseActivity implements HouxuanListCont
     public void onViewClicked() {
         //取消按钮
         etSearch.setText("");
+        initData();
     }
 }

@@ -95,12 +95,6 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
         ywhAccessoryAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
             public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-//                YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
-//                Intent intent = new Intent(ResultShowActivity.this, YwhWebViewActivity.class);
-//                Bundle bundle = new Bundle();
-//                bundle.putString("address", filesBean.getUrl());
-//                intent.putExtras(bundle);
-//                startActivity(intent);
                 YwhCurrentflow.DataBean.FlowBean.FilesBean filesBean = ywhAccessoryAdapter.getData().get(position);
                 Uri uri = Uri.parse(API.ywh_pic + filesBean.getUrl());
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -118,16 +112,6 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
 
     @Override
     protected void initData() {
-        //网络请求 获得数据
-//        Map<String, String> map = new HashMap<>();
-//        map.put("uuid", Contains.uuid);
-//        mPresenter.getData(map);
-
-//        List<String> list = new ArrayList<>();
-//        for (int i = 0; i < 10; i++) {
-//            list.add("1");
-//        }
-//        ywhAccessoryAdapter.setNewData(list);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setFocusable(false);
         if (listdata != null && listdata.size() > 0) {
@@ -179,6 +163,7 @@ public class ResultShowActivity extends BaseActivity implements ResultShowContra
                 Intent intent = new Intent(this, YwhMemberShowActivity.class);
                 intent.putExtra("isYjfk", 0);
                 intent.putExtra("ywh_gongshiId", data.getId());
+                intent.putExtra("ywh_position", 4);
                 startActivity(intent);
                 break;
         }

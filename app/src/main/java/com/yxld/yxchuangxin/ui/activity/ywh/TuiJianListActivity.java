@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -269,5 +270,7 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
     public void onViewClicked() {
         //取消按钮
         etSearch.setText("");
+        page = 1;
+        initData();
     }
 }
