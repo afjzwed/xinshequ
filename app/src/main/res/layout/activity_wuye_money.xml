@@ -200,6 +200,7 @@
     <View
         style="@style/layout_bg"/>
     <com.zhy.autolayout.AutoRelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_marginLeft="40px"
         android:clickable="true"

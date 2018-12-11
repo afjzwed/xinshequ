@@ -53,6 +53,7 @@
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="134px"
             android:layout_marginTop="1px"
             android:background="#fff">

@@ -728,15 +728,18 @@ public class RimPublicOrderListFragment extends BaseFragment implements
                     cancelPop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                     break;
                 case 4: // 立即支付
-                    initPayWindow();
-                    orderBianhao = rimOrderListAdapter.getData().get(position).getOrderNumber();
-                    orderShop = rimOrderListAdapter.getData().get(position).getProductNames();
-                    orderMoney= rimOrderListAdapter.getData().get(position).getOrderFactMoney()+"";
-                    Log.e("wh", "orderMoney这里" + orderMoney);
-                    llPaypopup.startAnimation(AnimationUtils.loadAnimation(
-                            getActivity(),
-                            R.anim.activity_translate_in));
-                    payPop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                    // TODO: 2018/12/11 关闭周边商家支付
+                    ToastUtil.showShort("支付通道暂时关闭");
+
+//                    initPayWindow();
+//                    orderBianhao = rimOrderListAdapter.getData().get(position).getOrderNumber();
+//                    orderShop = rimOrderListAdapter.getData().get(position).getProductNames();
+//                    orderMoney= rimOrderListAdapter.getData().get(position).getOrderFactMoney()+"";
+//                    Log.e("wh", "orderMoney这里" + orderMoney);
+//                    llPaypopup.startAnimation(AnimationUtils.loadAnimation(
+//                            getActivity(),
+//                            R.anim.activity_translate_in));
+//                    payPop.showAtLocation(view, Gravity.BOTTOM, 0, 0);
                     break;
                 case 5: //确认送达 打开注释可用
                     LinkedHashMap<String, String> data = new LinkedHashMap<>();

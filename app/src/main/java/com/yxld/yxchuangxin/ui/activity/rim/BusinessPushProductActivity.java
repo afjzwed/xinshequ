@@ -267,7 +267,9 @@ public class BusinessPushProductActivity extends BaseActivity implements
             KLog.i("onSuccesse");
             if (businessProduceType == 1) {
                 //商家
-                showPayPop();
+                // TODO: 2018/12/11 暂时关闭支付
+                ToastUtil.showShort("支付通道暂时关闭");
+//                showPayPop();
             } else if (businessProduceType == 2) {
                 //服务
                 startToOrderListAcitivity();

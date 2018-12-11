@@ -35,6 +35,7 @@
     </com.zhy.autolayout.AutoRelativeLayout>
 
     <com.zhy.autolayout.AutoRelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="134px"
         android:background="@color/white"
