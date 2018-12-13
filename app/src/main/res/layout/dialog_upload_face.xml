@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="966px"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/bg_dialog"
+    android:minWidth="966px"
+    android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="167px"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="46px"
+            android:layout_height="46px"
+            android:layout_marginLeft="43px"
+            android:src="@mipmap/explain_face"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="43px"
+            android:layout_weight="1"
+            android:text="人像要求说明"
+            android:textColor="@color/color_54a0e2"
+            android:textSize="52px"/>
+
+        <ImageButton
+            android:id="@+id/iv_close_fase"
+            android:layout_width="30px"
+            android:layout_height="30px"
+            android:layout_marginRight="43px"
+            android:background="@mipmap/close_face"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/dark_bg_70p"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="43px"
+        android:layout_marginRight="43px"
+        android:layout_marginTop="54px"
+        android:text="此头像用于开启“人脸识别门禁系统”，人像需满足以下要求："
+        android:textColor="@color/color_333333"
+        android:textSize="43px"/>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        style="@style/face_linearlayout">
+
+        <ImageView
+            android:layout_width="12px"
+            android:layout_height="12px"
+            android:src="@mipmap/point_face"/>
+
+        <TextView
+            style="@style/face_text"
+            android:text="正常光线强度，正面五官清晰"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        style="@style/face_linearlayout">
+
+        <ImageView
+            android:layout_width="12px"
+            android:layout_height="12px"
+            android:src="@mipmap/point_face"/>
+
+        <TextView
+            style="@style/face_text"
+            android:text="无特殊表情，无美颜效果，无浓妆"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        style="@style/face_linearlayout">
+
+        <ImageView
+            android:layout_width="12px"
+            android:layout_height="12px"
+            android:src="@mipmap/point_face"/>
+
+        <TextView
+            style="@style/face_text"
+            android:text="不带帽子和墨镜"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        style="@style/face_linearlayout">
+
+        <ImageView
+            android:layout_width="12px"
+            android:layout_height="12px"
+            android:src="@mipmap/point_face"/>
+
+        <TextView
+            style="@style/face_text"
+            android:text="可参考证件照标准"/>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="532px"
+        android:layout_marginLeft="58px"
+        android:layout_marginRight="58px"
+        android:layout_marginTop="40px"
+        android:background="@color/color_f0f0f0">
+
+        <ImageView
+            android:id="@+id/iv_face_shili"
+            android:layout_width="360px"
+            android:layout_height="460px"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/face_shli"/>
+
+        <ImageView
+            android:id="@+id/iv_ic_shili"
+            android:layout_width="123px"
+            android:layout_height="77px"
+            android:layout_marginTop="36px"
+            android:layout_toLeftOf="@+id/iv_face_shili"
+            android:src="@mipmap/icon_face_shili"/>
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="72px"
+        android:layout_marginLeft="58px"
+        android:layout_marginRight="58px"
+        android:layout_marginTop="54px"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_album"
+            android:layout_width="0dp"
+            android:layout_height="150px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_face_left_btn"
+            android:text="从相册选择"
+            android:textColor="@color/white"
+            android:textSize="52px"/>
+
+        <Button
+            android:id="@+id/bt_camera"
+            android:layout_width="0dp"
+            android:layout_height="150px"
+            android:layout_weight="1"
+            android:background="@drawable/shape_face_right_btn"
+            android:text="拍摄"
+            android:textColor="@color/white"
+            android:textSize="52px"/>
+
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

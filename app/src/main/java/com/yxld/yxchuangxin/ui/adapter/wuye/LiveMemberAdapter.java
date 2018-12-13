@@ -49,23 +49,23 @@ public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseView
         if (item.getFwId() == 0) {
             helper.setText(R.id.tv_live_Identity, "产权人");
             helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+//            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
         } else if (item.getFwId() == 1) {
             helper.setText(R.id.tv_live_Identity, "家属");
             helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+//            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
         } else if (item.getFwId() == 2) {
             helper.setText(R.id.tv_live_Identity, "租客");
-            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.color_8ecc5c));
-            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_zk));
+            helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.color_6fba2c));
+//            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_zk));
         } else if (item.getFwId() == 3) {
             helper.setText(R.id.tv_live_Identity, "其他");
             helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+//            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
         } else {
             helper.setText(R.id.tv_live_Identity, "历史产权人");
             helper.setTextColor(R.id.tv_live_Identity, mContext.getResources().getColor(R.color.main_color));
-            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
+//            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
         }
         helper.setText(R.id.tv_sex, item.getSex() == 0 ? "男" : "女");
     }

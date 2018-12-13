@@ -7,10 +7,10 @@
 
     <com.yxld.yxchuangxin.view.AutoCardView
         android:layout_width="match_parent"
-        android:layout_height="220px"
-        android:layout_marginBottom="34px"
-        android:layout_marginLeft="40px"
-        android:layout_marginRight="40px"
+        android:layout_height="250px"
+        android:layout_marginBottom="36px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="14px"
@@ -18,49 +18,39 @@
 
         <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingLeft="43px">
 
             <ImageView
                 android:id="@+id/iv_avater"
                 android:layout_width="80px"
                 android:layout_height="80px"
-                android:layout_marginLeft="50px"
+                android:scaleType="fitXY"
                 android:layout_marginTop="@dimen/item_margin"
-                />
+                android:src="@mipmap/rzcy_js1"/>
 
             <TextView
                 android:id="@+id/tv_live_Identity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_avater"
-                android:layout_marginLeft="50px"
                 android:layout_marginRight="0dp"
                 android:layout_marginTop="20px"
                 android:text="家属"
                 android:textColor="@color/main_color"
-                android:textSize="40px"/>
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="1px"
-                android:layout_height="140px"
-                android:layout_marginBottom="40px"
-                android:layout_marginLeft="50px"
-                android:layout_marginTop="40px"
-                android:layout_toRightOf="@+id/iv_avater"
-                android:background="@color/line1"/>
+                android:textSize="43px"/>
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50px"
+                android:layout_marginLeft="47px"
                 android:layout_marginTop="@dimen/item_margin"
-                android:layout_toRightOf="@+id/view1"
+                android:layout_toRightOf="@+id/iv_avater"
                 android:maxLength="4"
                 android:text="张三丰"
-                android:textColor="@color/color_646464"
-                android:textSize="40px"/>
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="43px"/>
 
             <TextView
                 android:id="@+id/tv_sex"
@@ -70,8 +60,8 @@
                 android:layout_marginTop="@dimen/item_margin"
                 android:layout_toRightOf="@+id/tv_name"
                 android:text="男"
-                android:textColor="@color/color_646464"
-                android:textSize="40px"
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="43px"
                 />
 
             <TextView
@@ -79,12 +69,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/iv_avater"
-                android:layout_marginLeft="50px"
+                android:layout_marginLeft="47px"
                 android:layout_marginTop="20px"
-                android:layout_toRightOf="@+id/view1"
+                android:layout_toRightOf="@+id/iv_avater"
                 android:text="身份证"
-                android:textColor="@color/color_646464"
-                android:textSize="40px"
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="43px"
                 />
 
             <TextView
@@ -95,8 +85,8 @@
                 android:layout_marginRight="144px"
                 android:layout_marginTop="@dimen/item_margin"
                 android:text="18888888888"
-                android:textColor="@color/color_646464"
-                android:textSize="40px"
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="43px"
                 />
 
             <TextView
@@ -106,8 +96,8 @@
                 android:layout_marginTop="@dimen/item_margin"
                 android:layout_toLeftOf="@+id/tv_phone"
                 android:text="手机"
-                android:textColor="@color/color_646464"
-                android:textSize="40px"
+                android:textColor="@color/umeng_socialize_text_share_content"
+                android:textSize="43px"
                 />
 
             <TextView
@@ -123,14 +113,23 @@
                 android:textSize="40px"
                 />
 
+            <View
+                android:id="@+id/view1"
+                android:layout_width="1px"
+                android:layout_height="140px"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="40px"
+                android:layout_marginRight="120px"
+                android:layout_marginTop="40px"
+                android:background="@color/line1"/>
+
             <ImageView
                 android:id="@+id/iv_delet"
-                android:layout_width="44px"
-                android:layout_height="44px"
+                android:layout_width="35px"
+                android:layout_height="41px"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="50px"
-                android:layout_marginRight="50px"
+                android:layout_marginRight="42px"
                 android:src="@mipmap/rzcy_sc"
                 />
         </com.zhy.autolayout.AutoRelativeLayout>

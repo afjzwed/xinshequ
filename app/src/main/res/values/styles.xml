@@ -462,6 +462,23 @@
         <item name="android:textColor">@color/color_333333</item>
         <item name="android:textSize">43px</item>
     </style>
+
+    <style name="face_linearlayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">43px</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginRight">43px</item>
+        <item name="android:layout_marginTop">20px</item>
+    </style>
+
+    <style name="face_text">
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:textSize">43px</item>
+        <item name="android:layout_marginLeft">51px</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     <!--<style name="MyProgressBar" parent="Base.Widget.AppCompat.ProgressBar">-->
         <!--<item name="android:indeterminateTint">你自定义的颜色</item>-->
         <!--<item name="android:indeterminateTintMode">src_atop</item>-->

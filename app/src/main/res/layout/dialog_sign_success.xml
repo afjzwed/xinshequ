@@ -18,6 +18,6 @@
         android:layout_width="90px"
         android:layout_height="90px"
         android:layout_marginLeft="761px"
-        android:background="@mipmap/delete"/>
+        android:background="@mipmap/delete_shili"/>
 
 </com.zhy.autolayout.AutoRelativeLayout>
