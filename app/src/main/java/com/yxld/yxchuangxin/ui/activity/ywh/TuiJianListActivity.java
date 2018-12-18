@@ -118,7 +118,8 @@ public class TuiJianListActivity extends BaseActivity implements TuiJianListCont
                 ywhTjDialog.dismiss();
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("uuid", Contains.uuid);
-                map.put("fwid", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
+                map.put("yzfwid", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
+                map.put("fwid", resultsBean.getFwId() + "");
                 map.put("tjid", resultsBean.getId() + "");
                 map.put("reason", ywhTjDialog.getEditText().getText().toString().trim());
                 mPresenter.comitLy(map);
