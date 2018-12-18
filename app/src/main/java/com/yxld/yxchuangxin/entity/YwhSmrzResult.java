@@ -44,7 +44,7 @@ public class YwhSmrzResult extends BaseEntity {
          */
 
         @SerializedName("status") private int statusX;
-        private int area;
+        private double area;
         private String cardFront;
         private String cardReverse;
         private List<String> deedFront;
@@ -58,11 +58,11 @@ public class YwhSmrzResult extends BaseEntity {
             this.statusX = statusX;
         }
 
-        public int getArea() {
+        public double getArea() {
             return area;
         }
 
-        public void setArea(int area) {
+        public void setArea(double area) {
             this.area = area;
         }
 

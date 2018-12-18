@@ -56,7 +56,7 @@ public class YwhHouse extends BaseEntity {
         private String deedImage;
         private String paperWork;
         private int projectId;
-        private int area;
+        private double area;
         private String propertyNumber;
         private String fwHuxing;
         private String fwJiaofangTime;
@@ -129,11 +129,11 @@ public class YwhHouse extends BaseEntity {
             this.projectId = projectId;
         }
 
-        public int getArea() {
+        public double getArea() {
             return area;
         }
 
-        public void setArea(int area) {
+        public void setArea(double area) {
             this.area = area;
         }
 
