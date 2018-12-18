@@ -192,9 +192,9 @@
         android:clickable="true"
         android:foreground="?android:attr/selectableItemBackground"
         android:textColor="@color/white"
+        android:layout_marginTop="8dp"
         android:layout_below="@+id/content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="8dp" />
+        android:layout_centerHorizontal="true"/>
 
     <com.zhy.autolayout.AutoRelativeLayout
         android:layout_below="@+id/loginSubmit"

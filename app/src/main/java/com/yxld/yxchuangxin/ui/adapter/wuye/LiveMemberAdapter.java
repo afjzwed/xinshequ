@@ -1,5 +1,9 @@
 package com.yxld.yxchuangxin.ui.adapter.wuye;
 
+import android.text.TextUtils;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yxld.yxchuangxin.R;
@@ -7,6 +11,8 @@ import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 
 import java.util.List;
+
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * 作者：hu on 2017/6/7
@@ -16,13 +22,19 @@ import java.util.List;
 
 public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseViewHolder> {
 
+    private ImageView iv_avater;
+
     public LiveMemberAdapter(List<AppYezhuFangwu> data) {
         super(R.layout.rv_ruzhu_chengyuan, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, AppYezhuFangwu item) {
+
+        iv_avater = helper.getView(R.id.iv_avater);
+
         helper.setText(R.id.tv_name, item.getFwDanyuan());
+//        if (item.getFwLoudong())
         String phone = item.getFwLoudong().substring(0, 3) + "****" + item.getFwLoudong().substring(7, 11);
         helper.setText(R.id.tv_phone, phone);
         String id = "";
@@ -68,5 +80,16 @@ public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseView
 //            helper.setImageDrawable(R.id.iv_avater, mContext.getResources().getDrawable(R.mipmap.rzcy_js));
         }
         helper.setText(R.id.tv_sex, item.getSex() == 0 ? "男" : "女");
+
+        if (!TextUtils.isEmpty(item.getPictureUrl())) {
+            Glide.with(mContext)
+//                    .load(API.PIC + faceurl)
+                    .load(item.getPictureUrl())
+                    .bitmapTransform(new CropCircleTransformation(mContext))
+                    .into(iv_avater);
+        } else {
+            iv_avater.setImageResource(R.mipmap.rzcy_js1);
+        }
+
     }
 }

@@ -45,6 +45,19 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 	private String yezhuName; //业主姓名
 	private boolean isMenjinSave;
 
+	//性别
+	private int sex;
+
+	private String pictureUrl;//照片URL
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
+
 	protected AppYezhuFangwu(Parcel in) {
 		rows = in.createTypedArrayList(AppYezhuFangwu.CREATOR);
 		yezhuId = in.readInt();
@@ -61,6 +74,7 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 		yezhuName = in.readString();
 		isMenjinSave = in.readByte() != 0;
 		sex = in.readInt();
+		pictureUrl = in.readString();
 	}
 
 	public static final Creator<AppYezhuFangwu> CREATOR = new Creator<AppYezhuFangwu>() {
@@ -83,9 +97,6 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 		isMenjinSave = menjinSave;
 	}
 
-	//性别
-	private int sex;
-
 	public int getSex() {
 		return sex;
 	}
@@ -93,9 +104,6 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 	public void setSex(int sex) {
 		this.sex = sex;
 	}
-
-
-
 
 	public List<AppYezhuFangwu> getRows() {
 		return rows;
@@ -201,8 +209,6 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 		this.yezhuName = yezhuName;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "AppYezhuFangwu{" +
@@ -245,5 +251,6 @@ public class AppYezhuFangwu extends BaseEntity implements Parcelable {
 		dest.writeString(yezhuName);
 		dest.writeByte((byte) (isMenjinSave ? 1 : 0));
 		dest.writeInt(sex);
+		dest.writeString(pictureUrl);
 	}
 }

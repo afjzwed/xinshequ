@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                                     android:layout_width="match_parent"
+                                     android:layout_height="match_parent"
+                                     android:orientation="vertical">
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="134px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="26px"
+        android:background="@drawable/edit_fangxing_bg">
+
+        <TextView
+            android:id="@+id/tv_tousu_leixing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32px"
+            android:text="投诉类型"
+            android:textColor="@color/color_646464"
+            android:textSize="40px"
+            />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="2px"
+            android:layout_height="40px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="56px"
+            android:layout_toRightOf="@+id/tv_tousu_leixing"
+            android:background="@color/color_b4b4b4"/>
+
+        <TextView
+            android:id="@+id/tv_pick_tousu_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="32px"
+            android:layout_marginRight="32px"
+            android:layout_toRightOf="@+id/view1"
+            android:drawableRight="@mipmap/spxq_jt"
+            android:hint="请选择投诉类型"
+            android:textColor="@color/color_323232"
+            android:textColorHint="@color/color_b4b4b4"
+            android:textSize="40px"
+            />
+
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="26px"
+        android:background="@drawable/edit_fangxing_bg"
+        android:minHeight="284px">
+
+        <TextView
+            android:id="@+id/tv_tousu_neirong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:text="投诉内容"
+            android:textColor="@color/color_646464"
+            android:textSize="40px"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp"/>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="2px"
+            android:layout_height="40px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="56px"
+            android:layout_toRightOf="@+id/tv_tousu_neirong"
+            android:background="@color/color_b4b4b4"/>
+
+        <EditText
+            android:id="@+id/et_tousu_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="15px"
+            android:layout_marginLeft="32px"
+            android:layout_marginRight="32px"
+            android:layout_marginTop="32px"
+            android:layout_toRightOf="@+id/view2"
+            android:background="@null"
+            android:hint="请输入问题详情，以便于我们更好的处理"
+            android:lineSpacingExtra="17px"
+            android:textColor="@color/color_323232"
+            android:textColorHint="@color/color_b4b4b4"
+            android:textSize="40px"
+            />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="274px"
+        android:layout_marginLeft="40px"
+        android:layout_marginRight="40px"
+        android:layout_marginTop="26px"
+        android:background="@drawable/edit_fangxing_bg"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32px"
+            android:text="添加照片"
+            android:textColor="@color/color_646464"
+            android:textSize="40px"/>
+        <!--为什么要这个属性？？？-->
+        <!--android:gravity="left"-->
+
+        <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="*"-->
+        <!--android:textSize="40px"-->
+        <!--android:visibility="invisible"-->
+        <!--android:textColor="@color/color_ff9934"-->
+        <!--/>-->
+        <View
+            android:id="@+id/view3"
+            android:layout_width="2px"
+            android:layout_height="40px"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="34px"
+            android:layout_toRightOf="@+id/tv_tousu_leixing"
+            android:background="@color/color_b4b4b4"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="32px"
+            android:orientation="horizontal"
+            app:layoutManager="LinearLayoutManager"
+            >
+        </android.support.v7.widget.RecyclerView>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="406px"
+        android:layout_height="118px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="68px"
+        android:background="@drawable/color_main"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="44px"
+        />
+
+    <TextView
+        android:id="@+id/tv_enter_lsit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50px"
+        android:text="进入列表"
+        android:textColor="@color/main_color"
+        android:textSize="40px"
+        />
+</com.zhy.autolayout.AutoLinearLayout>

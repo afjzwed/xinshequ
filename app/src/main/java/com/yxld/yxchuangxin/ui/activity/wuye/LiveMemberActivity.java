@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -14,6 +15,7 @@ import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
 import com.yxld.yxchuangxin.contain.Contains;
+import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 import com.yxld.yxchuangxin.ui.activity.wuye.component.DaggerLiveMemberComponent;
 import com.yxld.yxchuangxin.ui.activity.wuye.contract.LiveMemberContract;
@@ -24,6 +26,7 @@ import com.yxld.yxchuangxin.view.ConfirmDialog;
 import com.yxld.yxchuangxin.view.NoUpFaceDialog;
 import com.yxld.yxchuangxin.view.UploadFaceDialog;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,6 +55,8 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
     @BindView(R.id.iv_add_member)
     ImageView ivAddMember;
 
+    private int yezhuId = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,14 +74,47 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
         }
 
         mPresenter.init();
+
+        liveMemberAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
+                if (view.getId() == R.id.iv_delet) {
+                    ConfirmDialog.showDialog(LiveMemberActivity.this, "提示", "成员删除之后将无法恢复", new ConfirmDialog
+                            .OnConfirmListener() {
+                        @Override
+                        public void onCancel() {
+
+                        }
+
+                        @Override
+                        public void onConfirm() {
+                            mPresenter.deletLiveMember(position);
+                        }
+                    });
+                } else if (view.getId() == R.id.iv_avater) {
+
+                    AppYezhuFangwu item = (AppYezhuFangwu) baseQuickAdapter.getData().get(position);
+                    if (Contains.appYezhuFangwus.get(Contains.curFangwu).getFwyzType() == 0) {
+                        yezhuId = item.getYezhuId();
+                        String faceurl = item.getPictureUrl();
+                        showUploadFaceDialog(faceurl);
+                    } else {
+                        showNoupFaceDialog();
+                    }
+                }
+            }
+        });
     }
 
     @Override
-    protected void initData() {  //?fwyzFw=%1$s&fwyzId=%2$s&uuid=%3$s
+    protected void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("fwyzFw", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + "");
         map.put("fwyzId", Contains.appYezhuFangwus.get(Contains.curFangwu).getYezhuId() + "");
         map.put("uuid", Contains.uuid + "");
+
+        Log.e("上传数据", "fwyzFw " + Contains.appYezhuFangwus.get(Contains.curFangwu).getFwId() + " fwyzId " + Contains
+                .appYezhuFangwus.get(Contains.curFangwu).getYezhuId() + " uuid " + Contains.uuid + "");
         mPresenter.getAllLiveMember(map);
     }
 
@@ -107,44 +145,20 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
 
     @Override
     public void setMember(AppYezhuFangwu data) {
+//        liveMemberAdapter.setNewData(new ArrayList<AppYezhuFangwu>());
+//        liveMemberAdapter.notifyDataSetChanged();
         liveMemberAdapter.setNewData(data.getRows());
-        liveMemberAdapter.notifyDataSetChanged();
-        liveMemberAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
-            @Override
-            public void onItemChildClick(BaseQuickAdapter baseQuickAdapter, View view, int position) {
-                if (view.getId() == R.id.iv_delet) {
-                    ConfirmDialog.showDialog(LiveMemberActivity.this, "提示", "成员删除之后将无法恢复", new ConfirmDialog
-                            .OnConfirmListener() {
-                        @Override
-                        public void onCancel() {
-
-                        }
-
-                        @Override
-                        public void onConfirm() {
-                            mPresenter.deletLiveMember(position);
-                        }
-                    });
-                } else if (view.getId() == R.id.iv_avater) {
-                    if (Contains.user.getYezhuType() == null || Contains.user.getYezhuType() != 0) {
-                        showNoupFaceDialog();
-                    } else {
-                        String faceurl = "";
-                        showUploadFaceDialog(faceurl);
-                    }
-                }
-            }
-        });
     }
 
     private UploadFaceDialog dialog;
 
     /**
      * 显示上传弹框
+     *
      * @param faceurl
      */
     private void showUploadFaceDialog(String faceurl) {
-        dialog = new UploadFaceDialog(this);
+        dialog = new UploadFaceDialog(this, faceurl);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);//代码中取消标题栏
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 //        dialog.setCancelable(false);
@@ -152,7 +166,6 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
         dialog.getBt_album().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ToastUtil.showShort("从相册");
                 mPresenter.fromAlbumUpLoad();
                 dialog.dismiss();
 
@@ -161,7 +174,6 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
         dialog.getBt_camera().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ToastUtil.showShort("拍摄");
                 mPresenter.fromCameraUpLoad();
                 dialog.dismiss();
             }
@@ -190,16 +202,28 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
     @Override
     public void onUploadOVer(String url) {
         Map<String, String> map = new HashMap<>();
-        map.put("upFaceUrl", url);
-        // TODO: 2018/12/13 改参数改地址
+        map.put("uuid", Contains.uuid + "");
+        map.put("yezhuId", yezhuId + "");
+        map.put("loudong", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong() + "");
+        map.put("danyuan", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan() + "");
+        map.put("zpUrl", "http://img0.hnchxwl.com/" + url);
+        map.put("zpUrl", API.PIC + url);
+
+        Log.e("上传数据", "uuid " + Contains.uuid + " yezhuId " + yezhuId + " loudong " + Contains.appYezhuFangwus.get
+                (Contains.curFangwu).getFwLoudong() + " danyuan " + Contains.appYezhuFangwus.get(Contains.curFangwu)
+                .getFwDanyuan() + " zpUrl " + "http://img0.hnchxwl.com/" + url);
         mPresenter.upFace(map);
     }
 
     @Override
-    public void onUpFaceBack() {
-        ToastUtil.show(this, "上传人脸成功");
+    public void onUpFaceBack(boolean isUp) {
         closeProgressDialog();
-        initData();
+        if (isUp) {
+            ToastUtil.show(this, "上传人脸成功");
+            initData();
+        } else {
+            ToastUtil.show(this, "上传人脸失败");
+        }
     }
 
     @OnClick(R.id.iv_add_member)

@@ -31,16 +31,14 @@ import com.qiniu.android.utils.UrlSafeBase64;
 import com.socks.library.KLog;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
-import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 import com.yxld.yxchuangxin.entity.QiniuToken;
-import com.yxld.yxchuangxin.ui.activity.index.util.Bimp;
+import com.yxld.yxchuangxin.entity.UpFace;
 import com.yxld.yxchuangxin.ui.activity.index.util.FileUtils;
-import com.yxld.yxchuangxin.ui.activity.index.util.ImageItem;
 import com.yxld.yxchuangxin.ui.activity.wuye.LiveMemberActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.contract.LiveMemberContract;
 
@@ -143,7 +141,7 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
 
     @Override
     public void getAllLiveMember(Map map) {
-        Disposable disposable = httpAPIWrapper.getAllLiveMember(map)
+        Disposable disposable = httpAPIWrapper.getAllLiveMemberNew(map)
                 .subscribe(new Consumer<AppYezhuFangwu>() {
                     @Override
                     public void accept(AppYezhuFangwu data) throws Exception {
@@ -213,13 +211,17 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
 
     @Override
     public void upFace(Map map) {
-        Disposable disposable = httpAPIWrapper.saveTousuAndJianYi(map)
-                .subscribe(new Consumer<BaseEntity>() {
+        Disposable disposable = httpAPIWrapper.upFace(map)
+                .subscribe(new Consumer<UpFace>() {
                     @Override
-                    public void accept(BaseEntity user) throws Exception {
+                    public void accept(UpFace back3) throws Exception {
                         //isSuccesse
                         KLog.i("onSuccesse");
-                        mView.onUpFaceBack();
+                        if (back3.getStatus() == 0) {
+                            mView.onUpFaceBack(true);
+                        } else {
+                            mView.onUpFaceBack(false);
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -346,7 +348,7 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
                                     } catch (Exception e) {
                                         urlkey = "";
                                     }
-                                    uploadImgUrl += curUrl + ";";
+                                    uploadImgUrl = curUrl;
                                     Log.d("wh", "complete: urlkey=" + urlkey + ",uploadImgUrl=" + uploadImgUrl);
                                     Log.e("wh", "图片上传成功");
                                     mHandler.sendEmptyMessage(uploadSuccess);
@@ -498,9 +500,22 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
 
     //以bitmap返回格式解析uri
     private Bitmap decodeUriAsBitmap(Uri uri) {
+//        Bitmap bitmap = null;
+//        try {
+//            bitmap = BitmapFactory.decodeStream(mActivity.getContentResolver().openInputStream(uri));
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
         Bitmap bitmap = null;
         try {
-            bitmap = BitmapFactory.decodeStream(mActivity.getContentResolver().openInputStream(uri));
+            //解决oom 内存溢出
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inSampleSize = 2;
+            options.inPreferredConfig = Bitmap.Config.RGB_565;
+            options.inPurgeable = true;
+            options.inInputShareable = true;
+            bitmap = BitmapFactory.decodeStream(mActivity.getContentResolver().openInputStream(uri), null, options);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return null;

@@ -46,7 +46,7 @@ public interface LiveMemberContract {
         /**
          * 成功返回
          */
-        void onUpFaceBack();
+        void onUpFaceBack(boolean isUp);
     }
 
     interface LiveMemberContractPresenter extends BasePresenter {

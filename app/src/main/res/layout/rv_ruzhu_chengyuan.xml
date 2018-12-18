@@ -25,7 +25,6 @@
                 android:id="@+id/iv_avater"
                 android:layout_width="80px"
                 android:layout_height="80px"
-                android:scaleType="fitXY"
                 android:layout_marginTop="@dimen/item_margin"
                 android:src="@mipmap/rzcy_js1"/>
 

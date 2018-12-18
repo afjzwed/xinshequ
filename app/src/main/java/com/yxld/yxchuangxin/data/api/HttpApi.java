@@ -13,6 +13,7 @@ import com.yxld.yxchuangxin.entity.BaoJingEntity;
 import com.yxld.yxchuangxin.entity.BaseBack;
 import com.yxld.yxchuangxin.entity.BaseBack1;
 import com.yxld.yxchuangxin.entity.BaseBack2;
+import com.yxld.yxchuangxin.entity.BaseBack3;
 import com.yxld.yxchuangxin.entity.BuCheFang;
 import com.yxld.yxchuangxin.entity.CarJiaofeiRecord;
 import com.yxld.yxchuangxin.entity.CarList;
@@ -73,6 +74,7 @@ import com.yxld.yxchuangxin.entity.SJOrderStatus;
 import com.yxld.yxchuangxin.entity.ShopCarList;
 import com.yxld.yxchuangxin.entity.ShopList;
 import com.yxld.yxchuangxin.entity.StateOrderNum;
+import com.yxld.yxchuangxin.entity.UpFace;
 import com.yxld.yxchuangxin.entity.WyFwApp;
 import com.yxld.yxchuangxin.entity.XMsxt;
 import com.yxld.yxchuangxin.entity.XuFeiBean;
@@ -323,6 +325,14 @@ public interface HttpApi {
 
     @GET(URL_findall_chengyuan)
     Observable<AppYezhuFangwu> getAllLiveMember(@QueryMap Map<String, RequestBody> params);
+
+    @GET(URL_FINDALL_CHENGYUAN_NEW)
+    Observable<AppYezhuFangwu> getAllLiveMemberNew(@QueryMap Map<String, RequestBody> params);
+
+    //添加入住成员的照片
+    @FormUrlEncoded
+    @POST(URL_UPFACE_CHENGYUAN)
+    Observable<UpFace> upFace(@FieldMap Map<String, RequestBody> params);
 
     //公共安防的api
     @FormUrlEncoded

@@ -398,6 +398,11 @@
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
+            android:name=".ui.activity.wuye.NewComplainActivity"
+            android:label="投诉"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".ui.activity.wuye.ComplainListActivity"
             android:label="投诉建议列表"
             android:screenOrientation="portrait">

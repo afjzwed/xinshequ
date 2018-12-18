@@ -16,16 +16,16 @@ public interface API {
     //
 //    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
-    String IP_PRODUCT = "http://wy.iot.xin";
-    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
-//        String IP_PRODUCT = "http://192.168.8.128:8082/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.128:8082/wygl/";
+//    String IP_PRODUCT = "http://wy.iot.xin";
+//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+//        String IP_PRODUCT = "http://192.168.8.122:8080/wygl";
+//    String BASE_URL_DEVOLOP = "http://192.168.8.122:8080/wygl/";
 //    String IP_PRODUCT = "http://119.23.162.25";
 //    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
 //    String IP_PRODUCT = "http://192.168.8.222:8080";
 //    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
-//    String IP_PRODUCT = "http://129.204.29.74:8081";
-//    String BASE_URL_DEVOLOP = "http://129.204.29.74:8081/";
+    String IP_PRODUCT = "http://129.204.29.74:8081";
+    String BASE_URL_DEVOLOP = "http://129.204.29.74:8081/";
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
     String daozai = "http://dz.hnchxwl.com";//道闸
@@ -243,10 +243,21 @@ public interface API {
     String URL_add_chengyuan = "daily/androidHousehold_saveyezhu";
 
     /**
+     * 保存业主成员照片  0221 校验   -0223已增加uuid验证
+     */
+    String URL_UPFACE_CHENGYUAN = "xdoorLian/app/save.mvc";
+
+    /**
      * 根据业主id获取业主成员列表    -0223已增加uuid验证
      * 0221 校验
      */
     String URL_findall_chengyuan = "daily/androidHousehold_findrz";
+
+    /**
+     * 根据业主id获取业主成员列表(返回数据中携带照片URL)    -0223已增加uuid验证
+     * 0221 校验
+     */
+    String URL_FINDALL_CHENGYUAN_NEW = "xdoorLian/findrz.mvc";
 
     /**
      * 业主缴费明细查询： 0221 校验   -0223已增加uuid验证
@@ -262,7 +273,6 @@ public interface API {
      * 物业费添加 0221 校验   -0223已增加uuid验证
      */
     String URL_WUYE_ADD = "jfgl/jf_addwyfei.action";
-
 
     /**
      * 获取业主开门二维码   /业主姓名/业主电话/业主角色/楼盘ID/楼栋/单元120.25.78.92   0221 校验
@@ -817,6 +827,8 @@ public interface API {
 //    String URL_YEYWEIHUI = "http://192.168.8.223:8080";
     String URL_YEYWEIHUI = "http://129.204.29.74:8080/api/app";
     String URL_YWH_WEB = "http://129.204.5.12:8081";
+//    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";
+//    String URL_YWH_WEB = "http://192.168.8.127:8020";
     String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
     String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/supervise/app/conference/ylist";//意见反馈列表
