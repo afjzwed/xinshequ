@@ -61,7 +61,8 @@ public class UploadFaceDialog extends Dialog implements View.OnClickListener {
         } else {
             iv_ic_shili.setVisibility(View.GONE);
             Glide.with(mContext)
-                    .load(API.PIC + faceurl)
+//                    .load(API.PIC + faceurl)
+                    .load(faceurl)
                     .into(iv_face_shili);
         }
     }

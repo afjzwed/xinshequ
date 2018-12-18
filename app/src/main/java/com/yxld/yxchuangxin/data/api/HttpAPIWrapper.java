@@ -15,6 +15,7 @@ import com.yxld.yxchuangxin.entity.BaoJingEntity;
 import com.yxld.yxchuangxin.entity.BaseBack;
 import com.yxld.yxchuangxin.entity.BaseBack1;
 import com.yxld.yxchuangxin.entity.BaseBack2;
+import com.yxld.yxchuangxin.entity.BaseBack3;
 import com.yxld.yxchuangxin.entity.BuCheFang;
 import com.yxld.yxchuangxin.entity.CarJiaofeiRecord;
 import com.yxld.yxchuangxin.entity.CarList;
@@ -75,6 +76,7 @@ import com.yxld.yxchuangxin.entity.SJOrderStatus;
 import com.yxld.yxchuangxin.entity.ShopCarList;
 import com.yxld.yxchuangxin.entity.ShopList;
 import com.yxld.yxchuangxin.entity.StateOrderNum;
+import com.yxld.yxchuangxin.entity.UpFace;
 import com.yxld.yxchuangxin.entity.WyFwApp;
 import com.yxld.yxchuangxin.entity.XMsxt;
 import com.yxld.yxchuangxin.entity.XuFeiBean;
@@ -197,6 +199,15 @@ public class HttpAPIWrapper {
 
     public Observable<AppYezhuFangwu> getAllLiveMember(Map data) {
         return wrapper(mHttpAPI.getAllLiveMember(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
+    public Observable<AppYezhuFangwu> getAllLiveMemberNew(Map data) {
+        return wrapper(mHttpAPI.getAllLiveMemberNew(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
+
+    public Observable<UpFace> upFace(Map data) {
+        return wrapper(mHttpAPI.upFace(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
     }
 
     //公共安防的api
