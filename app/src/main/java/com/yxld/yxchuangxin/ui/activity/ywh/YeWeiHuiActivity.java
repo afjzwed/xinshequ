@@ -109,6 +109,9 @@ public class YeWeiHuiActivity extends BaseActivity implements YeWeiHuiContract.V
                 indicatorViewPager.setAdapter(myAdapter);
                 indicatorViewPager.setCurrentItem(currrentPosition, false);
             }
+        } else if (null != ywhCurrentflow && ywhCurrentflow.getCode() == 100) {
+            //流程失效提示
+            ToastUtil.showLong(ywhCurrentflow.msg);
         }
     }
 
