@@ -21,7 +21,6 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.sdk.android.ams.common.util.StringUtil;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -32,7 +31,6 @@ import com.yxld.yxchuangxin.Utils.StringUitl;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.Utils.UIUtils;
 import com.yxld.yxchuangxin.application.AppConfig;
-import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.CxwyMallCart;
@@ -43,7 +41,6 @@ import com.yxld.yxchuangxin.ui.activity.goods.component.DaggerGoodFenLeiComponen
 import com.yxld.yxchuangxin.ui.activity.goods.contract.GoodFenLeiContract;
 import com.yxld.yxchuangxin.ui.activity.goods.module.GoodFenLeiModule;
 import com.yxld.yxchuangxin.ui.activity.goods.presenter.GoodFenLeiPresenter;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.sdk.struct.Strings;
 import com.yxld.yxchuangxin.ui.adapter.goods.MallGoodsList2Adapter;
 import com.yxld.yxchuangxin.ui.adapter.wuye.SpacesItemDecoration;
 import com.yxld.yxchuangxin.view.MallGoodsListRankView;

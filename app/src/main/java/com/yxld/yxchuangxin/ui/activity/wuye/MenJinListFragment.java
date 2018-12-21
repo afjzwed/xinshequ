@@ -28,7 +28,6 @@ import com.yxld.yxchuangxin.ui.activity.wuye.component.DaggerMenJinListComponent
 import com.yxld.yxchuangxin.ui.activity.wuye.contract.MenJinListContract;
 import com.yxld.yxchuangxin.ui.activity.wuye.module.MenJinListModule;
 import com.yxld.yxchuangxin.ui.activity.wuye.presenter.MenJinListPresenter;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.utils.StringUtils;
 import com.yxld.yxchuangxin.ui.adapter.wuye.MenJinListAdapter;
 
 import org.greenrobot.eventbus.EventBus;

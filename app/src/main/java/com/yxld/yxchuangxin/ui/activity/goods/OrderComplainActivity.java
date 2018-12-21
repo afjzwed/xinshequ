@@ -15,8 +15,6 @@ import com.yxld.yxchuangxin.ui.activity.goods.component.DaggerOrderComplainCompo
 import com.yxld.yxchuangxin.ui.activity.goods.contract.OrderComplainContract;
 import com.yxld.yxchuangxin.ui.activity.goods.module.OrderComplainModule;
 import com.yxld.yxchuangxin.ui.activity.goods.presenter.OrderComplainPresenter;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.sdk.struct.Strings;
-import com.zhy.autolayout.AutoLinearLayout;
 
 import javax.inject.Inject;
 

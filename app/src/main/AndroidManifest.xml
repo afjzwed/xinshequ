@@ -726,10 +726,6 @@
             android:label="商城建议列表"
             android:screenOrientation="portrait"
             />
-        <activity
-            android:name="com.AtestActivity"
-            android:label="商城详情测试列表"
-            android:screenOrientation="portrait"/>
         /*********************************↑↑欣商城模块↑↑******************************************/
 
         <activity
@@ -852,34 +848,10 @@
             android:screenOrientation="behind"></activity>
 
 
-        <!--雄迈相关-->
-        <activity
-            android:name=".ui.activity.xiongmai.XCameraActivity"
-            android:configChanges="orientation|keyboardHidden|screenLayout|keyboard|screenSize"
-            android:label="公共监控"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
 
-        <activity
-            android:name=".ui.activity.xiongmai.DeviceLoginActivity"
-            android:label="连接设备"
-            android:screenOrientation="portrait"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.zbar.lib.CaptureActivity"
-            android:screenOrientation="portrait"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-            </intent-filter>
-        </activity>
+
+
+
 
 
         <service

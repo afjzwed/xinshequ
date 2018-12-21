@@ -35,8 +35,6 @@ import com.yxld.yxchuangxin.ui.activity.wuye.RoomRentActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.UpdateActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WebSatisficingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.WuyeMoneyActivity;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.DeviceLoginActivity;
-import com.yxld.yxchuangxin.ui.activity.xiongmai.lib.funsdk.support.FunSupport;
 import com.yxld.yxchuangxin.ui.activity.ywh.YeWeiHuiActivity;
 import com.yxld.yxchuangxin.view.GridDividerItemDecoration;
 
@@ -111,8 +109,8 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             mContext.startActivity(new Intent(mContext, WuyeMoneyActivity.class));
                             break;
                         case 6:
-                            FunSupport.getInstance().init(AppConfig.getInstance());
-                            mContext.startActivity(new Intent(mContext, DeviceLoginActivity.class));
+//                            FunSupport.getInstance().init(AppConfig.getInstance());
+//                            mContext.startActivity(new Intent(mContext, DeviceLoginActivity.class));
                             break;
                     }
                 }
@@ -245,7 +243,6 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             break;
                         case 3:
                             mContext.startActivity(new Intent(mContext, UpdateActivity.class));
-//                            mContext.startActivity(new Intent(mContext, AtestActivity.class));
                             break;
                         case 4:
                             mContext.startActivity(new Intent(mContext, AboutOurActivity.class));
