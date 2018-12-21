@@ -7,25 +7,27 @@ package com.yxld.yxchuangxin.data.api;
 public interface API {
     long CONNECT_TIMEOUT = 30 * 1000;
     long IO_TIMEOUT = 60 * 1000;
-    //加载图片
-    String PIC = "http://img0.hnchxwl.com/";
-    String IP_Camera = "http://api1.cloudlinks.cn";
-//    String IP_PRODUCT = "http://wy.iot.xin";
-//    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
-//        String IP_PRODUCT = "http://192.168.8.116:8080/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.116:8080/wygl/";
-//    String IP_PRODUCT = "http://119.23.162.25";
-//    String BASE_URL_DEVOLOP = "http://119.23.162.25/";
-//    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
-//    String BASE_URL_DEVOLOP = "http://192.168.8.222:8080/";
+
+    //    String IP_PRODUCT = "http://wy.iot.xin";//线上
     String IP_PRODUCT = "http://114.116.103.247:8081";//业务会登录 拉取业主登陆
-    String BASE_URL_DEVOLOP = "http://114.116.103.247:8081/";//业务会登录
-//    String IP_PRODUCT = "http://114.116.111.29:8081";
-//    String BASE_URL_DEVOLOP = "http://114.116.111.29:8081/";
+//    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
+
+    //业委会
+    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
+    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
+//    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
+//    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
+
+
+
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    //加载图片
+    String PIC = "http://img0.hnchxwl.com/";
+    String ywh_pic = "http://pk2wfuxa3.bkt.clouddn.com/";//业委会lt七牛图片访问地址
+    String IP_Camera = "http://api1.cloudlinks.cn";
     String daozai = "http://dz.hnchxwl.com";//道闸
-//    String daozai= "http://192.168.8.124:8080";//道闸
     /**
      * 两个协议用https的链接
      * 派安缴费协议
@@ -820,12 +822,7 @@ public interface API {
     String URL_WEIXIU_LIUCHENG = "baoxiu_/find.mvc";
 
     //**********************业委会***********************//
-//    String URL_YEYWEIHUI = "http://192.168.8.223:8080";
-//    String URL_YWH_WEB = "http://192.168.8.126:8081";
-    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
-    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
-//    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
-//    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
+
     String URL_YWH_CURRENTFLOW = URL_YEYWEIHUI + "/supervise/app/conference/currentflow";//业委会当前阶段
 
     String URL_YWH_GETFKYJLIST = URL_YEYWEIHUI + "/supervise/app/conference/ylist";//意见反馈列表
@@ -843,7 +840,6 @@ public interface API {
 
     //**********************业委会***********************//
 
-    String ywh_pic = "http://pk2wfuxa3.bkt.clouddn.com/";//lt七牛访问地址
     String url_ywh_lcxx = URL_YEYWEIHUI + "/supervise/app/conference/flowlist";
     String url_ywh_tjcbz = URL_YEYWEIHUI + "/supervise/app/prepare/recommend";//推荐筹备组成员理由
     String url_ywh_tjcbz_list = URL_YEYWEIHUI + "/supervise/app/prepare/cblist";//推荐筹备组成员列表
