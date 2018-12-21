@@ -10,12 +10,6 @@ public interface API {
     //加载图片
     String PIC = "http://img0.hnchxwl.com/";
     String IP_Camera = "http://api1.cloudlinks.cn";
-    //欣周边地址
-//    String Periphery = "http://pay.iot.xin/cxwy_consumer_terminal";
-
-    //
-//    String IP_PRODUCT = "http://192.168.8.132:8080/wygl";
-//    String BASE_URL_DEVOLOP = "http://192.168.8.132:8080/wygl/";
 //    String IP_PRODUCT = "http://wy.iot.xin";
 //    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
 //        String IP_PRODUCT = "http://192.168.8.116:8080/wygl";
