@@ -1,9 +1,11 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.socks.library.KLog;
+import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.YwhMember;
@@ -67,14 +69,19 @@ public class YwhMemberShowPresenter implements YwhMemberShowContract.YwhMemberSh
                         mView.setData(false, baseEntity);
                     }
                 } else {
-                    mView.setError();
+                    if (TextUtils.isEmpty(baseEntity.msg)) {
+                        mView.setError("加载失败");
+                    } else {
+                        mView.setError(baseEntity.msg + "");
+                    }
+
                 }
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
-                mView.setError();
+                mView.setError("加载失败");
             }
         }, new Action() {
             @Override

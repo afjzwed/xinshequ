@@ -28,7 +28,7 @@ public interface YwhMemberShowContract {
 
         void setData(boolean isRefresh,YwhMember baseEntity);
 
-        void setError();
+        void setError(String msg);
     }
 
     interface YwhMemberShowContractPresenter extends BasePresenter {

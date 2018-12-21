@@ -28,7 +28,7 @@ public interface OpinionSurveyContract {
 
         void setData(boolean isRefresh,OpinionSurveyEntity baseEntity);
 
-        void setError();
+        void setError(String msg);
     }
 
     interface OpinionSurveyContractPresenter extends BasePresenter {

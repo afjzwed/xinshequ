@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -121,11 +122,11 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
         map.put("uuid", Contains.uuid);
         map.put("page", page + "");
         map.put("rows", rows + "");
-        mPresenter.getData(map,isRefresh);
+        mPresenter.getData(map, isRefresh);
     }
 
     @Override
-    public void setData(boolean isRefresh,YwhMember data) {
+    public void setData(boolean isRefresh, YwhMember data) {
         page++;
         memberList = data.getData();
         final int size = memberList == null ? 0 : memberList.size();
@@ -157,12 +158,12 @@ public class YwhMemberShowActivity extends BaseActivity implements YwhMemberShow
     }
 
     @Override
-    public void setError() {
+    public void setError(String msg) {
         ywhMemberShowAdapter.setEnableLoadMore(true);//自动加载更多
         swipRefresh.setRefreshing(false);//加载完成,不显示进度条
 //        fkyjListAdapter.setEmptyView(notDataView);
         ywhMemberShowAdapter.setNewData(new ArrayList<>());
-//        ToastUtil.show(this, "加载失败");
+        ToastUtil.show(this, msg + "");
     }
 
     @Override
