@@ -1,5 +1,6 @@
 package com.yxld.yxchuangxin.ui.activity.wuye.presenter;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
@@ -61,14 +62,18 @@ public class OpinionSurveyPresenter implements OpinionSurveyContract.OpinionSurv
                         mView.setData(false, baseEntity);
                     }
                 } else {
-                    mView.setError();
+                    if (TextUtils.isEmpty(baseEntity.msg)) {
+                        mView.setError("加载失败");
+                    } else {
+                        mView.setError(baseEntity.msg + "");
+                    }
                 }
             }
         }, new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
                 KLog.i("onError");
-                mView.setError();
+                mView.setError("加载失败");
             }
         }, new Action() {
             @Override

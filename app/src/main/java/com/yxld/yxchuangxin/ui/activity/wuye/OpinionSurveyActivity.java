@@ -173,12 +173,12 @@ public class OpinionSurveyActivity extends BaseActivity implements OpinionSurvey
     }
 
     @Override
-    public void setError() {
+    public void setError(String msg) {
         opinionSurveyAdapter.setEnableLoadMore(true);//自动加载更多
         swipRefresh.setRefreshing(false);//加载完成,不显示进度条
 //        fkyjListAdapter.setEmptyView(notDataView);
         opinionSurveyAdapter.setNewData(new ArrayList<>());
-        ToastUtil.show(this, "加载失败");
+        ToastUtil.show(this, msg + "");
     }
 
     @Override
