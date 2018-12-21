@@ -273,6 +273,14 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
     public void getHoustSuccess(YwhHouse baseEntity) {
         if (baseEntity.getCode() == 200) {
             adapter.addHeaderView(headLayout());
+            for (YwhHouse.DataBean dataBean : baseEntity.getData()) {
+                if (!TextUtils.isEmpty(dataBean.getDeedImage())) {
+                    dataBean.setDeedImage("");
+                }
+                if (!TextUtils.isEmpty(dataBean.getPaperWork())) {
+                    dataBean.setPaperWork("");
+                }
+            }
             adapter.setNewData(baseEntity.getData());
             adapter.addFooterView(footLayout());
         }

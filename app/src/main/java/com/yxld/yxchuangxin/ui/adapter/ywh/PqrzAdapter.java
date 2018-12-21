@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.data.api.API;
 import com.yxld.yxchuangxin.entity.YwhHouse;
 
 
