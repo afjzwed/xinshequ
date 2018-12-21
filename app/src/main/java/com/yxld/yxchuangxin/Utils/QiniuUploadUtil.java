@@ -139,8 +139,8 @@ public class QiniuUploadUtil {
         }
     }
     public static String getQiniuToken() {
-        String qiniuak = "Svz203AV4SO5NqiRNJ6XQYraP4QW5wMQcJwxlQAG";
-        String qiniusk = "jNjB8gZgPkBdQOU3WGZM0M4X4_m-Gfsp-t3kfaPD";
+        String qiniuak = "4mJyuj6g6jjfYr2w1LBlrARdzscugcgVKAntzpfD";
+        String qiniusk = "5qvaXWuaT3vvMMC2i7LXlTaJ6IzeVY7fIcGvR7C_";
         String qiniubcname = "monitorstorage";
         Auth auth = Auth.create(qiniuak, qiniusk);
         String s = auth.uploadToken(qiniubcname);
