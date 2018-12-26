@@ -62,6 +62,7 @@ import com.yxld.yxchuangxin.entity.PaianYijiaJiashu;
 import com.yxld.yxchuangxin.entity.PrePay;
 import com.yxld.yxchuangxin.entity.PushOrder;
 import com.yxld.yxchuangxin.entity.QiniuToken;
+import com.yxld.yxchuangxin.entity.QiniuTokenYwh;
 import com.yxld.yxchuangxin.entity.RimActivityDiscount;
 import com.yxld.yxchuangxin.entity.RimCommentListBean;
 import com.yxld.yxchuangxin.entity.RimDeleteOrderBean;
@@ -753,6 +754,9 @@ public interface HttpApi {
     @FormUrlEncoded
     @POST(URL_YWH_CONMITCOMMEND)
     Observable<BaseEntity> getTjcb1(@FieldMap Map<String, RequestBody> params);
+
+    @GET(URL_YWH_QINIU_TOKEN)
+    Observable<QiniuTokenYwh> getQiniuTokenYwh(@QueryMap Map<String, RequestBody> params);
 
     @FormUrlEncoded
     @POST(url_ywh_tjcbz_list)

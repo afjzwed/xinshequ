@@ -1,12 +1,14 @@
 package com.yxld.yxchuangxin.ui.activity.ywh.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.BaseEntity;
 import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.data.api.HttpAPIWrapper;
 import com.yxld.yxchuangxin.entity.QiniuToken;
+import com.yxld.yxchuangxin.entity.QiniuTokenYwh;
 import com.yxld.yxchuangxin.entity.YwhHouse;
 import com.yxld.yxchuangxin.ui.activity.ywh.PqrzActivity;
 import com.yxld.yxchuangxin.ui.activity.ywh.contract.PqrzContract;
@@ -58,18 +60,18 @@ public class PqrzPresenter implements PqrzContract.PqrzContractPresenter{
     @Override
     public void getQnToken() {
         Map<String, String> map = new HashMap<>();
-        Disposable disposable = httpAPIWrapper.getQiniuToken(map)
-                .subscribe(new Consumer<QiniuToken>() {
+        Disposable disposable = httpAPIWrapper.getQiniuTokenYwh(map)
+                .subscribe(new Consumer<QiniuTokenYwh>() {
                     @Override
-                    public void accept(QiniuToken qinniuToken) throws Exception {
+                    public void accept(QiniuTokenYwh qinniuToken) throws Exception {
                         //isSuccesse
                         KLog.i("onSuccesse");
-                        if (qinniuToken.status != STATUS_CODE_OK) {
-//                            onError(qinniuToken.MSG,qinniuToken.status);
-                            return;
+                        if (qinniuToken.isSuccess()) {
+                            mView.uploadimg(qinniuToken.getData());
+                        } else {
+                            mView.setError(qinniuToken.msg);
+                            Log.e("wh", "获取七牛token失败");
                         }
-                        mView.uploadimg(qinniuToken.getUptoken());
-
                     }
                 }, new Consumer<Throwable>() {
                     @Override

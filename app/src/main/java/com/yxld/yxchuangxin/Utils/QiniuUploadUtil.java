@@ -138,6 +138,42 @@ public class QiniuUploadUtil {
 
         }
     }
+
+    public static void uploadPics2(final List<String> list,String token,  final UploadCallback callBack) {
+        UploadManager uploadManager = initQiniu();
+        curUploadImgIndex = 0;
+        final List<String> urlList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            final String curUrl = "android_ywh/" + System.currentTimeMillis();
+            //put第二个参数设置文件名
+            urlList.add(curUrl);
+            Logger.i("开始传第" + i + "张图--------" + curUrl);
+            final int finalI = i;
+            uploadManager.put(list.get(i), curUrl, token, new UpCompletionHandler() {
+                @Override
+                public void complete(String key, ResponseInfo info, JSONObject response) {
+                    curUploadImgIndex++;
+                    if (info.isOK()) {
+                        //// TODO: 2018/7/5 y以后优化
+//                        File file = new File(list.get(finalI));
+//                        if(file.exists()){
+//                            file.delete();
+//                            Logger.i("文件删除成功");
+//                        }
+                        if ((curUploadImgIndex) == list.size()) {
+                            Logger.i("多图上传成功");
+                            callBack.sucess(urlList);
+                        }
+                    } else {
+                        Logger.e("多图上传失败" + info.toString());
+                        callBack.fail(key, info);
+                    }
+                }
+            }, null);
+
+        }
+    }
+
     public static String getQiniuToken() {
         String qiniuak = "4mJyuj6g6jjfYr2w1LBlrARdzscugcgVKAntzpfD";
         String qiniusk = "5qvaXWuaT3vvMMC2i7LXlTaJ6IzeVY7fIcGvR7C_";

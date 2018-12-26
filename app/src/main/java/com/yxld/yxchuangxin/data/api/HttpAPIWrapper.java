@@ -64,6 +64,7 @@ import com.yxld.yxchuangxin.entity.PaianYijiaJiashu;
 import com.yxld.yxchuangxin.entity.PrePay;
 import com.yxld.yxchuangxin.entity.PushOrder;
 import com.yxld.yxchuangxin.entity.QiniuToken;
+import com.yxld.yxchuangxin.entity.QiniuTokenYwh;
 import com.yxld.yxchuangxin.entity.RimActivityDiscount;
 import com.yxld.yxchuangxin.entity.RimCommentListBean;
 import com.yxld.yxchuangxin.entity.RimDeleteOrderBean;
@@ -845,6 +846,11 @@ public class HttpAPIWrapper {
     public Observable<BaseEntity> getTjcb1(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcb1(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }
+
+    public Observable<QiniuTokenYwh> getQiniuTokenYwh(Map data) {
+        return wrapper(mHttpAPI.getQiniuTokenYwh(addParams(data))).compose(SCHEDULERS_TRANSFORMER);
+    }
+
     public Observable<YwhTj> getTjcbzList(Map<String, String> params) {
         return wrapper(mHttpAPI.getTjcbzList(addParams(params))).compose(SCHEDULERS_TRANSFORMER);
     }

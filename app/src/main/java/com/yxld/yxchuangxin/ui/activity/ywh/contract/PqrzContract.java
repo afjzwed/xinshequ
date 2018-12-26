@@ -30,6 +30,8 @@ public interface PqrzContract {
         void getHoustSuccess(YwhHouse baseEntity);
 
         void commitSuccess(BaseEntity baseEntity);
+
+        void setError(String msg);
     }
 
     interface PqrzContractPresenter extends BasePresenter {

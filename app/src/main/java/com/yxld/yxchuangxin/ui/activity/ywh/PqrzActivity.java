@@ -69,6 +69,8 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
     private int type; //1身份证正面拍照2身份证反面面拍照3房产证4手持房产证
     private int positon;
 
+    private  List<String> list = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,7 +268,34 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
 
     @Override
     public void uploadimg(String token) {
+        QiniuUploadUtil.uploadPics2(list,token, new QiniuUploadUtil.UploadCallback() {
+            @Override
+            public void sucess(String url) {
 
+            }
+
+            @Override
+            public void sucess(List<String> url) {
+                Logger.e("七牛上传图片成功" + url.toString());
+
+                Map<String, String> map = new HashMap<>();
+                map.put("uuid", Contains.uuid);
+                map.put("cardFront", url.get(0));
+                map.put("cardReverse", url.get(1));
+                for (int i = 0; i < adapter.getData().size(); i++) {
+                    map.put("houses[" + i + "].deedImage", url.get(i * 2 + 2));
+                    map.put("houses[" + i + "].paperWork", url.get(i * 2 + 3));
+                    map.put("houses[" + i + "].id", adapter.getData().get(i).getId() + "");
+                }
+                mPresenter.commit(map);
+            }
+
+            @Override
+            public void fail(String key, ResponseInfo info) {
+                closeProgressDialog();
+
+            }
+        });
     }
 
     @Override
@@ -296,6 +325,10 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
         }
     }
 
+    @Override
+    public void setError(String msg) {
+        ToastUtil.show(this, msg);
+    }
 
     /**
      * 点击提交按钮
@@ -312,7 +345,11 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
                 return;
             }
         }
-        List<String> list = new ArrayList<>();
+        if (list == null) {
+            list = new ArrayList<>();
+        }
+        list.clear();
+
         list.add(zmPath);
         list.add(fmPath);
         for (int i = 0; i < adapter.getData().size(); i++) {
@@ -320,35 +357,37 @@ public class PqrzActivity extends BaseActivity implements PqrzContract.View {
             list.add(adapter.getData().get(i).getPaperWork());
         }
         showProgressDialog();
-        QiniuUploadUtil.uploadPics(list, new QiniuUploadUtil.UploadCallback() {
-            @Override
-            public void sucess(String url) {
 
-            }
+        mPresenter.getQnToken();
 
-            @Override
-            public void sucess(List<String> url) {
-                Logger.e("七牛上传图片成功" + url.toString());
-
-                Map<String, String> map = new HashMap<>();
-                map.put("uuid", Contains.uuid);
-                map.put("cardFront", url.get(0));
-                map.put("cardReverse", url.get(1));
-                for (int i = 0; i < adapter.getData().size(); i++) {
-                    map.put("houses[" + i + "].deedImage", url.get(i * 2 + 2));
-                    map.put("houses[" + i + "].paperWork", url.get(i * 2 + 3));
-                    map.put("houses[" + i + "].id", adapter.getData().get(i).getId() + "");
-                }
-                mPresenter.commit(map);
-            }
-
-            @Override
-            public void fail(String key, ResponseInfo info) {
-                closeProgressDialog();
-
-            }
-        });
-
+//        QiniuUploadUtil.uploadPics(list, new QiniuUploadUtil.UploadCallback() {
+//            @Override
+//            public void sucess(String url) {
+//
+//            }
+//
+//            @Override
+//            public void sucess(List<String> url) {
+//                Logger.e("七牛上传图片成功" + url.toString());
+//
+//                Map<String, String> map = new HashMap<>();
+//                map.put("uuid", Contains.uuid);
+//                map.put("cardFront", url.get(0));
+//                map.put("cardReverse", url.get(1));
+//                for (int i = 0; i < adapter.getData().size(); i++) {
+//                    map.put("houses[" + i + "].deedImage", url.get(i * 2 + 2));
+//                    map.put("houses[" + i + "].paperWork", url.get(i * 2 + 3));
+//                    map.put("houses[" + i + "].id", adapter.getData().get(i).getId() + "");
+//                }
+//                mPresenter.commit(map);
+//            }
+//
+//            @Override
+//            public void fail(String key, ResponseInfo info) {
+//                closeProgressDialog();
+//
+//            }
+//        });
     }
 
     /**

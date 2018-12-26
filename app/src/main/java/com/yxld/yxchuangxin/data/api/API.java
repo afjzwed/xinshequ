@@ -9,20 +9,20 @@ public interface API {
     long IO_TIMEOUT = 60 * 1000;
 
     //    String IP_PRODUCT = "http://wy.iot.xin";//线上
-    String IP_PRODUCT = "http://114.116.103.247:8081";//业务会登录 拉取业主登陆
-//    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
+//    String IP_PRODUCT = "http://114.116.103.247:8081";//业务会登录 拉取业主登陆
+    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
 
     //业委会
-    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
-    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
-//    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
-//    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
+//    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
+//    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
+    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
+    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
 
 
 
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
-    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";//默认测试服
     //加载图片
     String PIC = "http://img0.hnchxwl.com/";
     String ywh_pic = "http://pk2wfuxa3.bkt.clouddn.com/";//业委会lt七牛图片访问地址
@@ -837,6 +837,8 @@ public interface API {
     String URL_YWH_GETRECOMMEND = URL_YEYWEIHUI + "/app/obtain/list";//候选人推荐列表
 
     String URL_YWH_CONMITCOMMEND = URL_YEYWEIHUI + "/app/obtain/sett";//候选人推荐提交
+
+    String URL_YWH_QINIU_TOKEN = URL_YEYWEIHUI + "/qiniu/getQiniuToken";//获取业委会七牛token
 
     //**********************业委会***********************//
 
