@@ -22,7 +22,7 @@ public interface API {
 
     String BASE_URL = IP_PRODUCT + "/";
     String Periphery = IP_PRODUCT + "/cxwy_consumer_terminal";//周边相关
-    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";//默认测试服
+    String BASE_URL_DEVOLOP = "http://wy.iot.xin/";
     //加载图片
     String PIC = "http://img0.hnchxwl.com/";
     String ywh_pic = "http://pk2wfuxa3.bkt.clouddn.com/";//业委会lt七牛图片访问地址

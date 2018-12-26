@@ -34,12 +34,20 @@ public class PqrzAdapter extends BaseQuickAdapter<YwhHouse.DataBean, BaseViewHol
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(view);
+        }else {
+            Glide.with(mContext)
+                    .load(R.mipmap.ic_fcxxz)
+                    .into(view);
         }
         if (!TextUtils.isEmpty(s.getPaperWork())) {
             Glide.with(mContext)
                     .load(s.getPaperWork())
                     .skipMemoryCache(true)
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(view1);
+        }else {
+            Glide.with(mContext)
+                    .load(R.mipmap.ic_sczjz)
                     .into(view1);
         }
 
