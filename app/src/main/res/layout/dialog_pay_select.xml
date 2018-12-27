@@ -41,7 +41,6 @@
             android:layout_marginRight="40px"
             android:background="@color/color_d6d7dc"/>
     <com.zhy.autolayout.AutoRelativeLayout
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="134px"
         android:background="@color/white"

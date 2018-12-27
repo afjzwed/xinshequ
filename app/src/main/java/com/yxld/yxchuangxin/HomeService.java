@@ -86,7 +86,7 @@ public class HomeService extends Service {
         super.onCreate();
         EventBus.getDefault().register(this);
         KLog.i(TAG, "启动HomeService");
-        if (Contains.user.getYezhuShouji() != null) {
+        if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
             KLog.i(TAG, "username" + username);
         }else {
@@ -216,7 +216,7 @@ public class HomeService extends Service {
             device.release();
             device = null;
         }
-        if (Contains.user.getYezhuShouji() != null) {
+        if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
             KLog.i(TAG, "username" + username);
         }else {
