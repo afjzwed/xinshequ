@@ -113,8 +113,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_main_new, null);
             ButterKnife.bind(this, view);
-            Bundle mBundle = getArguments();
-            Logger.e("---time"+System.currentTimeMillis());
             initToolbar();
             initRv();
             initHead();
@@ -207,7 +205,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
             }
         });
         adapter.addHeaderView(headView1);
-        Logger.e("---time"+System.currentTimeMillis());
     }
 
     private void initHead() {
@@ -223,7 +220,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
             }
         });
         adapter.addHeaderView(headView);
-        Logger.e("---time"+System.currentTimeMillis());
     }
 
     private int instans = 0;
@@ -263,9 +259,9 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                Logger.e(dy + "--------");
+//                Logger.e(dy + "--------");
                 instans = instans + dy;
-                Logger.e(dy + "--------" + instans + "toobarhead" + toolbar.getHeight());
+//                Logger.e(dy + "--------" + instans + "toobarhead" + toolbar.getHeight());
                 if (instans > toolbar.getHeight()) {
                     toolbar.setBackgroundColor(getResources().getColor(R.color.main_color));
                 } else {
@@ -273,7 +269,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
                 }
             }
         });
-        Logger.e("---time"+System.currentTimeMillis());
     }
 
     protected void initData() {
@@ -349,7 +344,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        Logger.e("---time"+System.currentTimeMillis());
     }
 
 
@@ -444,7 +438,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
 
     @Override
     public void setMiaoShaDatas(GoodsKind goodsKind) {
-        Logger.e("---time"+System.currentTimeMillis());
         if (goodsKind.status == 1) {
             List<GoodsKind.RowsBean.XinpinListsBean> xinpinLists = new ArrayList<>();
             xinpinLists = goodsKind.getRows().getXinpinLists();
@@ -463,7 +456,6 @@ public class MainNewFragment extends BaseFragment implements MainNewContract.Vie
     private void setMiaoshaRecyclerview(List<GoodsKind.RowsBean.XinpinListsBean> xinpinLists) {
         mainMiaoshaAdapter.setNewData(xinpinLists);
 
-        Logger.e("---time"+System.currentTimeMillis());
     }
 
     @Override

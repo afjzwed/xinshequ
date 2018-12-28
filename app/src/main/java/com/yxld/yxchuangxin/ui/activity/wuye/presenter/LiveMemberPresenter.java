@@ -141,12 +141,14 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
 
     @Override
     public void getAllLiveMember(Map map) {
+        mView.showProgressDialog();
         Disposable disposable = httpAPIWrapper.getAllLiveMemberNew(map)
                 .subscribe(new Consumer<AppYezhuFangwu>() {
                     @Override
                     public void accept(AppYezhuFangwu data) throws Exception {
                         //isSuccesse
                         KLog.i("onSuccesse");
+                        mView.closeProgressDialog();
                         mView.setMember(data);
                         yezhuFangwu = data;
                     }
@@ -154,6 +156,7 @@ public class LiveMemberPresenter implements LiveMemberContract.LiveMemberContrac
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         //onError
+                        mView.closeProgressDialog();
                         KLog.i("onError");
                     }
                 }, new Action() {

@@ -21,6 +21,8 @@
             android:layout_marginLeft="40px"
             android:layout_marginTop="40px"
             android:text="粮油"
+            android:lines="1"
+            android:ellipsize="end"
             android:textColor="@color/color_323232"
             android:textSize="44px"/>
 

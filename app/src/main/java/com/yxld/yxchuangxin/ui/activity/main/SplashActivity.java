@@ -297,6 +297,5 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        KLog.e("onDestroy");
     }
 }

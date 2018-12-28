@@ -8,6 +8,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 
+import com.orhanobut.logger.Logger;
 import com.socks.library.KLog;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -144,7 +145,6 @@ public class SplashPresenter implements SplashContract.SplashContractPresenter {
 
     @Override
     public void login(Map map) {
-        KLog.i(map);
         Disposable disposable = httpAPIWrapper.Login(map)
                 .subscribe(new Consumer<LoginEntity>() {
                     @Override

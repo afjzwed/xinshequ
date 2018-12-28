@@ -23,6 +23,7 @@ import com.yxld.yxchuangxin.ui.activity.main.WebviewActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.AboutOurActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.AccountActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.CarManageActivity;
+import com.yxld.yxchuangxin.ui.activity.wuye.ComplainActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FangwuActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FangxingActivity;
 import com.yxld.yxchuangxin.ui.activity.wuye.FixActivity;
@@ -152,8 +153,8 @@ public class WuyeAdapter extends BaseQuickAdapter<Wuye.DataBean, BaseViewHolder>
                             mContext.startActivity(intent);
                             break;
                         case 4:
-//                            mContext.startActivity(new Intent(mContext, ComplainActivity.class));
-                            mContext.startActivity(new Intent(mContext, NewComplainActivity.class));
+                            mContext.startActivity(new Intent(mContext, ComplainActivity.class));
+//                            mContext.startActivity(new Intent(mContext, NewComplainActivity.class));
                             break;
                         case 5: {
                             Intent intent1 = new Intent(mContext, WebSatisficingActivity.class);

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/lll_layout"
+    android:background="@color/line"
     android:orientation="vertical"
     >
 
@@ -14,28 +15,16 @@
         android:id="@+id/swip_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlPrimaryColor="@color/white"
         app:srlEnableLoadmore="false"
         android:layout_below="@+id/toolbarBusiness"
         >
 
-            <com.zhy.autolayout.AutoRelativeLayout
-                android:layout_width="match_parent"
-                android:layout_marginLeft="32px"
-                android:layout_marginRight="32px"
-                android:layout_marginTop="32px"
-                android:background="@color/white"
-                android:layout_height="match_parent">
-
-
-                <com.yxld.yxchuangxin.view.AutoCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:cardCornerRadius="14px"
-                   >
 
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/recycler_view"
+                        android:layout_marginLeft="20px"
+                        android:layout_marginRight="20px"
+                        android:layout_marginTop="20px"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -44,8 +33,7 @@
                         >
 
                     </android.support.v7.widget.RecyclerView>
-                </com.yxld.yxchuangxin.view.AutoCardView>
-            </com.zhy.autolayout.AutoRelativeLayout>
+
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

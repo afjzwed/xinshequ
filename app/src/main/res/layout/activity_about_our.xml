@@ -15,12 +15,14 @@
 
     <com.yxld.yxchuangxin.view.AutoCardView
         android:layout_width="match_parent"
-        android:layout_height="928px"
+        android:layout_height="match_parent"
         android:layout_marginLeft="40px"
         android:layout_marginRight="40px"
         android:layout_marginTop="654px"
+        android:layout_marginBottom="100px"
         android:background="@color/white"
         android:clickable="true"
+        android:layout_above="@+id/textView2"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="14px"
         app:cardElevation="@dimen/card_view_elevation">
@@ -42,13 +44,14 @@
 
             <android.support.v4.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="430px"
-                android:layout_marginTop="74px"
+                android:layout_height="match_parent"
                 android:scrollbars="vertical">
 
                 <com.zhy.autolayout.AutoLinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
+                    android:paddingTop="30px"
+                    android:paddingBottom="30px"
                     android:layout_height="match_parent">
 
                     <TextView
@@ -56,14 +59,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
+                        android:lineSpacingExtra="10px"
                         android:layout_centerVertical="true"
-                        android:layout_marginBottom="40px"
+                        android:layout_marginLeft="30px"
+                        android:layout_marginRight="30px"
 
-                        android:layout_marginLeft="54px"
-                        android:layout_marginRight="54px"
                         android:text="湖南创欣物联科技有限公司，是全国首家面向以市场化物业服务企业为导体，提供智能化社区解决方案，让业主品质生活和工作充满无限乐趣为宗旨的综合物联网服务提供商。公司始终以卓越的市场前瞻力和科技创新力推动物联网发展，为用户创造价值，推动现代社区服务发展，让社区生活与工作更便捷、更简单、更精彩。"
                         android:textColor="@color/color_646464"
-                        android:textSize="43px"
+                        android:textSize="44px"
                         />
                 </com.zhy.autolayout.AutoLinearLayout>
             </android.support.v4.widget.NestedScrollView>
@@ -76,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66px"
+        android:layout_marginBottom="30px"
         android:text="Copyright  2016-2016   湖南创欣物联科技有限公司"
         android:textColor="@color/gray"/>
 </com.zhy.autolayout.AutoRelativeLayout>

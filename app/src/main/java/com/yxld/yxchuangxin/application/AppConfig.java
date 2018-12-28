@@ -162,8 +162,7 @@ public class AppConfig extends Application {
 
         File cacheDir = new File(this.getCacheDir(), "volley");
         // TODO: 2017/11/3 bugly的key要改
-//        CrashReport.initCrashReport(this, "b272dac831", BuildConfig.LOG_DEBUG);
-        CrashReport.initCrashReport(this, "1e83a5b1e3", true);
+        CrashReport.initCrashReport(this, "1e83a5b1e3", false);
         //初始化log打印
         KLog.init(BuildConfig.LOG_DEBUG);
         KLog.i("----------------------------------------应用初始化---------------------------------");
@@ -237,14 +236,6 @@ public class AppConfig extends Application {
     }
 
 
-    public void exit() {
-//		if (mListActivity != null) {
-//			for (Activity activity : mListActivity) {
-//				if (activity != null && !activity.isFinishing())
-//					activity.finish();
-//			}
-//		}
-    }
 
     @Override
     public void onLowMemory() {
@@ -322,12 +313,13 @@ public class AppConfig extends Application {
         pushService.register(applicationContext, new CommonCallback() {
             @Override
             public void onSuccess(String response) {
-                PushServiceFactory.getCloudPushService().onAppStart();
-                KLog.i("geek", "阿里云推送初始化成功" + PushServiceFactory.getCloudPushService().getDeviceId());
+//                PushServiceFactory.getCloudPushService().onAppStart();
+                KLog.i("阿里云推送初始化成功");
             }
 
             @Override
             public void onFailed(String errorCode, String errorMessage) {
+                KLog.e("阿里云推送初始化成功errorCode" + errorCode + "errorMessage" + errorMessage);
             }
         });
     }

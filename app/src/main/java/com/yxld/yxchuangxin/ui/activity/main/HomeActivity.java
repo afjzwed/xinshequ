@@ -22,14 +22,11 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-import com.alibaba.sdk.android.push.CommonCallback;
-import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
 import com.socks.library.KLog;
 import com.umeng.analytics.MobclickAgent;
 import com.yxld.yxchuangxin.HomeService;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.CxUtil;
-import com.yxld.yxchuangxin.Utils.StringUitl;
 import com.yxld.yxchuangxin.Utils.ToastUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.base.BaseActivity;
@@ -62,10 +59,6 @@ public class HomeActivity extends BaseActivity {
     AutoFrameLayout tabcontent;
     @BindView(android.R.id.tabhost)
     FragmentTabHost tabhost;
-    //    private Intent main;
-//    private Intent wuye;
-//    private Intent zhoubian;
-//    private Intent shangcheng;
     private ArrayList<TabDataBean> tabDataList = new ArrayList<>(4);
 
     private static final String ACTION_CHANGETAB = "com.yxld.yxchuangxin.ui.activity.main.HomeActivity.action" + "" +
@@ -139,43 +132,18 @@ public class HomeActivity extends BaseActivity {
     public void onOutLogin(String outlogin) {
         if ("退出登录".equals(outlogin)) {
             CxUtil.clearData(sp);
-            removeAlPush();
+            CxUtil.clearAlpush();
             startActivity(LoginActivity.class);
         }
         if (outlogin.equals("reLogin")) {
             //阿里
-            removeAlPush();
-            initALPush();
+            CxUtil.clearAlpush();
+            CxUtil.initALPush(this);
             handleActionChangeTab(getIntent());
-//            initTabHost();
             reLoginRtc();
         }
     }
 
-    private void removeAlPush() {
-        PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云推送设置移除成功" + "removeAlias success" + s);
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-        PushServiceFactory.getCloudPushService().unbindAccount(new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云推送解除绑定账号" + "removeAlias success" + s);
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-    }
 
 
     /**
@@ -187,9 +155,8 @@ public class HomeActivity extends BaseActivity {
     public void onLoginTimeOut(EventBusEntity.Entity entity) {
         KLog.i("收到eventbus消息");
         if (entity == EventBusEntity.Entity.loginTimeOut) {
-//            ToastUtil.show(this, "登录失效，请重新登录");
+            KLog.i("登录失效，请重新登录");
             Intent intent = new Intent(this, SplashActivity.class);
-//            intent.putExtra("flag", "other");
             CxUtil.clearData(sp);
             startActivity(intent);
 
@@ -211,14 +178,13 @@ public class HomeActivity extends BaseActivity {
         mInflater = LayoutInflater.from(this);
 
         //阿里
-        initALPush();
+        CxUtil.clearAlpush();
+        CxUtil.initALPush(this);
         handleActionChangeTab(getIntent());
         initTabHost();
-
         //友盟统计
         //当用户使用自有账号登录时，可以这样统计：统计UUID
         MobclickAgent.onProfileSignIn(Contains.uuid);
-
         //启动服务rtc
         initHandler();
         startMainService();
@@ -275,43 +241,6 @@ public class HomeActivity extends BaseActivity {
 
 
 
-    private void initALPush() {
-        PushServiceFactory.getCloudPushService().addAlias(StringUitl.getDeviceId(this), new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-
-                KLog.i("阿里云推送设置添加别名成功" + StringUitl.getDeviceId(HomeActivity.this));
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-        PushServiceFactory.getCloudPushService().listAliases(new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云查询别名成功" + s);
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-        PushServiceFactory.getCloudPushService().bindAccount(Contains.user.getYezhuShouji(), new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云推送设置绑定账号成功" + Contains.user.getYezhuShouji());
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-
-    }
 
 
     @Override
@@ -320,29 +249,6 @@ public class HomeActivity extends BaseActivity {
         handleActionChangeTab(getIntent());
     }
 
-    private TabHost.TabSpec buildTabSpec(int index, String tag, Intent intent) {
-        if (tabhost != null) {
-            View view;
-            view = View.inflate(this, R.layout.tabhost_tabspec_normal_layout, null);
-            ImageView iv_tab_icon = (ImageView) view.findViewById(R.id.iv_tab_icon);
-            TextView tv_tab_label = (TextView) view.findViewById(R.id.tv_tab_label);
-            if (index == 0) {
-                iv_tab_icon.setImageResource(R.drawable.tab_main_selector);
-                tv_tab_label.setText("首页");
-            } else if (index == 1) {
-                iv_tab_icon.setImageResource(R.drawable.tab_wuye_selector);
-                tv_tab_label.setText("欣物业");
-            } else if (index == 2) {
-                iv_tab_icon.setImageResource(R.drawable.tab_rim_selector);
-                tv_tab_label.setText("欣周边");
-            } else if (index == 3) {
-                iv_tab_icon.setImageResource(R.drawable.tab_market_selector);
-                tv_tab_label.setText("欣商城");
-            }
-            return tabhost.newTabSpec(tag).setIndicator(view).setContent(intent);
-        }
-        return null;
-    }
 
     // 用下面这个函数拦截子Activity的返回操作
     @Override
@@ -428,7 +334,6 @@ public class HomeActivity extends BaseActivity {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             //获取Service端的Messenger
-            KLog.i("获取Service端的Messenger");
             serviceMessenger = new Messenger(service);
             Message message = Message.obtain();
             message.what = HomeService.REGISTER_ACTIVITY_HOME;

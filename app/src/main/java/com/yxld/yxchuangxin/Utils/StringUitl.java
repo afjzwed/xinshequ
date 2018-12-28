@@ -483,7 +483,7 @@ public class StringUitl {
             return deviceId.toString();
         } catch (Exception e) {
             Log.d("geek", "getDeviceId: e");
-            deviceId.append("e" + deviceId.toString() + PushServiceFactory.getCloudPushService().getDeviceId());
+            deviceId.append("e" + deviceId.toString() );
         }
         return deviceId.toString();
     }

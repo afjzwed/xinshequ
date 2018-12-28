@@ -303,7 +303,6 @@ public class MallFragment extends MyBaseFragment implements MallContract.View, S
             public void onHeaderPulling(RefreshHeader header, float percent, int offset, int headerHeight, int
                     extendHeight) {
                 // headMarketRoot.setVisibility(View.GONE);
-                KLog.e("拉");
                 headMarketRoot.setAlpha(1 - Math.min(percent, 1));
                 //  marketSearch.setVisibility(View.GONE);
             }

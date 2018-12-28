@@ -85,10 +85,8 @@ public class HomeService extends Service {
     public void onCreate() {
         super.onCreate();
         EventBus.getDefault().register(this);
-        KLog.i(TAG, "启动HomeService");
         if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
-            KLog.i(TAG, "username" + username);
         }else {
             username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
@@ -109,7 +107,6 @@ public class HomeService extends Service {
     }
 
     private void initHandle() {
-        KLog.i(TAG, "初始化handle");
         handler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -180,14 +177,12 @@ public class HomeService extends Service {
      * 初始化rtc SDk 连接
      */
     private void initRtcClient() {
-        KLog.i(TAG, "开始初始化rct SDK  initRtcClient()");
         rtcClient = new RtcClientImpl();
         rtcClient.initialize(this.getApplicationContext(), new ClientListener() {
             @Override   //初始化结果回调
             public void onInit(int result) {
                 if (result == 0) {
                     setRtcStatus(2); //初始化成功
-                    KLog.e(TAG, " -----------初始化rct成功-------------result=" + result + "-----------");
                     rtcClient.setAudioCodec(RtcConst.ACodec_OPUS);
                     rtcClient.setVideoCodec(RtcConst.VCodec_VP8);
                     rtcClient.setVideoAttr(RtcConst.Video_SD);
@@ -201,7 +196,6 @@ public class HomeService extends Service {
     }
 
     private void startGetToken() {
-        KLog.i(TAG, "开始获取Token ");
         new Thread() {
             public void run() {
                 Looper.prepare();
@@ -218,7 +212,6 @@ public class HomeService extends Service {
         }
         if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
-            KLog.i(TAG, "username" + username);
         }else {
                 username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
@@ -233,8 +226,7 @@ public class HomeService extends Service {
                 jargs.put(RtcConst.kAccType, RtcConst.UEType_Current);//终端类型
                 jargs.put(RtcConst.kAccRetry, 5);//设置重连时间
                 device = rtcClient.createDevice(jargs.toString(), deviceListener);
-                //注册
-                KLog.i(TAG, " 设置监听 deviceListener   ");
+
 
             } catch (JSONException e) {
                 KLog.i(TAG, "注册rtc失败   e:" + e.toString());
@@ -259,13 +251,11 @@ public class HomeService extends Service {
      * 获取TOKEN
      */
     private void onResponseGetToken(HttpResult ret) {
-        KLog.i(TAG, "rtc平台获取token 的状态  status=" + ret.getStatus());
         JSONObject jsonrsp = (JSONObject) ret.getObject();
         if (jsonrsp != null && jsonrsp.isNull("code") == false) {
             try {
                 String code = jsonrsp.getString(RtcConst.kcode);
                 String reason = jsonrsp.getString(RtcConst.kreason);
-                Log.v("MainService", "Response getCapabilityToken code:" + code + " reason:" + reason);
                 if (code.equals("0")) {
                     token = jsonrsp.getString(RtcConst.kcapabilityToken);
                     KLog.v(TAG, "获取token成功 token=" + token);
@@ -387,10 +377,10 @@ public class HomeService extends Service {
     DeviceListener deviceListener = new DeviceListener() {
         @Override
         public void onDeviceStateChanged(int result) {
-            KLog.i("注册状态 ,result=" + result);
+            KLog.i(TAG,"登陆状态 ,result=" + result);
             if (result == RtcConst.CallCode_Success) { //注销也存在此处
                 setRtcStatus(10); //注册成功
-                KLog.e(TAG, "-----------注册成功-------------username=" + username + "------------");
+                KLog.i(TAG, "-----------登陆成功-------------username=" + username + "------------");
             } else if (result == RtcConst.NoNetwork) {
                 KLog.i(TAG, "断网销毁，自动重连接");
             } else if (result == RtcConst.ChangeNetwork) {

@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -139,47 +138,6 @@ public class CxUtil {
 	 * 退出登录
 	 */
 	public static void clearData(SharedPreferences sp){
-		if(Contains.user != null){
-			String alias = Contains.uuid;
-//			JPushInterface.setAlias(AppConfig.app, "", new TagAliasCallback() {
-//				@Override
-//				public void gotResult(int i, String s, Set<String> set) {
-//					Log.d("geek", "JPushInterface clearData  setAlias  gotResult: "+i);
-//				}
-//			});
-//
-//			JPushInterface.setTags(AppConfig.app, new HashSet<String>(), new TagAliasCallback() {
-//				@Override
-//				public void gotResult(int i, String s, Set<String> set) {
-//					Log.d("geek", "gotResult: set clearData = "+set.toString());
-//					Log.d("geek", "JPushInterface setTags clearData gotResult: "+i);
-//				}
-//			});
-//                //alipush
-			PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
-                @Override
-                public void onSuccess(String s) {
-                    Log.d("geek", "alipush clearData  setAlias  gotResult: "+s);
-                }
-
-                @Override
-                public void onFailed(String s, String s1) {
-
-                }
-            });
-//            PushServiceFactory.getCloudPushService().unbindTag(3, new String[]{}, alias, new CommonCallback() {
-//                @Override
-//                public void onSuccess(String s) {
-//                    Log.d("geek", "gotResult: set clearData = "+s);
-//                    Log.d("geek", "alipush setTags clearData gotResult: "+s);
-//                }
-//
-//                @Override
-//                public void onFailed(String s, String s1) {
-//
-//                }
-//            });
-		}
 		Contains.shopCartNum=0;
 		Contains.shopCartList.clear();
 		Contains.curSelectXiaoQuName = "";
@@ -194,7 +152,77 @@ public class CxUtil {
 		SharedPreferences.Editor editor = sp.edit();
 		editor.clear();
 		editor.commit();
+	}
 
+	/**
+	 * 初始化阿里推送
+	 */
+
+	public static void initALPush(Context mContext) {
+		PushServiceFactory.getCloudPushService().addAlias(StringUitl.getDeviceId(mContext), new CommonCallback() {
+			@Override
+			public void onSuccess(String s) {
+
+				KLog.i("阿里云推送绑定别名成功" + StringUitl.getDeviceId(mContext));
+			}
+
+			@Override
+			public void onFailed(String s, String s1) {
+				KLog.i("阿里云推送绑定别名失败" + s + "---s1" + s1);
+			}
+		});
+		PushServiceFactory.getCloudPushService().listAliases(new CommonCallback() {
+			@Override
+			public void onSuccess(String s) {
+				KLog.i("阿里云查询别名成功" + s);
+			}
+
+			@Override
+			public void onFailed(String s, String s1) {
+
+			}
+		});
+		PushServiceFactory.getCloudPushService().bindAccount(Contains.user.getYezhuShouji(), new CommonCallback() {
+			@Override
+			public void onSuccess(String s) {
+				KLog.i("阿里云推送绑定账号成功" + Contains.user.getYezhuShouji());
+			}
+
+			@Override
+			public void onFailed(String s, String s1) {
+				KLog.i("阿里云推送绑定账号失败" + s + "---s1" + s1);
+			}
+		});
+
+	}
+
+	/**
+	 * 清除阿里推送
+	 */
+
+	public static void clearAlpush() {
+		PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
+			@Override
+			public void onSuccess(String s) {
+				KLog.i("阿里云推送设置移除成功" );
+			}
+
+			@Override
+			public void onFailed(String s, String s1) {
+
+			}
+		});
+		PushServiceFactory.getCloudPushService().unbindAccount(new CommonCallback() {
+			@Override
+			public void onSuccess(String s) {
+				KLog.i("阿里云推送解除绑定账号");
+			}
+
+			@Override
+			public void onFailed(String s, String s1) {
+
+			}
+		});
 	}
 
 	/***

@@ -319,7 +319,6 @@ public abstract class BaseFragment extends Fragment {
 			CxUtil.clearData(sp);
 			try {
 				getActivity().finish();
-				AppConfig.getInstance().exit();
 				Intent intent = new Intent(getActivity(), LoginActivity.class);
 				intent.putExtra("flag", "other");
 				startActivity(intent);

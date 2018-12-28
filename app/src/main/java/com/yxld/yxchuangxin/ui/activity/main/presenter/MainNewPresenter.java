@@ -90,7 +90,6 @@ public class MainNewPresenter implements MainNewContract.MainNewContractPresente
             @Override
             public void accept(BaseEntity entity) throws Exception {
                 //这里接收数据项
-                KLog.i("成功的回调");
                 mView.setAction(entity.getMSG());
             }
         }, new Consumer<Throwable>() {
@@ -157,7 +156,6 @@ public class MainNewPresenter implements MainNewContract.MainNewContractPresente
 
     @Override
     public void getLastVersion() {
-        Log.e("wh", "MainNewFragment请求");
         Map<String, String> map = new HashMap<>();
         Disposable disposable = httpAPIWrapper.getAppVersionInfo(map)
                 .subscribe(new Consumer<CxwyAppVersion>() {

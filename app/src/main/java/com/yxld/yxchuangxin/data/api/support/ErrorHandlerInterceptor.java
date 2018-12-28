@@ -32,7 +32,6 @@ public class ErrorHandlerInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request request = chain.request();
-        KLog.i("请求的地址为：" + request.url());
         Response response = chain.proceed(request);
         ResponseBody responseBody = response.body();
 //        KLog.i("网络请求的网址为:" + request.toString());
@@ -72,7 +71,7 @@ public class ErrorHandlerInterceptor implements Interceptor {
                 String result = buffer.clone().readString(charset);
 //                KLog.i("拦截到的okhttp结果:" + result);
 ////                KLog.e("拦截到的okhttp结果:" + result);
-//                com.orhanobut.logger.Logger.json(result);
+                com.orhanobut.logger.Logger.json(result);
                 result = "{\"data\": " + result + "}";
 //                KLog.json(result);
             }

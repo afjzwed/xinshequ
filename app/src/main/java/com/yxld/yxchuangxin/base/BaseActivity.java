@@ -406,7 +406,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Activity
                 //退出登录信息
                 CxUtil.clearData(sp);
                 finish();
-                AppConfig.getInstance().exit();
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.putExtra("flag", "other");
                 startActivity(intent);

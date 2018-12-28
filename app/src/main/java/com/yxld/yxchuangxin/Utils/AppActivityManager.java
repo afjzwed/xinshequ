@@ -4,9 +4,6 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
-import com.alibaba.sdk.android.push.CommonCallback;
-import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.socks.library.KLog;
 import com.yxld.yxchuangxin.base.ActivityDelegate;
 
 import java.util.Stack;
@@ -213,17 +210,7 @@ public class AppActivityManager {
     public void AppExit() {
         try {
             //移除阿里云别名
-            PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
-                @Override
-                public void onSuccess(String s) {
-                    KLog.i("阿里云移除所有别名成功");
-                }
-
-                @Override
-                public void onFailed(String s, String s1) {
-
-                }
-            });
+            CxUtil.clearAlpush();
             finishAllActivity();
             ActivityManager activityMgr = (ActivityManager) mApplication
                     .getSystemService(Context.ACTIVITY_SERVICE);

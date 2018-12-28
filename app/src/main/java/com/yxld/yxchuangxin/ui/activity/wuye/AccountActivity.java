@@ -2,13 +2,9 @@ package com.yxld.yxchuangxin.ui.activity.wuye;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.alibaba.sdk.android.push.CommonCallback;
-import com.alibaba.sdk.android.push.noonesdk.PushServiceFactory;
-import com.socks.library.KLog;
 import com.yxld.yxchuangxin.R;
 import com.yxld.yxchuangxin.Utils.CxUtil;
 import com.yxld.yxchuangxin.application.AppConfig;
@@ -37,8 +33,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.yxld.yxchuangxin.ui.activity.mine.FingerProveActivity.SP_FINGER_STATE;
 
 /**
  * @author hu
@@ -179,35 +173,7 @@ public class AccountActivity extends BaseActivity implements AccountContract.Vie
 
     @Override
     public void loginOut() {
-//        JPushInterface.setAlias(this,"", new TagAliasCallback() {
-//            @Override
-//            public void gotResult(int i, String s, Set<String> set) {
-//
-//            }
-//        });
-        PushServiceFactory.getCloudPushService().removeAlias(null, new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云推送移除别名成功" + "removeAlias success" + s);
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
-
-        PushServiceFactory.getCloudPushService().unbindAccount(new CommonCallback() {
-            @Override
-            public void onSuccess(String s) {
-                KLog.i("阿里云推送移除绑定账号成功" + "unbindAccount" + s);
-            }
-
-            @Override
-            public void onFailed(String s, String s1) {
-
-            }
-        });
+        CxUtil.clearAlpush();
         CxUtil.clearData(sp);
         AppConfig.getGreenDaoSession().getUserInfoDao().deleteAll();
         Intent intent = new Intent(this, LoginActivity.class);
