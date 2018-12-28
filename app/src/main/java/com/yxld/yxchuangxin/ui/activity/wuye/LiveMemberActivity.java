@@ -206,12 +206,11 @@ public class LiveMemberActivity extends BaseActivity implements LiveMemberContra
         map.put("yezhuId", yezhuId + "");
         map.put("loudong", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwLoudong() + "");
         map.put("danyuan", Contains.appYezhuFangwus.get(Contains.curFangwu).getFwDanyuan() + "");
-        map.put("zpUrl", "http://img0.hnchxwl.com/" + url);
         map.put("zpUrl", API.PIC + url);
 
-        Log.e("上传数据", "uuid " + Contains.uuid + " yezhuId " + yezhuId + " loudong " + Contains.appYezhuFangwus.get
-                (Contains.curFangwu).getFwLoudong() + " danyuan " + Contains.appYezhuFangwus.get(Contains.curFangwu)
-                .getFwDanyuan() + " zpUrl " + "http://img0.hnchxwl.com/" + url);
+//        Log.e("上传数据", "uuid " + Contains.uuid + " yezhuId " + yezhuId + " loudong " + Contains.appYezhuFangwus.get
+//                (Contains.curFangwu).getFwLoudong() + " danyuan " + Contains.appYezhuFangwus.get(Contains.curFangwu)
+//                .getFwDanyuan() + " zpUrl " + "http://img0.hnchxwl.com/" + url);
         mPresenter.upFace(map);
     }
 

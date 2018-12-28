@@ -8,9 +8,9 @@ public interface API {
     long CONNECT_TIMEOUT = 30 * 1000;
     long IO_TIMEOUT = 60 * 1000;
 
-    //    String IP_PRODUCT = "http://wy.iot.xin";//线上
+        String IP_PRODUCT = "http://wy.iot.xin";//线上
 //    String IP_PRODUCT = "http://114.116.103.247:8081";//业务会登录 拉取业主登陆
-    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
+//    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
 
     //业委会
 //    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
