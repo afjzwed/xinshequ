@@ -86,7 +86,6 @@ public class MainNewModule {
             }
             wuyeString = stringBuffer.toString();
             if (wuyeString != null) {
-                KLog.i(wuyeString);
                 Gson gson = new Gson();
                 Wuye wuye = gson.fromJson(wuyeString, Wuye.class);
                 return wuye.getData().get(0).getList();

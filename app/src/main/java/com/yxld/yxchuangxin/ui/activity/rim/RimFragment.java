@@ -107,8 +107,8 @@ public class RimFragment extends BaseFragment implements RimContract.View {
 //            //隐藏待开发的新周边
 //            mLllLayout.setBackground(getResources().getDrawable(R.mipmap.zhoubian_bg));
 //            toolbar.setVisibility(View.GONE);
-            initData();
         }
+        initData();
         return view;
     }
 
