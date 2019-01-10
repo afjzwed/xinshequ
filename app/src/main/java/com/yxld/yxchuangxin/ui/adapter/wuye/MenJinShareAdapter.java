@@ -1,11 +1,11 @@
 package com.yxld.yxchuangxin.ui.adapter.wuye;
 
+import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.yxld.yxchuangxin.R;
-import com.yxld.yxchuangxin.contain.Contains;
 import com.yxld.yxchuangxin.entity.AppYezhuFangwu;
 
 import java.util.List;
@@ -38,9 +38,11 @@ public class MenJinShareAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseVie
 //        }
         helper.setText(R.id.tv_Identity, item.getFwFanghao());
         if (item.getFwId() == 2) {
+            if (!TextUtils.isEmpty(item.getFwFanghao())) {
             id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item
                     .getFwFanghao().length());
-            helper.setText(R.id.tv_Identity, id);
+
+            helper.setText(R.id.tv_Identity, id); }
         }
             if (item.getFwId() == 0) {
                 helper.setText(R.id.tv_live_Identity, "产权人");

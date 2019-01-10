@@ -107,7 +107,6 @@
                 android:layout_below="@+id/iv_avater"
                 android:layout_marginRight="144px"
                 android:layout_marginTop="20px"
-                android:text="430256156865962655"
                 android:textColor="@color/color_646464"
                 android:textSize="40px"
                 />

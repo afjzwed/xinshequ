@@ -48,9 +48,11 @@ public class LiveMemberAdapter extends BaseQuickAdapter<AppYezhuFangwu, BaseView
         helper.addOnClickListener(R.id.iv_delet);
         helper.addOnClickListener(R.id.iv_avater);
         if (item.getFwId() == 2) {
+            if (!TextUtils.isEmpty(item.getFwFanghao())) {
             id = item.getFwFanghao().substring(0, 3) + "***********" + item.getFwFanghao().substring(14, item
                     .getFwFanghao().length());
-            helper.setText(R.id.tv_Identity, id);
+
+            helper.setText(R.id.tv_Identity, id);}
         }
         //如果不是业主，就隐藏删除按钮
         if (Contains.appYezhuFangwus.get(Contains.curFangwu).getFwyzType() > 1) {
