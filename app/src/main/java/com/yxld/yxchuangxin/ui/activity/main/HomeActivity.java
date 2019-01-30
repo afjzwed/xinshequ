@@ -145,7 +145,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-
     /**
      * 在@link HttpAPIWrapper 中发过来的消息
      *
@@ -240,9 +239,6 @@ public class HomeActivity extends BaseActivity {
     }
 
 
-
-
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -264,7 +260,7 @@ public class HomeActivity extends BaseActivity {
                     ToastUtil.showShort("再按一次退出欣社区");
                     mExitTime = System.currentTimeMillis();
                 } else {
-                    unbindService();
+                    finish();
                     AppConfig.getInstance().mAppActivityManager.AppExit();
                 }
                 return true;
@@ -316,7 +312,10 @@ public class HomeActivity extends BaseActivity {
     }
 
     public void unbindService() {
-        unbindService(connection);
+        if (connection != null) {
+            unbindService(connection);
+            connection = null;
+        }
     }
 
     private void reLoginRtc() {
@@ -353,18 +352,18 @@ public class HomeActivity extends BaseActivity {
 
     private long mExitTime;
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - mExitTime) > 2000) {
-                ToastUtil.showShort("再按一次退出欣社区");
-                mExitTime = System.currentTimeMillis();
-            } else {
-                finish();
-                AppConfig.getInstance().mAppActivityManager.AppExit();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
+//    @Override
+//    public boolean onKeyDown(int keyCode, KeyEvent event) {
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if ((System.currentTimeMillis() - mExitTime) > 2000) {
+//                ToastUtil.showShort("再按一次退出欣社区");
+//                mExitTime = System.currentTimeMillis();
+//            } else {
+//                finish();
+//                AppConfig.getInstance().mAppActivityManager.AppExit();
+//            }
+//            return true;
+//        }
+//        return super.onKeyDown(keyCode, event);
+//    }
 }

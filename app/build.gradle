@@ -22,8 +22,8 @@ android {
         applicationId "com.yxld.yxchuangxin"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 90
-        versionName "1.5.9.7"
+        versionCode 98
+        versionName "1.5.9.12"
         multiDexEnabled true
         ndk {
             abiFilters "armeabi"

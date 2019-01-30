@@ -48,7 +48,6 @@ import rtc.sdk.iface.RtcClient;
 
 public class HomeService extends Service {
     private static final String TAG = "HomeService";
-
     public static final int REGISTER_ACTIVITY_HOME = 10001; //MainActivity绑定Service的消息编号
     public static final int REGISTER_ACTIVITY_INBOUND = 10002; //InboundActivity绑定Service的消息编号
     public static final int MSG_OPEN_DOOR = 10003; //开门消息编号
@@ -58,6 +57,7 @@ public class HomeService extends Service {
     public static final int MSG_CLOSE_CALL = 10007; //挂断接听消息编号
     public static final int MSG_SWITCH_MIC = 10008;//切换免提
     public static final int MSG_RELOGIN_RTC = 10009; //重新登陆rtc
+    public static final int MSG_REGISTER_RTC = 100010; //注册rtc
 
     //rtc
     public static final String APP_ID = "72321";
@@ -85,13 +85,13 @@ public class HomeService extends Service {
     public void onCreate() {
         super.onCreate();
         EventBus.getDefault().register(this);
-        if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
+        if (Contains.user != null && Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
-        }else {
-            username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
+        } else {
+            username = getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
         initHandle();
-        initRingPlayer();
+//        initRingPlayer();
         setRtcStatus(1); //设置状态，获取到用户账号
         initRtcClient();
 
@@ -99,7 +99,9 @@ public class HomeService extends Service {
 
     private void initRingPlayer() {
         try {
-            ringingPlayer = MediaPlayer.create(this, R.raw.ring);
+            if (ringingPlayer == null) {
+                ringingPlayer = MediaPlayer.create(this, R.raw.ring);
+            }
             //ringingPlayer.prepare();
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,6 +149,10 @@ public class HomeService extends Service {
                         // 重新登陆rtc
                         rtcRegister();
                         break;
+                    case MSG_REGISTER_RTC:
+                        //获取token后注册
+                        onResponseGetToken((HttpResult) msg.obj);
+                        break;
                     default:
                         break;
                 }
@@ -178,19 +184,15 @@ public class HomeService extends Service {
      */
     private void initRtcClient() {
         rtcClient = new RtcClientImpl();
-        rtcClient.initialize(this.getApplicationContext(), new ClientListener() {
-            @Override   //初始化结果回调
-            public void onInit(int result) {
-                if (result == 0) {
-                    setRtcStatus(2); //初始化成功
-                    rtcClient.setAudioCodec(RtcConst.ACodec_OPUS);
-                    rtcClient.setVideoCodec(RtcConst.VCodec_VP8);
-                    rtcClient.setVideoAttr(RtcConst.Video_SD);
-                    startGetToken();
-                } else {
-                    KLog.e(TAG, " -----------初始化rct失败-------------result=" + result + "-----------");
-                    //onInitRtcError();
-                }
+        rtcClient.initialize(this.getApplicationContext(), result -> {
+            if (result == 0) {
+                setRtcStatus(2); //初始化成功
+                rtcClient.setAudioCodec(RtcConst.ACodec_OPUS);
+                rtcClient.setVideoCodec(RtcConst.VCodec_VP8);
+                rtcClient.setVideoAttr(RtcConst.Video_HD);
+                startGetToken();
+            } else {
+                KLog.e(TAG, " -----------初始化rct失败-------------result=" + result + "-----------");
             }
         });
     }
@@ -198,9 +200,7 @@ public class HomeService extends Service {
     private void startGetToken() {
         new Thread() {
             public void run() {
-                Looper.prepare();
                 getTokenFromServer();
-                Looper.loop();
             }
         }.start();
     }
@@ -210,10 +210,10 @@ public class HomeService extends Service {
             device.release();
             device = null;
         }
-        if (Contains.user!=null&&Contains.user.getYezhuShouji() != null) {
+        if (Contains.user != null && Contains.user.getYezhuShouji() != null) {
             username = Contains.user.getYezhuShouji();
-        }else {
-                username= getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
+        } else {
+            username = getSharedPreferences("userInfo", Context.MODE_PRIVATE).getString("NAME", "");
         }
         KLog.i(TAG, "开始登陆rtc  username:" + username + "token:" + token);
         if (token != null) {
@@ -224,10 +224,9 @@ public class HomeService extends Service {
                 jargs.put(RtcConst.kAccAppID, APP_ID);//应用id
                 jargs.put(RtcConst.kAccUser, username); //号码
                 jargs.put(RtcConst.kAccType, RtcConst.UEType_Current);//终端类型
-                jargs.put(RtcConst.kAccRetry, 5);//设置重连时间
+//                jargs.put(RtcConst.kAccRetry, 5);//设置重连时间
+                KLog.i(TAG, "createDevice" );
                 device = rtcClient.createDevice(jargs.toString(), deviceListener);
-
-
             } catch (JSONException e) {
                 KLog.i(TAG, "注册rtc失败   e:" + e.toString());
                 e.printStackTrace();
@@ -244,7 +243,10 @@ public class HomeService extends Service {
         JSONObject jsonobj = HttpManager.getInstance().CreateTokenJson(0, username, RtcHttpClient.grantedCapabiltyID,
                 "");
         HttpResult ret = HttpManager.getInstance().getCapabilityToken(jsonobj, APP_ID, APP_KEY);
-        onResponseGetToken(ret);
+        Message msg = new Message();
+        msg.what = MSG_REGISTER_RTC;
+        msg.obj = ret;
+        handler.sendMessage(msg);
     }
 
     /**
@@ -306,7 +308,7 @@ public class HomeService extends Service {
         JSONObject data = new JSONObject();
         try {
             String regex = "(.{2})";
-            data.put("mac", call.from.replaceAll(regex, "$1:").substring(0,call.from.replaceAll(regex, "$1:").length()-1));
+            data.put("mac", call.from.replaceAll(regex, "$1:").substring(0, call.from.replaceAll(regex, "$1:").length() - 1));
             data.put("phone", username);
             data.put("ka_id", "");
             data.put("kaimenfangshi", 2);
@@ -377,7 +379,7 @@ public class HomeService extends Service {
     DeviceListener deviceListener = new DeviceListener() {
         @Override
         public void onDeviceStateChanged(int result) {
-            KLog.i(TAG,"登陆状态 ,result=" + result);
+            KLog.i(TAG, "登陆状态 ,result=" + result);
             if (result == RtcConst.CallCode_Success) { //注销也存在此处
                 setRtcStatus(10); //注册成功
                 KLog.i(TAG, "-----------登陆成功-------------username=" + username + "------------");
@@ -547,7 +549,7 @@ public class HomeService extends Service {
      * 关闭 接受视频页面
      */
     protected void stopInboundActivity() {
-        KLog.i(TAG, "stopInboundActivity InboundActivity.instance"+InboundActivity.instance==null?"为空":"不为空");
+        KLog.i(TAG, "stopInboundActivity InboundActivity.instance" + InboundActivity.instance == null ? "为空" : "不为空");
         if (InboundActivity.instance != null) {
             InboundActivity.instance.finish();
             InboundActivity.instance = null;
@@ -701,19 +703,25 @@ public class HomeService extends Service {
      * 启动 响铃
      */
     protected void startRing() {
-        ringingPlayer.start();
+        initRingPlayer();
+        if (ringingPlayer != null) {
+            ringingPlayer.start();
+        }
     }
 
     /**
      * 停止响铃
      */
     protected void stopRing() {
-        ringingPlayer.pause();
         try {
-            ringingPlayer.seekTo(0);
+            if (ringingPlayer != null) {
+                ringingPlayer.pause();
+                ringingPlayer.seekTo(0);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -731,11 +739,24 @@ public class HomeService extends Service {
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        KLog.i("HomeService", "onUnbind()");
+        // closeCallingConnection();
+        rtcLoginout();
+        return super.onUnbind(intent);
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
         KLog.i("HomeService", "onDestroy()");
         // closeCallingConnection();
+        rtcLoginout();
+    }
+
+    private void rtcLoginout() {
+        KLog.i("HomeService", "rtcLoginout()");
         if (device != null) {
             device.release();
             device = null;
