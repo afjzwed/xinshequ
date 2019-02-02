@@ -13,10 +13,10 @@ public interface API {
 //    String IP_PRODUCT = "http://192.168.8.222:8080";//公司内网测试环境 拉取业主登陆
 
     //业委会
-//    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
-//    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
-    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
-    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
+    String URL_YEYWEIHUI = "http://114.116.103.247:8080/api/app";//线上请求业委会流程接口
+    String URL_YWH_WEB = "http://114.116.108.148:8081";//线上h5  research 问卷调查
+//    String URL_YEYWEIHUI = "http://192.168.8.214:8080/api/app";  //现在拉取业委会流程接口
+//    String URL_YWH_WEB = "http://192.168.8.223:8080";   //请求问卷调查  223
 
 
 

@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.yxld.yxchuangxin.R;
+import com.yxld.yxchuangxin.application.AppConfig;
 import com.yxld.yxchuangxin.ui.activity.main.SplashActivity;
 
 import java.io.File;
@@ -187,20 +188,19 @@ public class UpdateManager {
 
     //    检查版本更新，跳转到腾讯应用宝进行下载
     private void intit_getClick() {
-//		if (isAvilible(mContext, "com.tencent.android.qqdownloader")) {// 市场存在
+		if (isAvilible(mContext, "com.tencent.android.qqdownloader")) {// 市场存在
 //			Log.e("wh", "跳转下载");
-////			launchAppDetail(AppConfig.getInstance(), "com.yxld.yxchuangxin.xsq", "com.tencent.android
-/// .qqdownloader");
-//		} else {
-//			Uri uri = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=com.yxld.yxchuangxin.xsq");
-//			Intent it = new Intent(Intent.ACTION_VIEW, uri);
-//			mContext.startActivity(it);
-//		}
+			launchAppDetail(AppConfig.getInstance(), "com.yxld.yxchuangxin.xsq", "com.tencent.android.qqdownloader");
+		} else {
+			Uri uri = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=com.yxld.yxchuangxin.xsq");
+			Intent it = new Intent(Intent.ACTION_VIEW, uri);
+			mContext.startActivity(it);
+		}
 
 //		Log.e("wh", "跳转下载");
-        Uri uri = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=com.yxld.yxchuangxin.xsq");
-        Intent it = new Intent(Intent.ACTION_VIEW, uri);
-        mContext.startActivity(it);
+//        Uri uri = Uri.parse("http://a.app.qq.com/o/simple.jsp?pkgname=com.yxld.yxchuangxin.xsq");
+//        Intent it = new Intent(Intent.ACTION_VIEW, uri);
+//        mContext.startActivity(it);
 //		SplashActivity activity = (SplashActivity) mContext;
 //		activity.startActivityForResult(it, 66);
     }
