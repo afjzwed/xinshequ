@@ -102,27 +102,27 @@ public class CarAddMoneyPresenter implements CarAddMoneyContract.CarAddMoneyCont
 //            KLog.i(day);
             //最后一天为28
             if (day == 1) {
-                if (day1 > 28) {
-                    cd.set(Calendar.DAY_OF_MONTH, 28);
-                }
+//                if (day1 > 28) {
+//                    cd.set(Calendar.DAY_OF_MONTH, 28);
+//                }
 //                KLog.i("添加3天");
-//                cd.add(Calendar.DAY_OF_MONTH, 3);
+                cd.add(Calendar.DAY_OF_MONTH, 3);
             }
             //最后一天为29
             if (day == 2) {
-                if (day1 > 29) {
-                    cd.set(Calendar.DAY_OF_MONTH, 29);
-                }
+//                if (day1 > 29) {
+//                    cd.set(Calendar.DAY_OF_MONTH, 29);
+//                }
 //                KLog.i("添加2天");
-//                cd.add(Calendar.DAY_OF_MONTH, 2);
+                cd.add(Calendar.DAY_OF_MONTH, 2);
             }
             //最后一天为30
             if (day == 3) {
-                if (day1 > 30) {
-                    cd.set(Calendar.DAY_OF_MONTH, 30);
-                }
+//                if (day1 > 30) {
+//                    cd.set(Calendar.DAY_OF_MONTH, 30);
+//                }
 //                KLog.i("添加1天");
-//                cd.add(Calendar.DAY_OF_MONTH, 1);
+                cd.add(Calendar.DAY_OF_MONTH, 1);
             }
             //最后一天为31
             if (day == 4) {
